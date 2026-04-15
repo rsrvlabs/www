@@ -1,0 +1,83 @@
+"use client";
+
+import { ScrollReveal } from "@/components/visuals/scroll-reveal";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+
+export function Weather() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const emberY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const emberScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
+
+  return (
+    <section
+      ref={ref}
+      id="weather"
+      className="relative overflow-hidden bg-night text-paper"
+    >
+      {/* Real painted ember haze */}
+      <motion.div
+        style={{ y: emberY, scale: emberScale }}
+        className="pointer-events-none absolute inset-0"
+      >
+        <Image
+          src="/materials/weather-ambient.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-70 mix-blend-screen"
+        />
+      </motion.div>
+
+      {/* Let the top and bottom fade into the night so section edges don't show seams */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[25%]"
+        style={{
+          background:
+            "linear-gradient(to bottom, oklch(0.22 0.03 60) 0%, transparent 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[25%]"
+        style={{
+          background:
+            "linear-gradient(to top, oklch(0.22 0.03 60) 0%, transparent 100%)",
+        }}
+      />
+
+      <div className="relative mx-auto w-full max-w-[80rem] px-6 py-[24svh] md:px-10">
+        <motion.span
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="block mb-[10svh] font-sans text-[0.7rem] uppercase tracking-[0.32em] text-paper/45"
+        >
+          Weather
+        </motion.span>
+
+        <ScrollReveal
+          baseOpacity={0.18}
+          blurStrength={5}
+          textClassName="font-display text-[clamp(1.6rem,3.4vw,3rem)] leading-[1.55] tracking-[-0.01em] text-paper max-w-[28ch]"
+        >
+          Technology, when it is good, is mostly weather. You feel
+          warmer or calmer or more curious, and you do not know why.
+          That is the work we want to make.
+        </ScrollReveal>
+
+        <div className="mt-[14svh] flex items-center justify-between font-sans text-[0.65rem] uppercase tracking-[0.32em] text-paper/40">
+          <span>— a small studio</span>
+          <span>Reserve</span>
+        </div>
+      </div>
+    </section>
+  );
+}
