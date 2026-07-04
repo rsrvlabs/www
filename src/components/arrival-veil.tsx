@@ -46,7 +46,12 @@ export function ArrivalVeil() {
     const placesChunk = import("@/components/sections/places");
     const mapChunk = import("@/components/visuals/city-map");
 
-    const dismiss = () => setVisible(false);
+    const dismiss = () => {
+      setVisible(false);
+      // Entrance effects that must be SEEN (e.g. the hero kicker decrypt)
+      // key off this instead of mount — mount runs behind the opaque veil.
+      window.dispatchEvent(new Event("reserve:veil-lifted"));
+    };
 
     const settle = async () => {
       try {
@@ -69,6 +74,7 @@ export function ArrivalVeil() {
       {visible && (
         <motion.div
           key="arrival-veil"
+          data-arrival-veil
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
           transition={{ duration: 0.95, ease: [0.19, 1, 0.22, 1] }}

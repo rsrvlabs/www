@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Silk } from "@/components/visuals/silk";
+import { DecryptText } from "@/components/visuals/decrypt-text";
 
 export function Arrival() {
   const ref = useRef<HTMLElement>(null);
@@ -61,17 +62,25 @@ export function Arrival() {
         style={{ y, opacity: fade }}
         className="relative z-10 mx-auto w-full max-w-[88rem] px-6 md:px-10"
       >
+        {/* Kicker: smaller + wider-tracked than base .kicker for scale-contrast
+            against the enlarged display (insforge type grammar); decrypt entrance
+            runs once the veil lifts. */}
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.4 }}
-          className="kicker mb-10 text-paper/55"
+          className="kicker mb-10 text-[0.62rem] tracking-[0.3em] text-paper/55"
         >
-          01 · AI-native studio
+          <DecryptText text="01 · AI-native studio" />
         </motion.p>
 
-        <h1 className="font-display font-normal text-paper leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,6.2vw,6.5rem)]">
-          <Line text="We build AI-native products." baseDelay={0.55} />
+        {/* Display: big-but-light (insforge computed: wt400, tight leading) —
+            Gambarino stays; single gold accent span on the thesis word.
+            Cap is 7.4rem, NOT the ~8rem first proposed: measured 2026-07-04,
+            line 1 needs 11.01px width per font-px, so >120px wraps inside the
+            1328px content column (8rem = 128px provably wrapped). */}
+        <h1 className="font-display font-normal text-paper leading-[1.02] tracking-[-0.03em] text-[clamp(2.5rem,7.5vw,7.4rem)]">
+          <Line text="We build AI-native products." accentWord="AI-native" baseDelay={0.55} />
           <br />
           <span className="text-paper/70 italic font-display">
             <Line text="The company itself is one." baseDelay={1.45} />
@@ -91,9 +100,18 @@ export function Arrival() {
             funded by embedded AI engineering, run on an operating
             system we built, where agents hold jobs.
           </p>
-          <span className="kicker shrink-0 text-paper/45">
-            EST. MMXXIV · Bootstrapped · Taipei
-          </span>
+          {/* Machine row: scrunch metadata-bar grammar (left-hairline items),
+              smaller mono than base .kicker. */}
+          <div className="flex shrink-0 items-baseline gap-4">
+            {["EST. MMXXIV", "Bootstrapped", "Taipei"].map((item) => (
+              <span
+                key={item}
+                className="kicker border-l border-paper/15 pl-4 text-[0.6rem] tracking-[0.26em] text-paper/45"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </motion.div>
 
@@ -112,7 +130,15 @@ export function Arrival() {
   );
 }
 
-function Line({ text, baseDelay }: { text: string; baseDelay: number }) {
+function Line({
+  text,
+  baseDelay,
+  accentWord,
+}: {
+  text: string;
+  baseDelay: number;
+  accentWord?: string;
+}) {
   const words = text.split(" ");
   // Precompute each word's char offset so delays stay sequential across words.
   const offsets = words.reduce<number[]>(
@@ -122,7 +148,11 @@ function Line({ text, baseDelay }: { text: string; baseDelay: number }) {
   return (
     <>
       {words.map((word, w) => (
-        <span key={`w-${w}`} className="inline-block whitespace-nowrap">
+        <span
+          key={`w-${w}`}
+          // Single accent span per headline (insforge signature) — sun gold.
+          className={`inline-block whitespace-nowrap${word === accentWord ? " text-sun" : ""}`}
+        >
           {word.split("").map((ch, i) => (
             <Char key={i} ch={ch} delay={baseDelay + (offsets[w] + i) * 0.04} />
           ))}

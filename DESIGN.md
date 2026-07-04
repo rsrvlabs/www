@@ -159,6 +159,21 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   `site/punch-card.tsx` (extracted from DoorCard), grid-paper-night title bands, real dashed row
   dividers. `/research` wears the blog blueprint (above). Screens harness waits for the globe
   restore before the places shot.
+- **2026-07-04 — Step 1 SHIPPED** (hero typography + accent + decrypt, from insforge computed
+  values): display scale-contrast — hero clamp cap raised 6.5rem → **7.4rem** (NOT the ~8rem
+  first proposed: measured, line 1 needs ~11px of width per font-px, so >120px wraps inside
+  the 1328px content column), slope 7.5vw, tracking −0.03em, leading 1.02 (insforge H1
+  grammar: wt400 big-but-light, tight leading — Gambarino stays); hero kicker dropped to
+  0.62rem / 0.3em tracking for scale-contrast against the display; **single gold accent
+  span** on "AI-native" (insforge single-accent signature — sun at chroma 0.10 reads gilded,
+  not loud, on the neutral ground); hero kicker enters by **decrypt/scramble**
+  (`visuals/decrypt-text.tsx` — hand-rolled ~40-line client component, no deps, house
+  enter-ease feel, reduced-motion renders final text; **veil-gated** via the new
+  `reserve:veil-lifted` window event from `arrival-veil.tsx`, because mount-time entrances
+  finish unseen behind the opaque veil); bottom machine row (EST. MMXXIV · BOOTSTRAPPED ·
+  TAIPEI) → scrunch left-hairline metadata items at 0.6rem mono. Hero grid-paper band
+  considered and skipped: the silk shader is the hero's texture; a lattice over moving
+  fabric competes (grid-paper stays the flat-dark-section grammar).
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
 - Next layers (design-revamp ticket): dark-section card lattices where real cell grids exist,

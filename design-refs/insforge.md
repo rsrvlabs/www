@@ -48,8 +48,12 @@
 
 grid-paper (`.grid-paper-night`; since 2026-07-04 also the title band on every subpage) ·
 odometer (`visuals/odometer.tsx`) · hover-duration grammar · enter-once principle (DESIGN.md
-motion rules). **Not yet:** collapsed-border lattice, gradient-border hub, line-draw
-choreography, marquee, agent-view toggle.
+motion rules) · **hero display scale-contrast** (Step 1 2026-07-04: wt400 big-but-light +
+tight leading from the computed H1 values — hero at clamp cap 7.4rem / leading 1.02 /
+tracking −0.03em, kicker shrunk + wider-tracked) · **single-accent headline span** (Step 1:
+"AI-native" in sun — one accent per headline, their `#6ee7b7`-span signature). **Not yet:**
+collapsed-border lattice, gradient-border hub, line-draw choreography, marquee, agent-view
+toggle.
 
 ## Computed (rendered) values — 2026-07-04 live extraction
 
