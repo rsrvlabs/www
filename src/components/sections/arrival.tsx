@@ -22,13 +22,14 @@ export function Arrival() {
       className="relative flex min-h-[100svh] items-end overflow-hidden bg-night pb-[14svh]"
     >
       {/* Code-generated dark silk (design-refs: ours; replaces the pastoral
-          raster — the last non-黑鏡 element). Deep bronze waves over night. */}
+          raster — the last non-黑鏡 element). Neutral graphite waves — dark
+          fabric, not bronze (brutalist reset 2026-07-04). */}
       <motion.div
         style={{ y: skyY, scale: skyScale }}
         className="absolute inset-0 opacity-70"
       >
         <Silk
-          color="#4a3520"
+          color="#2e2e2e"
           speed={reducedMotion ? 0 : 2.2}
           scale={1.1}
           noiseIntensity={1.2}
@@ -36,23 +37,23 @@ export function Arrival() {
         />
       </motion.div>
 
-      {/* Bottom fade into cream paper so the hills handoff cleanly into the next section */}
+      {/* Bottom fade into the night ground so the silk hands off cleanly into the next section */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, oklch(0.22 0.03 60 / 0.6) 60%, oklch(0.22 0.03 60) 100%)",
+            "linear-gradient(to bottom, transparent 0%, oklch(0.145 0 0 / 0.6) 60%, oklch(0.145 0 0) 100%)",
         }}
       />
 
-      {/* Soft warm glow on the upper-left so headline sits in calm air */}
+      {/* Soft dark veil on the upper half so the headline sits in calm air */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
         style={{
           background:
-            "linear-gradient(to bottom, oklch(0.22 0.03 60 / 0.55) 0%, transparent 100%)",
+            "linear-gradient(to bottom, oklch(0.145 0 0 / 0.55) 0%, transparent 100%)",
         }}
       />
 

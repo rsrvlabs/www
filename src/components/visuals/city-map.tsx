@@ -42,21 +42,23 @@ interface Props {
   onPreWarmed?: () => void;
 }
 
-// Warm Reserve palette — every value pulled from globals.css OKLCH tokens
+// Reserve palette mirrors — every value pulled from globals.css OKLCH tokens
 // (converted to hex for MapLibre). Any new color added here should trace
-// back to a token.
+// back to a token. GROUND mirrors (night/water) went neutral with the
+// brutalist token reset (2026-07-04); the land-relief tuning (ink/dusk/sun/
+// moss/sand) stays warm as imagery — re-tune in the places step.
 const PAPER = "#f4ecd8";          // --color-paper
 const INK = "#2b2417";            // --color-ink        (warm dark)
 const INK_SOFT = "#635445";       // --color-ink-soft   (muted warm mid)
 const INK_FAINT = "#948871";      // --color-ink-faint  (lifted warm)
-const NIGHT = "#2a2014";          // --color-night
-const NIGHT_DEEP = "#1a140c";     // darker than night, shadow baseline
+const NIGHT = "#0a0a0a";          // --color-night      (neutral ground)
+const NIGHT_DEEP = "#050505";     // --color-night-deep, shadow baseline
 const DUSK = "#a55c33";           // --color-dusk
 const SUN = "#e8b55f";            // --color-sun
 const MOSS = "#4e6e48";           // --color-moss dark side
-const WATER = "#1b130a";          // deep warm ink for water — still nearly
-                                  // black but kept on-palette with the
-                                  // rest of the site's warm tokens.
+const WATER = "#070707";          // water — neutral near-black, a hair
+                                  // above night-deep so coastlines still
+                                  // separate from the shadow baseline.
 // Sandstone extrapolations from the warm palette — the lit faces of
 // buildings. Not yet design tokens; promote to globals.css if these
 // values prove out across all eight cities.

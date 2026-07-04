@@ -1,4 +1,4 @@
-# Reserve design system — French minimal × Black Mirror
+# Reserve design system — brutalist × French minimal
 
 The design spec for `rsrvlabs/www` (and later the Reserve research blog). Aesthetic target
 (founder, 2026-07-03/04): **法式簡約 × 黑鏡科技, unmistakably post-2026 — explicitly NOT the
@@ -10,7 +10,7 @@ motion grammar), ploy.ai (component play), scrunch.com blog (editorial system). 
 
 **The site is dark-based.** Founder ruling: the warm-cream base was legacy-copy residue, not the
 brand ("暗色系的法式簡約…色盤之類的都要改掉"). The brand tone is **dark French minimalism ×
-Black Mirror glass**: warm near-black (`night`) as the ground, cream `paper` as the *voice*
+Black Mirror glass**: neutral near-black (`night`) as the ground, cream `paper` as the *voice*
 (text, hairlines, rare surfaces), one gold `sun` accent. The French half is carried by
 **typography, whitespace, and hairlines** — not by a cream background. Three layers on the dark
 ground:
@@ -26,6 +26,31 @@ Token names keep their meanings (`paper` = the light values, `night` = the dark 
 flipped is which one is the background. Legacy pastoral imagery sinks into the night (reduced
 opacity + night fades) until the materials re-shoot lands. **"Room/rooms" language is purged**
 (legacy copy residue — founder call, same date).
+
+### 2026-07-04 amendment — brutalist × French minimal (the ground goes NEUTRAL)
+
+**Founder direction change (2026-07-04):** the aesthetic is **brutalist web design × French
+minimal** — raw **neutral** near-blacks as the ground (NOT warm brown — the warm-hue dark
+ground was rejected as 大便色), hard 1px borders, stark contrast, structure exposed. Cream
+serif `paper` stays as the TEXT voice; the one gold `sun` accent is retuned (chroma 0.12 →
+0.10) for the neutral ground. Step 0 (this reset) re-derived the night ladder as zero-chroma
+OKLCH from insforge's **rendered** values (`design-refs/insforge.md`, computed section):
+`night oklch(0.145 0 0)` ≈ #0a0a0a · `night-soft oklch(0.205 0 0)` ≈ #171717 ·
+`night-deep oklch(0.12 0 0)` ≈ #050505; night lines/lattices/grain neutralized; the hero silk
+recolored bronze → graphite `#2e2e2e` (dark fabric, not metal). Sections change one step at a
+time with founder approval — no redesign rides along with a token flip.
+
+**Lesson (recorded so it isn't relearned): hue inheritance across ground-flips is a trap.**
+When the site flipped cream→dark, the night tokens inherited the paper palette's warm hue
+(~60°) — a hue that reads "expensive" at L 0.96 reads **brown** at L 0.22. When a ground
+flips, re-derive its neutrals from zero; don't scale the old hue down the lightness axis.
+(Both reference darks are hue-free: insforge's rendered ladder #0a0a0a/#161616/#262626 and
+ploy's #f4f4f4→#212121→#000 carry chroma 0 — color lives only in the accent.) In the globe
+(`visuals/city-map.tsx`) the GROUND token-mirrors (NIGHT/NIGHT_DEEP/WATER — canvas backdrop,
+map background, fog, water) followed the reset to neutral hex; the warm land-relief tuning
+(ink/dusk/sun/moss/sand constants) is imagery-layer and untouched at Step 0 — re-tune it in
+the places step. Same for the weather haze raster: desaturated via CSS `grayscale` (a warm
+JPEG screen-blended over neutral ground re-browns the whole section) until the re-shoot.
 
 ## Typography (role trichotomy — hierarchy from role, not weight)
 
@@ -43,10 +68,11 @@ Rule: if a string is *about* the content (metadata), it's mono. If it *is* the c
   comply — keep it that way).
 - **Paper sections:** paper/ink + hairlines; accent budget ≈ zero. Branded `::selection` (already
   ink-on-paper inversion — keep as signature).
-- **Dark sections (`night`):** surfaces stepped `night → +1 → +2` (like insforge #0f0f0f→#161616→
-  #262626 but in our warm-dark OKLCH); borders 2-step (structural vs card); **exactly ONE accent**
-  — default `sun` (warm gold reads French even in the dark; do NOT add a second accent without
-  updating this file).
+- **Dark sections (`night`):** surfaces stepped `night → +1 → +2` (insforge's rendered
+  #0a0a0a→#161616→#262626, ours as zero-chroma OKLCH); borders 2-step (structural vs card);
+  **exactly ONE accent** — default `sun` (warm gold reads French even in the dark; chroma
+  retuned 0.12→0.10 on the neutral ground; do NOT add a second accent without updating this
+  file).
 - **Separator discipline:** paper sections divide with **1px dashed ink@12–15%** hairlines (no
   shadows, no boxes); dark sections divide with **collapsed solid 1px lattices** (cells share
   borders, outer edges removed). Two grammars, never mixed in one section.

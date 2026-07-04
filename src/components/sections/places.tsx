@@ -129,13 +129,13 @@ export function Places() {
           )}
         </AnimatePresence>
 
-        {/* Warm ink vignette so map edges soften into the section bg */}
+        {/* Neutral night vignette so map edges soften into the section bg */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(120% 80% at 50% 50%, transparent 40%, oklch(0.22 0.03 60 / 0.55) 85%, oklch(0.22 0.03 60) 100%)",
+              "radial-gradient(120% 80% at 50% 50%, transparent 40%, oklch(0.145 0 0 / 0.55) 85%, oklch(0.145 0 0) 100%)",
           }}
         />
 
@@ -207,7 +207,7 @@ export function Places() {
                 style={{
                   filter: "saturate(0.85) brightness(0.88) contrast(1.04)",
                   boxShadow:
-                    "0 18px 40px -18px oklch(0.1 0.02 50 / 0.85), 0 2px 6px oklch(0.1 0.02 50 / 0.4)",
+                    "0 18px 40px -18px oklch(0.1 0 0 / 0.85), 0 2px 6px oklch(0.1 0 0 / 0.4)",
                 }}
               >
                 <Image
@@ -222,7 +222,7 @@ export function Places() {
                   className="pointer-events-none absolute inset-0"
                   style={{
                     boxShadow:
-                      "inset 0 0 1px 1px oklch(0.28 0.04 55 / 0.6), inset 0 0 30px oklch(0.12 0.03 55 / 0.55)",
+                      "inset 0 0 1px 1px oklch(0.28 0 0 / 0.6), inset 0 0 30px oklch(0.12 0 0 / 0.55)",
                   }}
                 />
               </motion.figure>

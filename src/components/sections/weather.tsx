@@ -52,7 +52,9 @@ export function Weather() {
       {/* Grid-paper lattice: the machine behind the weather (DESIGN.md dark grammar) */}
       <div aria-hidden className="grid-paper-night pointer-events-none absolute inset-0" />
 
-      {/* Real painted ember haze */}
+      {/* Painted haze, desaturated to neutral smoke — the warm original screen-blended
+          a brown cast over the neutral ground (brutalist reset 2026-07-04); grayscale
+          keeps the texture until the materials re-shoot lands. */}
       <motion.div
         style={{ y: emberY, scale: emberScale }}
         className="pointer-events-none absolute inset-0"
@@ -62,7 +64,7 @@ export function Weather() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-50 mix-blend-screen"
+          className="object-cover opacity-40 mix-blend-screen grayscale"
         />
       </motion.div>
 
@@ -72,7 +74,7 @@ export function Weather() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[25%]"
         style={{
           background:
-            "linear-gradient(to bottom, oklch(0.22 0.03 60) 0%, transparent 100%)",
+            "linear-gradient(to bottom, oklch(0.145 0 0) 0%, transparent 100%)",
         }}
       />
       <div
@@ -80,7 +82,7 @@ export function Weather() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[25%]"
         style={{
           background:
-            "linear-gradient(to top, oklch(0.22 0.03 60) 0%, transparent 100%)",
+            "linear-gradient(to top, oklch(0.145 0 0) 0%, transparent 100%)",
         }}
       />
 
