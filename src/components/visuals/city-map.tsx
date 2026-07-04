@@ -655,6 +655,48 @@ function applyReservePalette(map: MLMap) {
     const type = layer.type;
 
     if (type === "symbol") {
+      // Machine layer on the planet: keep ONLY city + major-country names,
+      // restyled to the site's kicker grammar (uppercase, tracked-out,
+      // paper on a night halo, latin-only). Everything else — POIs, road
+      // names, shields, transit — is noise and stays hidden.
+      if (/^label_(city(_capital)?|country_[12])$/.test(id)) {
+        const isCountry = /country/.test(id);
+        map.setLayoutProperty(id, "visibility", "visible");
+        map.setLayoutProperty(id, "text-field", [
+          "coalesce",
+          ["get", "name:latin"],
+          ["get", "name_en"],
+          ["get", "name"],
+        ]);
+        map.setLayoutProperty(id, "text-transform", "uppercase");
+        map.setLayoutProperty(id, "text-letter-spacing", 0.14);
+        if (!isCountry) {
+          // Liberty pins a black circle sprite to city labels below z9 —
+          // invisible-to-ugly on the night ground.
+          map.setLayoutProperty(id, "icon-image", "");
+        }
+        map.setPaintProperty(id, "text-color", PAPER);
+        map.setPaintProperty(id, "text-opacity", isCountry ? 0.5 : 0.82);
+        map.setPaintProperty(id, "text-halo-color", NIGHT_DEEP);
+        map.setPaintProperty(id, "text-halo-width", 1.2);
+        map.setPaintProperty(id, "text-halo-blur", 0.6);
+      } else {
+        map.setLayoutProperty(id, "visibility", "none");
+      }
+      continue;
+    }
+    // Casing layers double every road with a wide pale underlay — the main
+    // reason streets read daylight-grey. The night city keeps fills only.
+    if (/_casing$/.test(id)) {
+      map.setLayoutProperty(id, "visibility", "none");
+      continue;
+    }
+    // Pattern fills (wetland hatch, pedestrian-area dots) can't be
+    // recolored via paint — they render as bright sprite stripes at night.
+    if (
+      type === "fill" &&
+      (layer.paint as Record<string, unknown> | undefined)?.["fill-pattern"]
+    ) {
       map.setLayoutProperty(id, "visibility", "none");
       continue;
     }
@@ -682,16 +724,37 @@ function applyReservePalette(map: MLMap) {
       map.setPaintProperty(id, "background-color", NIGHT);
       continue;
     }
-    // Natural-earth shaded relief raster — dim heavily so it reads
-    // as warm dusk landmasses, not cream vacation postcards.
+    // Natural-earth shaded relief raster — the globe's landmasses.
+    // Near-total desaturation kills NE2's daylight greens (partial desat
+    // left a grey-green "overcast" planet; hue-rotation turned the Sahara
+    // lavender — both tried, both worse). Moon-stone relief on near-black
+    // ocean; the warmth comes from the night ground + vignette around it.
     if (type === "raster" && /natural_earth|ne2|shaded|hillshade/i.test(id)) {
-      // Lifted brightness + warmer saturation so continents read as dusk
-      // landmasses, matching the paper-warmth of the rest of the site.
-      map.setPaintProperty(id, "raster-brightness-min", 0.04);
-      map.setPaintProperty(id, "raster-brightness-max", 0.38);
-      map.setPaintProperty(id, "raster-saturation", -0.35);
-      map.setPaintProperty(id, "raster-contrast", 0.3);
-      map.setPaintProperty(id, "raster-opacity", 0.95);
+      map.setPaintProperty(id, "raster-brightness-min", 0.05);
+      map.setPaintProperty(id, "raster-brightness-max", 0.42);
+      map.setPaintProperty(id, "raster-saturation", -0.85);
+      map.setPaintProperty(id, "raster-contrast", 0.4);
+      // Slight transparency lets the warm night ground bleed through the
+      // grey — and softens the pre-water-fill loading transient.
+      map.setPaintProperty(id, "raster-opacity", 0.92);
+      continue;
+    }
+    // Waterway LINES (rivers, canals) keep liberty's daylight blue unless
+    // recolored — the fill rule below only catches polygons.
+    if (type === "line" && /waterway|water|river|canal/i.test(id)) {
+      map.setPaintProperty(id, "line-color", WATER);
+      map.setPaintProperty(id, "line-opacity", 0.9);
+      continue;
+    }
+    // Airports: pale grey aprons/runways in liberty — sink them into ink.
+    if (/aeroway/i.test(id)) {
+      if (type === "fill") {
+        map.setPaintProperty(id, "fill-color", INK);
+        map.setPaintProperty(id, "fill-opacity", 0.6);
+      } else if (type === "line") {
+        map.setPaintProperty(id, "line-color", INK_SOFT);
+        map.setPaintProperty(id, "line-opacity", 0.35);
+      }
       continue;
     }
     if (/water|ocean|lake|river/i.test(id) && type === "fill") {
@@ -701,6 +764,8 @@ function applyReservePalette(map: MLMap) {
     }
     if (/landuse|landcover|earth|park/i.test(id) && type === "fill") {
       // Parks / wooded landcover lean moss; generic landuse stays warm dark.
+      // Green target is LOW (0.3): park + wood + grass fills STACK on the
+      // same ground — at 0.55 each they compounded into daylight sage.
       const isGreen = /park|wood|grass/i.test(id);
       map.setPaintProperty(id, "fill-color", isGreen ? MOSS : INK);
       // At low zoom, fade landuse so the natural_earth raster shows through
@@ -709,7 +774,7 @@ function applyReservePalette(map: MLMap) {
         "interpolate", ["linear"], ["zoom"],
         0, 0,
         8, 0,
-        11, isGreen ? 0.55 : 1,
+        11, isGreen ? 0.3 : 1,
       ]);
       continue;
     }
@@ -766,7 +831,6 @@ function applyReservePalette(map: MLMap) {
     }
   }
 
-  void PAPER;
   void SUN;
 }
 
