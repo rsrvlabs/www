@@ -50,7 +50,8 @@
 
 ## Already adopted in www
 
-house easing pair (tokens) · punch-card corners + tilt (doors, restrained: ±4/±6, no
-hover-paint flood) · Braille rain (veil loader) · night-shift timeline concept
-(04 · While you sleep, enter-once instead of scrub). **Now adopted:** ink-pair (`--color-sun-ink`).
+house easing pair (tokens) · punch-card corners + tilt (restrained: ±4/±6, no hover-paint
+flood; since 2026-07-04 a SHARED surface — `site/punch-card.tsx` — worn by both the landing
+doors and every subpage Entry row) · Braille rain (veil loader) · night-shift timeline concept
+(04 · While you sleep, enter-once instead of scrub) · ink-pair (`--color-sun-ink`).
 **Not yet:** char-scrub fill, per-char elastic hover, film hero, paused-marquee pattern.

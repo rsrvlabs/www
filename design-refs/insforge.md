@@ -46,6 +46,7 @@
 
 ## Already adopted in www
 
-grid-paper (`.grid-paper-night`) · odometer (`visuals/odometer.tsx`) · hover-duration grammar ·
-enter-once principle (DESIGN.md motion rules). **Not yet:** collapsed-border lattice,
-gradient-border hub, line-draw choreography, marquee, agent-view toggle.
+grid-paper (`.grid-paper-night`; since 2026-07-04 also the title band on every subpage) ·
+odometer (`visuals/odometer.tsx`) · hover-duration grammar · enter-once principle (DESIGN.md
+motion rules). **Not yet:** collapsed-border lattice, gradient-border hub, line-draw
+choreography, marquee, agent-view toggle.

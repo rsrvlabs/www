@@ -52,9 +52,15 @@
 ## Already adopted in www
 
 font-role trichotomy (serif/mono/sans) · dashed hairlines (`.hairline-dashed`) ·
-`.link-underline` · mono metadata bars w/ left hairlines (weather/invitation footers) ·
-no-pure-B/W discipline. **Not yet:** the full blog blueprint (/research posts), drop cap,
-decimal-leading-zero markers, floating margin callouts, wide→narrow funnel.
+`.link-underline` · mono metadata bars w/ left hairlines (weather/invitation footers; since
+2026-07-04 under every subpage H1 via `MetaBar`) · no-pure-B/W discipline · **blog blueprint
+(2026-07-04, night-adapted):** /research index (featured entry + list rows: mono tag col |
+serif title | dashed dividers, decimal-leading-zero `NN ·` markers) and the
+/research/ai-native-company post (wide→narrow funnel, 850px body @ 19px serif/1.7 — Gambarino
+tested and holds, drop cap, centered italic pull quote, dashed author footer).
+**Not yet:** floating margin callouts, related grid w/ dashed gutters, dark data-study
+interludes, hero image treatment (blocked on honest imagery), left-rail category nav + search
+(needs >1 series).
 
 ## Caveat
 

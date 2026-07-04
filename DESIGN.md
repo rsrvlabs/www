@@ -122,10 +122,21 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   all six section labels converted to mono kickers with `NN ·` machine indices; weather wears the
   full dark grammar (grid-paper lattice + dashed-hairline mono footer with left-hairline items +
   `04/06` index); wordmark's Write link → mono + growing underline.
+- **2026-07-04 — layer 2 SHIPPED** (places night globe · subpage editorial kit · research blog):
+  the places map reads night end-to-end — natural-earth raster desaturated to moon-stone relief
+  on near-black ocean (hue-rotation to "warm" it turns the Sahara lavender; don't retry), road
+  casings + pattern fills hidden, waterway lines/aeroways sunk to ink, stacked park greens calmed —
+  and city + major-country labels re-enabled in kicker grammar (uppercase, 0.14em tracking,
+  latin-only, paper on night-deep halo): the machine layer annotating the planet. Base style stays
+  openfreemap `liberty` (its `dark` sibling ships no building-3d and no natural_earth — verified).
+  Subpages: mono metadata bars under every H1, punch-card Entry rows via the shared
+  `site/punch-card.tsx` (extracted from DoorCard), grid-paper-night title bands, real dashed row
+  dividers. `/research` wears the blog blueprint (above). Screens harness waits for the globe
+  restore before the places shot.
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
 - Next layers (design-revamp ticket): dark-section card lattices where real cell grids exist,
-  odometer stats, enter-once choreography upgrades, materials re-shoot, Braille loading texture.
+  odometer stats, enter-once choreography upgrades, materials re-shoot.
 
 ## Site information architecture (agreed direction, 2026-07-04)
 
