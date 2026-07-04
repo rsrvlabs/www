@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { warmPlacesMapCache } from "@/lib/map-prefetch";
+import { BrailleLoader } from "@/components/visuals/braille-loader";
 import { cities } from "@/data/places";
 
 // Arrival veil: full-viewport cream overlay shown on first page load.
@@ -75,6 +76,7 @@ export function ArrivalVeil() {
           aria-hidden
         >
           <div className="flex flex-col items-center gap-7">
+            <BrailleLoader />
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{

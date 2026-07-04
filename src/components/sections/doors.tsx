@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useCardTilt } from "@/lib/use-card-tilt";
 
 /**
  * 03 · Index — the five doors (founder's categorization, verbatim).
@@ -42,6 +43,42 @@ const doors = [
     line: "Systems in production, and the words of the teams that keep us.",
   },
 ];
+
+function PunchDot({ pos }: { pos: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`absolute ${pos} h-[3px] w-[3px] rounded-full bg-paper/25 transition-colors duration-300 group-hover:bg-sun`}
+    />
+  );
+}
+
+function DoorCard({ href, tag, title, line }: (typeof doors)[number]) {
+  const { ref, onMouseMove, onMouseLeave } = useCardTilt();
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="group relative -m-5 rounded-sm p-5 transition-colors duration-300 hover:bg-night-soft/60"
+    >
+      {/* punch-card corners (ploy) — faint by default, sun on hover */}
+      <PunchDot pos="left-1.5 top-1.5" />
+      <PunchDot pos="right-1.5 top-1.5" />
+      <PunchDot pos="bottom-1.5 left-1.5" />
+      <PunchDot pos="bottom-1.5 right-1.5" />
+      <Link href={href} className="block">
+        <span className="kicker text-paper/50">{tag}</span>
+        <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-paper">
+          <span className="link-underline">{title}</span>
+        </span>
+        <span className="mt-3 block max-w-[48ch] font-sans text-[0.88rem] leading-[1.7] text-paper/70">
+          {line}
+        </span>
+      </Link>
+    </div>
+  );
+}
 
 const enter = {
   initial: { opacity: 0, y: 24 },
@@ -86,15 +123,7 @@ export function Doors() {
               key={d.href}
               className={i >= 2 ? "hairline-dashed mt-10 pt-10 md:mt-12 md:pt-12" : "mb-2 md:mb-0"}
             >
-              <Link href={d.href} className="group block">
-                <span className="kicker text-paper/50">{d.tag}</span>
-                <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-paper">
-                  <span className="link-underline">{d.title}</span>
-                </span>
-                <span className="mt-3 block max-w-[48ch] font-sans text-[0.88rem] leading-[1.7] text-paper/70">
-                  {d.line}
-                </span>
-              </Link>
+              <DoorCard {...d} />
             </motion.div>
           ))}
         </div>

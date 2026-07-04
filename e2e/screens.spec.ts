@@ -15,6 +15,12 @@ test.skip(!SHOTS_DIR, "SHOTS_DIR not set — visual capture disabled");
 test("capture landing beats", async ({ page }) => {
   test.setTimeout(180_000);
   await page.goto("/");
+  // Capture the veil ritual itself (Braille loader + ARRIVING) if still up.
+  const veilLabel = page.getByText("arriving", { exact: false });
+  if (await veilLabel.isVisible().catch(() => false)) {
+    await page.waitForTimeout(400);
+    await page.screenshot({ path: `${SHOTS_DIR}/00-veil.png` });
+  }
   await page.locator("h1").first().waitFor({ state: "visible", timeout: 30_000 });
   // The arrival veil OCCLUDES the page while preloading (h1 counts as "visible"
   // behind it) — wait until its ARRIVING label is actually gone.
@@ -36,6 +42,11 @@ test("capture landing beats", async ({ page }) => {
     const target = page.locator(sel).first();
     await target.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1500); // reveal animations + lazy chunks
+    if (name === "03-doors") {
+      // show hover craft: punch dots + tilt + underline on one door
+      await page.locator("#doors a[href='/labs']").hover().catch(() => {});
+      await page.waitForTimeout(450);
+    }
     await page.screenshot({ path: `${SHOTS_DIR}/${name}.png` });
   }
 });
