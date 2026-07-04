@@ -47,6 +47,30 @@ test("capture landing beats", async ({ page }) => {
       await page.locator("#doors a[href='/labs']").hover().catch(() => {});
       await page.waitForTimeout(450);
     }
+    if (name === "05-places") {
+      // The map silently pre-warms all eight cities before restoring the
+      // globe — on a cold tile cache that takes tens of seconds, and an
+      // early shot captures a blank night (camera parked mid-warm).
+      // Dev exposes __reserveMap; poll it (bounded) for the restored,
+      // fully-painted globe. Falls through and shoots regardless.
+      await page
+        .waitForFunction(
+          () => {
+            const m = (window as unknown as {
+              __reserveMap?: {
+                getZoom: () => number;
+                isMoving: () => boolean;
+                loaded: () => boolean;
+              };
+            }).__reserveMap;
+            return !!m && m.getZoom() < 4 && !m.isMoving() && m.loaded();
+          },
+          undefined,
+          { timeout: 90_000, polling: 500 },
+        )
+        .catch(() => {}); // prod build / stalled tiles — shoot what we have
+      await page.waitForTimeout(3000); // label placement + arcs settle
+    }
     await page.screenshot({ path: `${SHOTS_DIR}/${name}.png` });
   }
 });
