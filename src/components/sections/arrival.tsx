@@ -69,11 +69,11 @@ export function Arrival() {
           01 · AI-native studio
         </motion.p>
 
-        <h1 className="font-display font-normal text-paper leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,9.5vw,9.5rem)]">
-          <Line text="We build software" baseDelay={0.55} />
+        <h1 className="font-display font-normal text-paper leading-[0.95] tracking-[-0.02em] text-[clamp(2.5rem,6.2vw,6.5rem)]">
+          <Line text="We build AI-native products." baseDelay={0.55} />
           <br />
           <span className="text-paper/70 italic font-display">
-            <Line text="for the physical world." baseDelay={1.25} />
+            <Line text="The company itself is one." baseDelay={1.45} />
           </span>
         </h1>
 
@@ -84,10 +84,11 @@ export function Arrival() {
           className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
           <p className="max-w-[44ch] font-sans text-[0.95rem] leading-[1.75] text-paper/70">
-            Reserve is a two-person, bootstrapped studio. We ship
-            consumer products that turn real-world presence into
-            software — starting with a social app that only matches
-            people who have actually crossed paths.
+            Reserve is a two-person, bootstrapped studio. We ship a
+            dating app with a physical signature, a finance desk that
+            publishes itself daily, and beauty tech in the making —
+            funded by embedded AI engineering, run on an operating
+            system we built, where agents hold jobs.
           </p>
           <span className="kicker shrink-0 text-paper/45">
             EST. MMXXIV · Bootstrapped · Taipei
