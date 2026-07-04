@@ -1,7 +1,7 @@
 import { Wordmark } from "@/components/wordmark";
 import { Arrival } from "@/components/sections/arrival";
 import { Note } from "@/components/sections/note";
-import { Practices } from "@/components/sections/practices";
+import { Doors } from "@/components/sections/doors";
 import { Weather } from "@/components/sections/weather";
 import { Places } from "@/components/sections/places";
 import { Invitation } from "@/components/sections/invitation";
@@ -16,7 +16,7 @@ export default function Home() {
       <Wordmark />
       <Arrival />
       <Note />
-      <Practices />
+      <Doors />
       <Weather />
       <Places />
       <Invitation />

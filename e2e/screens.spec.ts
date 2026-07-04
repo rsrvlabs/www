@@ -27,7 +27,7 @@ test("capture landing beats", async ({ page }) => {
 
   const beats: Array<[string, string]> = [
     ["02-note", "text=What we do"],
-    ["03-practices", "#practices"],
+    ["03-doors", "#doors"],
     ["04-weather", "#weather"],
     ["05-places", "#places"],
     ["06-invitation", "#invitation"],

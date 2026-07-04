@@ -23,7 +23,7 @@ test("landing renders: veil resolves, hero + all sections mount", async ({ page 
   await expect(page.locator("h1").first()).toBeVisible({ timeout: 30_000 });
 
   // Section anchors present (arrival/note render without ids — covered by h1/main).
-  for (const id of ["practices", "weather", "places", "invitation"]) {
+  for (const id of ["doors", "weather", "places", "invitation"]) {
     await expect(page.locator(`#${id}`)).toBeAttached();
   }
 
