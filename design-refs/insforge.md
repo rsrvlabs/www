@@ -50,3 +50,33 @@ grid-paper (`.grid-paper-night`; since 2026-07-04 also the title band on every s
 odometer (`visuals/odometer.tsx`) · hover-duration grammar · enter-once principle (DESIGN.md
 motion rules). **Not yet:** collapsed-border lattice, gradient-border hub, line-draw
 choreography, marquee, agent-view toggle.
+
+## Computed (rendered) values — 2026-07-04 live extraction
+
+> Extracted from the LIVE rendered page (gstack browse headless, 1440×900, networkidle +
+> settle) via `getComputedStyle` — not static CSS. Founder asked for computed values.
+
+- **Body (rendered):** background `rgb(10,10,10)` = **`#0a0a0a`** · color `#ffffff` · font
+  `Inter`. **DIFFERENCE vs static analysis:** we recorded bg as `#000`/`#0f0f0f`; the actual
+  page ground is **#0a0a0a** (Tailwind `neutral-950`). `#000` is only the nav bar; `#0f0f0f`
+  appears as the agent-toggle track.
+- **H1 (hero):** Manrope · 48px · **weight 400** · letter-spacing normal · line-height
+  56.16px (**1.17** — static analysis said 48/64; rendered is tighter) · `#ffffff`.
+- **H2:** section H2 renders **48px** (static said 40) · feature H2 32px — both Manrope 400.
+- **Surfaces (computed):**
+  - nav: bg `#000000`, border `#333333`
+  - change-card: bg **`#161616`**, border 1px `#333333`, radius 4px, no shadow
+  - community-btn: bg **`#262626`**, border 1px `#414141`, radius 4px
+  - stats card: bg transparent, border 1px **`#404040`**, radius 6px
+  - primary CTA: bg `#ffffff`, radius 4px · Sign Up / toggle pill: bg `#6ee7b7`, radius 4px / 999px
+  - YC badge: bg `rgba(255,90,0,.1)`, border `rgba(255,90,0,.4)`, radius 8px
+- **Accents (page-wide saturated-color scan):** `#6ee7b7` (8 elements — the single accent,
+  confirmed) · `#ff5a00` (3 — YC badge branding only). No other saturated color renders.
+- **:root custom properties (live):** hover ladder `--alpha-inverse-4/8/12/16` =
+  `#ffffff0a/14/1f/29` (4/8/12/16% white — static said .04/.06/.08); grayscale is Tailwind
+  **neutral** = true zero-chroma OKLCH: `neutral-950 oklch(14.5% 0 0)` (= the #0a0a0a body),
+  `-900 oklch(20.5% 0 0)`, `-800 oklch(26.9% 0 0)`, `-700 oklch(37.1% 0 0)`,
+  `-500 oklch(55.6% 0 0)`, `-400 oklch(70.8% 0 0)` (= muted text #a3a3a3). 209 vars total.
+- **Takeaway for our neutral ladder:** insforge's entire dark ground is **hue-free**
+  (chroma 0) — ground #0a0a0a, surfaces #161616/#262626, borders #333/#404040/#414141,
+  muted text #a3a3a3. The "expensive dark" here is neutral, not warm.

@@ -66,3 +66,33 @@ interludes, hero image treatment (blocked on honest imagery), left-rail category
 
 Big serif at weight 400 lives or dies by the face — Newsreader is display-optical. Test
 Gambarino at 19px/1.7 before committing body text to it; fall back to a body serif if it fails.
+
+## Computed (rendered) values — 2026-07-04 live extraction
+
+> Extracted from the LIVE rendered `/blog/ai-search-q2-2026/` (gstack browse headless,
+> 1440×900, loaded + settle) via `getComputedStyle` — not static CSS.
+
+- **Ground (rendered):** `<body>` computes plain **`#ffffff`** with `Inter` — the paper the
+  reader actually sees is painted by the page wrapper div: **`rgb(251,249,246)` = `#fbf9f6`**.
+  **DIFFERENCE vs static analysis:** we recorded the page paper as `#f4f2ed`; on this post the
+  rendered ground is `#fbf9f6` (what we had catalogued as a "panel" value). Warm paper
+  confirmed, exact value one step lighter than documented.
+- **H1:** Newsreader Variable · **54px · weight 400 · line-height 59.4px (1.1)** · color
+  `rgb(29,17,7)` = **`#1d1107`** — exact match with static (the warm near-black ink).
+- **H2:** index "More articles" 48px/1.0 wt400; article H2 **38px/41.8 (1.1) wt500** — matches
+  the documented 28→38@wt500 scale.
+- **Body paragraph (computed):** Newsreader · **19px · line-height 32.3px (1.7)** · `#1d1107`
+  · measured column width **850.0px** — the blueprint renders exactly as documented.
+- **Metadata bar:** IBM Plex Mono **14px**, left hairline `border-left` in full-strength ink
+  `#1d1107` (not alpha).
+- **Dashed separators (computed):** ink at **15%** (`oklab(...)/0.15`) and a second stronger
+  step at **30%** — static analysis only recorded the 15% one.
+- **Surfaces:** nav borders `#e5e5e5`; Copy Link chip bg = ink @ 5%; pill buttons radius
+  ~3.4e7px (radius-full).
+- **Accents (page-wide scan):** brand blue `#2b4beb` (49 elements — nav/UI links) +
+  `#2f4fff` (1). The lime `#d4ff2a` did not render anywhere on this post — article accent
+  discipline confirmed: chrome carries the accent, the body carries none.
+- **:root custom properties (live):** `--font-serif: var(--font-newsreader)` ·
+  `--font-mono: var(--font-ibm-mono)` · `--font-sans: var(--font-inter)` (the trichotomy is
+  encoded as tokens); Tailwind `neutral-*` zero-chroma grays present; 301 vars total (a
+  `--cc-*` cookie-consent family is third-party noise — ignore).

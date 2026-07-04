@@ -55,3 +55,36 @@ flood; since 2026-07-04 a SHARED surface — `site/punch-card.tsx` — worn by b
 doors and every subpage Entry row) · Braille rain (veil loader) · night-shift timeline concept
 (04 · While you sleep, enter-once instead of scrub) · ink-pair (`--color-sun-ink`).
 **Not yet:** char-scrub fill, per-char elastic hover, film hero, paused-marquee pattern.
+
+## Computed (rendered) values — 2026-07-04 live extraction
+
+> Extracted from the LIVE rendered page (gstack browse headless, 1440×900, networkidle +
+> settle) via `getComputedStyle` — not static CSS. Founder asked for computed values.
+
+- **Body (rendered):** background `rgb(244,244,244)` = **`#f4f4f4`** · text `#212121` · font
+  `Geist` — matches static exactly. The dark `data-theme` is NOT active on the landing; the
+  default render is the light scheme.
+- **H1 (hero):** FK Screamer · 144px · **weight 700** (static noted `--font-heading-bold-weight:
+  800`; rendered computes 700) · line-height 123.84px (**0.86** — confirms `leading-[0.86]`) ·
+  **letter-spacing computes `normal`** (static said −0.02em — DIFFERENCE; the tracking isn't
+  applied on the live hero) · hero-on-video `#ffffff`, on-paper `#212121`.
+- **Surfaces (computed):**
+  - nav menu pill: bg `#f4f4f4`, radius **1600px** (= `--radius-button: 100rem` resolved)
+  - Log in: bg `#ffffff` pill · Start Free: bg `#212121` pill (button ink-pair)
+  - stat card: bg `#ffffff`, radius **12px** (= `--radius-card: .75rem`), borders 0 — shadows
+    do the separation on light ground
+  - tag pills: bg `#212121` with accent-colored text (`#ffb8fc`, `#d1f864`)
+  - glass buttons over video: bg `white @ 10–14%` + 1px white inset ring
+- **Accents (page-wide scan, exact rendered rgb):** pink `#ffb8fc` (17 elements) · yellow
+  `#fffa64` (13) · green `#d1f864` (8) / `#d1f48c` (6) · yellow-ink `#f4ef4c` (2) — all four
+  ink-pair accent families confirmed live; pink is the most-used on the current landing.
+- **:root custom properties (live, the semantic token system verbatim):**
+  `--ploy-background-primary #f4f4f4` · `--ploy-text-primary #212121` /
+  `--ploy-text-secondary #555` · `--ploy-border-primary #e3e3e3` /
+  `--ploy-border-inverse #0003` · `--ploy-button-primary-background #212121` ·
+  `--ploy-button-secondary-border #b3b3b3` · radius-by-role confirmed:
+  `--radius-button 100rem` / `--radius-card .75rem` / `--radius-input .375rem` ·
+  neutral ladders are pure grays (hex, no hue): `-primary-950 #232323`,
+  `-inverse-900 #121212`, `-inverse-950 #000`. 186 vars total.
+- **Takeaway:** ploy's grays are also **hue-free** (#f4f4f4 → #212121 → #000); all color
+  lives in the accent pairs. Confirms the neutral-ground + deliberate-accent model.
