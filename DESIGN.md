@@ -138,6 +138,13 @@ Every product carries an honest mono status tag (`LIVE / IN TESTING / EXPERIMENT
 Phase 2: SW graduates to its own domain/brand when named + launching. Phase 3: standalone Fermi
 surface only if the B2B white-label pivot lands.
 
+## Reference teardowns (evidence base)
+
+Exact tokens / component recipes / motion specs from the three founder-chosen sites live in
+**`design-refs/`** (insforge.md · ploy.md · scrunch.md — extracted 2026-07-04 from fetched
+production assets, each with an "already adopted / not yet" ledger). Implement from those files,
+not from memory; re-verify exact values against the live sites before long-term bets.
+
 ## Process rules
 
 - Tokens change ONLY in `globals.css` `@theme` + a matching note here. No ad-hoc hex in components.

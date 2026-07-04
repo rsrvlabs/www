@@ -15,6 +15,9 @@ Package manager: **pnpm**.
 - `materials/*.md` — per-section **content briefs** (the written spec each section implements).
 - `DESIGN.md` — the design system spec (aesthetic direction, tokens, motion rules). **Read before
   any visual change.**
+- `design-refs/` — teardowns of the founder-chosen reference sites (insforge / ploy / scrunch)
+  with exact tokens, component recipes, and motion specs. The evidence base for the redesign —
+  cite the ref + technique in commits that implement from them.
 
 ## Commands
 
