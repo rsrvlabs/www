@@ -115,6 +115,18 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
 - Next layers (design-revamp ticket): dark-section card lattices where real cell grids exist,
   odometer stats, enter-once choreography upgrades, materials re-shoot, Braille loading texture.
 
+## Site information architecture (agreed direction, 2026-07-04)
+
+**The landing is the company's most-meta frame** (founder's words) — the story layer, not the
+product docs. Phase 1 (now): one domain, path-based IA — `/` (this landing) · `/labs` (product
+family: SW teaser, Fermi) · `/studio` (Frontier client work, NDA-safe) · `/research` (blog — the
+scrunch blueprint above). Nav gains three mono machine-layer links. Phase 2 (when SW is named +
+launching): SW graduates to its own domain/brand; `/labs` links out. Phase 3: standalone Fermi
+surface only if the B2B white-label pivot lands. Rationale: current audiences are
+accelerator-reviewers/investors + prospective clients (one coherent site, SEO consolidated,
+two-person maintenance budget); SW's consumers don't exist yet and its domain follows its
+still-TBD name.
+
 ## Process rules
 
 - Tokens change ONLY in `globals.css` `@theme` + a matching note here. No ad-hoc hex in components.
