@@ -27,6 +27,20 @@ Package manager: **pnpm**.
   (observed: testing silently ran against the wrong site). Keep e2e specs resilient: assert
   structure/console health, not map-tile pixels.
 
+## Session boot (what a fresh Claude session here needs)
+
+- **Skills:** gstack is installed globally (`~/.claude/skills/gstack`) — `/qa`, `/design-review`,
+  `/review`, `/ship`, `/browse` all apply to this repo. Repo-local: **`/design-iterate`** (the
+  verified one-round design loop — use it for any visual change). The company brain's skills
+  (tickets, wiki) are NOT here by design — see ADR-0012 in the brain repo: this repo carries a
+  harness, the brain carries memory/governance.
+- **MCPs: none required.** Playwright runs via CLI (`pnpm test:e2e`), browsing via gstack's
+  browse daemon. Notion/Discord are the brain session's business, not this repo's.
+- **Permissions:** `.claude/settings.json` pre-allows the dev loop (pnpm/playwright/git
+  read-ops) to keep prompts low.
+- **First commands:** `pnpm install` → `pnpm test:e2e` (verifies the whole chain incl. the
+  dedicated e2e port). Then read `DESIGN.md` + `design-refs/` before touching visuals.
+
 ## Working conventions (mirrors the ai-native-reserve harness)
 
 - **Commits:** atomic + frequent; **no `Co-Authored-By` lines**; push after commit. Stage with
