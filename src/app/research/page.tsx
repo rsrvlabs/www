@@ -63,7 +63,7 @@ export default function ResearchPage() {
         </p>
 
         {/* Featured — the series, wide */}
-        <div className="hairline-dashed mt-14 pt-10">
+        <div className="hairline-dashed-night mt-14 pt-10">
           <PunchSurface className="-mx-5 p-5">
             <Link href="/research/ai-native-company" className="block">
               <span className="kicker text-paper/50">
@@ -90,7 +90,7 @@ export default function ResearchPage() {
         {/* All notes — narrower list rows, mono tag column, dashed dividers */}
         <div className="mt-[10svh] max-w-[56rem]">
           <h2 className="kicker text-paper/45">All notes</h2>
-          <div className="hairline-dashed mt-6 divide-y divide-dashed divide-paper/15">
+          <div className="hairline-dashed-night mt-6 divide-y divide-dashed divide-paper/15">
             {essays.map((e) => (
               <article
                 key={e.n}
@@ -114,7 +114,7 @@ export default function ResearchPage() {
           </div>
         </div>
 
-        <div className="hairline-dashed mt-20 pt-8">
+        <div className="hairline-dashed-night mt-20 pt-8">
           <Link href="/" className="kicker link-underline text-paper/60">
             ← back to the studio
           </Link>

@@ -223,10 +223,42 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   pinned at a constant −1.8° tilt — one idiosyncratic, hand-placed detail against the
   engineered map (the anti-"AI-symmetric" founder lesson, restrained to this single element).
   Places' framer eases migrated to the house pair. Interactions + copy unchanged.
+- **2026-07-05 — Step 5 SHIPPED** (note + invitation on the scrunch metadata grammar): the
+  02 · What we do kicker grew into a stacked machine rail (left-hairline mono items,
+  `02 · What we do` over a dimmer `Reserve · 02/06` — the weather footer's 2-step dimming),
+  and the serif statement moved one empty column off the rail (`md:col-start-5`) — one
+  restrained asymmetric beat of air (debt #3, kept small). The invitation was the LAST
+  warm-era section (sunset JPEG + full-strength cream fade + terracotta wash — the cream fade
+  even rendered the paper headline near-invisible): all three layers deleted with
+  `invitation-dusk.jpg` itself (asset law: interim treatment is typographic,
+  design-refs/assets.md §5) and replaced with the instrument-room close — neutral radial glow
+  weighted toward the voice + grid-paper lattice (Step 3 grammar). Footer tightened to the
+  machine grammar: brand / Cities / Index as left-hairline mono columns (kicker mono at
+  0.62rem, no more serif city lines), the legacy solid `border-t` bottom rule → dashed-night,
+  display cap aligned to the hero's 7.4rem, footer air 18svh → 14svh (tighter-instrument
+  bias). Copy semantics untouched (stale lines flagged for a copy pass instead: the
+  8-city Cities block, "Two practices" → #doors which is now 03 · Index, the
+  "objects you hold" tagline, `hello@reserve.ai`).
+- **2026-07-05 — Step 6 SHIPPED** (subpage + blog polish pass, small fixes only): all
+  subpage/research dashed rules moved to the night grammar class (`hairline-dashed` →
+  `hairline-dashed-night` — visually identical today, but the paper-grammar class on night
+  ground was a mixing smell); `MetaBar` left hairlines unified to the site-wide metadata
+  rhythm (`border-paper/15`, matching the hero/note/weather machine rows; was /25) and
+  item gap tightened `gap-x-8` → `gap-x-6`; blog post drop cap restored to the blueprint's
+  **5rem** (code had drifted to 4.6rem). Verified against the blueprint on neutral: 850px
+  measure, 19px serif at 1.7, centered italic pull quote, dashed author footer — all hold.
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
-  (Done for weather at Step 3, places at Step 4.)
-- Next layers (design-revamp ticket): enter-once choreography upgrades, materials re-shoot.
+  (Done for weather at Step 3, places at Step 4, note + invitation at Step 5. Still legacy:
+  arrival char-cascade, wordmark, arrival-veil.)
+- **Remaining founder debts (review of 2026-07-04, open after Steps 5+6):** **#1** hero silk
+  (graphite recolor was interim; untouched by design) · **#2** tracked in the founder review
+  (not restated here) · **#3** restrained asymmetry — a standing bias, not a finished task:
+  one hand-placed beat each so far (places postcard tilt −1.8°, note's off-rail voice);
+  more welcome, always hand-placed, never systematic · **#4** places globe —
+  refactor-or-remove later; do not invest further until decided.
+- Next layers (design-revamp ticket): enter-once choreography upgrades, materials re-shoot
+  (real artifacts per design-refs/assets.md — `place-*.jpg` are the last AI-era rasters).
 
 ## Site information architecture (agreed direction, 2026-07-04)
 

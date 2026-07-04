@@ -29,12 +29,14 @@ export function SubpageHeader({ index, label }: { index: string; label: string }
   );
 }
 
-/** Mono metadata bar (scrunch grammar): left-hairline items under the H1. */
+/** Mono metadata bar (scrunch grammar): left-hairline items under the H1.
+ *  Hairline strength + spacing match the landing's machine rows (hero /
+ *  note / weather — border-paper/15, the site's one metadata rhythm). */
 export function MetaBar({ items }: { items: string[] }) {
   return (
-    <div className="kicker mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3 text-paper/50">
+    <div className="kicker mt-8 flex flex-wrap items-baseline gap-x-6 gap-y-3 text-paper/50">
       {items.map((item) => (
-        <span key={item} className="border-l border-paper/25 pl-4">
+        <span key={item} className="border-l border-paper/15 pl-4">
           {item}
         </span>
       ))}
@@ -71,10 +73,10 @@ export function Subpage({
         <p className="mt-10 max-w-[52ch] font-sans text-[0.95rem] leading-[1.8] text-paper/70">
           {intro}
         </p>
-        <div className="hairline-dashed mt-14 divide-y divide-dashed divide-paper/15 pt-6">
+        <div className="hairline-dashed-night mt-14 divide-y divide-dashed divide-paper/15 pt-6">
           {children}
         </div>
-        <div className="hairline-dashed mt-20 pt-8">
+        <div className="hairline-dashed-night mt-20 pt-8">
           <Link href="/" className="kicker link-underline text-paper/60">
             ← back to the studio
           </Link>

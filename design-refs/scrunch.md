@@ -53,7 +53,9 @@
 
 font-role trichotomy (serif/mono/sans) · dashed hairlines (`.hairline-dashed`) ·
 `.link-underline` · mono metadata bars w/ left hairlines (weather/invitation footers; since
-2026-07-04 under every subpage H1 via `MetaBar`) · no-pure-B/W discipline · **blog blueprint
+2026-07-04 under every subpage H1 via `MetaBar`; since 2026-07-05 the note section's stacked
+machine rail + the landing footer's mono columns, all unified on the `border-paper/15`
+hairline) · no-pure-B/W discipline · **blog blueprint
 (2026-07-04, night-adapted):** /research index (featured entry + list rows: mono tag col |
 serif title | dashed dividers, decimal-leading-zero `NN ·` markers) and the
 /research/ai-native-company post (wide→narrow funnel, 850px body @ 19px serif/1.7 — Gambarino

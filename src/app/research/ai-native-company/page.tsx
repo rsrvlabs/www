@@ -31,8 +31,10 @@ export default function AiNativeCompanyEssay() {
         </h1>
 
         <div className="mx-auto mt-14 max-w-[850px]">
-          <div className="hairline-dashed space-y-7 pt-12 font-display text-[19px] leading-[1.7] text-paper/85">
-            <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:font-display first-letter:text-[4.6rem] first-letter:leading-[0.75] first-letter:text-paper">
+          <div className="hairline-dashed-night space-y-7 pt-12 font-display text-[19px] leading-[1.7] text-paper/85">
+            {/* 5rem drop cap — the blueprint value (design-refs/scrunch.md /
+                DESIGN.md blog blueprint; code had drifted to 4.6rem) */}
+            <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:font-display first-letter:text-[5rem] first-letter:leading-[0.75] first-letter:text-paper">
               Every company is a machine for turning attention into decisions.
               Most of that machine was never the product: it is the meetings,
               the handoffs, the status updates, the documents nobody reads
@@ -84,7 +86,7 @@ export default function AiNativeCompanyEssay() {
           </div>
 
           {/* Author footer — dashed divider, mono label (scrunch grammar) */}
-          <footer className="hairline-dashed mt-16 grid grid-cols-1 gap-4 pt-8 md:grid-cols-[220px_1fr]">
+          <footer className="hairline-dashed-night mt-16 grid grid-cols-1 gap-4 pt-8 md:grid-cols-[220px_1fr]">
             <span className="kicker text-paper/50">Author</span>
             <div>
               <p className="font-display text-xl leading-snug text-paper">
