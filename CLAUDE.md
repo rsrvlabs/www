@@ -24,6 +24,17 @@ Package manager: **pnpm**.
   (observed: testing silently ran against the wrong site). Keep e2e specs resilient: assert
   structure/console health, not map-tile pixels.
 
+## Working conventions (mirrors the ai-native-reserve harness)
+
+- **Commits:** atomic + frequent; **no `Co-Authored-By` lines**; push after commit. Stage with
+  `git add -- <paths>`, never `-A`. Pull (rebase) before pushing.
+- **Design workflow:** read `DESIGN.md` → change tokens only in `globals.css @theme` (+ sync
+  DESIGN.md) → `pnpm lint && pnpm build && pnpm test:e2e` → capture screens for visual review:
+  `SHOTS_DIR=/tmp/shots npx playwright test e2e/screens.spec.ts --project=desktop`
+- **Machine-layer grammar in code:** section labels/metadata use the `.kicker` class (+ `NN ·`
+  index); dividers use `.hairline-dashed(-night)`; link hovers use `.link-underline`; easings come
+  from `--ease-enter/--ease-ui/--ease-pop` — components must not invent their own.
+
 ## Hard rules
 
 - **Playwright-generated imagery never enters git** (founder rule 2026-07-04): reports, traces,

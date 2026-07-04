@@ -8,7 +8,13 @@
   --font-display: "Gambarino", "Cambria", "Georgia", serif;
   --font-sans: "Supreme", ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-display);
-  --font-mono: ui-monospace, "SFMono-Regular", monospace;
+  /* Machine layer (DESIGN.md): mono annotates the page — labels, indices, metadata. */
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "IBM Plex Mono", Menlo, monospace;
+
+  /* House easing pair + pop (DESIGN.md motion rules — don't multiply easings) */
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-ui: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Warm cream-paper palette, OKLCH, tinted toward sun-gold hue (~75°). */
   --color-paper: oklch(0.965 0.012 78);
@@ -21,6 +27,11 @@
   --color-sun: oklch(0.74 0.12 70);
   --color-dusk: oklch(0.34 0.05 38);
   --color-night: oklch(0.22 0.03 60);
+  /* Dark-section surface/line ladder (DESIGN.md dark grammar) */
+  --color-night-soft: oklch(0.26 0.028 60);
+  --color-night-deep: oklch(0.185 0.03 60);
+  --color-night-line: oklch(0.965 0.012 78 / 0.14);
+  --color-night-line-strong: oklch(0.965 0.012 78 / 0.22);
 
   --color-background: var(--color-paper);
   --color-foreground: var(--color-ink);
@@ -72,6 +83,52 @@
   ::selection {
     background: var(--color-ink);
     color: var(--color-paper);
+  }
+}
+
+@layer components {
+  /* ── Machine layer (DESIGN.md): mono annotation for labels/indices/metadata.
+     If a string is ABOUT the content, it wears .kicker; if it IS the content, serif. */
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Growing underline (scrunch): background-image so it wraps across lines. */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s var(--ease-ui);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .link-underline:hover,
+  .group:hover .link-underline,
+  a:hover > .link-underline {
+    background-size: 100% 1px;
+  }
+
+  /* ── Grid-paper texture for dark sections (insforge): two 1px gradients,
+     masked so the lattice breathes instead of tiling to the edges. */
+  .grid-paper-night {
+    background-image:
+      linear-gradient(to right, oklch(0.965 0.012 78 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.965 0.012 78 / 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 55%, transparent 100%);
+  }
+
+  /* ── Hairline separators (scrunch): dashed 1px is the ONLY divider on paper. */
+  .hairline-dashed {
+    border-top: 1px dashed oklch(0.225 0.018 60 / 0.15);
+  }
+  .hairline-dashed-night {
+    border-top: 1px dashed oklch(0.965 0.012 78 / 0.18);
   }
 }
 

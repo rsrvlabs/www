@@ -63,9 +63,9 @@ export function Arrival() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.4 }}
-          className="mb-10 font-sans text-[0.7rem] uppercase tracking-[0.32em] text-ink/55"
+          className="kicker mb-10 text-ink/55"
         >
-          Reserve · a studio
+          01 · Reserve — a studio
         </motion.p>
 
         <h1 className="font-display font-normal text-ink leading-[0.95] tracking-[-0.02em] text-[clamp(3.25rem,11vw,11.5rem)]">
@@ -102,7 +102,7 @@ export function Arrival() {
         transition={{ duration: 2, delay: 2.8 }}
         className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
-        <span className="font-sans text-[0.65rem] uppercase tracking-[0.4em] text-ink/55">
+        <span className="kicker text-[0.62rem] tracking-[0.34em] text-ink/55">
           scroll
         </span>
       </motion.div>

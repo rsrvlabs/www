@@ -20,9 +20,9 @@ export function Wordmark() {
       </Link>
       <a
         href="#invitation"
-        className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.22em] text-ink/70 transition-colors hover:text-ink"
+        className="group inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-ink/70 transition-colors duration-200 hover:text-ink"
       >
-        Write
+        <span className="link-underline">Write</span>
         <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
           →
         </span>

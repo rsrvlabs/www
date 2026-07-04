@@ -20,6 +20,9 @@ export function Weather() {
       id="weather"
       className="relative overflow-hidden bg-night text-paper"
     >
+      {/* Grid-paper lattice: the machine behind the weather (DESIGN.md dark grammar) */}
+      <div aria-hidden className="grid-paper-night pointer-events-none absolute inset-0" />
+
       {/* Real painted ember haze */}
       <motion.div
         style={{ y: emberY, scale: emberScale }}
@@ -58,9 +61,9 @@ export function Weather() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="block mb-[10svh] font-sans text-[0.7rem] uppercase tracking-[0.32em] text-paper/45"
+          className="kicker block mb-[10svh] text-paper/45"
         >
-          Weather
+          04 · Weather
         </motion.span>
 
         <ScrollReveal
@@ -73,9 +76,9 @@ export function Weather() {
           That is the work we want to make.
         </ScrollReveal>
 
-        <div className="mt-[14svh] flex items-center justify-between font-sans text-[0.65rem] uppercase tracking-[0.32em] text-paper/40">
-          <span>— a small studio</span>
-          <span>Reserve</span>
+        <div className="kicker hairline-dashed-night mt-[14svh] flex items-center justify-between pt-6 text-paper/40">
+          <span className="border-l border-paper/15 pl-4">— a small studio</span>
+          <span className="border-l border-paper/15 pl-4">Reserve · 04/06</span>
         </div>
       </div>
     </section>

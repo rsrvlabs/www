@@ -122,7 +122,7 @@ export function Places() {
               transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
               className="pointer-events-none absolute inset-0 flex items-center justify-center"
             >
-              <span className="font-sans text-[0.65rem] uppercase tracking-[0.4em] text-paper/45">
+              <span className="kicker text-[0.62rem] tracking-[0.34em] text-paper/45">
                 Charting eight rooms
               </span>
             </motion.div>
@@ -141,8 +141,8 @@ export function Places() {
 
         {/* Eyebrow + counter */}
         <div className="absolute left-0 right-0 top-[8svh] z-20 mx-auto w-full max-w-[88rem] px-6 md:px-10">
-          <div className="flex items-baseline justify-between gap-6 font-sans text-[0.7rem] uppercase tracking-[0.32em] text-paper/55">
-            <span>Places · Eight rooms, one studio</span>
+          <div className="kicker flex items-baseline justify-between gap-6 text-paper/55">
+            <span>05 · Places — eight rooms, one studio</span>
             <span className="tabular-nums">
               {landed !== null ? String(landed + 1).padStart(2, "0") : "——"} / {String(cities.length).padStart(2, "0")}
             </span>
@@ -182,7 +182,7 @@ export function Places() {
                 <h3 className="font-display text-paper text-[clamp(3.5rem,10vw,9rem)] leading-[0.95] tracking-[-0.02em]">
                   {landedCity.name}
                 </h3>
-                <div className="mt-4 font-sans text-[0.7rem] uppercase tracking-[0.32em] text-paper/55">
+                <div className="kicker mt-4 text-paper/55">
                   {landedCity.coords}
                 </div>
                 <p className="mt-8 font-display italic text-paper/85 text-[clamp(1.1rem,1.8vw,1.5rem)] leading-[1.55]">

@@ -39,9 +39,9 @@ export function Practices() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="mb-[12svh] font-sans text-[0.7rem] uppercase tracking-[0.32em] text-ink/45"
+          className="kicker mb-[12svh] text-ink/45"
         >
-          Two practices
+          03 · Two practices
         </motion.h2>
 
         <div className="space-y-[18svh]">
@@ -131,7 +131,7 @@ function Practice({
         >
           {String(count).padStart(2, "0")}
         </div>
-        <div className="mt-2 font-sans text-[0.7rem] uppercase tracking-[0.32em] text-moss">
+        <div className="kicker mt-2 text-moss">
           {label}
         </div>
       </div>
@@ -143,7 +143,7 @@ function Practice({
         <p className="mt-8 max-w-[58ch] font-sans text-[0.95rem] leading-[1.85] text-ink-soft">
           {body}
         </p>
-        <ul className="mt-10 grid gap-y-3 gap-x-8 font-sans text-xs uppercase tracking-[0.18em] text-ink/65 md:grid-cols-2">
+        <ul className="mt-10 grid gap-y-3 gap-x-8 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ink/65 md:grid-cols-2">
           {notes.map((note) => (
             <li key={note} className="flex items-baseline gap-3">
               <span className="text-sun" aria-hidden>

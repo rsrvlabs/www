@@ -12,9 +12,9 @@ export function Note() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 1 }}
-            className="col-span-12 font-sans text-[0.7rem] uppercase tracking-[0.32em] text-ink/45 md:col-span-3"
+            className="kicker col-span-12 text-ink/45 md:col-span-3"
           >
-            A note
+            02 · A note
           </motion.span>
           <motion.p
             initial={{ opacity: 0, y: 14 }}

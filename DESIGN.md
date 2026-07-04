@@ -102,6 +102,19 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
 - **Ambient loops start `paused`**, played by IntersectionObserver — performance + battery win;
   apply to any marquee/loop we add.
 
+## Implementation status
+
+- **2026-07-04 — layer 1 SHIPPED** (tokens + machine layer + weather interlude): `@theme` gained
+  the pinned mono stack, house easings (`--ease-enter/ui/pop`), night surface/line ladder;
+  utilities `.kicker` / `.link-underline` / `.grid-paper-night` / `.hairline-dashed(-night)`;
+  all six section labels converted to mono kickers with `NN ·` machine indices; weather wears the
+  full dark grammar (grid-paper lattice + dashed-hairline mono footer with left-hairline items +
+  `04/06` index); wordmark's Write link → mono + growing underline.
+- **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
+  house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
+- Next layers (design-revamp ticket): dark-section card lattices where real cell grids exist,
+  odometer stats, enter-once choreography upgrades, materials re-shoot, Braille loading texture.
+
 ## Process rules
 
 - Tokens change ONLY in `globals.css` `@theme` + a matching note here. No ad-hoc hex in components.

@@ -61,9 +61,9 @@ export function Invitation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="block font-sans text-[0.7rem] uppercase tracking-[0.32em] text-ink/55"
+          className="kicker block text-ink/55"
         >
-          An invitation
+          06 · An invitation
         </motion.span>
 
         <motion.h2
@@ -110,7 +110,7 @@ export function Invitation() {
         </motion.div>
 
         {/* Footer */}
-        <div className="mt-[18svh] grid grid-cols-12 gap-6 border-t border-ink/15 pt-10 font-sans text-[0.7rem] uppercase tracking-[0.28em] text-ink/55">
+        <div className="kicker hairline-dashed mt-[18svh] grid grid-cols-12 gap-6 pt-10 text-ink/55">
           <div className="col-span-12 md:col-span-4">
             <div className="font-display text-base normal-case tracking-tight text-ink">
               reserve<span className="text-dusk">.</span>
