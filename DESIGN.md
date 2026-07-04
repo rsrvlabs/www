@@ -174,10 +174,23 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   TAIPEI) → scrunch left-hairline metadata items at 0.6rem mono. Hero grid-paper band
   considered and skipped: the silk shader is the hero's texture; a lattice over moving
   fabric competes (grid-paper stays the flat-dark-section grammar).
+- **2026-07-04 — Step 2 SHIPPED** (doors → collapsed-border lattice, from insforge): the
+  03 · Index section rebuilt as ONE engineered grid — square cells sharing 1px `night-line`
+  borders via CSS grid `gap-px` over a `night-line` container ground (the container color IS
+  the shared border, so no nth-child edge de-duping needed), outer frame a clean 1px
+  `night-line-strong` with `bg-clip-padding` so the two alpha lines don't compound (2-step
+  borders: frame > partitions). Cell plan: thin legend strip (the section kicker + `five
+  doors · 03/06` machine plate lives IN the lattice as its header cell), flagship spanning
+  the full row, then the 2×2 doors. Copy unchanged. Hover keeps the punch-card craft —
+  corner dots→sun, night-soft surface rise, title underline — but **drops the ploy tilt
+  inside the lattice** (a rotating cell shears its shared borders and breaks the engineered
+  read; tilt lives on in subpage `PunchSurface` entries). Entrance: the plate rises once as
+  a single unit and cell contents stagger in behind it (framer variants, house enter ease,
+  `useReducedMotion` zeroes translations) — the grid never appears half-built.
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
-- Next layers (design-revamp ticket): dark-section card lattices where real cell grids exist,
-  odometer stats, enter-once choreography upgrades, materials re-shoot.
+- Next layers (design-revamp ticket): odometer stats, enter-once choreography upgrades,
+  materials re-shoot.
 
 ## Site information architecture (agreed direction, 2026-07-04)
 

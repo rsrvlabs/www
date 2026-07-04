@@ -51,9 +51,12 @@ odometer (`visuals/odometer.tsx`) · hover-duration grammar · enter-once princi
 motion rules) · **hero display scale-contrast** (Step 1 2026-07-04: wt400 big-but-light +
 tight leading from the computed H1 values — hero at clamp cap 7.4rem / leading 1.02 /
 tracking −0.03em, kicker shrunk + wider-tracked) · **single-accent headline span** (Step 1:
-"AI-native" in sun — one accent per headline, their `#6ee7b7`-span signature). **Not yet:**
-collapsed-border lattice, gradient-border hub, line-draw choreography, marquee, agent-view
-toggle.
+"AI-native" in sun — one accent per headline, their `#6ee7b7`-span signature) ·
+**collapsed-border lattice** (Step 2 2026-07-04: landing 03 · Index doors as one engineered
+grid — ours via grid `gap-px` over a `night-line` ground instead of their nth-of-type edge
+removal, same collapsed read; outer frame 1px `night-line-strong` + `bg-clip-padding`,
+2-step borders; legend header cell carries the section's machine plate). **Not yet:**
+gradient-border hub, line-draw choreography, marquee, agent-view toggle.
 
 ## Computed (rendered) values — 2026-07-04 live extraction
 
