@@ -20,7 +20,7 @@ export function Invitation() {
     <section
       ref={ref}
       id="invitation"
-      className="relative overflow-hidden bg-paper pb-[10svh] pt-[24svh]"
+      className="relative overflow-hidden bg-night pb-[10svh] pt-[24svh]"
     >
       {/* Hand-painted dusk, anchored to the lower half */}
       <motion.div
@@ -61,7 +61,7 @@ export function Invitation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="kicker block text-ink/55"
+          className="kicker block text-paper/55"
         >
           06 · An invitation
         </motion.span>
@@ -71,7 +71,7 @@ export function Invitation() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.4, ease: [0.19, 1, 0.22, 1] }}
-          className="mt-10 font-display text-[clamp(3rem,9vw,9rem)] leading-[0.95] tracking-[-0.02em] text-ink"
+          className="mt-10 font-display text-[clamp(3rem,9vw,9rem)] leading-[0.95] tracking-[-0.02em] text-paper"
         >
           Write to us.
         </motion.h2>
@@ -81,7 +81,7 @@ export function Invitation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="mt-12 max-w-[52ch] font-display text-[clamp(1.1rem,1.8vw,1.4rem)] leading-[1.55] text-ink/85"
+          className="mt-12 max-w-[52ch] font-display text-[clamp(1.1rem,1.8vw,1.4rem)] leading-[1.55] text-paper/85"
         >
           Want early access to the app, an embedded AI team that
           ships, or our notes on running an AI-native company?
@@ -99,9 +99,9 @@ export function Invitation() {
             href={`mailto:${EMAIL}`}
             onMouseEnter={() => setRevealed(true)}
             onFocus={() => setRevealed(true)}
-            className="group inline-flex items-baseline gap-4 font-display text-[clamp(1.5rem,3vw,2.5rem)] text-ink underline-offset-[0.3em] hover:text-dusk"
+            className="group inline-flex items-baseline gap-4 font-display text-[clamp(1.5rem,3vw,2.5rem)] text-paper underline-offset-[0.3em] hover:text-sun"
           >
-            <span className="border-b border-ink group-hover:border-dusk">
+            <span className="border-b border-paper group-hover:border-sun">
               {revealed ? EMAIL : "open the envelope"}
             </span>
             <span aria-hidden className="text-base transition-transform group-hover:translate-x-1">
@@ -111,38 +111,38 @@ export function Invitation() {
         </motion.div>
 
         {/* Footer */}
-        <div className="kicker hairline-dashed mt-[18svh] grid grid-cols-12 gap-6 pt-10 text-ink/55">
+        <div className="kicker hairline-dashed mt-[18svh] grid grid-cols-12 gap-6 pt-10 text-paper/55">
           <div className="col-span-12 md:col-span-4">
-            <div className="font-display text-base normal-case tracking-tight text-ink">
-              reserve<span className="text-dusk">.</span>
+            <div className="font-display text-base normal-case tracking-tight text-paper">
+              reserve<span className="text-sun">.</span>
             </div>
-            <div className="mt-2 normal-case tracking-normal text-ink/55 font-sans text-xs">
+            <div className="mt-2 normal-case tracking-normal text-paper/55 font-sans text-xs">
               A studio between software and the objects you hold.
             </div>
           </div>
           <div className="col-span-6 md:col-span-4">
-            <div className="text-ink/40 mb-3">Rooms</div>
-            <div className="space-y-1 normal-case tracking-normal font-display text-ink text-sm">
+            <div className="text-paper/40 mb-3">Cities</div>
+            <div className="space-y-1 normal-case tracking-normal font-display text-paper text-sm">
               <div>London · New York · Abu Dhabi</div>
               <div>Bangkok · Singapore · Hong Kong</div>
               <div>Taipei · Tokyo</div>
             </div>
           </div>
           <div className="col-span-6 md:col-span-4 md:text-right">
-            <div className="text-ink/40 mb-3">Index</div>
+            <div className="text-paper/40 mb-3">Index</div>
             <div className="space-y-1 normal-case tracking-normal text-sm">
-              <a href="#practices" className="block text-ink hover:text-dusk">
+              <a href="#doors" className="block text-paper hover:text-sun">
                 Two practices
               </a>
-              <a href="#weather" className="block text-ink hover:text-dusk">
+              <a href="#weather" className="block text-paper hover:text-sun">
                 Weather
               </a>
-              <a href="#places" className="block text-ink hover:text-dusk">
+              <a href="#places" className="block text-paper hover:text-sun">
                 Places
               </a>
             </div>
           </div>
-          <div className="col-span-12 mt-12 flex items-baseline justify-between border-t border-ink/10 pt-6 text-ink/40">
+          <div className="col-span-12 mt-12 flex items-baseline justify-between border-t border-paper/10 pt-6 text-paper/40">
             <span>© MMXXIV — Reserve</span>
             <span>Built quietly</span>
           </div>

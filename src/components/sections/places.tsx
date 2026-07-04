@@ -123,7 +123,7 @@ export function Places() {
               className="pointer-events-none absolute inset-0 flex items-center justify-center"
             >
               <span className="kicker text-[0.62rem] tracking-[0.34em] text-paper/45">
-                Charting eight rooms
+                Charting eight cities
               </span>
             </motion.div>
           )}

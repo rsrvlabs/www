@@ -12,7 +12,7 @@ import Link from "next/link";
 const flagship = {
   href: "/sw",
   tag: "F · Flagship",
-  title: "The one across the room, found again.",
+  title: "The one in the crowd, found again.",
   line: "A dating app with a physical signature — you only match with people you've actually crossed paths with.",
 };
 
@@ -52,25 +52,25 @@ const enter = {
 
 export function Doors() {
   return (
-    <section id="doors" className="relative bg-paper-soft py-[16svh]">
+    <section id="doors" className="relative bg-night-deep py-[16svh]">
       <div className="mx-auto w-full max-w-[88rem] px-6 md:px-10">
-        <motion.h2 {...enter} className="kicker mb-[10svh] text-ink/45">
+        <motion.h2 {...enter} className="kicker mb-[10svh] text-paper/45">
           03 · Index
         </motion.h2>
 
         {/* Flagship door — full-width */}
         <motion.div {...enter}>
           <Link href={flagship.href} className="group block">
-            <span className="kicker text-ink/50">{flagship.tag}</span>
-            <span className="mt-4 block font-display text-[clamp(2.2rem,5.5vw,4.6rem)] leading-[1.05] tracking-[-0.015em] text-ink">
+            <span className="kicker text-paper/50">{flagship.tag}</span>
+            <span className="mt-4 block font-display text-[clamp(2.2rem,5.5vw,4.6rem)] leading-[1.05] tracking-[-0.015em] text-paper">
               <span className="link-underline">{flagship.title}</span>
             </span>
-            <span className="mt-5 block max-w-[58ch] font-sans text-[0.95rem] leading-[1.75] text-ink-soft">
+            <span className="mt-5 block max-w-[58ch] font-sans text-[0.95rem] leading-[1.75] text-paper/70">
               {flagship.line}
             </span>
             <span
               aria-hidden
-              className="kicker mt-6 inline-block text-ink/45 transition-transform duration-200 group-hover:translate-x-1"
+              className="kicker mt-6 inline-block text-paper/45 transition-transform duration-200 group-hover:translate-x-1"
             >
               enter →
             </span>
@@ -87,11 +87,11 @@ export function Doors() {
               className={i >= 2 ? "hairline-dashed mt-10 pt-10 md:mt-12 md:pt-12" : "mb-2 md:mb-0"}
             >
               <Link href={d.href} className="group block">
-                <span className="kicker text-ink/50">{d.tag}</span>
-                <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-ink">
+                <span className="kicker text-paper/50">{d.tag}</span>
+                <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-paper">
                   <span className="link-underline">{d.title}</span>
                 </span>
-                <span className="mt-3 block max-w-[48ch] font-sans text-[0.88rem] leading-[1.7] text-ink-soft">
+                <span className="mt-3 block max-w-[48ch] font-sans text-[0.88rem] leading-[1.7] text-paper/70">
                   {d.line}
                 </span>
               </Link>

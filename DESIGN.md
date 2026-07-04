@@ -6,22 +6,26 @@ The design spec for `rsrvlabs/www` (and later the Reserve research blog). Aesthe
 motion grammar), ploy.ai (component play), scrunch.com blog (editorial system). Tokens live in
 `src/app/globals.css`; this file is the *why* and the rules.
 
-## The fusion thesis
+## The thesis — 暗色系法式簡約 (night-first, founder decision 2026-07-04)
 
-Reserve's existing warm-paper OKLCH palette (paper/ink/moss/sun/dusk/night + Gambarino serif) **is
-already the French-minimal half** — scrunch proves the family works at production quality (their
-`#f4f2ed` paper / `#1d1107` warm ink ≈ our paper/ink). **Do not replace it.** The 黑鏡 half is
-added as three disciplined layers:
+**The site is dark-based.** Founder ruling: the warm-cream base was legacy-copy residue, not the
+brand ("暗色系的法式簡約…色盤之類的都要改掉"). The brand tone is **dark French minimalism ×
+Black Mirror glass**: warm near-black (`night`) as the ground, cream `paper` as the *voice*
+(text, hairlines, rare surfaces), one gold `sun` accent. The French half is carried by
+**typography, whitespace, and hairlines** — not by a cream background. Three layers on the dark
+ground:
 
-1. **A mono "machine" layer** — ALL metadata (labels, dates, tags, stats, nav sublabels, list
-   markers) in a monospace face. Serif speaks to humans; mono is the machine annotating the page.
-2. **Dark interlude sections** — `night`/`dusk` token sections (the "screen off" moments) using a
-   technical grammar: collapsed 1px-border lattices, faint grid-paper texture, odometer numbers.
+1. **A mono "machine" layer** — ALL metadata (labels, dates, tags, stats, nav, list markers) in
+   mono. Serif speaks to humans; mono is the machine annotating the page.
+2. **Technical grammar** — grid-paper texture, collapsed 1px lattices, odometer numbers, the
+   night-shift timeline: the instrument room aesthetic.
 3. **Engineered motion** — enter-once choreography and sub-200ms micro-interactions; never
    decorative scroll-jack.
 
-Paper sections feel like a French gallery catalog; dark sections feel like the instrument behind
-it. The tension between the two IS the brand.
+Token names keep their meanings (`paper` = the light values, `night` = the dark ground) — what
+flipped is which one is the background. Legacy pastoral imagery sinks into the night (reduced
+opacity + night fades) until the materials re-shoot lands. **"Room/rooms" language is purged**
+(legacy copy residue — founder call, same date).
 
 ## Typography (role trichotomy — hierarchy from role, not weight)
 

@@ -71,7 +71,7 @@ export function ArrivalVeil() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
           transition={{ duration: 0.95, ease: [0.19, 1, 0.22, 1] }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-paper"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-night"
           aria-hidden
         >
           <div className="flex flex-col items-center gap-7">
@@ -86,7 +86,7 @@ export function ArrivalVeil() {
                 ease: [0.19, 1, 0.22, 1],
                 times: reducedMotion ? undefined : [0, 0.55, 1],
               }}
-              className="h-px bg-ink"
+              className="h-px bg-paper"
             />
             <motion.div
               initial={{ opacity: 0, y: 6 }}
@@ -96,7 +96,7 @@ export function ArrivalVeil() {
                 delay: reducedMotion ? 0 : 0.5,
                 ease: [0.19, 1, 0.22, 1],
               }}
-              className="font-sans text-[0.65rem] uppercase tracking-[0.4em] text-ink/55"
+              className="font-sans text-[0.65rem] uppercase tracking-[0.4em] text-paper/55"
             >
               Arriving
             </motion.div>

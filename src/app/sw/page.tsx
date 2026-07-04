@@ -12,7 +12,7 @@ export default function SWPage() {
     <Subpage
       index="F"
       label="Flagship"
-      title="The one across the room, found again."
+      title="The one in the crowd, found again."
       intro="You noticed someone. Maybe you smiled. Then the crowd pulled you apart, and the city swallowed them. Our flagship ends that story differently: real co-presence becomes a physical signature, and the people you actually crossed paths with stay findable. Not another feed of strangers — a social graph made of real encounters."
     >
       <Entry
@@ -23,7 +23,7 @@ export default function SWPage() {
       <Entry
         tag="WEARABLE"
         title="Presence without the phone"
-        blurb="The destination is a wearable — no app to open, no screen between you and the room. Your presence does the talking."
+        blurb="The destination is a wearable — no app to open, no screen between you and the world. Your presence does the talking."
       />
       <Entry
         tag="BIOSIGNAL"

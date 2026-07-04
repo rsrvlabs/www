@@ -18,7 +18,7 @@ export function Arrival() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-paper pb-[14svh]"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-night pb-[14svh]"
     >
       {/* Hand-painted Ghibli sky — the hero */}
       <motion.div
@@ -31,7 +31,7 @@ export function Arrival() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover opacity-40"
         />
       </motion.div>
 
@@ -41,7 +41,7 @@ export function Arrival() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, oklch(0.965 0.012 78 / 0.55) 60%, oklch(0.965 0.012 78) 100%)",
+            "linear-gradient(to bottom, transparent 0%, oklch(0.22 0.03 60 / 0.6) 60%, oklch(0.22 0.03 60) 100%)",
         }}
       />
 
@@ -51,7 +51,7 @@ export function Arrival() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
         style={{
           background:
-            "linear-gradient(to bottom, oklch(0.965 0.012 78 / 0.32) 0%, transparent 100%)",
+            "linear-gradient(to bottom, oklch(0.22 0.03 60 / 0.55) 0%, transparent 100%)",
         }}
       />
 
@@ -63,15 +63,15 @@ export function Arrival() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.4 }}
-          className="kicker mb-10 text-ink/55"
+          className="kicker mb-10 text-paper/55"
         >
           01 · AI-native studio
         </motion.p>
 
-        <h1 className="font-display font-normal text-ink leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,9.5vw,9.5rem)]">
+        <h1 className="font-display font-normal text-paper leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,9.5vw,9.5rem)]">
           <Line text="We build software" baseDelay={0.55} />
           <br />
-          <span className="text-ink-soft italic font-display">
+          <span className="text-paper/70 italic font-display">
             <Line text="for the physical world." baseDelay={1.25} />
           </span>
         </h1>
@@ -82,13 +82,13 @@ export function Arrival() {
           transition={{ duration: 1.4, delay: 2.4 }}
           className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
-          <p className="max-w-[44ch] font-sans text-[0.95rem] leading-[1.75] text-ink-soft">
+          <p className="max-w-[44ch] font-sans text-[0.95rem] leading-[1.75] text-paper/70">
             Reserve is a two-person, bootstrapped studio. We ship
             consumer products that turn real-world presence into
             software — starting with a social app that only matches
             people who have actually crossed paths.
           </p>
-          <span className="kicker shrink-0 text-ink/45">
+          <span className="kicker shrink-0 text-paper/45">
             EST. MMXXIV · Bootstrapped · Taipei
           </span>
         </motion.div>
@@ -101,7 +101,7 @@ export function Arrival() {
         transition={{ duration: 2, delay: 2.8 }}
         className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
-        <span className="kicker text-[0.62rem] tracking-[0.34em] text-ink/55">
+        <span className="kicker text-[0.62rem] tracking-[0.34em] text-paper/55">
           scroll
         </span>
       </motion.div>
