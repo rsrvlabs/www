@@ -53,7 +53,9 @@
 house easing pair (tokens) · punch-card corners + tilt (restrained: ±4/±6, no hover-paint
 flood; since 2026-07-04 a SHARED surface — `site/punch-card.tsx` — worn by both the landing
 doors and every subpage Entry row) · Braille rain (veil loader) · night-shift timeline concept
-(04 · While you sleep, enter-once instead of scrub) · ink-pair (`--color-sun-ink`).
+(04 · While you sleep, enter-once instead of scrub; Step 3 2026-07-04 retuned onto a
+collapsed-border instrument panel — pulsing-dot cadence kept, sun fill only on the 08:00
+beat) · ink-pair (`--color-sun-ink`).
 **Not yet:** char-scrub fill, per-char elastic hover, film hero, paused-marquee pattern.
 
 ## Computed (rendered) values — 2026-07-04 live extraction

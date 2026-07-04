@@ -50,7 +50,8 @@ ploy's #f4f4f4→#212121→#000 carry chroma 0 — color lives only in the accen
 map background, fog, water) followed the reset to neutral hex; the warm land-relief tuning
 (ink/dusk/sun/moss/sand constants) is imagery-layer and untouched at Step 0 — re-tune it in
 the places step. Same for the weather haze raster: desaturated via CSS `grayscale` (a warm
-JPEG screen-blended over neutral ground re-browns the whole section) until the re-shoot.
+JPEG screen-blended over neutral ground re-browns the whole section) — interim only;
+removed entirely at Step 3 (the section is now pure code-generated structure).
 
 ## Typography (role trichotomy — hierarchy from role, not weight)
 
@@ -187,10 +188,26 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   read; tilt lives on in subpage `PunchSurface` entries). Entrance: the plate rises once as
   a single unit and cell contents stagger in behind it (framer variants, house enter ease,
   `useReducedMotion` zeroes translations) — the grid never appears half-built.
+- **2026-07-04 — Step 3 SHIPPED** (weather → instrument panel, from insforge + ploy): the
+  04 · While you sleep section is now **fully code-generated** — the interim grayscaled haze
+  JPEG (`weather-ambient.jpg` + CSS grayscale + scroll parallax) deleted (warm-era residue;
+  raster ambience fought the neutral ground) and replaced with pure structure: the grid-paper
+  lattice + ONE zero-chroma radial glow lifting the panel zone. Timeline + odometer stats
+  merged onto **one collapsed-border lattice panel** (Step 2 grammar: grid `gap-px` over
+  `night-line` ground, 1px `night-line-strong` frame, `bg-clip-padding`): mono timestamp rail
+  right-aligned against a shared vertical line, rows densified (py-4 → py-3, 0.88rem/1.55
+  lines), stats as the panel's bottom readout row — the editorial air between timeline and
+  stats collapsed to a shared 1px line (founder fidelity note: bias TIGHTER, insforge's
+  line-density, over loose editorial spacing). Pulsing dots kept (sun fill only on the 08:00
+  beat); enter-once plate + content stagger (doors grammar); dashed machine footer (04/06)
+  unchanged. Odometer retimed to insforge's COMPUTED slot transition `transform .4s
+  cubic-bezier(.22,1,.36,1)` (was 0.9s), and a real bug fixed: framer `useInView` with bare
+  `margin: "-15%"` insets **horizontally** too (15% of viewport width), so the leftmost stat
+  never intersected and "01" rendered as "00" — in-view trigger margins must be vertical-only
+  (`0px 0px -10% 0px`).
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
-- Next layers (design-revamp ticket): odometer stats, enter-once choreography upgrades,
-  materials re-shoot.
+- Next layers (design-revamp ticket): enter-once choreography upgrades, materials re-shoot.
 
 ## Site information architecture (agreed direction, 2026-07-04)
 
