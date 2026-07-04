@@ -1,59 +1,43 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const EMAIL = "hello@reserve.ai";
 
+/**
+ * 06 · An invitation — the farewell beat, now pure structure (the last
+ * warm-era section: the sunset JPEG + cream fade + terracotta wash were
+ * pre-reset residue and carried a heavy warm cast; asset law says interim
+ * treatment is typographic, design-refs/assets.md §5 rule 10). Grammar is
+ * the Step 3 instrument-room close: neutral radial glow + grid-paper
+ * lattice, and a scrunch machine footer — mono metadata columns behind
+ * left hairlines, dashed-night separators only (design-refs/scrunch.md).
+ */
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function Invitation() {
   const [revealed, setRevealed] = useState(false);
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end end"],
-  });
-  const duskY = useTransform(scrollYProgress, [0, 1], ["8%", "0%"]);
-  const duskScale = useTransform(scrollYProgress, [0, 1], [1.06, 1]);
 
   return (
     <section
-      ref={ref}
       id="invitation"
       className="relative overflow-hidden bg-night pb-[10svh] pt-[24svh]"
     >
-      {/* Hand-painted dusk, anchored to the lower half */}
-      <motion.div
-        style={{ y: duskY, scale: duskScale }}
-        className="pointer-events-none absolute inset-x-0 bottom-0 top-[30%]"
-      >
-        <Image
-          src="/materials/invitation-dusk.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover"
-        />
-      </motion.div>
-
-      {/* Cream fade at top so headline sits in open paper air */}
+      {/* Pure structure, no raster: a neutral glow lifts the invitation zone,
+          weighted toward the voice (restrained asymmetry, founder debt #3)… */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
+        className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, oklch(0.965 0.012 78) 0%, oklch(0.965 0.012 78 / 0.85) 55%, transparent 100%)",
+            "radial-gradient(ellipse 70% 55% at 32% 30%, oklch(0.985 0 0 / 0.05), transparent 70%)",
         }}
       />
-      {/* Terracotta warmth at the very bottom to push the section into night */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[28%]"
-        style={{
-          background:
-            "linear-gradient(to top, oklch(0.34 0.05 38 / 0.55) 0%, transparent 100%)",
-        }}
-      />
+      {/* …and the grid-paper lattice is the machine behind the farewell
+          (DESIGN.md dark-section grammar, same as 04 · While you sleep) */}
+      <div aria-hidden className="grid-paper-night pointer-events-none absolute inset-0" />
 
       <div className="relative mx-auto w-full max-w-[80rem] px-6 md:px-10">
         <motion.span
@@ -61,7 +45,7 @@ export function Invitation() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="kicker block text-paper/55"
+          className="kicker block text-paper/45"
         >
           06 · An invitation
         </motion.span>
@@ -70,8 +54,8 @@ export function Invitation() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.4, ease: [0.19, 1, 0.22, 1] }}
-          className="mt-10 font-display text-[clamp(3rem,9vw,9rem)] leading-[0.95] tracking-[-0.02em] text-paper"
+          transition={{ duration: 1.4, ease: EASE }}
+          className="mt-10 font-display text-[clamp(3rem,9vw,7.4rem)] leading-[0.95] tracking-[-0.02em] text-paper"
         >
           Write to us.
         </motion.h2>
@@ -92,7 +76,7 @@ export function Invitation() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.6 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: EASE }}
           className="mt-16"
         >
           <a
@@ -110,39 +94,40 @@ export function Invitation() {
           </a>
         </motion.div>
 
-        {/* Footer */}
-        <div className="kicker hairline-dashed mt-[18svh] grid grid-cols-12 gap-6 pt-10 text-paper/55">
+        {/* Machine footer — scrunch metadata grammar: mono columns behind
+            left hairlines; separators are dashed-night only (no solid rules) */}
+        <div className="kicker hairline-dashed-night mt-[14svh] grid grid-cols-12 gap-6 pt-10 text-paper/55">
           <div className="col-span-12 md:col-span-4">
             <div className="font-display text-base normal-case tracking-tight text-paper">
               reserve<span className="text-sun">.</span>
             </div>
-            <div className="mt-2 normal-case tracking-normal text-paper/55 font-sans text-xs">
+            <div className="mt-3 max-w-[28ch] font-sans text-xs normal-case leading-[1.7] tracking-normal text-paper/50">
               A studio between software and the objects you hold.
             </div>
           </div>
-          <div className="col-span-6 md:col-span-4">
-            <div className="text-paper/40 mb-3">Cities</div>
-            <div className="space-y-1 normal-case tracking-normal font-display text-paper text-sm">
+          <div className="col-span-6 border-l border-paper/15 pl-4 md:col-span-4">
+            <div className="mb-3 text-paper/40">Cities</div>
+            <div className="space-y-2 text-[0.62rem] tracking-[0.18em] text-paper/70">
               <div>London · New York · Abu Dhabi</div>
               <div>Bangkok · Singapore · Hong Kong</div>
               <div>Taipei · Tokyo</div>
             </div>
           </div>
-          <div className="col-span-6 md:col-span-4 md:text-right">
-            <div className="text-paper/40 mb-3">Index</div>
-            <div className="space-y-1 normal-case tracking-normal text-sm">
-              <a href="#doors" className="block text-paper hover:text-sun">
+          <div className="col-span-6 border-l border-paper/15 pl-4 md:col-span-4">
+            <div className="mb-3 text-paper/40">Index</div>
+            <div className="flex flex-col items-start gap-2 text-[0.62rem] tracking-[0.18em]">
+              <a href="#doors" className="link-underline text-paper/70 hover:text-paper">
                 Two practices
               </a>
-              <a href="#weather" className="block text-paper hover:text-sun">
+              <a href="#weather" className="link-underline text-paper/70 hover:text-paper">
                 Weather
               </a>
-              <a href="#places" className="block text-paper hover:text-sun">
+              <a href="#places" className="link-underline text-paper/70 hover:text-paper">
                 Places
               </a>
             </div>
           </div>
-          <div className="col-span-12 mt-12 flex items-baseline justify-between border-t border-paper/10 pt-6 text-paper/40">
+          <div className="hairline-dashed-night col-span-12 mt-12 flex items-baseline justify-between pt-6 text-paper/40">
             <span>© MMXXIV — Reserve</span>
             <span>Built quietly</span>
           </div>

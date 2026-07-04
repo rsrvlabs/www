@@ -147,9 +147,9 @@ cover *system* and a real byline.
 ## 5 · Reserve asset plan — OUR real artifacts, mapped to beats
 
 **Current state (the gap):** the live site ships *no* real artifact. Remaining rasters are
-Midjourney-era JPEGs (`place-*.jpg` on the places cards, `invitation-dusk.jpg` in 06) — rule-10
-violations scheduled to die; everything else is code texture (silk, grid-paper, braille,
-odometer) and typography. The one genuinely real visual is the **deck.gl globe** (05 — real
+Midjourney-era JPEGs (`place-*.jpg` on the places cards) — rule-10 violations scheduled to die
+(`invitation-dusk.jpg` died 2026-07-05: 06 went fully typographic per the interim plan below);
+everything else is code texture (silk, grid-paper, braille, odometer) and typography. The one genuinely real visual is the **deck.gl globe** (05 — real
 OpenFreeMap/Natural-Earth data). Register rule for everything below: **no fabricated evidence —
 real artifacts only, with real timestamps; where nothing real exists yet, ship typography, not
 filler** (already the `/research` hero rule; now site law).
