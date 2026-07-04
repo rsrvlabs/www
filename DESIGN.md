@@ -239,6 +239,13 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   bias). Copy semantics untouched (stale lines flagged for a copy pass instead: the
   8-city Cities block, "Two practices" → #doors which is now 03 · Index, the
   "objects you hold" tagline, `hello@reserve.ai`).
+- **2026-07-05 — email + footer-index copy sync (founder ruling):** email domains end in
+  **rsrvlabs.com** — the site contact is now `hello@rsrvlabs.com` (was `hello@reserve.ai`,
+  legacy; **mailbox existence to be confirmed by founder** before anything relies on it
+  receiving mail). Invitation footer Index labels synced to section reality: "Two practices"
+  → **Index** (#doors = 03 · Index) and "Weather" → **While you sleep** (#weather = 04);
+  "Places" (#places = 05) was already true. Still flagged from Step 5: the 8-city Cities
+  block, the "objects you hold" tagline.
 - **2026-07-05 — Step 6 SHIPPED** (subpage + blog polish pass, small fixes only): all
   subpage/research dashed rules moved to the night grammar class (`hairline-dashed` →
   `hairline-dashed-night` — visually identical today, but the paper-grammar class on night

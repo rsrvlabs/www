@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const EMAIL = "hello@reserve.ai";
+const EMAIL = "hello@rsrvlabs.com";
 
 /**
  * 06 · An invitation — the farewell beat, now pure structure (the last
@@ -117,10 +117,10 @@ export function Invitation() {
             <div className="mb-3 text-paper/40">Index</div>
             <div className="flex flex-col items-start gap-2 text-[0.62rem] tracking-[0.18em]">
               <a href="#doors" className="link-underline text-paper/70 hover:text-paper">
-                Two practices
+                Index
               </a>
               <a href="#weather" className="link-underline text-paper/70 hover:text-paper">
-                Weather
+                While you sleep
               </a>
               <a href="#places" className="link-underline text-paper/70 hover:text-paper">
                 Places
