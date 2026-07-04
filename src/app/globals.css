@@ -25,6 +25,8 @@
   --color-ink-faint: oklch(0.62 0.012 70);
   --color-moss: oklch(0.46 0.05 132);
   --color-sun: oklch(0.74 0.12 70);
+  /* Ink-pair (ploy): text color for ON-sun surfaces — never auto-black on accent */
+  --color-sun-ink: oklch(0.28 0.06 60);
   --color-dusk: oklch(0.34 0.05 38);
   --color-night: oklch(0.22 0.03 60);
   /* Dark-section surface/line ladder (DESIGN.md dark grammar) */

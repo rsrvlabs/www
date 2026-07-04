@@ -1,11 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
+import { Silk } from "@/components/visuals/silk";
 
 export function Arrival() {
   const ref = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -20,18 +21,18 @@ export function Arrival() {
       ref={ref}
       className="relative flex min-h-[100svh] items-end overflow-hidden bg-night pb-[14svh]"
     >
-      {/* Hand-painted Ghibli sky — the hero */}
+      {/* Code-generated dark silk (design-refs: ours; replaces the pastoral
+          raster — the last non-黑鏡 element). Deep bronze waves over night. */}
       <motion.div
         style={{ y: skyY, scale: skyScale }}
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-70"
       >
-        <Image
-          src="/materials/arrival-hero.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-40"
+        <Silk
+          color="#4a3520"
+          speed={reducedMotion ? 0 : 2.2}
+          scale={1.1}
+          noiseIntensity={1.2}
+          rotation={0.1}
         />
       </motion.div>
 

@@ -52,5 +52,5 @@
 
 house easing pair (tokens) · punch-card corners + tilt (doors, restrained: ±4/±6, no
 hover-paint flood) · Braille rain (veil loader) · night-shift timeline concept
-(04 · While you sleep, enter-once instead of scrub). **Not yet:** ink-pair accent system,
-char-scrub fill, per-char elastic hover, film hero, paused-marquee pattern.
+(04 · While you sleep, enter-once instead of scrub). **Now adopted:** ink-pair (`--color-sun-ink`).
+**Not yet:** char-scrub fill, per-char elastic hover, film hero, paused-marquee pattern.
