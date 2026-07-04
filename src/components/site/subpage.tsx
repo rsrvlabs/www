@@ -1,12 +1,15 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PunchSurface } from "@/components/site/punch-card";
+import { NavLinks, WriteLink } from "@/components/site/nav";
 
 /**
  * Shared kit for the top-level subpages (IA in DESIGN.md — founder's
  * categorization, verbatim). Night grammar: kicker machine layer, serif
  * display, dashed hairlines, grid-paper texture band, punch-card entries.
  */
+
+const CONTACT = "hello@rsrvlabs.com";
 
 export function StatusTag({ children }: { children: ReactNode }) {
   return (
@@ -16,15 +19,31 @@ export function StatusTag({ children }: { children: ReactNode }) {
   );
 }
 
-export function SubpageHeader({ index, label }: { index: string; label: string }) {
+/** Subpage chrome carries the FULL five-route nav + WRITE → (layout-audit
+ *  gap #3 — the references keep full nav everywhere; the old logo-only
+ *  header made every subpage a dead-end). `current` lights the section
+ *  you're on; the section tag moved below the logo, out of the nav's way. */
+export function SubpageHeader({
+  index,
+  label,
+  current,
+}: {
+  index: string;
+  label: string;
+  current: string;
+}) {
   return (
-    <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-6 md:px-10">
-      <Link href="/" className="font-display text-base tracking-tight text-paper" aria-label="Reserve">
-        reserve<span className="text-sun">.</span>
-      </Link>
-      <span className="kicker text-paper/55">
-        {index} · {label}
-      </span>
+    <header className="fixed inset-x-0 top-0 z-40 flex items-baseline justify-between px-6 py-6 md:px-10">
+      <div className="flex flex-col">
+        <Link href="/" className="font-display text-base tracking-tight text-paper" aria-label="Reserve">
+          reserve<span className="text-sun">.</span>
+        </Link>
+        <span className="kicker mt-2 text-[0.6rem] text-paper/45">
+          {index} · {label}
+        </span>
+      </div>
+      <NavLinks current={current} />
+      <WriteLink href={`mailto:${CONTACT}`} />
     </header>
   );
 }
@@ -44,17 +63,47 @@ export function MetaBar({ items }: { items: string[] }) {
   );
 }
 
+export type Cta = { line: string; label: string; subject: string };
+
+/** Closing CTA band (layout-audit gap #2: every reference page ends with a
+ *  conversion beat; ours dead-ended into the exit link). The landing 06
+ *  grammar condensed: one serif line + one mono mailto with a prefilled
+ *  subject, behind a dashed-night hairline. Founder copy verbatim per page. */
+export function CtaBand({ line, label, subject }: Cta) {
+  return (
+    <div className="hairline-dashed-night mt-20 pt-10">
+      <p className="max-w-[30ch] font-display text-[clamp(1.5rem,2.8vw,2.3rem)] leading-[1.2] tracking-[-0.01em] text-paper">
+        {line}
+      </p>
+      <a
+        href={`mailto:${CONTACT}?subject=${encodeURIComponent(subject)}`}
+        className="group mt-8 inline-flex items-baseline gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-paper/70 transition-colors duration-200 hover:text-paper"
+      >
+        <span className="link-underline">{label}</span>
+        <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+          →
+        </span>
+      </a>
+    </div>
+  );
+}
+
 export function Subpage({
   index,
   label,
+  current,
   title,
   intro,
+  cta,
   children,
 }: {
   index: string;
   label: string;
+  /** Route of this section for the nav's current-page mark, e.g. "/labs". */
+  current: string;
   title: string;
   intro: string;
+  cta?: Cta;
   children: ReactNode;
 }) {
   return (
@@ -64,7 +113,7 @@ export function Subpage({
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[52svh] grid-paper-night"
       />
-      <SubpageHeader index={index} label={label} />
+      <SubpageHeader index={index} label={label} current={current} />
       <div className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
         <h1 className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-paper">
           {title}
@@ -76,6 +125,7 @@ export function Subpage({
         <div className="hairline-dashed-night mt-14 divide-y divide-dashed divide-paper/15 pt-6">
           {children}
         </div>
+        {cta ? <CtaBand {...cta} /> : null}
         <div className="hairline-dashed-night mt-20 pt-8">
           <Link href="/" className="kicker link-underline text-paper/60">
             ← back to the studio

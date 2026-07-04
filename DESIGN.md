@@ -254,6 +254,29 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   item gap tightened `gap-x-8` → `gap-x-6`; blog post drop cap restored to the blueprint's
   **5rem** (code had drifted to 4.6rem). Verified against the blueprint on neutral: 850px
   measure, 19px serif at 1.7, centered italic pull quote, dashed author footer — all hold.
+- **2026-07-05 — Step 7 SHIPPED** (layout-audit gaps #2 + #3 + de-self-description): every
+  subpage now ENDS with a conversion beat — shared **`CtaBand`** in the subpage kit (one
+  serif line + one mono `link-underline` mailto to `hello@rsrvlabs.com` with a prefilled
+  subject, behind a dashed-night hairline; founder copy verbatim per page: /sw early access ·
+  /labs Discord invite · /frontiers conversation · /research pings · /effects write-to-us).
+  The research POST gets the research band after the author footer (gap #8's band half only —
+  related-covers wait for the honest cover system). Subpage chrome grew the **full five-link
+  mono nav + WRITE →** (shared `site/nav.tsx`, extracted from the wordmark; landing behavior
+  unchanged): current section at full paper voice + `aria-current`, siblings dimmed /60, the
+  section tag moved below the logo — /labs ↔ /frontiers no longer routes through the landing;
+  subpage WRITE → points at the mailbox (no #invitation off the landing).
+  **De-self-description (founder rulings 2026-07-05):** no self-describing keywords on the
+  page — references show EVIDENCE, self-description lives in footers — and the copy register
+  is BRAND/CONCEPT, not fact sheet: no headcount ("two-person"/"two founders"), no funding
+  badges ("bootstrapped"), and the word "founders" is not used on the site at all (the team
+  rejects the label; the internal culture word is "curators"). The hero machine row keeps
+  only `EST. MMXXIV` (BOOTSTRAPPED · TAIPEI dropped); the hero paragraph now opens "Reserve
+  is a studio run with one machine"; layout metadata, /labs intro, the /research H1 ("One
+  studio. One brain. Agents with jobs." — mirrored in the landing doors card), the essay
+  body, and the essay author line ("Reserve — curators, one brain.") all converted to the
+  same voice. Still using "founders" (narrative register, awaiting a founder call): the
+  weather section's timeline beat + closing line. The fold-1 evidence odometer (audit gap
+  #4) is deliberately a LATER round — no fake evidence shipped in its place.
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
   (Done for weather at Step 3, places at Step 4, note + invitation at Step 5. Still legacy:

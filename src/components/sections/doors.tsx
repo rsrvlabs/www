@@ -49,7 +49,8 @@ const doors: Door[] = [
   {
     href: "/research",
     tag: "Q · Research",
-    title: "Two founders. One brain.",
+    // Mirrors the /research H1 (concept voice, founder ruling 2026-07-05).
+    title: "One studio. One brain.",
     line: "Field notes from running an AI-native company.",
   },
   {

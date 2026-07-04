@@ -12,8 +12,14 @@ export default function SWPage() {
     <Subpage
       index="F"
       label="Flagship"
+      current="/sw"
       title="The one in the crowd, found again."
       intro="You noticed someone. Maybe you smiled. Then the crowd pulled you apart, and the city swallowed them. Our flagship ends that story differently: real co-presence becomes a physical signature, and the people you actually crossed paths with stay findable. Not another feed of strangers — a social graph made of real encounters."
+      cta={{
+        line: "The crowd is big. The list is short.",
+        label: "Request early access",
+        subject: "SW early access",
+      }}
     >
       <Entry
         tag="SIGNATURE"

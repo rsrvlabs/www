@@ -93,24 +93,24 @@ export function Arrival() {
           transition={{ duration: 1.4, delay: 2.4 }}
           className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
+          {/* Concept-brand register (founder ruling 2026-07-05): identity,
+              not a fact sheet — no headcount, no funding badges. */}
           <p className="max-w-[44ch] font-sans text-[0.95rem] leading-[1.75] text-paper/70">
-            Reserve is a two-person, bootstrapped studio. We ship a
-            dating app with a physical signature, a finance desk that
-            publishes itself daily, and beauty tech in the making —
-            funded by embedded AI engineering, run on an operating
-            system we built, where agents hold jobs.
+            Reserve is a studio run with one machine. We ship a
+            dating app with a physical signature, a finance desk
+            that publishes itself, and beauty tech in the making —
+            all on an operating system we built, where agents hold
+            jobs.
           </p>
-          {/* Machine row: scrunch metadata-bar grammar (left-hairline items),
-              smaller mono than base .kicker. */}
+          {/* Machine row: scrunch metadata-bar grammar (left-hairline item),
+              smaller mono than base .kicker. Founder ruling 2026-07-05: no
+              self-describing keywords on the page (references show EVIDENCE;
+              self-description lives in footers) — only the founding date
+              stays until the fold-1 evidence odometer lands (audit gap #4). */}
           <div className="flex shrink-0 items-baseline gap-4">
-            {["EST. MMXXIV", "Bootstrapped", "Taipei"].map((item) => (
-              <span
-                key={item}
-                className="kicker border-l border-paper/15 pl-4 text-[0.6rem] tracking-[0.26em] text-paper/45"
-              >
-                {item}
-              </span>
-            ))}
+            <span className="kicker border-l border-paper/15 pl-4 text-[0.6rem] tracking-[0.26em] text-paper/45">
+              EST. MMXXIV
+            </span>
           </div>
         </motion.div>
       </motion.div>

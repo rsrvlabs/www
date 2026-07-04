@@ -11,8 +11,14 @@ export default function EffectsPage() {
     <Subpage
       index="E"
       label="Effects & testimonials"
+      current="/effects"
       title="What changes when we arrive."
       intro="The measure of a frontier engagement is simple: systems in production, decisions made faster, and a team that keeps us. Four frontiers run Reserve-built AI today — travel, sports vision, health, legal."
+      cta={{
+        line: "Ask what we'd ship for you.",
+        label: "Write to us",
+        subject: "Hello Reserve",
+      }}
     >
       <Entry
         tag="SHIPPED"

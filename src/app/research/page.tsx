@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SubpageHeader, MetaBar } from "@/components/site/subpage";
+import { SubpageHeader, MetaBar, CtaBand } from "@/components/site/subpage";
 import { PunchSurface } from "@/components/site/punch-card";
 
 export const metadata: Metadata = {
   title: "Reserve Research — notes on running an AI-native company",
   description:
-    "Field notes from a two-person studio run on an AI-native operating system — one shared brain, agents with jobs, humans making the calls.",
+    "Field notes from a studio run on an AI-native operating system — one shared brain, agents with jobs, humans making the calls.",
 };
 
 /**
@@ -48,10 +48,10 @@ export default function ResearchPage() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[52svh] grid-paper-night"
       />
-      <SubpageHeader index="Q" label="Research" />
+      <SubpageHeader index="Q" label="Research" current="/research" />
       <div className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
         <h1 className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-paper">
-          Two founders. One brain. Agents with jobs.
+          One studio. One brain. Agents with jobs.
         </h1>
         <MetaBar items={["Q — Research", "Reserve", "EST. MMXXIV"]} />
         <p className="mt-10 max-w-[52ch] font-sans text-[0.95rem] leading-[1.8] text-paper/70">
@@ -113,6 +113,12 @@ export default function ResearchPage() {
             ))}
           </div>
         </div>
+
+        <CtaBand
+          line="New essays land as we learn."
+          label="Get pinged when they do"
+          subject="Research pings"
+        />
 
         <div className="hairline-dashed-night mt-20 pt-8">
           <Link href="/" className="kicker link-underline text-paper/60">

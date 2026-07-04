@@ -11,8 +11,14 @@ export default function FrontiersPage() {
     <Subpage
       index="R"
       label="Frontiers"
+      current="/frontiers"
       title="We deploy into your team, and ship."
       intro="Every client is a frontier: a domain where AI hasn't been made to work yet. We embed senior engineers inside the team, build with your people, and leave running systems — not slide decks. The frontier work funds our products and feeds them domain knowledge."
+      cta={{
+        line: "Have a frontier? It starts with one email.",
+        label: "Start a conversation",
+        subject: "Frontier engagement",
+      }}
     >
       <Entry
         tag="TRAVEL"

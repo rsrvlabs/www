@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SubpageHeader, MetaBar } from "@/components/site/subpage";
+import { SubpageHeader, MetaBar, CtaBand } from "@/components/site/subpage";
 
 export const metadata: Metadata = {
   title: "The AI-native company — Reserve Research",
   description:
-    "Series 01, essay 01: what changes when a two-founder company runs on an AI operating system — one shared brain, agents with jobs, humans making the calls.",
+    "Series 01, essay 01: what changes when a studio runs on an AI operating system — one shared brain, agents with jobs, humans making the calls.",
 };
 
 /**
@@ -22,7 +22,7 @@ export default function AiNativeCompanyEssay() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[40svh] grid-paper-night"
       />
-      <SubpageHeader index="Q" label="Research" />
+      <SubpageHeader index="Q" label="Research" current="/research" />
       <article className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
         {/* wide → narrow funnel: metadata bar → H1 → body snaps to 850px */}
         <MetaBar items={["Series 01 · Essay 01", "Reserve", "Published 07.2026"]} />
@@ -44,9 +44,9 @@ export default function AiNativeCompanyEssay() {
               programmable.
             </p>
             <p>
-              Reserve is a two-founder company that runs on an AI operating
-              system we built for ourselves. There is one shared brain — a
-              knowledge base that every agent and both humans read and write,
+              Reserve is a studio that runs on an AI operating system we
+              built for ourselves. There is one shared brain — a
+              knowledge base that the agents and the humans read and write,
               where meetings, decisions, and lessons land as pages instead of
               memories. And there are agents with actual jobs: a finance desk
               that researches and publishes its own morning brief before we
@@ -59,10 +59,10 @@ export default function AiNativeCompanyEssay() {
               that re-decides its defaults every morning.
             </blockquote>
             <p>
-              None of this makes two people superhuman. It makes them
+              None of this makes the humans superhuman. It makes them
               un-forgetful, which turns out to be most of what a company is
               for. A department, seen coldly, is a promise that somebody will
-              keep paying attention to a domain after the founders stop. When
+              keep paying attention to a domain after the humans stop. When
               attention can be delegated to something that never sleeps and
               never files a resignation, the department stops being a room full
               of people and becomes a role the brain can wear — with a human
@@ -90,7 +90,7 @@ export default function AiNativeCompanyEssay() {
             <span className="kicker text-paper/50">Author</span>
             <div>
               <p className="font-display text-xl leading-snug text-paper">
-                Reserve — two founders, one brain.
+                Reserve — curators, one brain.
               </p>
               <Link
                 href="/research"
@@ -100,6 +100,14 @@ export default function AiNativeCompanyEssay() {
               </Link>
             </div>
           </footer>
+
+          {/* Post tail keeps the loop alive (gap #8, band half only —
+              related-covers wait for the honest cover system) */}
+          <CtaBand
+            line="New essays land as we learn."
+            label="Get pinged when they do"
+            subject="Research pings"
+          />
         </div>
       </article>
     </main>

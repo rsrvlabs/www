@@ -11,8 +11,14 @@ export default function LabsPage() {
     <Subpage
       index="L"
       label="Labs"
+      current="/labs"
       title="The lab ships while you sleep."
-      intro="Small products with sharp edges. The finance desk already runs itself — every trading day, before the founders wake up. The rest of the lab is heading the same way."
+      intro="Small products with sharp edges. The finance desk already runs itself — every trading day, before anyone wakes up. The rest of the lab is heading the same way."
+      cta={{
+        line: "The desk publishes every trading day — watch it work.",
+        label: "Ask for the Discord invite",
+        subject: "Fermi Discord invite",
+      }}
     >
       <Entry
         tag="LIVE · 08:00 DAILY"

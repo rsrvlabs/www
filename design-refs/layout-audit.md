@@ -142,9 +142,15 @@ subpages all do.
    scrunch's See-plans card, ploy's form). *We:* one mailto at fold 5.4 of the landing; /sw has
    literally no action. *Fix:* WRITE → survives on subpage chrome; shared closing-invitation
    band (landing 06 grammar, condensed) on all five subpages. **Effort: S**
+   — **DONE 2026-07-05:** shared `CtaBand` (site/subpage kit) closes all five subpages + the
+   essay tail (founder copy, prefilled-subject mailtos); WRITE → now in subpage chrome via
+   gap 3's nav.
 3. **Subpage nav strips all routes.** *They:* full nav everywhere. *We:* logo + section tag;
    moving between /labs and /frontiers requires the landing. *Fix:* carry the landing's 5-link
    mono nav onto subpages, active section marked (kicker grammar already fits). **Effort: S**
+   — **DONE 2026-07-05:** subpage headers carry the landing's five-link mono nav + WRITE →
+   (shared `site/nav.tsx`), current section at full voice + `aria-current`, section tag
+   moved below the logo.
 4. **Fold-1 evidence absent on the landing.** *They:* third-party or deterministic proof at
    0–677px (YC badge + GitHub stars in chrome; $27M news card; live logo wall). *We:* machine
    row is self-described, not evidence. *Fix:* assets.md beat 01 — live odometer counters from
