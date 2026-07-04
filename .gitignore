@@ -43,13 +43,10 @@ next-env.d.ts
 # playwright mcp artifacts (screenshots, console logs)
 .playwright-mcp/
 
-# --- image/binary hygiene (founder rule 2026-07-04: 圖片檔不要進 git) ---
-# New raster/design assets must live in external storage (see CLAUDE.md).
-# Legacy tracked JPGs in public/materials/ stay until the migration ticket lands
-# (gitignore doesn't affect already-tracked files).
-public/materials/
-*.psd
-*.sketch
-*.fig
+# --- playwright imagery stays OUT of git (founder rule 2026-07-04) ---
+# Site assets under public/ ARE allowed in git; what must never land here is
+# Playwright-generated imagery: reports, traces, failure screenshots, snapshots.
 /playwright-report/
 /test-results/
+e2e/**/*.png
+e2e/**/*-snapshots/

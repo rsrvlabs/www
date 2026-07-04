@@ -1,0 +1,110 @@
+# Reserve design system — French minimal × Black Mirror
+
+The design spec for `rsrvlabs/www` (and later the Reserve research blog). Aesthetic target
+(founder, 2026-07-03/04): **法式簡約 × 黑鏡科技, unmistakably post-2026 — explicitly NOT the
+"Google / engineer 華國美學" look.** References analyzed 2026-07-04: insforge.dev (component +
+motion grammar), ploy.ai (component play), scrunch.com blog (editorial system). Tokens live in
+`src/app/globals.css`; this file is the *why* and the rules.
+
+## The fusion thesis
+
+Reserve's existing warm-paper OKLCH palette (paper/ink/moss/sun/dusk/night + Gambarino serif) **is
+already the French-minimal half** — scrunch proves the family works at production quality (their
+`#f4f2ed` paper / `#1d1107` warm ink ≈ our paper/ink). **Do not replace it.** The 黑鏡 half is
+added as three disciplined layers:
+
+1. **A mono "machine" layer** — ALL metadata (labels, dates, tags, stats, nav sublabels, list
+   markers) in a monospace face. Serif speaks to humans; mono is the machine annotating the page.
+2. **Dark interlude sections** — `night`/`dusk` token sections (the "screen off" moments) using a
+   technical grammar: collapsed 1px-border lattices, faint grid-paper texture, odometer numbers.
+3. **Engineered motion** — enter-once choreography and sub-200ms micro-interactions; never
+   decorative scroll-jack.
+
+Paper sections feel like a French gallery catalog; dark sections feel like the instrument behind
+it. The tension between the two IS the brand.
+
+## Typography (role trichotomy — hierarchy from role, not weight)
+
+| Role | Face | Used for |
+|---|---|---|
+| Content / display | **Gambarino** (existing serif) | H1/H2, body prose, pull quotes — display sizes at **weight 400** (32–54px+, leading ≤1.1 for display, 1.7 for prose) |
+| Machine / metadata | **mono** (pick: IBM Plex Mono or Departure Mono; pin in tokens) | tags, dates, bylines, stats, table labels, list markers (`decimal-leading-zero` → "01. 02."), nav sublabels |
+| UI chrome | **Supreme** (existing sans) | buttons, forms, small UI |
+
+Rule: if a string is *about* the content (metadata), it's mono. If it *is* the content, serif.
+
+## Color rules
+
+- **No pure white / pure black anywhere** (scrunch's "expensive" trick; our OKLCH tokens already
+  comply — keep it that way).
+- **Paper sections:** paper/ink + hairlines; accent budget ≈ zero. Branded `::selection` (already
+  ink-on-paper inversion — keep as signature).
+- **Dark sections (`night`):** surfaces stepped `night → +1 → +2` (like insforge #0f0f0f→#161616→
+  #262626 but in our warm-dark OKLCH); borders 2-step (structural vs card); **exactly ONE accent**
+  — default `sun` (warm gold reads French even in the dark; do NOT add a second accent without
+  updating this file).
+- **Separator discipline:** paper sections divide with **1px dashed ink@12–15%** hairlines (no
+  shadows, no boxes); dark sections divide with **collapsed solid 1px lattices** (cells share
+  borders, outer edges removed). Two grammars, never mixed in one section.
+
+## Motion rules
+
+- **Enter-once choreography** (insforge grammar): IntersectionObserver (~`-25%` rootMargin) flips a
+  class once; a short CSS/GSAP timeline runs — line-draws via `stroke-dashoffset`, elements pop
+  with back-out overshoot `cubic-bezier(.34,1.56,.64,1)` at 300–350ms, staggered. No re-trigger.
+- **Micro-interactions 120–200ms**: `brightness(.96)` on filled buttons; `bg-white/5` (dark) or
+  `bg-ink/4` (paper) on ghosts; animated `h-px` underline `w-0 → w-full` 200–300ms (use
+  `box-decoration-break: clone` for wrapping links); image hover `scale(1.02–1.05)` 300–500ms.
+- **Numbers = odometer slots** (overflow-hidden digit columns, `transform .4s
+  cubic-bezier(.22,1,.36,1)`, `tabular-nums`).
+- **Ambient motion is rAF translate3d** (already the deck.gl/lenis world) — cheap, GPU, endless.
+- **`prefers-reduced-motion` is mandatory** on every animation.
+- Lenis smooth-scroll stays; **no scroll-jacking** (choreograph on enter, don't scrub the story).
+
+## Texture
+
+- Paper grain overlay (existing) on paper sections.
+- **Grid-paper background** on dark/technical sections: two 1px linear-gradients at ~40px,
+  border-color at ~50–60% alpha, masked to fade at edges.
+- Gradient-border "hub" trick for the one hero element per dark section:
+  `background: linear-gradient(surface,surface) padding-box, linear-gradient(90deg, ink-inverse,
+  accent) border-box` + transparent border.
+
+## Blog blueprint (Reserve research — future, from scrunch)
+
+Wide→narrow funnel: mono metadata bar (left-hairline items) → serif H1 at ~1140px → hero image
+~1496px `aspect-2/1` → **body at 850px, 19px serif, line-height 1.7**; 5rem drop cap on the first
+paragraph; centered italic serif pull quotes (~31px, no border); dashed-divider tables + related
+grid; mono `::marker` numbered lists; author footer behind a dashed hairline. Dark "data study"
+interlude sections reuse the dark-section grammar above.
+
+## ploy.ai findings (component play — verified from fetched source)
+
+Astro + React islands + Tailwind 4 + **GSAP/ScrollTrigger**; monochrome + pastel "ink-pair"
+accents; FK Screamer condensed display. Techniques adopted into our rules:
+
+- **Ink-pair accents:** any accent color ships WITH a hand-picked dark "ink" text color for
+  on-accent contrast, both as semantic tokens (never auto-black on accent).
+- **U+2800 Braille micro-animations** in small mono tiles (JS frame generator: base 10240 + dot
+  bits; patterns like rain/orbit/helix) — "machine thinking" texture at ~1KB. Perfect for our dark
+  sections; candidate for the arrival veil's loading state.
+- **Punch-card corner dots + hover-paint:** tiny corner dots as card identity; flood the card with
+  its accent on group-hover (300ms ease-out, `--accent` var).
+- **Scroll-scrubbed char fill:** split a display headline into char spans; ScrollTrigger `scrub:1`
+  tweens color from ~12%-alpha ink to full ink between per-heading `data-scrollstart/end` — reveal
+  tied to reading pace. (Our one sanctioned scrub effect; still not scroll-jack.)
+- **Per-char elastic button hover:** stagger .017, .15s power2, settle `elastic.out(1,0.5)`.
+- **House easing pair** (their consistency lesson): one entrance ease (~.7s `cubic-bezier(.22,1,.36,1)`)
+  + one UI ease (.15–.3s `cubic-bezier(.32,.72,0,1)`) — matches our motion rules above; do not
+  multiply easings per component.
+- **30-line card-tilt hook** (mousemove rotateX ±8°/rotateY ±12°, shadow from tilt angle,
+  `prefers-reduced-motion` bail) — no library needed.
+- **Ambient loops start `paused`**, played by IntersectionObserver — performance + battery win;
+  apply to any marquee/loop we add.
+
+## Process rules
+
+- Tokens change ONLY in `globals.css` `@theme` + a matching note here. No ad-hoc hex in components.
+- Every new section states which grammar it uses (paper vs dark) — mixing needs a reason written here.
+- Reference teardowns (raw HTML/CSS of insforge/scrunch) are in the analysis session scratchpad;
+  re-fetch fresh if lifting exact rules.
