@@ -26,7 +26,7 @@ test("capture landing beats", async ({ page }) => {
   await page.screenshot({ path: `${SHOTS_DIR}/01-arrival.png` });
 
   const beats: Array<[string, string]> = [
-    ["02-note", "text=A note"],
+    ["02-note", "text=What we do"],
     ["03-practices", "#practices"],
     ["04-weather", "#weather"],
     ["05-places", "#places"],

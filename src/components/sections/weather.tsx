@@ -63,7 +63,7 @@ export function Weather() {
           transition={{ duration: 1 }}
           className="kicker block mb-[10svh] text-paper/45"
         >
-          04 · Weather
+          04 · Why now
         </motion.span>
 
         <ScrollReveal
@@ -71,9 +71,11 @@ export function Weather() {
           blurStrength={5}
           textClassName="font-display text-[clamp(1.6rem,3.4vw,3rem)] leading-[1.55] tracking-[-0.01em] text-paper max-w-[28ch]"
         >
-          Technology, when it is good, is mostly weather. You feel
-          warmer or calmer or more curious, and you do not know why.
-          That is the work we want to make.
+          Phones made meeting people online effortless — and meeting
+          people in real life worse. Cheap radios and on-device AI
+          finally make physical presence a signal software can use.
+          The next social graph gets built from real encounters.
+          We’re building it.
         </ScrollReveal>
 
         <div className="kicker hairline-dashed-night mt-[14svh] flex items-center justify-between pt-6 text-paper/40">

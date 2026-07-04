@@ -7,20 +7,20 @@ import Image from "next/image";
 const practices = [
   {
     n: "01",
-    label: "Integration",
-    headline: "We join teams that already know where they're going,\nand help them arrive with AI.",
-    body: "Senior engineers and product thinkers, embedded for a quarter or longer. We translate ambition into shipped systems — quietly, at the standard your reputation already requires.",
-    notes: ["Strategy & roadmaps", "Embedded delivery", "Architecture review", "Hiring & mentoring"],
+    label: "Product · social",
+    headline: "A dating app with a physical signature.\nYou only match with people you’ve actually crossed paths with.",
+    body: "Bluetooth turns real co-presence into a signature — no endless swiping through strangers, no missed connections walking out the door. The phone app is in two-device testing now; a wearable comes after. We’re also validating heart-rate signals as the next layer: your body notices before you do.",
+    notes: ["Phone-to-phone POC in testing", "BLE physical signature", "Wearable next", "Biosignal layer — in validation"],
     align: "left" as const,
     image: "/materials/practice-integration.jpg",
     imageAlt: "Two streams meeting in a moss-lined basin — a painted study.",
   },
   {
     n: "02",
-    label: "Objects",
-    headline: "Rings, and a few other devices.\nThings that let people feel each other without a screen.",
-    body: "Hardware that brings AI into the room with you — a touch on the wrist, a glance to a friend across the city. Designed end-to-end, manufactured carefully, sold to those who notice.",
-    notes: ["Smart rings", "Social wearables", "Ambient interfaces", "Available later this year"],
+    label: "Studio · applied AI",
+    headline: "Forward-deployed AI engineering\nfor teams that need it shipped, not slide-decked.",
+    body: "Senior engineers embedded inside client teams — travel tech, sports computer vision, health wearables, legal tech. Real systems in production, not advice. This work funds the products and feeds them domain knowledge.",
+    notes: ["Embedded senior engineering", "AI systems in production", "Travel · sports CV · health · legal", "Funds the products"],
     align: "right" as const,
     image: "/materials/practice-objects.jpg",
     imageAlt: "A titanium ring resting on an unglazed ceramic dish.",
@@ -41,7 +41,7 @@ export function Practices() {
           transition={{ duration: 1 }}
           className="kicker mb-[12svh] text-ink/45"
         >
-          03 · Two practices
+          03 · What we’re building
         </motion.h2>
 
         <div className="space-y-[18svh]">

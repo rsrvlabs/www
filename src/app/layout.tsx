@@ -3,9 +3,9 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
-  title: "Reserve — A studio between software and the objects you hold.",
+  title: "Reserve — software for the physical world",
   description:
-    "Reserve is a small studio working with companies that have outgrown being impressed by technology.",
+    "Bootstrapped AI-native studio. We build a social app that only matches people who have actually crossed paths, and ship embedded AI engineering that pays for it.",
 };
 
 export default function RootLayout({

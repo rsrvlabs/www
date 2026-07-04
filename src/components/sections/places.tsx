@@ -142,7 +142,7 @@ export function Places() {
         {/* Eyebrow + counter */}
         <div className="absolute left-0 right-0 top-[8svh] z-20 mx-auto w-full max-w-[88rem] px-6 md:px-10">
           <div className="kicker flex items-baseline justify-between gap-6 text-paper/55">
-            <span>05 · Places — eight rooms, one studio</span>
+            <span>05 · Places — where crossed paths should count</span>
             <span className="tabular-nums">
               {landed !== null ? String(landed + 1).padStart(2, "0") : "——"} / {String(cities.length).padStart(2, "0")}
             </span>

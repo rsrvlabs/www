@@ -65,18 +65,14 @@ export function Arrival() {
           transition={{ duration: 1.4, delay: 0.4 }}
           className="kicker mb-10 text-ink/55"
         >
-          01 · Reserve — a studio
+          01 · AI-native studio
         </motion.p>
 
-        <h1 className="font-display font-normal text-ink leading-[0.95] tracking-[-0.02em] text-[clamp(3.25rem,11vw,11.5rem)]">
-          {"We keep a seat".split("").map((ch, i) => (
-            <Char key={`a-${i}`} ch={ch} delay={0.55 + i * 0.045} />
-          ))}
+        <h1 className="font-display font-normal text-ink leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,9.5vw,9.5rem)]">
+          <Line text="We build software" baseDelay={0.55} />
           <br />
           <span className="text-ink-soft italic font-display">
-            {"for what comes next.".split("").map((ch, i) => (
-              <Char key={`b-${i}`} ch={ch} delay={1.25 + i * 0.04} />
-            ))}
+            <Line text="for the physical world." baseDelay={1.25} />
           </span>
         </h1>
 
@@ -84,13 +80,16 @@ export function Arrival() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.4, delay: 2.4 }}
-          className="mt-12 flex items-end justify-between gap-6"
+          className="mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
         >
-          <span className="font-sans text-xs tracking-[0.3em] text-ink/45">
-            EST. MMXXIV
-          </span>
-          <span className="hidden font-sans text-xs tracking-[0.3em] text-ink/45 md:inline">
-            A studio · eight rooms
+          <p className="max-w-[44ch] font-sans text-[0.95rem] leading-[1.75] text-ink-soft">
+            Reserve is a two-person, bootstrapped studio. We ship
+            consumer products that turn real-world presence into
+            software — starting with a social app that only matches
+            people who have actually crossed paths.
+          </p>
+          <span className="kicker shrink-0 text-ink/45">
+            EST. MMXXIV · Bootstrapped · Taipei
           </span>
         </motion.div>
       </motion.div>
@@ -107,6 +106,27 @@ export function Arrival() {
         </span>
       </motion.div>
     </section>
+  );
+}
+
+function Line({ text, baseDelay }: { text: string; baseDelay: number }) {
+  const words = text.split(" ");
+  // Precompute each word's char offset so delays stay sequential across words.
+  const offsets = words.reduce<number[]>(
+    (acc, word, i) => [...acc, (acc[i] ?? 0) + word.length + 1],
+    [0],
+  );
+  return (
+    <>
+      {words.map((word, w) => (
+        <span key={`w-${w}`} className="inline-block whitespace-nowrap">
+          {word.split("").map((ch, i) => (
+            <Char key={i} ch={ch} delay={baseDelay + (offsets[w] + i) * 0.04} />
+          ))}
+          {w < words.length - 1 ? <span>&nbsp;</span> : null}
+        </span>
+      ))}
+    </>
   );
 }
 

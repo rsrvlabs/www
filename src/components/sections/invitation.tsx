@@ -83,8 +83,9 @@ export function Invitation() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-12 max-w-[52ch] font-display text-[clamp(1.1rem,1.8vw,1.4rem)] leading-[1.55] text-ink/85"
         >
-          Tell us what you are quietly working toward. We answer
-          everything, slowly.
+          Want early access to the app, an embedded AI team that
+          ships, or our notes on running an AI-native company?
+          One email. We answer everything.
         </motion.p>
 
         <motion.div
