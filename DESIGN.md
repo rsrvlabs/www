@@ -118,14 +118,21 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
 ## Site information architecture (agreed direction, 2026-07-04)
 
 **The landing is the company's most-meta frame** (founder's words) — the story layer, not the
-product docs. Phase 1 (now): one domain, path-based IA — `/` (this landing) · `/labs` (product
-family: SW teaser, Fermi) · `/studio` (Frontier client work, NDA-safe) · `/research` (blog — the
-scrunch blueprint above). Nav gains three mono machine-layer links. Phase 2 (when SW is named +
-launching): SW graduates to its own domain/brand; `/labs` links out. Phase 3: standalone Fermi
-surface only if the B2B white-label pivot lands. Rationale: current audiences are
-accelerator-reviewers/investors + prospective clients (one coherent site, SEO consolidated,
-two-person maintenance budget); SW's consumers don't exist yet and its domain follows its
-still-TBD name.
+product docs. Phase 1 (now): one domain, path-based IA with the founder's categorization
+(**verbatim — do not re-bucket**, founder 2026-07-04):
+
+- `/` — the landing (meta frame, six beats)
+- `/sw` — **Flagship SW** (top-level, NOT nested under labs; slug is a working name — the real
+  domain follows the product's still-TBD name at graduation)
+- `/labs` — finance 產品 (Fermi `LIVE`, Feynman `EXPERIMENTAL`) + beauty tech (Glow `EXPLORING`)
+- `/frontiers` — client work (forward-deployed AI engineering)
+- `/research` — blogs (the scrunch blueprint above)
+- `/effects` — Effects & testimonials (own top-level item; NO fabricated quotes — effects format
+  until real client words are collected)
+
+Every product carries an honest mono status tag (`LIVE / IN TESTING / EXPERIMENTAL / EXPLORING`).
+Phase 2: SW graduates to its own domain/brand when named + launching. Phase 3: standalone Fermi
+surface only if the B2B white-label pivot lands.
 
 ## Process rules
 

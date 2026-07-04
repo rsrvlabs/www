@@ -18,6 +18,13 @@ export function Wordmark() {
       >
         reserve<span className="text-sun">.</span>
       </Link>
+      <nav className="hidden items-center gap-7 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink/60 md:flex">
+        <Link href="/sw" className="link-underline transition-colors duration-200 hover:text-ink">Flagship</Link>
+        <Link href="/labs" className="link-underline transition-colors duration-200 hover:text-ink">Labs</Link>
+        <Link href="/frontiers" className="link-underline transition-colors duration-200 hover:text-ink">Frontiers</Link>
+        <Link href="/research" className="link-underline transition-colors duration-200 hover:text-ink">Research</Link>
+        <Link href="/effects" className="link-underline transition-colors duration-200 hover:text-ink">Effects</Link>
+      </nav>
       <a
         href="#invitation"
         className="group inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-ink/70 transition-colors duration-200 hover:text-ink"
