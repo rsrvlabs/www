@@ -74,13 +74,21 @@ Rule: if a string is *about* the content (metadata), it's mono. If it *is* the c
   `background: linear-gradient(surface,surface) padding-box, linear-gradient(90deg, ink-inverse,
   accent) border-box` + transparent border.
 
-## Blog blueprint (Reserve research — future, from scrunch)
+## Blog blueprint (Reserve research — SHIPPED 2026-07-04, from scrunch)
 
 Wide→narrow funnel: mono metadata bar (left-hairline items) → serif H1 at ~1140px → hero image
 ~1496px `aspect-2/1` → **body at 850px, 19px serif, line-height 1.7**; 5rem drop cap on the first
 paragraph; centered italic serif pull quotes (~31px, no border); dashed-divider tables + related
 grid; mono `::marker` numbered lists; author footer behind a dashed hairline. Dark "data study"
 interlude sections reuse the dark-section grammar above.
+
+**Implemented at night** on `/research` (index: featured series entry + list rows with mono
+`NN · S01` markers and honest `PUBLISHED / IN PROGRESS` status) and
+`/research/ai-native-company` (post: metadata bar → narrow serif H1 → 850px body → drop cap →
+centered pull quote → dashed author footer). **Font call (tested 2026-07-04): Gambarino holds
+at 19px/1.7 as body** — legible, warm, only mildly display-flavored on screenshots — so body
+prose stays serif per the trichotomy; revisit only if long-form (>2k words) posts feel tiring.
+No hero image until an honest one exists (no stock, no generated filler).
 
 ## ploy.ai findings (component play — verified from fetched source)
 
