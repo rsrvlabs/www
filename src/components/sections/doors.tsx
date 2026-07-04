@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useCardTilt } from "@/lib/use-card-tilt";
+import { PunchSurface } from "@/components/site/punch-card";
 
 /**
  * 03 · Index — the five doors (founder's categorization, verbatim).
@@ -44,29 +44,10 @@ const doors = [
   },
 ];
 
-function PunchDot({ pos }: { pos: string }) {
-  return (
-    <span
-      aria-hidden
-      className={`absolute ${pos} h-[3px] w-[3px] rounded-full bg-paper/25 transition-colors duration-300 group-hover:bg-sun`}
-    />
-  );
-}
-
 function DoorCard({ href, tag, title, line }: (typeof doors)[number]) {
-  const { ref, onMouseMove, onMouseLeave } = useCardTilt();
   return (
-    <div
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className="group relative -m-5 rounded-sm p-5 transition-colors duration-300 hover:bg-night-soft/60"
-    >
-      {/* punch-card corners (ploy) — faint by default, sun on hover */}
-      <PunchDot pos="left-1.5 top-1.5" />
-      <PunchDot pos="right-1.5 top-1.5" />
-      <PunchDot pos="bottom-1.5 left-1.5" />
-      <PunchDot pos="bottom-1.5 right-1.5" />
+    // punch-card corners + tilt + surface rise — shared site/punch-card
+    <PunchSurface className="-m-5 p-5">
       <Link href={href} className="block">
         <span className="kicker text-paper/50">{tag}</span>
         <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-paper">
@@ -76,7 +57,7 @@ function DoorCard({ href, tag, title, line }: (typeof doors)[number]) {
           {line}
         </span>
       </Link>
-    </div>
+    </PunchSurface>
   );
 }
 
