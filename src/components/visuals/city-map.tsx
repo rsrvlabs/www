@@ -44,37 +44,43 @@ interface Props {
 
 // Reserve palette mirrors — every value pulled from globals.css OKLCH tokens
 // (converted to hex for MapLibre). Any new color added here should trace
-// back to a token. GROUND mirrors (night/water) went neutral with the
-// brutalist token reset (2026-07-04); the land-relief tuning (ink/dusk/sun/
-// moss/sand) stays warm as imagery — re-tune in the places step.
-const PAPER = "#f4ecd8";          // --color-paper
-const INK = "#2b2417";            // --color-ink        (warm dark)
-const INK_SOFT = "#635445";       // --color-ink-soft   (muted warm mid)
-const INK_FAINT = "#948871";      // --color-ink-faint  (lifted warm)
+// back to a token. Fully neutral since the brutalist reset (2026-07-04):
+// Step 0 neutralized the GROUND mirrors (night/water); Step 4 (places)
+// re-derived the land-relief ladder at chroma 0 — each rung keeps the
+// lightness of the warm constant it replaced, hue removed (DESIGN.md
+// lesson: re-derive neutrals from zero, never inherit hue).
+const PAPER = "#f4ecd8";          // --color-paper — the voice: labels + boundary hairlines
 const NIGHT = "#0a0a0a";          // --color-night      (neutral ground)
 const NIGHT_DEEP = "#050505";     // --color-night-deep, shadow baseline
-const DUSK = "#a55c33";           // --color-dusk
-const SUN = "#e8b55f";            // --color-sun
-const MOSS = "#4e6e48";           // --color-moss dark side
 const WATER = "#070707";          // water — neutral near-black, a hair
                                   // above night-deep so coastlines still
                                   // separate from the shadow baseline.
-// Sandstone extrapolations from the warm palette — the lit faces of
-// buildings. Not yet design tokens; promote to globals.css if these
-// values prove out across all eight cities.
-const SAND = "#b8a37d";
-const SAND_LIT = "#d4bd8c";
+// Neutral stone ladder — the moon-stone relief of the city imagery layer.
+// Zero-chroma, equal-lightness re-derivations of the retired warm tuning
+// (ink / ink-soft / ink-faint / sand / sand-lit / moss respectively).
+const STONE_DEEP = "#1c1c1c";     // ground-use fills            (was ink)
+const STONE = "#4d4d4d";          // road etching, building base (was ink-soft)
+const STONE_SOFT = "#878787";     // building mid-rise           (was ink-faint)
+const STONE_PALE = "#a6a6a6";     // tall faces                  (was sand)
+const STONE_LIT = "#c0c0c0";      // lit tops — never pure white (was sand-lit)
+const STONE_OPEN = "#666666";     // parks/wood/grass at low alpha (was moss)
 
-// Trips layer colors — sun for ordinary streets, dusk for major arteries
-const TRIP_COLOR_SUN: [number, number, number] = [232, 181, 95];
-const TRIP_COLOR_DUSK: [number, number, number] = [165, 92, 51];
+// THE one accent on the globe — --color-sun (#e8b55f) as RGB for deck.gl.
+// Arcs and trips both draw from this single value; there is no second hue.
+const SUN_RGB: [number, number, number] = [232, 181, 95];
+
+// Trips: one gold, two intensities — full sun for major arteries, dimmed
+// sun for ordinary streets. Hierarchy by alpha, not by a second hue (the
+// old dusk-colored arteries were pre-reset warm residue).
+const TRIP_COLOR_MAJOR: [number, number, number, number] = [...SUN_RGB, 255];
+const TRIP_COLOR_MINOR: [number, number, number, number] = [...SUN_RGB, 150];
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 
 type Trip = {
   path: [number, number][];
   timestamps: number[];
-  color: [number, number, number];
+  color: [number, number, number, number];
 };
 
 const TRIPS_LOOP_MS = 6000;   // one lap around the animation clock
@@ -404,7 +410,7 @@ export const CityMap = forwardRef<CityMapHandle, Props>(function CityMap(
               id: "city-arcs",
               data: arcPathsRef.current,
               getPath: (d) => d.path,
-              getColor: [232, 181, 95, 95], // SUN, low alpha — weather, not signal
+              getColor: [...SUN_RGB, 95], // sun, low alpha — weather, not signal
               widthUnits: "pixels",
               getWidth: 1,
               widthMinPixels: 0.8,
@@ -560,7 +566,7 @@ function buildTripsFromCandidates(
     const c = pool[i % pool.length];
     const duration = 2200 + Math.random() * 2600; // 2.2–4.8s per trip
     const startOffset = Math.random() * TRIPS_LOOP_MS;
-    const color = c.classId > 1 ? TRIP_COLOR_DUSK : TRIP_COLOR_SUN;
+    const color = c.classId > 1 ? TRIP_COLOR_MAJOR : TRIP_COLOR_MINOR;
     out.push({
       path: c.coords,
       timestamps: buildTimestamps(c.coords, startOffset, duration),
@@ -611,18 +617,19 @@ function shuffle<T>(a: T[]) {
 
 // ---------------------------------------------------------------------------
 // Palette override: strip labels/borders, recolor water/land/roads, add 3D
-// building extrusions in warm ink.
+// building extrusions in neutral stone.
 // ---------------------------------------------------------------------------
 function applyReservePalette(map: MLMap) {
   const style = map.getStyle();
   if (!style?.layers) return;
 
-  // Warm afternoon light — gives fill-extrusion buildings a clear lit
-  // face + shadowed face, which is what reads as "3D" to the eye.
+  // Neutral moon-white light — fill-extrusion buildings still get a clear
+  // lit face + shadowed face (what reads as "3D" to the eye), without the
+  // warm-afternoon sepia wash the old #f3d9a6 light spread over the city.
   try {
     map.setLight({
       anchor: "viewport",
-      color: "#f3d9a6",
+      color: "#dcdcdc",
       intensity: 0.5,
       position: [1.5, 210, 30],
     });
@@ -630,23 +637,25 @@ function applyReservePalette(map: MLMap) {
     /* older maplibre may not support this; ignore */
   }
 
-  // Warm atmospheric fog — gives the globe midpoint of flights a visible
+  // Neutral atmospheric fog — gives the globe midpoint of flights a visible
   // horizon instead of a flat dark void, and softens the mercator→globe
   // morph around z≈6.
   try {
     (map as unknown as { setSky?: (sky: Record<string, unknown>) => void }).setSky?.({
       "sky-color": NIGHT,
       "sky-horizon-blend": 0.6,
-      "horizon-color": INK_SOFT,
+      "horizon-color": STONE,
       "horizon-fog-blend": 0.5,
       "fog-color": NIGHT_DEEP,
       "fog-ground-blend": 0.5,
-      "atmosphere-blend": [
-        "interpolate", ["linear"], ["zoom"],
-        0, 0.9,
-        6, 0.5,
-        10, 0,
-      ],
+      // OFF — maplibre's globe atmosphere is a Rayleigh/Mie shader with
+      // HARDCODED blue-sky scattering coefficients (verified in 5.23
+      // dist: vec3(5.5e-6,13.0e-6,22.4e-6)); sky-/horizon-/fog-color do
+      // not feed it, so any blend > 0 paints a cyan rim on the limb —
+      // chroma the zero-chroma ground can't carry. A hard stone sphere
+      // on black is the brutalist read anyway; the (neutral) horizon fog
+      // above still softens the mercator→globe morph.
+      "atmosphere-blend": 0,
     });
   } catch {
     /* sky api varies across versions */
@@ -703,15 +712,16 @@ function applyReservePalette(map: MLMap) {
       continue;
     }
     // Admin boundaries: keep country-level (boundary_2 in OpenMapTiles,
-    // plus disputed) as faint warm hairlines so continents read during
-    // the low-zoom midpoint of flights. Hide sub-national detail.
+    // plus disputed) as faint paper hairlines — the machine layer's ruled
+    // lines on the planet — so continents read during the low-zoom
+    // midpoint of flights. Hide sub-national detail.
     if (/boundary|admin/i.test(id)) {
       if (/boundary_2|boundary_disputed|admin.*level.*1|admin.*0/i.test(id)) {
         if (layer.type === "line") {
           map.setLayoutProperty(id, "visibility", "visible");
-          map.setPaintProperty(id, "line-color", DUSK);
-          map.setPaintProperty(id, "line-opacity", 0.5);
-          map.setPaintProperty(id, "line-width", 0.7);
+          map.setPaintProperty(id, "line-color", PAPER);
+          map.setPaintProperty(id, "line-opacity", 0.25);
+          map.setPaintProperty(id, "line-width", 0.6);
         }
       } else {
         map.setLayoutProperty(id, "visibility", "none");
@@ -727,17 +737,17 @@ function applyReservePalette(map: MLMap) {
       continue;
     }
     // Natural-earth shaded relief raster — the globe's landmasses.
-    // Near-total desaturation kills NE2's daylight greens (partial desat
-    // left a grey-green "overcast" planet; hue-rotation turned the Sahara
-    // lavender — both tried, both worse). Moon-stone relief on near-black
-    // ocean; the warmth comes from the night ground + vignette around it.
+    // FULL desaturation (−1): the zero-chroma law — at −0.85 the residual
+    // 15% of NE2's daylight greens/tans still tinted the continents.
+    // (Hue-rotation was tried earlier and turned the Sahara lavender —
+    // don't retry.) True moon-stone relief on near-black ocean.
     if (type === "raster" && /natural_earth|ne2|shaded|hillshade/i.test(id)) {
       map.setPaintProperty(id, "raster-brightness-min", 0.05);
       map.setPaintProperty(id, "raster-brightness-max", 0.42);
-      map.setPaintProperty(id, "raster-saturation", -0.85);
+      map.setPaintProperty(id, "raster-saturation", -1);
       map.setPaintProperty(id, "raster-contrast", 0.4);
-      // Slight transparency lets the warm night ground bleed through the
-      // grey — and softens the pre-water-fill loading transient.
+      // Slight transparency softens the pre-water-fill loading transient
+      // (the ground beneath is the same neutral night, so no hue shift).
       map.setPaintProperty(id, "raster-opacity", 0.92);
       continue;
     }
@@ -748,13 +758,13 @@ function applyReservePalette(map: MLMap) {
       map.setPaintProperty(id, "line-opacity", 0.9);
       continue;
     }
-    // Airports: pale grey aprons/runways in liberty — sink them into ink.
+    // Airports: pale grey aprons/runways in liberty — sink them into stone.
     if (/aeroway/i.test(id)) {
       if (type === "fill") {
-        map.setPaintProperty(id, "fill-color", INK);
+        map.setPaintProperty(id, "fill-color", STONE_DEEP);
         map.setPaintProperty(id, "fill-opacity", 0.6);
       } else if (type === "line") {
-        map.setPaintProperty(id, "line-color", INK_SOFT);
+        map.setPaintProperty(id, "line-color", STONE);
         map.setPaintProperty(id, "line-opacity", 0.35);
       }
       continue;
@@ -765,18 +775,18 @@ function applyReservePalette(map: MLMap) {
       continue;
     }
     if (/landuse|landcover|earth|park/i.test(id) && type === "fill") {
-      // Parks / wooded landcover lean moss; generic landuse stays warm dark.
-      // Green target is LOW (0.3): park + wood + grass fills STACK on the
-      // same ground — at 0.55 each they compounded into daylight sage.
-      const isGreen = /park|wood|grass/i.test(id);
-      map.setPaintProperty(id, "fill-color", isGreen ? MOSS : INK);
+      // Parks / wooded landcover lift as open stone; generic landuse stays
+      // deep stone. Open target is LOW (0.3): park + wood + grass fills
+      // STACK on the same ground — at 0.55 each they compounded too light.
+      const isOpen = /park|wood|grass/i.test(id);
+      map.setPaintProperty(id, "fill-color", isOpen ? STONE_OPEN : STONE_DEEP);
       // At low zoom, fade landuse so the natural_earth raster shows through
       // and the flight midpoint has visible land/sea texture. Opaque by z=11.
       map.setPaintProperty(id, "fill-opacity", [
         "interpolate", ["linear"], ["zoom"],
         0, 0,
         8, 0,
-        11, isGreen ? 0.3 : 1,
+        11, isOpen ? 0.3 : 1,
       ]);
       continue;
     }
@@ -790,8 +800,8 @@ function applyReservePalette(map: MLMap) {
         // thousands of newly-visible building meshes. Buildings at
         // z=12 were barely discernible anyway.
         map.setLayerZoomRange(id, 13, 22);
-        // Token-driven height gradient: ink (shadow base) → ink-soft (mid
-        // mass) → ink-faint (lifted tops that catch the afternoon light).
+        // Stone height gradient: base (shadow) → mid-rise → pale tall
+        // faces → lit tops that catch the moon-white light.
         map.setPaintProperty(id, "fill-extrusion-color", [
           "interpolate",
           ["linear"],
@@ -801,10 +811,10 @@ function applyReservePalette(map: MLMap) {
             ["get", "height"],
             10,
           ],
-          0, INK_SOFT,
-          30, INK_FAINT,
-          120, SAND,
-          260, SAND_LIT,
+          0, STONE,
+          30, STONE_SOFT,
+          120, STONE_PALE,
+          260, STONE_LIT,
         ]);
         map.setPaintProperty(id, "fill-extrusion-opacity", 1.0);
         // Keep the vertical gradient ON — this is what gives buildings
@@ -815,13 +825,13 @@ function applyReservePalette(map: MLMap) {
     }
     if (type === "line" && /road|highway|street|bridge|tunnel|transport/i.test(id)) {
       if (/motorway|trunk|highway/i.test(id)) {
-        map.setPaintProperty(id, "line-color", INK_SOFT);
+        map.setPaintProperty(id, "line-color", STONE);
         map.setPaintProperty(id, "line-opacity", 0.55);
       } else if (/primary|secondary/i.test(id)) {
-        map.setPaintProperty(id, "line-color", INK_SOFT);
+        map.setPaintProperty(id, "line-color", STONE);
         map.setPaintProperty(id, "line-opacity", 0.4);
       } else {
-        map.setPaintProperty(id, "line-color", INK);
+        map.setPaintProperty(id, "line-color", STONE_DEEP);
         map.setPaintProperty(id, "line-opacity", 0.5);
       }
       continue;
@@ -832,8 +842,6 @@ function applyReservePalette(map: MLMap) {
       continue;
     }
   }
-
-  void SUN;
 }
 
 // Prefetch logic has moved to src/lib/map-prefetch.ts. It's fired from the

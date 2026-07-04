@@ -119,7 +119,7 @@ export function Places() {
               key="pre-warm-placeholder"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="pointer-events-none absolute inset-0 flex items-center justify-center"
             >
               <span className="kicker text-[0.62rem] tracking-[0.34em] text-paper/45">
@@ -159,7 +159,7 @@ export function Places() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="max-w-[44ch]"
               >
                 <h3 className="font-display text-paper text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] tracking-[-0.02em]">
@@ -176,7 +176,7 @@ export function Places() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="max-w-[44ch]"
               >
                 <h3 className="font-display text-paper text-[clamp(3.5rem,10vw,9rem)] leading-[0.95] tracking-[-0.02em]">
@@ -193,19 +193,26 @@ export function Places() {
           </AnimatePresence>
         </div>
 
-        {/* Floating city postcard — only after arrival on a city (not globe) */}
+        {/* Floating city postcard — only after arrival on a city (not globe).
+            Pinned at a slight constant tilt: a hand-placed read against the
+            engineered map, deliberately off perfect balance (restrained —
+            one idiosyncratic detail for this section, not a motif). */}
         <div className="pointer-events-none absolute right-6 top-[14svh] z-20 md:right-14 md:top-[16svh]">
           <AnimatePresence mode="wait">
             {landedCity && (
               <motion.figure
                 key={landedCity.slug}
-                initial={{ opacity: 0, y: 14, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                transition={{ duration: 0.9, delay: 0.15, ease: [0.19, 1, 0.22, 1] }}
+                initial={{ opacity: 0, y: 14, scale: 0.96, rotate: -1.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1, rotate: -1.8 }}
+                exit={{ opacity: 0, y: -6, scale: 0.98, rotate: -1.8 }}
+                transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className="relative aspect-square w-[26vw] max-w-[15rem] min-w-[9rem] overflow-hidden"
                 style={{
-                  filter: "saturate(0.85) brightness(0.88) contrast(1.04)",
+                  // Interim neutral treatment (the weather-JPEG approach):
+                  // the painted studies carry a heavy amber cast that
+                  // re-warms the zero-chroma section — grayscale + dim
+                  // until the materials re-shoot lands.
+                  filter: "grayscale(1) brightness(0.85) contrast(1.06)",
                   boxShadow:
                     "0 18px 40px -18px oklch(0.1 0 0 / 0.85), 0 2px 6px oklch(0.1 0 0 / 0.4)",
                 }}
@@ -256,7 +263,7 @@ export function Places() {
                 <span
                   className={`block h-px transition-all duration-500 ${
                     isLanded
-                      ? "w-10 bg-dusk"
+                      ? "w-10 bg-sun"
                       : isCommitted
                         ? "w-6 bg-sun/70"
                         : "w-3 bg-paper/30"
@@ -289,7 +296,7 @@ export function Places() {
                 <span
                   className={`block h-px w-full transition-all duration-500 ${
                     isLanded
-                      ? "bg-dusk"
+                      ? "bg-sun"
                       : isCommitted
                         ? "bg-sun/70"
                         : "bg-paper/30"

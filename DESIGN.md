@@ -48,8 +48,8 @@ flips, re-derive its neutrals from zero; don't scale the old hue down the lightn
 ploy's #f4f4f4→#212121→#000 carry chroma 0 — color lives only in the accent.) In the globe
 (`visuals/city-map.tsx`) the GROUND token-mirrors (NIGHT/NIGHT_DEEP/WATER — canvas backdrop,
 map background, fog, water) followed the reset to neutral hex; the warm land-relief tuning
-(ink/dusk/sun/moss/sand constants) is imagery-layer and untouched at Step 0 — re-tune it in
-the places step. Same for the weather haze raster: desaturated via CSS `grayscale` (a warm
+(ink/dusk/sun/moss/sand constants) is imagery-layer and was untouched at Step 0 — re-tuned
+at Step 4 (below). Same for the weather haze raster: desaturated via CSS `grayscale` (a warm
 JPEG screen-blended over neutral ground re-browns the whole section) — interim only;
 removed entirely at Step 3 (the section is now pure code-generated structure).
 
@@ -205,8 +205,27 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   `margin: "-15%"` insets **horizontally** too (15% of viewport width), so the leftmost stat
   never intersected and "01" rendered as "00" — in-view trigger margins must be vertical-only
   (`0px 0px -10% 0px`).
+- **2026-07-04 — Step 4 SHIPPED** (places globe + section chrome recalibrated on the neutral
+  ground): the city map's warm land-relief tuning — the ink/ink-soft/ink-faint/sand/sand-lit/
+  moss constants plus the warm `#f3d9a6` light — re-derived as a zero-chroma STONE ladder,
+  each rung keeping the lightness of the warm value it replaced (`#1c1c1c/#4d4d4d/#878787/
+  #a6a6a6/#c0c0c0`; parks `#666` at the same low stacking alpha; light → moon-white
+  `#dcdcdc`, buildings still shade 3D without the sepia wash). NE2 raster desaturation pushed
+  −0.85 → **−1** (the residual 15% still tinted the continents). Country boundaries dusk →
+  **paper hairlines @0.25** (the machine layer ruling the planet). Trips collapsed to the ONE
+  sun accent — hierarchy by alpha (arteries 255 / streets 150); the dusk-colored arteries and
+  the dusk landed-pips were pre-reset warm residue, both → sun. **Globe atmosphere zeroed:**
+  maplibre 5.x draws the globe halo with a Rayleigh/Mie shader whose blue-sky scattering
+  coefficients are HARDCODED (sky-/horizon-/fog-color don't feed it — verified in the 5.23
+  dist), so any `atmosphere-blend > 0` paints a cyan rim on the limb; a hard stone sphere on
+  black is the brutalist read anyway. Postcards: the painted studies carry heavy amber —
+  grayscaled + dimmed **interim** (the weather-JPEG approach) until the materials re-shoot;
+  pinned at a constant −1.8° tilt — one idiosyncratic, hand-placed detail against the
+  engineered map (the anti-"AI-symmetric" founder lesson, restrained to this single element).
+  Places' framer eases migrated to the house pair. Interactions + copy unchanged.
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
+  (Done for weather at Step 3, places at Step 4.)
 - Next layers (design-revamp ticket): enter-once choreography upgrades, materials re-shoot.
 
 ## Site information architecture (agreed direction, 2026-07-04)
