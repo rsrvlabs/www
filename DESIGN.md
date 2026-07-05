@@ -2,8 +2,9 @@
 
 The design spec for `rsrvlabs/www` (and later the Reserve research blog). Aesthetic target
 (founder, 2026-07-03/04): **法式簡約 × 黑鏡科技, unmistakably post-2026 — explicitly NOT the
-"Google / engineer 華國美學" look.** References analyzed 2026-07-04: insforge.dev (component +
-motion grammar), ploy.ai (component play), scrunch.com blog (editorial system). Tokens live in
+"Google / engineer 華國美學" look.** References analyzed 2026-07-04/05: insforge.dev (component +
+motion grammar), ploy.ai (component play), scrunch.com blog (editorial system), lelabofragrances.com
+(luxury-brutalism archetype — specimen grammar, founder key reference 2026-07-05, PATH A locked). Tokens live in
 `src/app/globals.css`; this file is the *why* and the rules.
 
 ## The thesis — 暗色系法式簡約 (night-first, founder decision 2026-07-04)

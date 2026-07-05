@@ -1,4 +1,4 @@
-# Design references — the three source sites
+# Design references — the four source sites
 
 Teardowns of the founder-chosen reference sites (2026-07-04, extracted from **fetched
 production HTML/CSS/JS**, not from memory). These feed the 大改造 (full redesign): steal
