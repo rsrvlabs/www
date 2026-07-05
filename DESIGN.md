@@ -101,6 +101,39 @@ Rule: if a string is *about* the content (metadata), it's mono. If it *is* the c
   `background: linear-gradient(surface,surface) padding-box, linear-gradient(90deg, ink-inverse,
   accent) border-box` + transparent border.
 
+## Copy register — the concept-site law (fashion-house, ruled 2026-07-05)
+
+Founder-approved 2026-07-05 (「先這樣」 — v1 for next week's founder meeting). Applied
+site-wide in the 2026-07-05 copy batch (see implementation status).
+
+The site speaks in the register of a high-fashion maison's web presence
+(Jacquemus / Acne Studios / Aesop): sparse, cold, assured.
+
+1. DISPLAY copy (H1/H2, door titles, CTA lines, pull quotes): few words,
+   declarative, no exclamation, no questions-as-hooks, no comparisons to
+   others ("not another X", "not Y" constructions are sales-speak — cut).
+2. IDENTITY lives in concepts, never in facts: curators / one machine /
+   the brain / the house. BANNED on-site: "founders", headcount, funding
+   or money self-description ("bootstrapped", "no outside money",
+   "funds our products"), self-praising adjectives ("senior", "expert").
+3. Facts appear only as EVIDENCE OBJECTS in the machine layer: dates,
+   timestamps, counts, status tags (LIVE / IN PROGRESS), coordinates.
+   The mono machine layer is the house's care label — it never persuades.
+4. LEGIBILITY survives in exactly ONE support line per surface: each
+   product/page keeps one plain sub-line a stranger can parse (what it is,
+   for whom). The concept register applies to display copy only.
+5. HONESTY LAW outranks register: no fake claims, quotes, or numbers;
+   absence beats filler. A beautiful line that implies an untrue fact
+   is wrong, not clever.
+6. Products are collection pieces: named lines (Fermi, Feynman, Glow),
+   noun tags, "N°"-style numbering where adopted — presented, not sold.
+
+**Pending founder-meeting ruling (next week w/ Tony) — do NOT touch until ruled:** the
+places globe intro **"Eight weathers. A studio in each."** (honesty check: is the
+concept reading — weather/scene per city — safe from an "eight offices" fact reading?)
+and the **8-city footer Cities block** (a store-address list is maison grammar, but
+listing implies presence — honesty call is the founders').
+
 ## Blog blueprint (Reserve research — SHIPPED 2026-07-04, from scrunch)
 
 Wide→narrow funnel: mono metadata bar (left-hairline items) → serif H1 at ~1140px → hero image
@@ -277,6 +310,30 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   same voice. Still using "founders" (narrative register, awaiting a founder call): the
   weather section's timeline beat + closing line. The fold-1 evidence odometer (audit gap
   #4) is deliberately a LATER round — no fake evidence shipped in its place.
+- **2026-07-05 — copy batch SHIPPED (fashion-house register, founder-approved 「先這樣」 for
+  next week's founder meeting):** the concept-site copy law above ("Copy register") ruled and
+  the approved proposal table (session scratchpad `copy-table.md`, inventory basis `d0e62b2`)
+  applied in one pass. Per row: BOTH remaining **"founders" → "curators"** (weather statement +
+  08:00 timeline beat — the banned word is now zero on-site, closing the Step 7 flag); the
+  02 note statement dropped **"No outside money."** (funding self-description) and compressed
+  to fragments; the **/sw intro** cut "Maybe you smiled" and the "Not another feed of
+  strangers…" comparison construction (register rule 1: no comparisons to others); the 06
+  **invitation paragraph** question → noun fragments ("Early access. An embedded team. The
+  notes. One email — we answer everything."); the **footer tagline** "objects you hold"
+  (flagged since Step 5) → **"A studio run with one machine."** — one identity sentence
+  site-wide, footer = the sanctioned self-description slot; **/frontiers intro** dropped
+  "senior engineers" / "not slide decks" / "funds our products" (self-praise, comparison,
+  money-talk → "feeds our products"); **/research index intro** compressed to the concept
+  triplet (details live in the featured blurb + essay). **`N° NN ·` collection numbering
+  ADOPTED all-or-none:** all six landing kickers (`N° 01`…`N° 06`; places keeps its dash
+  clause — dropping it was a separate un-ruled variant) + the subpage header tag
+  (`N° F · Flagship` etc., one source in `SubpageHeader`); machine-plate counters
+  (`Reserve · 02/06`, `five doors · 03/06`) and door-cell tags unchanged per the proposal.
+  **Hero stays Option A** (current). CTA lines untouched (approved 2026-07-04, verbatim).
+  Optional-variant rows NOT taken (hero support 斷句版, /labs 微修, /effects compression,
+  "testimonials" rename, /frontiers metadata desc). Two surfaces deliberately untouched —
+  see the copy-law section's **pending founder-meeting ruling** block ("Eight weathers. A
+  studio in each." + the 8-city Cities footer).
 - **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
   (Done for weather at Step 3, places at Step 4, note + invitation at Step 5. Still legacy:

@@ -55,11 +55,9 @@ export default function ResearchPage() {
         </h1>
         <MetaBar items={["Q — Research", "Reserve", "EST. MMXXIV"]} />
         <p className="mt-10 max-w-[52ch] font-sans text-[0.95rem] leading-[1.8] text-paper/70">
-          We run this company on an AI-native operating system we built: a shared
-          brain that remembers everything, agents that open tickets, run products,
-          and review each other — and humans who make the calls. These notes
-          document the experiment in public: the org design, the failures, and
-          the parts that feel like the future.
+          We run this company on an operating system we built: one shared brain,
+          agents with jobs, humans making the calls. These notes document the
+          experiment in public.
         </p>
 
         {/* Featured — the series, wide */}

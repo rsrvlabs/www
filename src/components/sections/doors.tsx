@@ -134,7 +134,7 @@ export function Doors() {
               variants={content}
               className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-6 py-4 md:px-10"
             >
-              <h2 className="kicker text-paper/45">03 · Index</h2>
+              <h2 className="kicker text-paper/45">N° 03 · Index</h2>
               <span className="kicker text-paper/45">five doors · 03/06</span>
             </motion.div>
           </div>

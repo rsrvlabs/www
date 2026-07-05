@@ -14,7 +14,7 @@ export default function SWPage() {
       label="Flagship"
       current="/sw"
       title="The one in the crowd, found again."
-      intro="You noticed someone. Maybe you smiled. Then the crowd pulled you apart, and the city swallowed them. Our flagship ends that story differently: real co-presence becomes a physical signature, and the people you actually crossed paths with stay findable. Not another feed of strangers — a social graph made of real encounters."
+      intro="You noticed someone. The crowd pulled you apart; the city swallowed them. Our flagship ends that story differently — real co-presence becomes a physical signature, and the people you actually crossed paths with stay findable."
       cta={{
         line: "The crowd is big. The list is short.",
         label: "Request early access",

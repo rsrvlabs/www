@@ -39,7 +39,7 @@ export function SubpageHeader({
           reserve<span className="text-sun">.</span>
         </Link>
         <span className="kicker mt-2 text-[0.6rem] text-paper/45">
-          {index} · {label}
+          N° {index} · {label}
         </span>
       </div>
       <NavLinks current={current} />

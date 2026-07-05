@@ -47,7 +47,7 @@ export function Invitation() {
           transition={{ duration: 1 }}
           className="kicker block text-paper/45"
         >
-          06 · An invitation
+          N° 06 · An invitation
         </motion.span>
 
         <motion.h2
@@ -67,9 +67,8 @@ export function Invitation() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-12 max-w-[52ch] font-display text-[clamp(1.1rem,1.8vw,1.4rem)] leading-[1.55] text-paper/85"
         >
-          Want early access to the app, an embedded AI team that
-          ships, or our notes on running an AI-native company?
-          One email. We answer everything.
+          Early access. An embedded team. The notes.
+          One email — we answer everything.
         </motion.p>
 
         <motion.div
@@ -102,7 +101,7 @@ export function Invitation() {
               reserve<span className="text-sun">.</span>
             </div>
             <div className="mt-3 max-w-[28ch] font-sans text-xs normal-case leading-[1.7] tracking-normal text-paper/50">
-              A studio between software and the objects you hold.
+              A studio run with one machine.
             </div>
           </div>
           <div className="col-span-6 border-l border-paper/15 pl-4 md:col-span-4">

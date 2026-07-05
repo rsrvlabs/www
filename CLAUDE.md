@@ -48,8 +48,9 @@ Package manager: **pnpm**.
 - **Design workflow:** read `DESIGN.md` → change tokens only in `globals.css @theme` (+ sync
   DESIGN.md) → `pnpm lint && pnpm build && pnpm test:e2e` → capture screens for visual review:
   `SHOTS_DIR=/tmp/shots npx playwright test e2e/screens.spec.ts --project=desktop`
-- **Machine-layer grammar in code:** section labels/metadata use the `.kicker` class (+ `NN ·`
-  index); dividers use `.hairline-dashed(-night)`; link hovers use `.link-underline`; easings come
+- **Machine-layer grammar in code:** section labels/metadata use the `.kicker` class (+ `N° NN ·`
+  collection index, adopted 2026-07-05; plate counters like `Reserve · 02/06` stay bare); dividers
+  use `.hairline-dashed(-night)`; link hovers use `.link-underline`; easings come
   from `--ease-enter/--ease-ui/--ease-pop` — components must not invent their own.
 
 ## Hard rules

@@ -23,7 +23,7 @@ const night = [
   { t: "05:00", line: "New York closes. The finance desk starts its read of the day." },
   { t: "07:30", line: "Fermi writes the morning brief. Every number, checked twice." },
   { t: "07:50", line: "The watchdog sweeps the pipeline; anything broken heals itself." },
-  { t: "08:00", line: "The brief publishes. The founders are still asleep.", accent: true },
+  { t: "08:00", line: "The brief publishes. The curators are still asleep.", accent: true },
 ];
 
 const stats = [
@@ -82,7 +82,7 @@ export function Weather() {
           transition={{ duration: 1 }}
           className="kicker block mb-[7svh] text-paper/45"
         >
-          04 · While you sleep
+          N° 04 · While you sleep
         </motion.span>
 
         <ScrollReveal
@@ -91,7 +91,7 @@ export function Weather() {
           textClassName="font-display text-[clamp(1.6rem,3.4vw,3rem)] leading-[1.5] tracking-[-0.01em] text-paper max-w-[30ch]"
         >
           Every studio says AI-native. Ours proves it nightly — the
-          company keeps working after the founders stop.
+          company keeps working after the curators stop.
         </ScrollReveal>
 
         {/* The instrument panel: night log + odometer stats on one lattice */}

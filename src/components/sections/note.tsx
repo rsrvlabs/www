@@ -26,7 +26,7 @@ export function Note() {
             className="col-span-12 flex flex-col gap-3 md:col-span-3"
           >
             <span className="kicker border-l border-paper/15 pl-4 text-paper/45">
-              02 · What we do
+              N° 02 · What we do
             </span>
             <span className="kicker border-l border-paper/15 pl-4 text-[0.6rem] tracking-[0.26em] text-paper/30">
               Reserve · 02/06
@@ -39,11 +39,10 @@ export function Note() {
             transition={{ duration: 1.2, ease: EASE }}
             className="col-span-12 max-w-[62ch] font-display text-[clamp(1.4rem,2.4vw,2rem)] leading-[1.45] text-paper md:col-span-8 md:col-start-5"
           >
-            We build our own products, and we take on a small number of
-            embedded AI engineering engagements that pay for them. No
-            outside money. The company itself runs on an AI-native
-            operating system we built — one shared brain, agents with
-            jobs, humans making the calls.
+            We build our own products. A small number of embedded
+            engagements pay for them. The company runs on an operating
+            system we built — one shared brain, agents with jobs,
+            humans making the calls.
           </motion.p>
         </div>
       </div>

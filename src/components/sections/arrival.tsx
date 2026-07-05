@@ -71,7 +71,7 @@ export function Arrival() {
           transition={{ duration: 1.4, delay: 0.4 }}
           className="kicker mb-10 text-[0.62rem] tracking-[0.3em] text-paper/55"
         >
-          <DecryptText text="01 · AI-native studio" />
+          <DecryptText text="N° 01 · AI-native studio" />
         </motion.p>
 
         {/* Display: big-but-light (insforge computed: wt400, tight leading) —
