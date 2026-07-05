@@ -9,6 +9,7 @@ techniques, not pixels. Our own law lives in `../DESIGN.md`; these files are the
 | `insforge.md` | insforge.dev | dark component grammar: lattices, grid-paper, odometer, enter-once choreography, hover system |
 | `ploy.md` | ploy.ai | component play: punch-card, Braille tiles, char effects, tilt, house easings, ink-pair accents |
 | `scrunch.md` | scrunch.com/blog | editorial system: font-role trichotomy, warm paper/ink, dashed hairlines, blog layout |
+| `lelabo.md` | lelabofragrances.com | luxury-brutalism archetype (added 2026-07-05): specimen grammar — label-block cards, mono spec rows, personalization line, uniform inventory grids, hover-underline stillness |
 
 Rule of use: when implementing, cite which ref + which technique in the commit message.
 Re-fetch the live sites before trusting exact values long-term — they ship updates.
