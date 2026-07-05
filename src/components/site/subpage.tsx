@@ -80,9 +80,7 @@ export function CtaBand({ line, label, subject }: Cta) {
         className="group mt-8 inline-flex items-baseline gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-paper/70 transition-colors duration-200 hover:text-paper"
       >
         <span className="link-underline">{label}</span>
-        <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-          →
-        </span>
+        <span aria-hidden>→</span>
       </a>
     </div>
   );
@@ -127,7 +125,8 @@ export function Subpage({
         </div>
         {cta ? <CtaBand {...cta} /> : null}
         <div className="hairline-dashed-night mt-20 pt-8">
-          <Link href="/" className="kicker link-underline text-paper/60">
+          {/* Lowercase mono utility link (lelabo `view more` register) */}
+          <Link href="/" className="label-mono link-underline text-paper/60">
             ← back to the studio
           </Link>
         </div>

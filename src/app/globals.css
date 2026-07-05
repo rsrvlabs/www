@@ -103,6 +103,18 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* ── Label voice (lelabo): lowercase mono — the specimen label speaking.
+     Cell spec rows + utility links (`enter →`, `← back to the studio`).
+     Uppercase .kicker stays the machine PLATE (section indices, tags, nav);
+     lowercase is the quieter label register, as printed on the bottle. */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: lowercase;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+  }
+
   /* ── Growing underline (scrunch): background-image so it wraps across lines. */
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);

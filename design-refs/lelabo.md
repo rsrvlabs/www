@@ -196,6 +196,22 @@ deleted** (they have none — `sun` would survive only as rare ink, or die). Imp
 No recommendation recorded here beyond the founder's stated lean: **A-first, pending the
 founder meeting.**
 
+## Already adopted in www (PATH A — BLACK APOTHECARY round, 2026-07-05)
+
+**Spec-label card anatomy** (§7.1 — partial: landing doors lattice cells end in a hairline +
+mono spec row of honest machine facts; flagship's spec row doubles as its action row with
+`enter →` right; subpage PunchSurface entries NOT yet converted) · **personalization line**
+(§7.3 — the invitation's `for: [___]` mono input feeds the mailto subject; no char counter,
+restraint call) · **silk deleted** (§7.4 — founder debt #1 resolved as delete; hero is pure
+night + grid-paper, which stays as *information*, the lattice) · **hover stillness** (§7.5 —
+all hover translate/tilt removed site-wide, hover = underline/color/surface step only; now a
+DESIGN.md motion rule) · **lowercase-mono utility links** (§7.6 — `.label-mono` register:
+`enter →` / `← back to the studio` / `← all research` / `read the first essay →`; uppercase
+`.kicker` stays the machine plate). **Not yet / open:** uniform inventory density (§7.2 —
+flagship still spans the full row; founder-meeting item) · stamp-logo bespoke identity
+artifact (§7.4) · label-scale subpage display (§7.7) · PATH B entirely (gated on the
+materials re-shoot).
+
 ## Method / provenance
 
 Headless chromium (playwright 1.59.1, www's cache), 1440×900, US-region cookies, full-scroll

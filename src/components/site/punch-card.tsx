@@ -1,14 +1,11 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { useCardTilt } from "@/lib/use-card-tilt";
 
 /**
- * Shared punch-card hover surface (ploy grammar, restrained for French
- * minimal): four corner dots that warm to sun on group-hover, a night-soft
- * surface rise, and a subtle card tilt. Extracted from the landing's
- * DoorCard so subpage entries carry the exact same hover craft.
- * Tilt bails under prefers-reduced-motion (inside useCardTilt).
+ * Shared punch-card hover surface (ploy corner-dot identity, held to the
+ * lelabo stillness law): four corner dots that warm to sun on group-hover
+ * and a night-soft surface rise — color/opacity only, nothing moves
+ * (design-refs/lelabo motion census: hover changes NOTHING but underline;
+ * the cursor tilt was removed 2026-07-05 with the hover-stillness audit).
  */
 
 export function PunchDot({ pos }: { pos: string }) {
@@ -27,12 +24,8 @@ export function PunchSurface({
   className?: string;
   children: ReactNode;
 }) {
-  const { ref, onMouseMove, onMouseLeave } = useCardTilt();
   return (
     <div
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
       className={`group relative rounded-sm transition-colors duration-300 hover:bg-night-soft/60 ${className}`}
     >
       <PunchDot pos="left-1.5 top-1.5" />

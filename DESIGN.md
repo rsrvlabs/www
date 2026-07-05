@@ -86,7 +86,11 @@ Rule: if a string is *about* the content (metadata), it's mono. If it *is* the c
   with back-out overshoot `cubic-bezier(.34,1.56,.64,1)` at 300–350ms, staggered. No re-trigger.
 - **Micro-interactions 120–200ms**: `brightness(.96)` on filled buttons; `bg-white/5` (dark) or
   `bg-ink/4` (paper) on ghosts; animated `h-px` underline `w-0 → w-full` 200–300ms (use
-  `box-decoration-break: clone` for wrapping links); image hover `scale(1.02–1.05)` 300–500ms.
+  `box-decoration-break: clone` for wrapping links).
+- **Hover stillness (lelabo law, 2026-07-05):** hover NEVER moves anything — no translate, no
+  scale, no tilt (the insforge image-hover-scale recipe is retired). Sanctioned hover responses:
+  underline, color/opacity change, surface step (`hover:bg-night-soft`). Arrows hold still.
+  Motion budget is spent on ENTER-once choreography, not on hover.
 - **Numbers = odometer slots** (overflow-hidden digit columns, `transform .4s
   cubic-bezier(.22,1,.36,1)`, `tabular-nums`).
 - **Ambient motion is rAF translate3d** (already the deck.gl/lenis world) — cheap, GPU, endless.
@@ -335,16 +339,52 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   "testimonials" rename, /frontiers metadata desc). Two surfaces deliberately untouched —
   see the copy-law section's **pending founder-meeting ruling** block ("Eight weathers. A
   studio in each." + the 8-city Cities footer).
-- **Convergence note:** legacy framer `ease: [0.19, 1, 0.22, 1]` arrays should migrate to the
+- **2026-07-05 — BLACK APOTHECARY round SHIPPED** (lelabo PATH A: night ground + Le Labo
+  STRUCTURE; founder-approved, all five items in one atomic pass):
+  **(1) Silk DELETED, not recolored** (founder debt #1 CLOSED as *delete* — lelabo PATH A
+  rule 4: decoration replaced by information): `visuals/silk.tsx` removed along with the
+  three.js/@react-three deps and the silk-handoff gradients in `arrival.tsx`; the hero is
+  pure night, the type IS the hero, and the one texture is a restrained `grid-paper-night`
+  band at 60% (information — the machine's ruled paper — not mood; Step 1 had skipped it
+  only because the silk occupied the texture slot). Arrival veil + decrypt kicker +
+  parallax/fade text unchanged.
+  **(2) Doors cells wear the lelabo label-block anatomy:** each lattice cell ends in a mono
+  SPEC ROW behind a solid `night-line` hairline — honest machine facts only, lowercase label
+  voice, every string derived from on-site copy or this file's IA statuses (flagship
+  `signature / bluetooth · wearable / no phone · biosignal / heart-rate`; labs
+  `desk / live 08:00 daily · advisor / experimental · beauty / exploring`; frontiers
+  `four frontiers / in production`; research `series 01 / 1 published · 2 in progress`;
+  effects `systems / in production`). 2×2 cell spec rows pin to the cell floor (`mt-auto`)
+  so the inventory rows align; the flagship's spec row doubles as its action row (facts
+  left, `enter →` right). Flagship full-row cell KEPT (the uniform-inventory question is a
+  founder-meeting item, lelabo §7.2).
+  **(3) Personalization line** (lelabo `For:` grammar): the invitation CTA gained one mono
+  typewriter `<input>` (`for:` label, hairline-bottom, placeholder "a name, a frontier, a
+  question", maxLength 46) whose value feeds the envelope's mailto subject
+  ("Hello Reserve — {value}"; empty → plain "Hello Reserve"). Real label/`htmlFor`; no form.
+  **(4) Hover-stillness audit** (new motion rule above): all five arrow
+  `group-hover:translate-x` travels removed (wordmark WRITE →, doors enter →, research
+  featured link, CtaBand, invitation envelope) and the ploy cursor tilt removed from
+  `PunchSurface` (+ `use-card-tilt.ts` deleted — the recipe survives in the ploy teardown
+  notes); corner-dot color warm + `hover:bg-night-soft` surface rise verified color-only and
+  kept. Enter-once entrances untouched. The places postcard −1.8° tilt is static placement,
+  not hover — untouched.
+  **(5) Lowercase-mono utility links standardized:** new `.label-mono` utility (mono,
+  lowercase, 0.08em tracking — the specimen-label voice vs the uppercase `.kicker` machine
+  plate) applied to `enter →`, `read the first essay →`, both `← back to the studio` links
+  and `← all research`. Nav, kickers, status tags, machine plates keep their casing; CtaBand
+  labels kept uppercase (they are the page's conversion CTA — founder copy verbatim — not a
+  utility link; judgment call recorded here).
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
   (Done for weather at Step 3, places at Step 4, note + invitation at Step 5. Still legacy:
   arrival char-cascade, wordmark, arrival-veil.)
-- **Remaining founder debts (review of 2026-07-04, open after Steps 5+6):** **#1** hero silk
-  (graphite recolor was interim; untouched by design) · **#2** tracked in the founder review
-  (not restated here) · **#3** restrained asymmetry — a standing bias, not a finished task:
-  one hand-placed beat each so far (places postcard tilt −1.8°, note's off-rail voice);
-  more welcome, always hand-placed, never systematic · **#4** places globe —
-  refactor-or-remove later; do not invest further until decided.
+- **Remaining founder debts (review of 2026-07-04):** **#1** hero silk — **CLOSED 2026-07-05**
+  (resolved as *delete* per lelabo PATH A, BLACK APOTHECARY round above; the graphite recolor
+  was interim by design) · **#2** tracked in the founder review (not restated here) · **#3**
+  restrained asymmetry — a standing bias, not a finished task: one hand-placed beat each so
+  far (places postcard tilt −1.8°, note's off-rail voice); more welcome, always hand-placed,
+  never systematic · **#4** places globe — refactor-or-remove later; do not invest further
+  until decided.
 - Next layers (design-revamp ticket): enter-once choreography upgrades, materials re-shoot
   (real artifacts per design-refs/assets.md — `place-*.jpg` are the last AI-era rasters).
 

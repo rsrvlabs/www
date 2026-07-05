@@ -94,7 +94,7 @@ export default function AiNativeCompanyEssay() {
               </p>
               <Link
                 href="/research"
-                className="kicker link-underline mt-5 inline-block text-paper/60"
+                className="label-mono link-underline mt-5 inline-block text-paper/60"
               >
                 ← all research
               </Link>

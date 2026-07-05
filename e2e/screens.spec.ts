@@ -43,7 +43,7 @@ test("capture landing beats", async ({ page }) => {
     await target.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1500); // reveal animations + lazy chunks
     if (name === "03-doors") {
-      // show hover craft: punch dots + tilt + underline on one door
+      // show hover craft: punch dots + underline on one door (hover is still)
       await page.locator("#doors a[href='/labs']").hover().catch(() => {});
       await page.waitForTimeout(450);
     }

@@ -1,61 +1,33 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Silk } from "@/components/visuals/silk";
 import { DecryptText } from "@/components/visuals/decrypt-text";
 
 export function Arrival() {
   const ref = useRef<HTMLElement>(null);
-  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const fade = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-  const skyY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const skyScale = useTransform(scrollYProgress, [0, 1], [1.08, 1.16]);
 
   return (
     <section
       ref={ref}
       className="relative flex min-h-[100svh] items-end overflow-hidden bg-night pb-[14svh]"
     >
-      {/* Code-generated dark silk (design-refs: ours; replaces the pastoral
-          raster — the last non-黑鏡 element). Neutral graphite waves — dark
-          fabric, not bronze (brutalist reset 2026-07-04). */}
-      <motion.div
-        style={{ y: skyY, scale: skyScale }}
-        className="absolute inset-0 opacity-70"
-      >
-        <Silk
-          color="#2e2e2e"
-          speed={reducedMotion ? 0 : 2.2}
-          scale={1.1}
-          noiseIntensity={1.2}
-          rotation={0.1}
-        />
-      </motion.div>
-
-      {/* Bottom fade into the night ground so the silk hands off cleanly into the next section */}
+      {/* Pure night ground — the silk shader is DELETED, not recolored
+          (design-refs/lelabo PATH A: decoration replaced by information;
+          founder debt #1 resolved as delete). The type IS the hero. The
+          one texture is the grid-paper lattice — information (the machine's
+          ruled paper), not mood — masked and further restrained so the
+          display sits in still air (Step 1 skipped it only because the
+          silk occupied the texture slot). */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%]"
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 0%, oklch(0.145 0 0 / 0.6) 60%, oklch(0.145 0 0) 100%)",
-        }}
-      />
-
-      {/* Soft dark veil on the upper half so the headline sits in calm air */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
-        style={{
-          background:
-            "linear-gradient(to bottom, oklch(0.145 0 0 / 0.55) 0%, transparent 100%)",
-        }}
+        className="grid-paper-night pointer-events-none absolute inset-0 opacity-60"
       />
 
       <motion.div

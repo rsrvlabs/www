@@ -75,10 +75,8 @@ export default function ResearchPage() {
                 the meeting? Essays from inside the experiment — written as we
                 learn, not after we&apos;ve won.
               </span>
-              <span
-                aria-hidden
-                className="kicker mt-6 inline-block text-paper/45 transition-transform duration-200 group-hover:translate-x-1"
-              >
+              {/* Lowercase mono utility link, still on hover (lelabo) */}
+              <span aria-hidden className="label-mono mt-6 inline-block text-paper/45">
                 read the first essay →
               </span>
             </Link>
@@ -119,7 +117,7 @@ export default function ResearchPage() {
         />
 
         <div className="hairline-dashed-night mt-20 pt-8">
-          <Link href="/" className="kicker link-underline text-paper/60">
+          <Link href="/" className="label-mono link-underline text-paper/60">
             ← back to the studio
           </Link>
         </div>

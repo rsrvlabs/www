@@ -48,9 +48,8 @@ export function WriteLink({ href }: { href: string }) {
       className="group inline-flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-paper/70 transition-colors duration-200 hover:text-paper"
     >
       <span className="link-underline">Write</span>
-      <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-        →
-      </span>
+      {/* Still arrow (lelabo hover census: underline only, nothing travels) */}
+      <span aria-hidden>→</span>
     </a>
   );
 }

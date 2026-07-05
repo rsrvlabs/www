@@ -3,7 +3,7 @@
 # Reserve landing page (`rsrvlabs/www`)
 
 Next.js 16 (App Router) · React 19 · Tailwind 4 (`@theme` tokens in `src/app/globals.css`) ·
-GSAP + framer-motion + lenis (smooth scroll) · deck.gl + maplibre (cities globe) · three.js (silk).
+GSAP + framer-motion + lenis (smooth scroll) · deck.gl + maplibre (cities globe).
 Package manager: **pnpm**.
 
 ## Layout
@@ -11,7 +11,7 @@ Package manager: **pnpm**.
 - `src/app/` — pages; `globals.css` holds the **design tokens** (single source of truth).
 - `src/components/sections/` — the six landing sections (arrival → note → practices → weather →
   places → invitation), assembled in `app/page.tsx` behind `ArrivalVeil` (cream prefetch gate).
-- `src/components/visuals/` — city-map (deck.gl), scroll-reveal, silk. `ui/` — shadcn-style primitives.
+- `src/components/visuals/` — city-map (deck.gl), scroll-reveal, decrypt-text, odometer. `ui/` — shadcn-style primitives.
 - `materials/*.md` — per-section **content briefs** (the written spec each section implements).
 - `DESIGN.md` — the design system spec (aesthetic direction, tokens, motion rules). **Read before
   any visual change.**

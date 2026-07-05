@@ -19,6 +19,13 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function Invitation() {
   const [revealed, setRevealed] = useState(false);
+  // Personalization line (design-refs/lelabo — the `For:` field: luxury as
+  // your name typed onto the label, not gold foil). The value feeds the
+  // mailto subject; empty stays the plain default subject.
+  const [forValue, setForValue] = useState("");
+  const subject = forValue.trim()
+    ? `Hello Reserve — ${forValue.trim()}`
+    : "Hello Reserve";
 
   return (
     <section
@@ -79,7 +86,7 @@ export function Invitation() {
           className="mt-16"
         >
           <a
-            href={`mailto:${EMAIL}`}
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`}
             onMouseEnter={() => setRevealed(true)}
             onFocus={() => setRevealed(true)}
             className="group inline-flex items-baseline gap-4 font-display text-[clamp(1.5rem,3vw,2.5rem)] text-paper underline-offset-[0.3em] hover:text-sun"
@@ -87,10 +94,29 @@ export function Invitation() {
             <span className="border-b border-paper group-hover:border-sun">
               {revealed ? EMAIL : "open the envelope"}
             </span>
-            <span aria-hidden className="text-base transition-transform group-hover:translate-x-1">
-              →
-            </span>
+            <span aria-hidden className="text-base">→</span>
           </a>
+
+          {/* Personalization line (design-refs/lelabo `For:` grammar): one
+              mono typewriter field, hairline-bottom — the single intimate
+              gesture, rendered as information. No form; the value only
+              personalizes the subject of the envelope above. */}
+          <div className="label-mono mt-10 flex max-w-[26rem] items-baseline gap-3 text-paper/55">
+            <label htmlFor="invitation-for" className="shrink-0">
+              for:
+            </label>
+            <input
+              id="invitation-for"
+              type="text"
+              value={forValue}
+              onChange={(e) => setForValue(e.target.value)}
+              maxLength={46}
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="a name, a frontier, a question"
+              className="label-mono w-full border-0 border-b border-paper/25 bg-transparent pb-1.5 normal-case text-paper outline-none transition-colors duration-200 placeholder:text-paper/30 focus:border-paper/60"
+            />
+          </div>
         </motion.div>
 
         {/* Machine footer — scrunch metadata grammar: mono columns behind

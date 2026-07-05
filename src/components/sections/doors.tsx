@@ -16,7 +16,9 @@ import { PunchDot } from "@/components/site/punch-card";
  * but DROPS the ploy tilt: a rotating cell shears its shared borders and
  * breaks the lattice read. Entrance: the plate rises once as a single unit;
  * cell contents stagger in behind it (insforge enter-once) so the grid
- * never appears half-built.
+ * never appears half-built. Cells wear the lelabo label-block anatomy
+ * (design-refs/lelabo — specimen grammar): tag → title → vision line →
+ * hairline → mono SPEC ROW (honest machine facts, lowercase label voice).
  */
 
 type Door = {
@@ -24,6 +26,11 @@ type Door = {
   tag: string;
   title: string;
   line: string;
+  /** Mono spec row (design-refs/lelabo card anatomy): honest machine facts
+   *  only, lowercase label voice — every string derived from on-site copy
+   *  or DESIGN.md facts (statuses from the IA table; counts from the pages).
+   *  The care label never persuades (copy law rule 3). */
+  spec: string;
 };
 
 const flagship: Door = {
@@ -31,6 +38,8 @@ const flagship: Door = {
   tag: "F · Flagship",
   title: "The one in the crowd, found again.",
   line: "A dating app with a physical signature — you only match with people you've actually crossed paths with.",
+  // /sw specimen tags + blurbs: bluetooth signature · wearable, no phone · heart-rate.
+  spec: "signature / bluetooth · wearable / no phone · biosignal / heart-rate",
 };
 
 const doors: Door[] = [
@@ -39,12 +48,16 @@ const doors: Door[] = [
     tag: "L · Labs",
     title: "The lab ships while you sleep.",
     line: "Finance runs itself daily; beauty tech is taking shape.",
+    // /labs tags + DESIGN.md IA statuses (Fermi LIVE · Feynman EXPERIMENTAL · Glow EXPLORING).
+    spec: "desk / live 08:00 daily · advisor / experimental · beauty / exploring",
   },
   {
     href: "/frontiers",
     tag: "R · Frontiers",
     title: "We deploy into your team, and ship.",
     line: "Forward-deployed AI engineering — travel, sports vision, health, legal.",
+    // /effects intro: "Four frontiers run Reserve-built AI today".
+    spec: "four frontiers / in production",
   },
   {
     href: "/research",
@@ -52,12 +65,16 @@ const doors: Door[] = [
     // Mirrors the /research H1 (concept voice, founder ruling 2026-07-05).
     title: "One studio. One brain.",
     line: "Field notes from running an AI-native company.",
+    // /research index: essay 01 PUBLISHED, 02–03 IN PROGRESS.
+    spec: "series 01 / 1 published · 2 in progress",
   },
   {
     href: "/effects",
     tag: "E · Effects",
     title: "What changes when we arrive.",
     line: "Systems in production, and the words of the teams that keep us.",
+    // /effects intro + SHIPPED entry.
+    spec: "systems / in production",
   },
 ];
 
@@ -83,13 +100,21 @@ function DoorCell({ door, variants }: { door: Door; variants: Variants }) {
         className="group relative flex h-full flex-col px-6 py-8 transition-colors duration-300 hover:bg-night-soft md:p-10"
       >
         <CellDots />
-        <motion.span variants={variants} className="block">
+        <motion.span variants={variants} className="flex h-full flex-col">
           <span className="kicker text-paper/50">{door.tag}</span>
           <span className="mt-3 block font-display text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.15] text-paper">
             <span className="link-underline">{door.title}</span>
           </span>
           <span className="mt-3 block max-w-[48ch] font-sans text-[0.88rem] leading-[1.7] text-paper/70">
             {door.line}
+          </span>
+          {/* Spec row (design-refs/lelabo card anatomy): hairline, then the
+              cell's machine facts in the lowercase label voice — pinned to
+              the cell floor so the rows align across the inventory. */}
+          <span className="label-mono mt-auto block pt-8">
+            <span className="block border-t border-night-line pt-4 text-paper/45">
+              {door.spec}
+            </span>
           </span>
         </motion.span>
       </Link>
@@ -154,11 +179,15 @@ export function Doors() {
                 <span className="mt-5 block max-w-[58ch] font-sans text-[0.95rem] leading-[1.75] text-paper/70">
                   {flagship.line}
                 </span>
-                <span
-                  aria-hidden
-                  className="kicker mt-6 inline-block text-paper/45 transition-transform duration-200 group-hover:translate-x-1"
-                >
-                  enter →
+                {/* Spec row + action row (design-refs/lelabo card anatomy):
+                    hairline → machine facts left, lowercase utility link
+                    right. Hover is STILL — no arrow travel (lelabo motion
+                    census: the only hover response is the underline). */}
+                <span className="label-mono mt-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-t border-night-line pt-4">
+                  <span className="text-paper/45">{flagship.spec}</span>
+                  <span aria-hidden className="text-paper/45">
+                    enter →
+                  </span>
                 </span>
               </motion.span>
             </Link>
