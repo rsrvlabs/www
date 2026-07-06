@@ -1,40 +1,49 @@
 #!/usr/bin/env python3
 """
-specimen-gate.py — deterministic acceptance gate for night-apothecary specimen
-plates (design-refs/assets.md §5). Run EVERY candidate through this before it
-goes near the site; reject anything that fails before the founder even sees it.
+specimen-gate.py — deterministic acceptance gate for the specimen plate family
+(design-refs/assets.md §5, design-refs/specimen-prompts.md). Run EVERY candidate
+through this before it goes near the site; reject family-breakers first.
 
-The night-apothecary family = ONE warm-material artifact specimen on a cold,
-zero-chroma near-black seamless. The gate enforces the two things that make the
-family read as one system and keeps the founder's hue-inheritance lesson honest:
+The family (founder-locked 2026-07-06) = a contemporary/future device DECONSTRUCTED
+and laid out flat, Le Labo ingredient-flat-lay style, shot with warm documentary
+texture on a DARK warm-lit surface — a warm photographic tile that drops into our
+cold night interface (Le Labo's law: warmth in the photo, interface stays cold).
 
-  1. GROUND is hue-free near-black — the subject's warmth must NOT bleed into it.
-     → 4 corner blocks: mean saturation <= 3%, value within #050505–#1f1f1f.
-  2. WARMTH is one amber/kraft/brass family — no stray cold casts.
-     → center crop: >=80% of saturated pixels fall in hue 20–45°;
-       and the subject stays muted (mean saturation of the plate <= ~18%).
+Two things keep the family reading as one system:
+  1. DARK, warm-consistent GROUND — the plate sits on night, and the surface must
+     not carry a cold cast that would clash with the neutral night UI.
+     → 4 corner blocks: mean value <= 42% (dark) AND not cold (no saturated
+       blue/green ground; if a corner is saturated its hue must be warm 10–60°).
+  2. WARMTH is one amber/kraft/brass/copper family — no stray cold casts.
+     → center crop: >=80% of saturated pixels fall in hue 15–50°.
+
+(v2 2026-07-06: retuned from "warm object on a zero-chroma near-BLACK seamless" to
+"warm documentary flat-lay on a dark warm surface" after the founder chose the Le
+Labo deconstructed-flat-lay execution over the brass-vitrine idea. The old corner
+rule demanded sat<=3% near-black corners; a dark walnut surface is warm-brown, so
+that rule wrongly failed a correct plate. The principle is unchanged — dark ground,
+one warm family, no cold cast — the thresholds now fit the flat-lay.)
 
 Usage:
   python scripts/specimen-gate.py <image> [<image> ...]
   python scripts/specimen-gate.py path/to/candidates/      # a directory
   python scripts/specimen-gate.py --json <image>           # machine-readable
 
-Exit code 0 if ALL pass, 1 if any fail (scriptable). Pure stdlib + Pillow.
-No deps beyond Pillow (pip install pillow).
+Exit code 0 if ALL pass, 1 if any fail (scriptable). Pillow only.
 """
-import sys, os, json, colorsys
+import sys, os, json, colorsys, statistics
 
-# ── gate thresholds (design-refs/assets.md §5 ACCEPTANCE GATE) ────────────────
-CORNER_FRAC      = 0.10   # corner block = 10% of the short edge
-CORNER_MAX_SAT   = 0.03   # mean corner saturation ceiling
-CORNER_VAL_MIN   = 5/255  # #050505
-CORNER_VAL_MAX   = 0x1f/255  # #1f1f1f
-CENTER_FRAC      = 0.42   # central crop side = 42% of the short edge
-SAT_FLOOR        = 0.08   # a pixel counts as "colored" above this saturation
-WARM_LO, WARM_HI = 20, 45 # amber/kraft/brass hue window (deg)
-WARM_SHARE_MIN   = 0.80   # >=80% of colored center pixels must be warm
-PLATE_MEAN_SAT_MAX = 0.18 # subject stays muted (soft ceiling; warn if over)
-STEP             = 3      # pixel sampling stride (speed)
+# ── gate thresholds (design-refs/assets.md §5, v2 flat-lay) ───────────────────
+CORNER_FRAC     = 0.10   # corner block = 10% of the short edge
+GROUND_VAL_MAX  = 0.42   # corners must be a DARK surface (value <= this)
+GROUND_COLD_SAT = 0.06   # above this a corner counts as "coloured" ground…
+GROUND_WARM_LO  = 10     # …and then its hue must be warm (else it's a cold cast)
+GROUND_WARM_HI  = 60
+CENTER_FRAC     = 0.60   # central crop side = 60% of the short edge
+SAT_FLOOR       = 0.10   # a pixel counts as "coloured" above this saturation
+WARM_LO, WARM_HI = 15, 50  # amber/kraft/brass/copper hue window (deg)
+WARM_SHARE_MIN  = 0.80   # >=80% of coloured centre pixels must be warm
+STEP            = 3      # pixel sampling stride (speed)
 
 
 def _hsv(px):
@@ -44,12 +53,21 @@ def _hsv(px):
 
 
 def _corner(px, x0, y0, s):
-    sats, vmin, vmax = [], 1.0, 0.0
+    sats, vals, hues = [], [], []
     for x in range(x0, x0 + s, STEP):
         for y in range(y0, y0 + s, STEP):
-            _, sat, v = _hsv(px[x, y])
-            sats.append(sat); vmin = min(vmin, v); vmax = max(vmax, v)
-    return sum(sats) / len(sats), vmin, vmax
+            h, sat, v = _hsv(px[x, y])
+            sats.append(sat); vals.append(v)
+            if sat > GROUND_COLD_SAT:
+                hues.append(h)
+    mean_sat = sum(sats) / len(sats)
+    mean_val = sum(vals) / len(vals)
+    med_hue = statistics.median(hues) if hues else None
+    is_dark = mean_val <= GROUND_VAL_MAX
+    is_cold = (mean_sat > GROUND_COLD_SAT and med_hue is not None
+               and not (GROUND_WARM_LO <= med_hue <= GROUND_WARM_HI))
+    return {"sat": mean_sat, "val": mean_val, "hue": med_hue,
+            "dark": is_dark, "cold": is_cold}
 
 
 def evaluate(path):
@@ -66,10 +84,7 @@ def evaluate(path):
         "BL": _corner(px, 0, H - cs, cs),
         "BR": _corner(px, W - cs, H - cs, cs),
     }
-    corner_ok = all(
-        c[0] <= CORNER_MAX_SAT and c[1] >= CORNER_VAL_MIN and c[2] <= CORNER_VAL_MAX
-        for c in corners.values()
-    )
+    ground_ok = all(c["dark"] and not c["cold"] for c in corners.values())
 
     cc = int(short * CENTER_FRAC)
     cx0, cy0 = (W - cc) // 2, (H - cc) // 2
@@ -86,21 +101,20 @@ def evaluate(path):
                     warm += 1
     warm_share = (warm / colored) if colored else 0.0
     mean_sat = (sum(allsat) / len(allsat)) if allsat else 0.0
-    med_hue = sorted(hues)[len(hues) // 2] if hues else None
-
+    med_hue = statistics.median(hues) if hues else None
     warm_ok = warm_share >= WARM_SHARE_MIN
-    passed = corner_ok and warm_ok  # mean_sat is a WARN, not a hard fail
+    passed = ground_ok and warm_ok
 
     return {
         "file": os.path.basename(path),
         "pass": passed,
-        "corner_ok": corner_ok,
+        "ground_ok": ground_ok,
         "warm_ok": warm_ok,
         "warm_share": round(warm_share, 3),
         "median_hue": None if med_hue is None else round(med_hue),
         "mean_sat": round(mean_sat, 3),
-        "mean_sat_warn": mean_sat > PLATE_MEAN_SAT_MAX,
-        "corners": {k: (round(v[0], 3), round(v[1] * 255), round(v[2] * 255))
+        "corners": {k: {"val": round(v["val"] * 255), "sat": round(v["sat"], 3),
+                        "dark": v["dark"], "cold": v["cold"]}
                     for k, v in corners.items()},
         "size": [W, H],
     }
@@ -129,16 +143,21 @@ def main(argv):
     else:
         for r in results:
             tag = "PASS" if r["pass"] else "FAIL"
-            warn = "  ⚠ sat>{:.0%}".format(PLATE_MEAN_SAT_MAX) if r["mean_sat_warn"] else ""
             reasons = []
-            if not r["corner_ok"]:
-                reasons.append("ground not zero-chroma near-black")
+            if not r["ground_ok"]:
+                bad = [k for k, c in r["corners"].items() if not c["dark"] or c["cold"]]
+                why = []
+                if any(not r["corners"][k]["dark"] for k in bad):
+                    why.append("ground not dark")
+                if any(r["corners"][k]["cold"] for k in bad):
+                    why.append("cold cast in ground")
+                reasons.append("/".join(why) + f" ({','.join(bad)})")
             if not r["warm_ok"]:
                 reasons.append(f"warm-share {r['warm_share']:.0%} < {WARM_SHARE_MIN:.0%}")
             detail = ("  — " + "; ".join(reasons)) if reasons else ""
             print(f"[{tag}] {r['file']}  "
                   f"warm-share={r['warm_share']:.0%} hue={r['median_hue']}° "
-                  f"sat={r['mean_sat']:.0%}{warn}{detail}")
+                  f"sat={r['mean_sat']:.0%}{detail}")
     return 0 if all(r["pass"] for r in results) else 1
 
 

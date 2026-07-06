@@ -38,11 +38,12 @@ faces, briefs, numbers, client work — real-only, rules 4/5/10 in `assets.md`).
   candidate that looks like a slick product mockup or a marketing hero shot is rejected even if it
   passes the colour gate — that's a human call the sampler can't make.
 
-> **Gate note (flat-lay):** the deterministic gate still enforces hue-free near-black EDGES and
-> one warm colour family, but a teardown has cool plastic/metal parts, so the center-warm-share
-> threshold may need a small retune once the first real plate lands — the principle holds (dark
-> hue-free ground, warmth carried by the warm materials + light), the exact % is tunable in
-> `scripts/specimen-gate.py`.
+> **Gate note (flat-lay, v2 — retuned 2026-07-06 on the first real plate):** the gate now enforces
+> a **dark, warm-consistent GROUND** (corners dark + no cold cast — a dark walnut/graphite surface
+> passes; a cold blue/grey ground fails) + **one warm centre family** (warm-share ≥80%, hue 15–50°).
+> The old "near-black zero-chroma corners" rule was for the abandoned object-on-night-seamless idea
+> and wrongly failed a correct warm-wood flat-lay; the principle is unchanged (dark ground, one warm
+> family, no cold cast). Ryvn's first earbud teardown passes clean (warm-share 99%, hue 26°).
 
 ## The style constants — paste into EVERY prompt
 
