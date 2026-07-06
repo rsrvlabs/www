@@ -20,47 +20,61 @@ Fits our own teardown law — **Le Labo's warmth lives 100% in the photography, 
 cold** (`assets.md` §6). The specimen plate is a WARM documentary flat-lay that drops into our
 COLD night interface: the plate is the warm element, Le Labo's mechanism on our night ground.
 
-Ground: shoot the flat-lay **overhead on a dark, warm-lit surface** (dark walnut / graphite /
-slate) — keeps Le Labo's documentary warmth AND sits seamless on our near-black ground (edges
-stay hue-free dark; warmth from the warm materials + raking light). **No brass apparatus, no bell
-jars, no vitrines** — the parts speak for themselves, laid out.
+### Mood, NOT mechanical uniformity (founder correction, 2026-07-06)
+
+The family coheres by **atmosphere**, never by "same table, same light" — that reads sterile and
+kills Le Labo's soul (founder: 太單調, 完全不符合那個香水品牌的性格). Le Labo's own photography is
+**analog, distressed (做舊), light-leaked, human**: warm film grain, **an artisan's hand — often
+tattooed — caught mid-motion placing a part**, imperfect focus, a corner over-exposed, a moment
+in-between (even a little blur is fine), sometimes an insect crossing the frame. Vary everything
+except the mood:
+- **Surfaces** (rotate, don't repeat): dark walnut · aged distressed linen · a surgical steel
+  tray · a petri dish / lab capsule · mid-transport (being carried/arranged) · a film-still of a
+  memory-keeper's archive.
+- **The device is still deconstructed** and its parts laid out — but by a HAND, in progress, not a
+  rigid perfect grid; a caught moment beats a clinical knoll.
+- **Light**: warm leaks / flares welcome; expired-film palette; shallow, imperfect focus.
+The through-line is warmth + craft + patina + a lived-in human atmosphere — the plate is still the
+WARM element that drops into our COLD night interface, just alive instead of embalmed.
 
 ## Register (read first — the honesty boundary)
 
 These are **brand plates**, the scrunch commissioned-cover register — NOT evidence. Admissible
-*only* as a clearly-artistic specimen family, never a capture of something real (no screenshots,
-faces, briefs, numbers, client work — real-only, rules 4/5/10 in `assets.md`). Two hard lines:
+*only* as clearly-artistic mood photography, never a capture of something real (no screenshots,
+briefs, numbers, client work — real-only, rules 4/5/10 in `assets.md`). Three lines:
 - **Generic, unbranded devices only** — never a literal AirPod/branded gadget (no Apple etc.),
-  never a mark or logo (already in the negatives). The device is an *archetype* ("a wireless
-  earbud", "a bare module"), so it reads as a studied specimen, not a Reserve product and not a
-  borrowed brand.
-- **It must read as a specimen teardown / documentary flat-lay, never a clean product render.** A
-  candidate that looks like a slick product mockup or a marketing hero shot is rejected even if it
-  passes the colour gate — that's a human call the sampler can't make.
+  never a mark or logo. The device is an *archetype*, so it reads as a studied specimen, not a
+  Reserve product and not a borrowed brand.
+- **Hands OK, faces not.** An anonymous artisan's hand (tattoos welcome) is atmosphere/craft, not
+  identity — allowed and encouraged. **No faces** (faces are real-only, rule 4).
+- **It must read as craft/documentary mood, never a clean product render.** A slick product mockup
+  or marketing hero shot is rejected even if the gate passes — a human call the sampler can't make.
 
-> **Gate note (flat-lay, v2 — retuned 2026-07-06 on the first real plate):** the gate now enforces
-> a **dark, warm-consistent GROUND** (corners dark + no cold cast — a dark walnut/graphite surface
-> passes; a cold blue/grey ground fails) + **one warm centre family** (warm-share ≥80%, hue 15–50°).
-> The old "near-black zero-chroma corners" rule was for the abandoned object-on-night-seamless idea
-> and wrongly failed a correct warm-wood flat-lay; the principle is unchanged (dark ground, one warm
-> family, no cold cast). Ryvn's first earbud teardown passes clean (warm-share 99%, hue 26°).
+> **Gate note (v3 — loosened for mood/variety, 2026-07-06):** since the family now varies surface
+> and atmosphere by design (steel trays, petri dishes, light leaks, over-exposure), the gate is a
+> **light guardrail, not a straitjacket** — it hard-fails only the one thing that truly clashes with
+> our warm-on-night system: a **dominant cold cast** (lots of colour, mostly cold-hued). It WARNS on
+> a bright overall tone (may not sit on night) but does not fail it, and it reports warmth/tonality
+> for the founder's eye. **Curation is the founder's** — the gate just flags the incompatible.
 
 ## The style constants — paste into EVERY prompt
 
-> overhead documentary flat-lay photograph, a single unbranded contemporary electronic device
-> fully DISASSEMBLED into all its small components, each part laid out separately in a neat ordered
-> grid (knolling / exploded teardown), catalogued like a specimen. Surface: a dark, warm-lit
-> matte plane (dark walnut / graphite / slate), hue-free near-black at the edges. Soft warm raking
-> light from the upper-left, gentle falloff; soft natural contact shadows under each part; no hard
-> drop shadow, no rim light, no glow, no reflective floor. Material palette is a single muted warm
-> family — warm dark wood, aged metal, gold circuit traces, copper, unbleached linen — the colour
-> living in the warm materials and light; the plastic/white parts stay cool neutral. Real, tactile,
-> editorial, material — the exact warm documentary photographic texture of Le Labo's own ingredient
-> flat-lays. Calm, still, archival. Medium-format, 100mm, f8, even warm light.
+> grainy analog film photograph, shot on expired 35mm, warm light leaks streaking across the frame
+> — a single unbranded contemporary electronic device partly DISASSEMBLED into its components, laid
+> out by hand as if being catalogued, often with **a tattooed artisan's hand caught mid-motion**
+> placing a part. Surface varies per shot (dark walnut / aged distressed linen / a surgical steel
+> tray / a petri dish / mid-transport), the ground deep and shadowed at the edges. Warm imperfect
+> light, soft shallow focus (some parts sharp, some blurred), a caught in-between moment, one corner
+> slightly over-exposed. Warm patina, tactile, lived-in, atmospheric — the exact craft-documentary
+> mood of Le Labo's own ingredient photography, a human hand at work. The warm materials + light
+> carry the colour; pale/silver parts stay cool. no faces, no brand logos, no text, no UI, no
+> screens, no neon.
 
-Midjourney tail (append): `--style raw --ar 1:1 --no text, letters, logos, labels, brand marks, screens, UI, people, hands, faces, neon, glow, bright colors --v 6`
-For other models: put the NEGATIVES (`no text / letters / logos / brand marks / screens / UI /
-people / faces / neon / glow / bright colors`) in the negative-prompt field.
+Midjourney tail (append): `--ar 1:1 --style raw --no faces, brand logos, text, letters, UI, screens, neon, plastic product render --v 6`
+For other models: NEGATIVES (`no faces / brand logos / text / UI / screens / neon / slick product
+render`) in the negative-prompt field. **Note: hands are NOW ALLOWED** (removed from negatives) —
+warm light leaks / over-exposure / blur / grain are wanted, not banned. Vary the surface & the hand
+gesture across the family; do NOT repeat the same setup twice.
 
 ## The subjects — one DECONSTRUCTED device flat-lay per slot (candidates; founder may swap)
 

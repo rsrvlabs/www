@@ -1,49 +1,39 @@
 #!/usr/bin/env python3
 """
-specimen-gate.py — deterministic acceptance gate for the specimen plate family
-(design-refs/assets.md §5, design-refs/specimen-prompts.md). Run EVERY candidate
-through this before it goes near the site; reject family-breakers first.
+specimen-gate.py — LIGHT guardrail for the specimen plate family
+(design-refs/assets.md §5, design-refs/specimen-prompts.md).
 
-The family (founder-locked 2026-07-06) = a contemporary/future device DECONSTRUCTED
-and laid out flat, Le Labo ingredient-flat-lay style, shot with warm documentary
-texture on a DARK warm-lit surface — a warm photographic tile that drops into our
-cold night interface (Le Labo's law: warmth in the photo, interface stays cold).
+The family (founder-locked 2026-07-06) = contemporary/future devices DECONSTRUCTED
+and shot in Le Labo's warm analog craft-documentary mood — light leaks, distressed
+surfaces, a tattooed artisan's hand at work, film grain, imperfect focus. The family
+coheres by ATMOSPHERE, not by a fixed table/light, so surfaces and composition vary
+on purpose (walnut / aged linen / surgical steel tray / petri dish / mid-transport).
 
-Two things keep the family reading as one system:
-  1. DARK, warm-consistent GROUND — the plate sits on night, and the surface must
-     not carry a cold cast that would clash with the neutral night UI.
-     → 4 corner blocks: mean value <= 42% (dark) AND not cold (no saturated
-       blue/green ground; if a corner is saturated its hue must be warm 10–60°).
-  2. WARMTH is one amber/kraft/brass/copper family — no stray cold casts.
-     → center crop: >=80% of saturated pixels fall in hue 15–50°.
+Because variety is the point, this is a GUARDRAIL, not a straitjacket. Curation is
+the founder's eye. The gate hard-fails only the one thing that truly clashes with our
+warm-on-cold-night system — a **dominant cold cast** — and merely WARNS on a bright
+overall tone. Everything else PASSES, with warmth/tonality reported for the eye.
 
-(v2 2026-07-06: retuned from "warm object on a zero-chroma near-BLACK seamless" to
-"warm documentary flat-lay on a dark warm surface" after the founder chose the Le
-Labo deconstructed-flat-lay execution over the brass-vitrine idea. The old corner
-rule demanded sat<=3% near-black corners; a dark walnut surface is warm-brown, so
-that rule wrongly failed a correct plate. The principle is unchanged — dark ground,
-one warm family, no cold cast — the thresholds now fit the flat-lay.)
+(v3 2026-07-06: loosened from the v2 "dark warm-consistent ground + warm-share ≥80%"
+rule after the founder rejected mechanical uniformity — steel trays, petri dishes,
+light leaks and over-exposure are now wanted, and the old rule would fail them.)
 
 Usage:
   python scripts/specimen-gate.py <image> [<image> ...]
   python scripts/specimen-gate.py path/to/candidates/      # a directory
   python scripts/specimen-gate.py --json <image>           # machine-readable
 
-Exit code 0 if ALL pass, 1 if any fail (scriptable). Pillow only.
+Exit code 0 unless a HARD fail (dominant cold cast). Pillow only.
 """
 import sys, os, json, colorsys, statistics
 
-# ── gate thresholds (design-refs/assets.md §5, v2 flat-lay) ───────────────────
-CORNER_FRAC     = 0.10   # corner block = 10% of the short edge
-GROUND_VAL_MAX  = 0.42   # corners must be a DARK surface (value <= this)
-GROUND_COLD_SAT = 0.06   # above this a corner counts as "coloured" ground…
-GROUND_WARM_LO  = 10     # …and then its hue must be warm (else it's a cold cast)
-GROUND_WARM_HI  = 60
-CENTER_FRAC     = 0.60   # central crop side = 60% of the short edge
-SAT_FLOOR       = 0.10   # a pixel counts as "coloured" above this saturation
-WARM_LO, WARM_HI = 15, 50  # amber/kraft/brass/copper hue window (deg)
-WARM_SHARE_MIN  = 0.80   # >=80% of coloured centre pixels must be warm
-STEP            = 3      # pixel sampling stride (speed)
+# ── thresholds (v3 guardrail) ─────────────────────────────────────────────────
+SAT_FLOOR      = 0.10   # a pixel counts as "coloured" above this saturation
+WARM_LO, WARM_HI = 12, 55  # amber/kraft/brass/copper/gold hue window (deg)
+COLD_FAIL_COLORED = 0.12   # if >this fraction of the frame is coloured…
+COLD_FAIL_WARM    = 0.35   # …and warm-share is below this → dominant cold cast (FAIL)
+BRIGHT_WARN_VAL   = 0.60   # mean value above this → WARN (may not sit on night)
+STEP           = 4       # pixel sampling stride (speed)
 
 
 def _hsv(px):
@@ -52,70 +42,42 @@ def _hsv(px):
     return h * 360, s, v
 
 
-def _corner(px, x0, y0, s):
-    sats, vals, hues = [], [], []
-    for x in range(x0, x0 + s, STEP):
-        for y in range(y0, y0 + s, STEP):
-            h, sat, v = _hsv(px[x, y])
-            sats.append(sat); vals.append(v)
-            if sat > GROUND_COLD_SAT:
-                hues.append(h)
-    mean_sat = sum(sats) / len(sats)
-    mean_val = sum(vals) / len(vals)
-    med_hue = statistics.median(hues) if hues else None
-    is_dark = mean_val <= GROUND_VAL_MAX
-    is_cold = (mean_sat > GROUND_COLD_SAT and med_hue is not None
-               and not (GROUND_WARM_LO <= med_hue <= GROUND_WARM_HI))
-    return {"sat": mean_sat, "val": mean_val, "hue": med_hue,
-            "dark": is_dark, "cold": is_cold}
-
-
 def evaluate(path):
     from PIL import Image
     im = Image.open(path).convert("RGB")
     W, H = im.size
     px = im.load()
-    short = min(W, H)
-    cs = max(24, int(short * CORNER_FRAC))
 
-    corners = {
-        "TL": _corner(px, 0, 0, cs),
-        "TR": _corner(px, W - cs, 0, cs),
-        "BL": _corner(px, 0, H - cs, cs),
-        "BR": _corner(px, W - cs, H - cs, cs),
-    }
-    ground_ok = all(c["dark"] and not c["cold"] for c in corners.values())
-
-    cc = int(short * CENTER_FRAC)
-    cx0, cy0 = (W - cc) // 2, (H - cc) // 2
-    warm = colored = 0
-    hues, allsat = [], []
-    for x in range(cx0, cx0 + cc, STEP):
-        for y in range(cy0, cy0 + cc, STEP):
-            h, s, _ = _hsv(px[x, y])
-            allsat.append(s)
+    n = warm = colored = 0
+    vals, hues = [], []
+    for x in range(0, W, STEP):
+        for y in range(0, H, STEP):
+            h, s, v = _hsv(px[x, y])
+            n += 1
+            vals.append(v)
             if s > SAT_FLOOR:
                 colored += 1
                 hues.append(h)
                 if WARM_LO <= h <= WARM_HI:
                     warm += 1
-    warm_share = (warm / colored) if colored else 0.0
-    mean_sat = (sum(allsat) / len(allsat)) if allsat else 0.0
+    colored_frac = colored / n if n else 0.0
+    warm_share = warm / colored if colored else 1.0
+    mean_val = sum(vals) / len(vals) if vals else 0.0
     med_hue = statistics.median(hues) if hues else None
-    warm_ok = warm_share >= WARM_SHARE_MIN
-    passed = ground_ok and warm_ok
+
+    cold_cast = colored_frac > COLD_FAIL_COLORED and warm_share < COLD_FAIL_WARM
+    bright = mean_val > BRIGHT_WARN_VAL
+    passed = not cold_cast  # only a dominant cold cast hard-fails
 
     return {
         "file": os.path.basename(path),
         "pass": passed,
-        "ground_ok": ground_ok,
-        "warm_ok": warm_ok,
+        "cold_cast": cold_cast,
+        "bright_warn": bright,
         "warm_share": round(warm_share, 3),
+        "colored_frac": round(colored_frac, 3),
         "median_hue": None if med_hue is None else round(med_hue),
-        "mean_sat": round(mean_sat, 3),
-        "corners": {k: {"val": round(v["val"] * 255), "sat": round(v["sat"], 3),
-                        "dark": v["dark"], "cold": v["cold"]}
-                    for k, v in corners.items()},
+        "mean_val": round(mean_val, 3),
         "size": [W, H],
     }
 
@@ -143,21 +105,15 @@ def main(argv):
     else:
         for r in results:
             tag = "PASS" if r["pass"] else "FAIL"
-            reasons = []
-            if not r["ground_ok"]:
-                bad = [k for k, c in r["corners"].items() if not c["dark"] or c["cold"]]
-                why = []
-                if any(not r["corners"][k]["dark"] for k in bad):
-                    why.append("ground not dark")
-                if any(r["corners"][k]["cold"] for k in bad):
-                    why.append("cold cast in ground")
-                reasons.append("/".join(why) + f" ({','.join(bad)})")
-            if not r["warm_ok"]:
-                reasons.append(f"warm-share {r['warm_share']:.0%} < {WARM_SHARE_MIN:.0%}")
-            detail = ("  — " + "; ".join(reasons)) if reasons else ""
+            notes = []
+            if r["cold_cast"]:
+                notes.append(f"dominant COLD cast (warm-share {r['warm_share']:.0%})")
+            if r["bright_warn"]:
+                notes.append(f"⚠ bright (mean {r['mean_val']:.0%} — may not sit on night)")
+            detail = ("  — " + "; ".join(notes)) if notes else ""
             print(f"[{tag}] {r['file']}  "
                   f"warm-share={r['warm_share']:.0%} hue={r['median_hue']}° "
-                  f"sat={r['mean_sat']:.0%}{detail}")
+                  f"tone={r['mean_val']:.0%}{detail}")
     return 0 if all(r["pass"] for r in results) else 1
 
 
