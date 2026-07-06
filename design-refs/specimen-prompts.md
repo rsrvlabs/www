@@ -5,16 +5,24 @@ Finalized, paste-ready image-generation prompts for the **specimen plate family*
 `scripts/specimen-gate.py` mechanically rejects any that break the family, and the founder
 curates one per slot from the passers. Model-agnostic wording + Midjourney flag hints.
 
-## The thesis (founder, 2026-07-06): **treat very modern things as if they were antiques**
+## The thesis (founder, 2026-07-06): **future archaeology** — today's devices, seen from the future as relics
 
-The specimen family = **contemporary / near-future devices presented as rare ANTIQUE
-scientific specimens** — a generic unbranded gadget held, clamped, wired and jarred by aged
-brass-and-amber-glass laboratory apparatus, catalogued with museum reverence. The uncanny
-displacement of time (a today device studied like a Victorian relic) is the concept; it is the
-*Black Mirror* register (our own devices dissected and observed) crossed with Le Labo's
-apothecary treatment. The **warm apparatus** (patinated brass, amber glass, aged linen) carries
-the colour budget and passes the gate; the **cool, near-white device** stays the neutral subject
-under study — that cold/warm contrast IS the family.
+The point is **未來感 (a sense of the future), reached by retrospection**: stand the viewer in a
+future that looks back on *our* present, where an everyday device of the early 21st century (an
+AirPod, an earbud) has become a **precious, catalogued specimen** — excavated, preserved, and
+displayed with the reverence a museum gives an ancient artifact. NOT Victorian/steampunk-past
+(that reads backward); the mood is a **future archive**. The uncanny is the mismatch — a mundane
+today-gadget treated as a treasure — which makes the mind jump to the future where it *is* rare.
+This is the *Black Mirror* register (our own objects observed) crossed with Le Labo's apothecary
+treatment.
+
+Two things make it read right AND pass the gate:
+- The device must be **recognisably a device of today** (clear present-day silhouette), so the
+  viewer clocks "that's our stuff, as a relic."
+- The warmth = **the patina of elapsed time** on the preserved object + a **warm amber-glass
+  vitrine / brass specimen mount** under **warm archival light** — timeless, not ornate. The
+  aging *is* the future-signal and the colour budget at once; the device itself stays cool and
+  near-neutral, faintly warmed by age.
 
 ## Register (read first — the honesty boundary)
 
@@ -31,18 +39,19 @@ faces, briefs, numbers, client work — real-only, rules 4/5/10 in `assets.md`).
 
 ## The style constants — paste into EVERY prompt
 
-> archival studio photograph of a single small **modern electronic device presented as a rare
-> ANTIQUE scientific specimen**. The device is generic and unbranded, matte and pale, held or
-> clamped or wired by aged brass laboratory apparatus — a patinated retort stand, fine copper
-> electrode wires, a blank engraved brass label plate, aged glass (a bell jar or a glass slide).
-> Dead-centre, front-on at eye level, filling ~60% of the frame height. Background: a uniform
-> seamless sweep of cold near-black charcoal, completely hue-free (neutral grey-black, no blue,
-> no brown). One soft directional key light from the upper-left with a gentle falloff to the
-> lower-right; a soft natural contact shadow directly under the object; no hard drop shadow, no
-> rim light, no glow, no reflective floor. Material palette is a single muted warm family — aged
-> brass, amber glass, patina, unbleached linen — desaturated and matte, the colour living only in
-> the apparatus (never a bright or orange cast); the device itself stays cool near-white and
-> neutral. Calm, still, museum/archival. Medium-format, 100mm, f8, even museum lighting.
+> archival studio photograph of a single **recognisable present-day electronic device (an
+> unbranded wireless earbud), displayed as a precious future-archaeology specimen** — as it would
+> be catalogued centuries from now: excavated, preserved, mounted on a brass specimen pin inside a
+> warm amber-glass vitrine, the faint patina of elapsed time on it, a blank engraved brass label
+> plate beneath. Dead-centre, front-on at eye level, filling ~60% of the frame height. Background:
+> a uniform seamless sweep of cold near-black charcoal, completely hue-free (neutral grey-black,
+> no blue, no brown). One soft directional key light from the upper-left with a gentle falloff to
+> the lower-right; a soft natural contact shadow directly under the object; no hard drop shadow,
+> no rim light, no glow, no reflective floor. Material palette is a single muted warm family —
+> aged brass, amber glass, warm patina, unbleached linen — desaturated and matte, the colour
+> living in the vitrine/mount and the object's age (never a bright or orange cast); the device
+> stays cool near-white, only faintly warmed by time. Calm, still, reverent, museum/archival.
+> Medium-format, 100mm, f8, even warm archival light.
 
 Midjourney tail (append): `--style raw --ar 1:1 --no text, letters, logos, labels, brand marks, screens, UI, people, hands, faces, neon, glow, bright colors --v 6`
 For other models: put the NEGATIVES (`no text / letters / logos / brand marks / screens / UI /
