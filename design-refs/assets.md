@@ -247,6 +247,14 @@ room hardware — things that could plausibly sit on our shelf; never a fake pro
   saturated pixels; reject anything that fails before the founder even sees it. (If we run the
   gate twice, it becomes a skill.)
 
+> **Now executable (2026-07-06, founder chose path Ⓑ = photographic realism, founder-curated):**
+> finalized paste-ready prompts → **`design-refs/specimen-prompts.md`**; the acceptance gate is
+> a CLI → **`scripts/specimen-gate.py`** (`python scripts/specimen-gate.py <img|dir>`, exit 0
+> only if all pass). Founder generates + curates; the gate rejects family-breakers first; Issac
+> wires only gate-passing picks into the doors cells / subpage bands / Fermi PDP. Picks land in
+> `public/specimens/`. A code-generated interim plate exists (scratchpad proof, passes the gate)
+> if a slot must be filled before curation — but site law prefers type-only over filler.
+
 ---
 
 ## 6 · lelabofragrances.com — the specimen economy (fourth census, 2026-07-05)

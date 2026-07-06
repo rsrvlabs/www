@@ -60,4 +60,9 @@ Package manager: **pnpm**.
   needed, store them outside the repo.) Site assets under `public/` are fine to commit; the current
   `public/materials/*.jpg` set is slated for a design refresh (see the design-revamp ticket).
 - **Design changes follow `DESIGN.md`** — don't invent ad-hoc colors/typography; extend the tokens.
+- **Specimen assets (night-apothecary family)** follow the pipeline: prompts in
+  `design-refs/specimen-prompts.md` → founder generates + curates → EVERY candidate must pass
+  `python scripts/specimen-gate.py <img|dir>` (the deterministic §5 gate) → picks land in
+  `public/specimens/` → wire atop the doors/subpage `SpecRow`. No un-gated plate ships; no
+  filler over honest emptiness.
 - Chinese content OK; code/comments/docs in English.
