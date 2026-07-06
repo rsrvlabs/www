@@ -196,21 +196,25 @@ deleted** (they have none — `sun` would survive only as rare ink, or die). Imp
 No recommendation recorded here beyond the founder's stated lean: **A-first, pending the
 founder meeting.**
 
-## Already adopted in www (PATH A — BLACK APOTHECARY round, 2026-07-05)
+## Already adopted in www (PATH A — BLACK APOTHECARY round 2026-07-05, SPECIMEN PROPAGATION 2026-07-06)
 
-**Spec-label card anatomy** (§7.1 — partial: landing doors lattice cells end in a hairline +
-mono spec row of honest machine facts; flagship's spec row doubles as its action row with
-`enter →` right; subpage PunchSurface entries NOT yet converted) · **personalization line**
+**Spec-label card anatomy** (§7.1 — **now full**: landing doors lattice cells AND the subpage
+PunchSurface entries end in a solid `night-line` hairline + mono spec row of honest machine
+facts; the flagship/featured spec row doubles as its action row with a still `enter →` /
+`read the first essay →` right. Shared `site/spec-row.tsx` factors the recipe so landing +
+subpage read as one system; doors left untouched, founder-gated) · **personalization line**
 (§7.3 — the invitation's `for: [___]` mono input feeds the mailto subject; no char counter,
 restraint call) · **silk deleted** (§7.4 — founder debt #1 resolved as delete; hero is pure
 night + grid-paper, which stays as *information*, the lattice) · **hover stillness** (§7.5 —
 all hover translate/tilt removed site-wide, hover = underline/color/surface step only; now a
 DESIGN.md motion rule) · **lowercase-mono utility links** (§7.6 — `.label-mono` register:
 `enter →` / `← back to the studio` / `← all research` / `read the first essay →`; uppercase
-`.kicker` stays the machine plate). **Not yet / open:** uniform inventory density (§7.2 —
+`.kicker` stays the machine plate) · **label-scale subpage display** (§7.7 — the 7.4rem display
+concept is landing-only; subpage/product/blog heroes dropped to ~3.5rem label-scale, codified as
+the DESIGN.md "Title register" rule). **Not yet / open:** uniform inventory density (§7.2 —
 flagship still spans the full row; founder-meeting item) · stamp-logo bespoke identity
-artifact (§7.4) · label-scale subpage display (§7.7) · PATH B entirely (gated on the
-materials re-shoot).
+artifact (§7.4) · specimen PHOTOGRAPHY plates (no real assets exist — plate slot stays
+type-only until founder-curated) · PATH B entirely (gated on the materials re-shoot).
 
 ## Method / provenance
 

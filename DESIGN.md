@@ -64,6 +64,25 @@ removed entirely at Step 3 (the section is now pure code-generated structure).
 
 Rule: if a string is *about* the content (metadata), it's mono. If it *is* the content, serif.
 
+### Title register — display is a place, not a default (the "26px lesson", lelabo §7.7)
+
+Le Labo's biggest type is **26px** — identity comes from the label grammar, not display size
+(design-refs/lelabo.md §3, §7.7). We keep a display moment because our register is concept-site,
+not commerce — but it is a *place*, not a default. **One display beat on the whole site: the
+landing arrival.** Everything past the front door drops to **label-scale** — titles that inform,
+not perform. The scale ladder (caps; all Gambarino wt400, tight leading):
+
+| Register | Where | Clamp cap |
+|---|---|---|
+| **Display concept** | landing arrival hero ONLY (+ the landing doors flagship cell, founder-gated) | 7.4rem / 4.6rem |
+| **Label-scale hero** | every subpage/product/blog hero H1 (`/sw /labs /frontiers /research /effects`, the essay) | **~3.5rem** |
+| **Lead-card title** | a prominent inventory lead (e.g. the `/research` featured series) | ~2.6rem |
+| **Specimen title** | Entry cards, list rows | ~2rem |
+
+Rule: a subpage hero is **≥2× smaller than the landing hero** — if a product page's title
+competes with the arrival, it is too big. Display-scale is earned by the concept frame; product
+surfaces are a stockroom shelf, labelled, not a showroom.
+
 ## Color rules
 
 - **No pure white / pure black anywhere** (scrunch's "expensive" trick; our OKLCH tokens already
@@ -378,6 +397,46 @@ accents; FK Screamer condensed display. Techniques adopted into our rules:
   house pair (`[0.22, 1, 0.36, 1]`) as each section is revamped — don't batch-churn them.
   (Done for weather at Step 3, places at Step 4, note + invitation at Step 5. Still legacy:
   arrival char-cascade, wordmark, arrival-veil.)
+- **2026-07-06 — SPECIMEN GRAMMAR PROPAGATION round SHIPPED** (lelabo PATH A §7.1 + §7.7;
+  structural, no new assets, no founder-gated items):
+  **(1) Subpage entries wear the doors label-block anatomy** (closes the "PunchSurface entries
+  NOT yet converted" flag, lelabo.md §7.1/§Already-adopted): the `Entry` component
+  (`site/subpage.tsx`) rebuilt from a generic 12-col `tag | title+blurb` grid into a vertical
+  specimen block — eyebrow tag → serif TITLE → support line → **mono SPEC ROW** behind a solid
+  `night-line` hairline (`enter →` action row only when the entry navigates somewhere real; no
+  current entry does, so the row is a supported-but-unused slot — no fake affordance). A shared
+  **`site/spec-row.tsx`** (`SpecRow`) factors doors' exact recipe (spec-only = 2×2-cell
+  `mt-auto pt-8` + `border-t night-line pt-4`; `+action` = the flagship combined row, facts left
+  / still utility link right) and is reused by the subpage entries + the `/research` featured
+  card, so the landing lattice and the subpage inventory read as ONE system. **Doors left byte-
+  for-byte untouched** (founder-gated file — SpecRow mirrors its recipe rather than refactoring
+  it). Two hairline grammars kept distinct by ROLE, documented in the component: dashed =
+  list-flow separator BETWEEN specimens; solid `night-line` = the machine label-rule WITHIN one
+  specimen.
+  **(2) Spec-row data derived HONESTLY from each page's own on-page copy** (the black-apothecary
+  self-propagating discipline): per entry — /sw `signature · bluetooth · co-presence` ·
+  `wearable · no app · no screen` · `biosignal · heart-rate · matching signal`; /labs
+  `live · us-equities · daily 08:00` · `experimental · advisor · reasoning + uncertainty` ·
+  `exploring · beauty tech`; /frontiers `in production · travel · rank + respond` ·
+  `in production · golf · computer vision` · `in production · health · wearables` ·
+  `in production · legal · documents`; /effects `shipped · production systems` ·
+  `compounding · retention · words pending` (honest absence — testimonials not fabricated);
+  /research featured `series 01 · 1 published · 2 in progress`. Status fields come from the IA
+  table (Fermi LIVE / Feynman EXPERIMENTAL / Glow EXPLORING) or explicit copy; registers/
+  quantities are distilled from the blurbs; where no honest quantity exists the row stays a
+  2-field register descriptor (sparse, fashion-house copy law). The research POST invents NO
+  spec — its scrunch MetaBar (`Series 01 · Essay 01 · Published 07.2026`) already IS its honest
+  machine label.
+  **(3) Title register systematized (the "26px lesson", new rule above):** the 7.4rem display
+  concept is now landing-only; subpage/product/blog hero H1s dropped 5.5rem/4.8rem →
+  **label-scale ~3.5rem** (`/sw /labs /frontiers /research /effects` + the essay), the /research
+  featured lead 3.6rem → ~2.6rem, Entry titles 2.2rem → ~2rem — a coherent ladder, every subpage
+  hero now ≥2× under the arrival. `StatusTag` gained `self-start` so the tag stays content-width
+  in the new flex column.
+  **(4) Consistency:** existing tokens only (`.label-mono`, `.kicker`, `border-night-line`,
+  night/paper/sun); no new colors, no new easings, no new assets. Specimen PHOTOGRAPHY plates
+  deliberately absent (no real assets exist — type-only until founder-curated). Doors
+  flagship-spans-full-row / size hierarchy untouched (founder-meeting item).
 - **Remaining founder debts (review of 2026-07-04):** **#1** hero silk — **CLOSED 2026-07-05**
   (resolved as *delete* per lelabo PATH A, BLACK APOTHECARY round above; the graphite recolor
   was interim by design) · **#2** tracked in the founder review (not restated here) · **#3**
