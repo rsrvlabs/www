@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SubpageHeader, MetaBar, CtaBand } from "@/components/site/subpage";
 import { PunchSurface } from "@/components/site/punch-card";
+import { SpecRow } from "@/components/site/spec-row";
 
 export const metadata: Metadata = {
   title: "Reserve Research — notes on running an AI-native company",
@@ -50,7 +51,9 @@ export default function ResearchPage() {
       />
       <SubpageHeader index="Q" label="Research" current="/research" />
       <div className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
-        <h1 className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-paper">
+        {/* Label-scale hero (DESIGN.md title register): informational, well
+            under the landing 7.4rem display concept. */}
+        <h1 className="font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-paper">
           One studio. One brain. Agents with jobs.
         </h1>
         <MetaBar items={["Q — Research", "Reserve", "EST. MMXXIV"]} />
@@ -63,11 +66,13 @@ export default function ResearchPage() {
         {/* Featured — the series, wide */}
         <div className="hairline-dashed-night mt-14 pt-10">
           <PunchSurface className="-mx-5 p-5">
-            <Link href="/research/ai-native-company" className="block">
+            <Link href="/research/ai-native-company" className="flex flex-col">
               <span className="kicker text-paper/50">
                 Series 01 · First essay published
               </span>
-              <span className="mt-4 block font-display text-[clamp(2rem,4.5vw,3.6rem)] leading-[1.08] tracking-[-0.015em] text-paper">
+              {/* Lead card title (DESIGN.md title register): a notch below the
+                  page hero, clearly above the specimen entries. */}
+              <span className="mt-4 block font-display text-[clamp(1.75rem,3.2vw,2.6rem)] leading-[1.1] tracking-[-0.015em] text-paper">
                 <span className="link-underline">The AI-native company</span>
               </span>
               <span className="mt-4 block max-w-[58ch] font-sans text-[0.92rem] leading-[1.75] text-paper/70">
@@ -75,10 +80,13 @@ export default function ResearchPage() {
                 the meeting? Essays from inside the experiment — written as we
                 learn, not after we&apos;ve won.
               </span>
-              {/* Lowercase mono utility link, still on hover (lelabo) */}
-              <span aria-hidden className="label-mono mt-6 inline-block text-paper/45">
-                read the first essay →
-              </span>
+              {/* Le Labo spec row (design-refs/lelabo §4): honest series facts
+                  LEFT, still utility link RIGHT — same recipe as the doors
+                  flagship, so landing + research read as one system. */}
+              <SpecRow
+                spec="series 01 · 1 published · 2 in progress"
+                action="read the first essay →"
+              />
             </Link>
           </PunchSurface>
         </div>

@@ -25,8 +25,13 @@ export default function AiNativeCompanyEssay() {
       <SubpageHeader index="Q" label="Research" current="/research" />
       <article className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
         {/* wide → narrow funnel: metadata bar → H1 → body snaps to 850px */}
+        {/* The MetaBar IS this post's honest spec row (scrunch metadata bar =
+            the essay's machine label: Series · Essay · Published date) — no
+            fabricated reading-metric is invented to force a card spec here. */}
         <MetaBar items={["Series 01 · Essay 01", "Reserve", "Published 07.2026"]} />
-        <h1 className="mt-8 max-w-[14ch] font-display text-[clamp(2.6rem,6vw,4.8rem)] leading-[1.04] tracking-[-0.02em] text-paper">
+        {/* Label-scale hero (DESIGN.md title register): editorial H1 informs,
+            not performs — well under the landing 7.4rem display concept. */}
+        <h1 className="mt-8 max-w-[16ch] font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.015em] text-paper">
           The AI-native company
         </h1>
 
