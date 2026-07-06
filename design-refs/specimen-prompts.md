@@ -5,24 +5,25 @@ Finalized, paste-ready image-generation prompts for the **specimen plate family*
 `scripts/specimen-gate.py` mechanically rejects any that break the family, and the founder
 curates one per slot from the passers. Model-agnostic wording + Midjourney flag hints.
 
-## The thesis (founder, 2026-07-06): **future archaeology** — today's devices, seen from the future as relics
+## The thesis (founder, 2026-07-06): **DECONSTRUCTED devices laid out like Le Labo — future specimens**
 
-The point is **未來感 (a sense of the future), reached by retrospection**: stand the viewer in a
-future that looks back on *our* present, where an everyday device of the early 21st century (an
-AirPod, an earbud) has become a **precious, catalogued specimen** — excavated, preserved, and
-displayed with the reverence a museum gives an ancient artifact. NOT Victorian/steampunk-past
-(that reads backward); the mood is a **future archive**. The uncanny is the mismatch — a mundane
-today-gadget treated as a treasure — which makes the mind jump to the future where it *is* rare.
-This is the *Black Mirror* register (our own objects observed) crossed with Le Labo's apothecary
-treatment.
+Concept = still **未來感 by retrospection** (today's devices / *Black Mirror* gadgets as future
+specimens). EXECUTION = Le Labo's own move, NOT antique cliché — the founder rejected the brass
+bell-jar / vitrine ("古銅罩是傳統表達古董的老套手法"). Take the device **fully apart** and **lay
+its components out flat on a surface** — knolling / an exploded teardown — exactly as Le Labo
+lays out its raw ingredients, and shoot it with **the same warm documentary photographic texture
+as lelabofragrances.com** (real, material, editorial, tactile — `design-refs/lelabo.md`). The
+device dissected into a neat catalogue of parts IS the specimen: the deconstruction reads
+"studied / preserved," the modern components read "future."
 
-Two things make it read right AND pass the gate:
-- The device must be **recognisably a device of today** (clear present-day silhouette), so the
-  viewer clocks "that's our stuff, as a relic."
-- The warmth = **the patina of elapsed time** on the preserved object + a **warm amber-glass
-  vitrine / brass specimen mount** under **warm archival light** — timeless, not ornate. The
-  aging *is* the future-signal and the colour budget at once; the device itself stays cool and
-  near-neutral, faintly warmed by age.
+Fits our own teardown law — **Le Labo's warmth lives 100% in the photography, the interface stays
+cold** (`assets.md` §6). The specimen plate is a WARM documentary flat-lay that drops into our
+COLD night interface: the plate is the warm element, Le Labo's mechanism on our night ground.
+
+Ground: shoot the flat-lay **overhead on a dark, warm-lit surface** (dark walnut / graphite /
+slate) — keeps Le Labo's documentary warmth AND sits seamless on our near-black ground (edges
+stay hue-free dark; warmth from the warm materials + raking light). **No brass apparatus, no bell
+jars, no vitrines** — the parts speak for themselves, laid out.
 
 ## Register (read first — the honesty boundary)
 
@@ -33,50 +34,53 @@ faces, briefs, numbers, client work — real-only, rules 4/5/10 in `assets.md`).
   never a mark or logo (already in the negatives). The device is an *archetype* ("a wireless
   earbud", "a bare module"), so it reads as a studied specimen, not a Reserve product and not a
   borrowed brand.
-- **It must read as a specimen/museum mount, never a clean product render.** A candidate that
-  looks like a slick product mockup is rejected even if it passes the colour gate — that's a
-  human call the sampler can't make.
+- **It must read as a specimen teardown / documentary flat-lay, never a clean product render.** A
+  candidate that looks like a slick product mockup or a marketing hero shot is rejected even if it
+  passes the colour gate — that's a human call the sampler can't make.
+
+> **Gate note (flat-lay):** the deterministic gate still enforces hue-free near-black EDGES and
+> one warm colour family, but a teardown has cool plastic/metal parts, so the center-warm-share
+> threshold may need a small retune once the first real plate lands — the principle holds (dark
+> hue-free ground, warmth carried by the warm materials + light), the exact % is tunable in
+> `scripts/specimen-gate.py`.
 
 ## The style constants — paste into EVERY prompt
 
-> archival studio photograph of a single **recognisable present-day electronic device (an
-> unbranded wireless earbud), displayed as a precious future-archaeology specimen** — as it would
-> be catalogued centuries from now: excavated, preserved, mounted on a brass specimen pin inside a
-> warm amber-glass vitrine, the faint patina of elapsed time on it, a blank engraved brass label
-> plate beneath. Dead-centre, front-on at eye level, filling ~60% of the frame height. Background:
-> a uniform seamless sweep of cold near-black charcoal, completely hue-free (neutral grey-black,
-> no blue, no brown). One soft directional key light from the upper-left with a gentle falloff to
-> the lower-right; a soft natural contact shadow directly under the object; no hard drop shadow,
-> no rim light, no glow, no reflective floor. Material palette is a single muted warm family —
-> aged brass, amber glass, warm patina, unbleached linen — desaturated and matte, the colour
-> living in the vitrine/mount and the object's age (never a bright or orange cast); the device
-> stays cool near-white, only faintly warmed by time. Calm, still, reverent, museum/archival.
-> Medium-format, 100mm, f8, even warm archival light.
+> overhead documentary flat-lay photograph, a single unbranded contemporary electronic device
+> fully DISASSEMBLED into all its small components, each part laid out separately in a neat ordered
+> grid (knolling / exploded teardown), catalogued like a specimen. Surface: a dark, warm-lit
+> matte plane (dark walnut / graphite / slate), hue-free near-black at the edges. Soft warm raking
+> light from the upper-left, gentle falloff; soft natural contact shadows under each part; no hard
+> drop shadow, no rim light, no glow, no reflective floor. Material palette is a single muted warm
+> family — warm dark wood, aged metal, gold circuit traces, copper, unbleached linen — the colour
+> living in the warm materials and light; the plastic/white parts stay cool neutral. Real, tactile,
+> editorial, material — the exact warm documentary photographic texture of Le Labo's own ingredient
+> flat-lays. Calm, still, archival. Medium-format, 100mm, f8, even warm light.
 
 Midjourney tail (append): `--style raw --ar 1:1 --no text, letters, logos, labels, brand marks, screens, UI, people, hands, faces, neon, glow, bright colors --v 6`
 For other models: put the NEGATIVES (`no text / letters / logos / brand marks / screens / UI /
 people / faces / neon / glow / bright colors`) in the negative-prompt field.
 
-## The subjects — one device-as-antique-specimen per slot (candidates; founder may swap)
+## The subjects — one DECONSTRUCTED device flat-lay per slot (candidates; founder may swap)
 
-Each subject slots into the style constants above. The through-line is the **laboratory
-examination** — brass/glass apparatus studying a generic modern device. None is a fake Reserve
-product; each is an unbranded archetype under study.
+Each subject slots into the style constants above. The through-line is the **exploded teardown /
+knolling** — a generic modern device taken apart and laid out flat, Le Labo-ingredient style.
+None is a fake Reserve product; each is an unbranded archetype, dissected and catalogued.
 
 | Slot | Door / surface | Subject line to insert | Ratio / master |
 |---|---|---|---|
-| Doors cell — FLAGSHIP (SW) | biosignal wearable | **a single generic wireless earbud (unbranded, matte pale), clamped upright in a patinated brass stand, fine copper electrode wires attached to it as if its pulse is being measured** | 1:1, 1200² |
-| Doors cell — LABS (Fermi) | the desk that ships nightly | **a bare rectangular circuit module under an aged glass bell jar, a brass magnifier loupe resting beside it** | 1:1, 1200² |
-| Doors cell — FRONTIERS | forward-deployed field work | **a small matte sensor puck wired to a brass measuring instrument on a stand** | 1:1, 1200² |
-| Doors cell — RESEARCH | the writing | **a small data drive / silicon chip laid on the stage of a brass microscope under aged glass** | 1:1, 1200² |
-| Doors cell — EFFECTS | outcomes *(type-only until real words exist — generate only if the founder wants a plate)* | **three thin identical device cards laid in a lined brass specimen tray** | 1:1, 1200² |
-| Arrival / meta | the machine as specimen | **a single small unbranded module standing inside a tall aged-glass bell jar on a brass base** | 1:1, 1200² |
-| Subpage hero band — /sw | — | **the earbud, the brass stand and coiled copper electrodes laid out in a quiet examination row** | 3.8:1, 2000×528 |
-| Subpage hero band — /labs | — | **the bell-jar module, the loupe and a brass tool tray in a lab-bench row** | 3.8:1, 2000×528 |
-| Subpage hero band — /frontiers | — | **two matte sensor pucks wired to brass field instruments, laid parallel** | 3.8:1, 2000×528 |
-| Research covers | scrunch cover system | **a device on a brass microscope stage, three-quarter view** (one system; generate 3–4, keep consistent) | 3:2, 3000×2000 |
-| /labs Fermi PDP — main | product surface | **the bell-jar module, front-on** | 1:1, 1200² |
-| /labs Fermi PDP — thumbs ×3 | detail triptych | **(a) the brass clamp detail · (b) the electrode-wire junction · (c) the engraved blank brass label** — same setup, three macro views | 1:1, 600² each |
+| Doors cell — FLAGSHIP (SW) | biosignal wearable | **a wireless earbud fully taken apart — the two shell halves, speaker driver, battery cell, gold flex-circuit, copper coil, mesh, silicone tip — laid out in a neat grid** | 1:1, 1200² |
+| Doors cell — LABS (Fermi) | the desk that ships nightly | **a small server/compute module dismantled — the board with gold traces, heatsink, memory chips, connectors, screws — laid out in rows** | 1:1, 1200² |
+| Doors cell — FRONTIERS | forward-deployed field work | **a sensor device disassembled — housing, lens, PCB, antenna coil, cell — laid out flat** | 1:1, 1200² |
+| Doors cell — RESEARCH | the writing | **a solid-state drive taken apart — casing, board, gold-contact chips, controller — laid out in order** | 1:1, 1200² |
+| Doors cell — EFFECTS | outcomes *(type-only until real words exist — generate only if the founder wants a plate)* | **a smartwatch dismantled — screen, back, battery, board, band — laid out flat** | 1:1, 1200² |
+| Arrival / meta | the machine as specimen | **a small unbranded module fully exploded into every component, the most complete catalogue of parts, centred** | 1:1, 1200² |
+| Subpage hero band — /sw | — | **the earbud teardown parts spread in a single long row across the frame** | 3.8:1, 2000×528 |
+| Subpage hero band — /labs | — | **the compute-module parts spread in a long bench row** | 3.8:1, 2000×528 |
+| Subpage hero band — /frontiers | — | **the sensor parts spread in a long field-kit row** | 3.8:1, 2000×528 |
+| Research covers | scrunch cover system | **a device teardown flat-lay, tighter crop** (one system; generate 3–4, keep consistent) | 3:2, 3000×2000 |
+| /labs Fermi PDP — main | product surface | **the compute-module teardown, full grid, centred** | 1:1, 1200² |
+| /labs Fermi PDP — thumbs ×3 | detail triptych | **(a) the gold-trace board macro · (b) the connector cluster · (c) the loose screws + tool** — same teardown, three macro views | 1:1, 600² each |
 
 Aspect flags: `--ar 1:1` (cells/PDP), `--ar 40:11` ≈ 3.8:1 (hero bands), `--ar 3:2` (covers).
 
