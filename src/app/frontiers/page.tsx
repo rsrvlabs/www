@@ -24,21 +24,25 @@ export default function FrontiersPage() {
         tag="TRAVEL"
         title="Travel tech"
         blurb="Production AI inside a travel platform — the systems that decide, rank, and respond while the traveler is still typing."
+        spec="in production · travel · rank + respond"
       />
       <Entry
         tag="SPORTS CV"
         title="Golf, seen by machines"
         blurb="Computer vision that reads a swing the way a coach does — frame by frame, in production."
+        spec="in production · golf · computer vision"
       />
       <Entry
         tag="HEALTH"
         title="Health & wearables"
         blurb="Wearable data turned into daily guidance — the same domain knowledge that powers our flagship."
+        spec="in production · health · wearables"
       />
       <Entry
         tag="LEGAL"
         title="Legal tech"
         blurb="Applied AI where precision is non-negotiable: documents, citations, and judgment support."
+        spec="in production · legal · documents"
       />
     </Subpage>
   );

@@ -25,16 +25,19 @@ export default function SWPage() {
         tag="SIGNATURE"
         title="Cross paths, then find each other"
         blurb="Bluetooth turns being in the same place at the same time into a signature only the two of you share. Walk out of the venue; the connection walks out with you."
+        spec="signature · bluetooth · co-presence"
       />
       <Entry
         tag="WEARABLE"
         title="Presence without the phone"
         blurb="The destination is a wearable — no app to open, no screen between you and the world. Your presence does the talking."
+        spec="wearable · no app · no screen"
       />
       <Entry
         tag="BIOSIGNAL"
         title="Your body knows first"
         blurb="Heart-rate as a matching signal: the moment something sparks, before you've found the words for it. The most honest swipe is a heartbeat."
+        spec="biosignal · heart-rate · matching signal"
       />
     </Subpage>
   );

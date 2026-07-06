@@ -24,11 +24,13 @@ export default function EffectsPage() {
         tag="SHIPPED"
         title="AI in production, not in planning"
         blurb="Every engagement ends with running systems the client's own team operates — ranking engines, vision pipelines, reasoning tools."
+        spec="shipped · production systems"
       />
       <Entry
         tag="COMPOUNDING"
         title="Engagements that extend"
         blurb="Frontiers keep us past the first project — the strongest effect we can show. Their words will live here, verbatim, as they give them."
+        spec="compounding · retention · words pending"
       />
     </Subpage>
   );
