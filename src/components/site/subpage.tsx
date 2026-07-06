@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { PunchSurface } from "@/components/site/punch-card";
+import { SpecRow } from "@/components/site/spec-row";
 import { NavLinks, WriteLink } from "@/components/site/nav";
 
 /**
@@ -12,8 +13,10 @@ import { NavLinks, WriteLink } from "@/components/site/nav";
 const CONTACT = "hello@rsrvlabs.com";
 
 export function StatusTag({ children }: { children: ReactNode }) {
+  // `self-start` keeps the specimen tag content-width inside the Entry's flex
+  // column (a bare flex child would stretch full-width); no-op in block context.
   return (
-    <span className="kicker inline-block border border-paper/25 px-2 py-1 text-[0.6rem] text-paper/65">
+    <span className="kicker inline-block self-start border border-paper/25 px-2 py-1 text-[0.6rem] text-paper/65">
       {children}
     </span>
   );
@@ -113,7 +116,10 @@ export function Subpage({
       />
       <SubpageHeader index={index} label={label} current={current} />
       <div className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
-        <h1 className="font-display text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] tracking-[-0.02em] text-paper">
+        {/* Label-scale hero (DESIGN.md title register / lelabo §7.7 "26px
+            lesson"): the 7.4rem display concept lives ONLY on the landing
+            arrival; subpage/product heroes inform, not perform. */}
+        <h1 className="font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.05] tracking-[-0.015em] text-paper">
           {title}
         </h1>
         <MetaBar items={[`${index} — ${label}`, "Reserve", "EST. MMXXIV"]} />
@@ -135,38 +141,50 @@ export function Subpage({
   );
 }
 
+/**
+ * Specimen entry — the subpage inventory item wears the SAME Le Labo label-block
+ * anatomy as the landing doors lattice (design-refs/lelabo §4, PATH A §7.1): the
+ * PunchSurface reads as one apothecary block —
+ *   eyebrow/tag (StatusTag) → TITLE (serif) → support line → SpecRow (solid
+ *   `night-line` hairline + honest mono machine facts; `enter →` action row only
+ *   when the entry navigates somewhere real).
+ * `spec` is a lowercase specimen label (status · register · quantity) derived
+ * HONESTLY from this entry's own on-page copy — never a fabricated metric (copy
+ * law rule 3 + 5; honesty outranks register). The two hairline grammars stay
+ * distinct by ROLE: dashed = the list-flow separator BETWEEN specimens; solid
+ * `night-line` = the machine label-rule WITHIN one specimen (matches doors).
+ */
 export function Entry({
   tag,
   title,
   blurb,
+  spec,
   href,
 }: {
   tag: string;
   title: string;
   blurb: string;
+  spec: string;
   href?: string;
 }) {
   return (
-    <article className="py-4">
-      {/* punch-card corners + tilt + surface rise — shared site/punch-card */}
-      <PunchSurface className="-mx-5 grid grid-cols-12 items-baseline gap-4 p-5">
-        <div className="col-span-12 md:col-span-3">
-          <StatusTag>{tag}</StatusTag>
-        </div>
-        <div className="col-span-12 md:col-span-9">
-          <h2 className="font-display text-[clamp(1.5rem,2.6vw,2.2rem)] leading-[1.15] text-paper">
-            {href ? (
-              <Link href={href}>
-                <span className="link-underline">{title}</span>
-              </Link>
-            ) : (
-              title
-            )}
-          </h2>
-          <p className="mt-3 max-w-[58ch] font-sans text-[0.9rem] leading-[1.75] text-paper/70">
-            {blurb}
-          </p>
-        </div>
+    <article className="py-6">
+      {/* punch-card corners + surface rise — shared site/punch-card */}
+      <PunchSurface className="-mx-5 flex h-full flex-col p-5">
+        <StatusTag>{tag}</StatusTag>
+        <h2 className="mt-4 font-display text-[clamp(1.4rem,2.3vw,2rem)] leading-[1.15] text-paper">
+          {href ? (
+            <Link href={href}>
+              <span className="link-underline">{title}</span>
+            </Link>
+          ) : (
+            <span className="link-underline">{title}</span>
+          )}
+        </h2>
+        <p className="mt-3 max-w-[58ch] font-sans text-[0.9rem] leading-[1.75] text-paper/70">
+          {blurb}
+        </p>
+        <SpecRow spec={spec} action={href ? "enter →" : undefined} />
       </PunchSurface>
     </article>
   );
