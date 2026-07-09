@@ -48,7 +48,7 @@ const doors: Door[] = [
     tag: "L · Labs",
     title: "The lab ships while you sleep.",
     line: "Finance runs itself daily; beauty tech is taking shape.",
-    // /labs tags + DESIGN.md IA statuses (Fermi LIVE · Feynman EXPERIMENTAL · Glow EXPLORING).
+    // /labs tags + DESIGN.md IA statuses (Reserve Finance: desk LIVE + advisor EXPERIMENTAL · Glow EXPLORING).
     spec: "desk / live 08:00 daily · advisor / experimental · beauty / exploring",
   },
   {

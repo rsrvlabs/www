@@ -21,7 +21,7 @@ import { Odometer } from "@/components/visuals/odometer";
 const night = [
   { t: "22:00", line: "The repair agent reads the day's bug tickets — and fixes them." },
   { t: "05:00", line: "New York closes. The finance desk starts its read of the day." },
-  { t: "07:30", line: "Fermi writes the morning brief. Every number, checked twice." },
+  { t: "07:30", line: "Reserve Finance writes the morning brief. Every number, checked twice." },
   { t: "07:50", line: "The watchdog sweeps the pipeline; anything broken heals itself." },
   { t: "08:00", line: "The brief publishes. The curators are still asleep.", accent: true },
 ];

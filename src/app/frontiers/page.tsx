@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Subpage, Entry } from "@/components/site/subpage";
+import { Subpage, Entry, Movement } from "@/components/site/subpage";
 
 export const metadata: Metadata = {
   title: "Reserve Frontiers — forward-deployed AI engineering",
@@ -20,6 +20,20 @@ export default function FrontiersPage() {
         subject: "Frontier engagement",
       }}
     >
+      <Movement kicker="THE MODEL" title="We don't consult. We deploy.">
+        <p>
+          The model is forward deployment: senior engineers embedded inside
+          your team, building with your people in your codebase — not a deck,
+          not a pilot that dies in procurement. We leave running systems
+          behind.
+        </p>
+        <p>
+          A frontier is any domain where AI hasn&rsquo;t been made to work yet.
+          We take the ones others call too messy, and ship the thing that
+          works.
+        </p>
+      </Movement>
+
       <Entry
         tag="TRAVEL"
         title="Travel tech"
@@ -44,6 +58,19 @@ export default function FrontiersPage() {
         blurb="Applied AI where precision is non-negotiable: documents, citations, and judgment support."
         spec="in production · legal · documents"
       />
+
+      <Movement kicker="WHY IT COMPOUNDS" title="Client work that pays us twice.">
+        <p>
+          A frontier engagement is not a detour from the products — it is how
+          they get sharper. The health &amp; wearables work is the same domain
+          knowledge behind our flagship; the ranking systems, the vision
+          pipelines, the judgment tooling all return as capability.
+        </p>
+        <p>
+          Cash flow one way, know-how the other. We get paid to learn what we
+          would have had to learn anyway.
+        </p>
+      </Movement>
     </Subpage>
   );
 }
