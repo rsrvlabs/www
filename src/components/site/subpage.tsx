@@ -80,6 +80,39 @@ export function MetaBar({ items }: { items: string[] }) {
   );
 }
 
+/**
+ * Movement — an editorial passage between the specimen entries (layout-audit
+ * gap #1: subpages ran 1.4–2.1 folds vs the references' 7–11.6; the fix is
+ * DEPTH, and for a concept-brand/portfolio site depth = the designer's
+ * thinking about the work, not a SaaS fact sheet). Same night grammar: a mono
+ * kicker → serif subhead (label register, not the display) → prose at the
+ * site's reading measure. Sits in the Subpage `divide-y divide-dashed` flow,
+ * so a dashed hairline separates it from neighbouring entries automatically.
+ */
+export function Movement({
+  kicker,
+  title,
+  children,
+}: {
+  kicker: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="py-10">
+      <span className="kicker text-[0.6rem] tracking-[0.26em] text-paper/45">
+        {kicker}
+      </span>
+      <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(1.5rem,2.6vw,2.2rem)] leading-[1.15] tracking-[-0.01em] text-paper">
+        {title}
+      </h2>
+      <div className="mt-5 max-w-[60ch] space-y-5 font-sans text-[0.95rem] leading-[1.8] text-paper/70">
+        {children}
+      </div>
+    </section>
+  );
+}
+
 export type Cta = { line: string; label: string; subject: string };
 
 /** Closing CTA band (layout-audit gap #2: every reference page ends with a

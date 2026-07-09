@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Subpage, Entry } from "@/components/site/subpage";
+import { Subpage, Entry, Movement } from "@/components/site/subpage";
 
 export const metadata: Metadata = {
   title: "Reserve — the flagship: a dating app with a physical signature",
@@ -21,6 +21,20 @@ export default function SWPage() {
         subject: "SW early access",
       }}
     >
+      <Movement kicker="THE THESIS" title="The physical world has no undo.">
+        <p>
+          Every day you stand near people you will never see again — the one
+          across the train car, the face at the opening, the stranger who made
+          the room feel different. Software mapped everyone you have never met
+          and forgot the ones you actually did.
+        </p>
+        <p>
+          Reserve builds the other graph: the people you were genuinely near,
+          kept findable after the moment has passed. Not a wider net — a truer
+          one.
+        </p>
+      </Movement>
+
       <Entry
         tag="SIGNATURE"
         title="Cross paths, then find each other"
@@ -39,6 +53,39 @@ export default function SWPage() {
         blurb="Heart-rate as a matching signal: the moment something sparks, before you've found the words for it. The most honest swipe is a heartbeat."
         spec="biosignal · heart-rate · matching signal"
       />
+
+      <Movement kicker="WHAT THE ROOM TAUGHT US" title="Presence is personal.">
+        <p>
+          We sat with the people who would want this, and they disagreed —
+          usefully. One wants it in a club; another at an expo. The scene is
+          not universal; the <em>purpose</em> is. So the signature is
+          scene-agnostic: it works wherever you already had a reason to be.
+        </p>
+        <p>
+          And the most consistent thing we heard was not excitement. It was:
+          don&rsquo;t make me feel tracked. So the profile is yours to reveal,
+          never the room&rsquo;s to take — disclosure is a control, not a
+          default.
+        </p>
+      </Movement>
+
+      <Movement
+        kicker="THE BET"
+        title="Proximity social is a graveyard. We know."
+      >
+        <p>
+          People have tried to make &ldquo;someone is near you&rdquo; matter
+          for fifteen years, and the field is littered. The failures share a
+          cause: loose location, no reason to be real, nothing left the morning
+          after.
+        </p>
+        <p>
+          Our bet is narrower and harder to fake — not a radius but genuine
+          co-presence, meters and seconds; not a mass feed but curated rooms
+          where being there already meant something. We would rather win one
+          real scene than fake a crowd.
+        </p>
+      </Movement>
     </Subpage>
   );
 }
