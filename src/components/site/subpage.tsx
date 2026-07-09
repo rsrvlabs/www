@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { PunchSurface } from "@/components/site/punch-card";
 import { SpecRow } from "@/components/site/spec-row";
 import { NavLinks, WriteLink } from "@/components/site/nav";
+import { MobileMenu } from "@/components/site/mobile-menu";
 
 /**
  * Shared kit for the top-level subpages (IA in DESIGN.md — founder's
@@ -37,6 +38,16 @@ export function SubpageHeader({
 }) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 flex items-baseline justify-between px-6 py-6 md:px-10">
+      {/* Mobile-only legibility scrim — same treatment as the landing
+          wordmark (chrome floats over full-width content on phones). */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -bottom-8 top-0 -z-10 md:hidden"
+        style={{
+          background:
+            "linear-gradient(to bottom, oklch(0.145 0 0 / 0.9), oklch(0.145 0 0 / 0))",
+        }}
+      />
       <div className="flex flex-col">
         <Link href="/" className="font-display text-base tracking-tight text-paper" aria-label="Reserve">
           reserve<span className="text-sun">.</span>
@@ -46,7 +57,10 @@ export function SubpageHeader({
         </span>
       </div>
       <NavLinks current={current} />
-      <WriteLink href={`mailto:${CONTACT}`} />
+      <div className="flex items-baseline gap-6">
+        <MobileMenu current={current} writeHref={`mailto:${CONTACT}`} />
+        <WriteLink href={`mailto:${CONTACT}`} />
+      </div>
     </header>
   );
 }

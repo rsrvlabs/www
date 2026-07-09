@@ -11,11 +11,13 @@ import Link from "next/link";
  */
 
 export const NAV_ITEMS = [
-  { href: "/sw", label: "Flagship" },
-  { href: "/labs", label: "Labs" },
-  { href: "/frontiers", label: "Frontiers" },
-  { href: "/research", label: "Research" },
-  { href: "/effects", label: "Effects" },
+  // `index` = each page's own machine tag letter (SubpageHeader `N° F · …`);
+  // the mobile menu overlay renders it next to the route title.
+  { href: "/sw", label: "Flagship", index: "F" },
+  { href: "/labs", label: "Labs", index: "L" },
+  { href: "/frontiers", label: "Frontiers", index: "R" },
+  { href: "/research", label: "Research", index: "Q" },
+  { href: "/effects", label: "Effects", index: "E" },
 ] as const;
 
 export function NavLinks({ current }: { current?: string }) {
