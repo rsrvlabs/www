@@ -18,13 +18,14 @@ import { cities } from "@/data/places";
 // The visual ties to the section metaphor: "arrival" is the hero. The
 // veil is a one-beat ritual before the site appears, not a spinner.
 
-// Veil doubles as the prefetch gate. warmPlacesMapCache now awaits its
-// critical batch (~660 tile fetches: world z=0-3 + per-city odd-zoom
-// ramp), so the real dismiss time depends on network. MIN is a floor
-// so users always see a composed arrival moment; MAX caps worst-case
-// so slow networks don't trap them.
+// Veil doubles as the prefetch gate, but only for the SMALL world-tile
+// layer (~100 tiles) via `blockOn:"world"` — enough that the globe's first
+// frame is composed. The heavy per-city ramp (~760 tiles) now warms in the
+// background AFTER the veil lifts, so dismiss time is the ritual floor (not
+// network-bound) and the prefetch stops contending with the page's own load
+// / blowing LCP on slow networks. MIN = the ritual floor; MAX = safety cap.
 const MIN_MS = 3000;
-const MAX_MS = 9000;
+const MAX_MS = 6000;
 
 export function ArrivalVeil() {
   // Server render + first client render both show the veil — prevents
@@ -41,8 +42,9 @@ export function ArrivalVeil() {
     const start = performance.now();
     const centers = cities.map((c) => c.view.center);
 
-    // Kick off all background work in parallel.
-    const warm = warmPlacesMapCache(centers);
+    // Kick off all background work in parallel. The veil awaits only the
+    // world tiles (blockOn:"world"); the per-city ramp warms after reveal.
+    const warm = warmPlacesMapCache(centers, { blockOn: "world" });
     const placesChunk = import("@/components/sections/places");
     const mapChunk = import("@/components/visuals/city-map");
 

@@ -175,6 +175,7 @@ async function runFetchQueue(urls: string[], concurrency: number): Promise<void>
  */
 export async function warmPlacesMapCache(
   centers: Array<[number, number]>,
+  opts: { blockOn?: "world" | "all" } = {},
 ): Promise<void> {
   if (started) return;
   started = true;
@@ -185,6 +186,13 @@ export async function warmPlacesMapCache(
     return;
   }
 
+  // Three tiers, not two — so the arrival veil can await the SMALL world
+  // layer only (~100 tiles) and lift on its ritual floor, while the heavy
+  // per-city ramp (~760 tiles) warms in the background AFTER reveal instead
+  // of blocking LCP + contending with the page's own load. `blockOn:"world"`
+  // (the veil) awaits `world`; `blockOn:"all"` (default) preserves the old
+  // await-everything behavior for any non-veil caller.
+  const world: string[] = [];
   const critical: string[] = [];
   const deferred: string[] = [];
   const seen = new Set<string>();
@@ -204,9 +212,10 @@ export async function warmPlacesMapCache(
   // during the first flight instead.
   const lite = window.matchMedia("(max-width: 767px)").matches;
 
-  // World z=0..3 — midpoint pan layer for every z=2 flight.
+  // World z=0..3 — midpoint pan layer for every z=2 flight. This is the
+  // globe's first composed frame → the veil awaits ONLY this (~100 tiles).
   for (let z = 0; z <= 3; z++) {
-    enqueue(worldTileUrls(templatesAt(sources, z), z), critical);
+    enqueue(worldTileUrls(templatesAt(sources, z), z), world);
   }
 
   // Per-city ramp — critical covers every zoom the camera visits
@@ -222,7 +231,8 @@ export async function warmPlacesMapCache(
   //   z=5  r=0 (1)
   //
   // Total per city: 25+25+25+9+9+1+1 = 95 tiles × 8 cities = 760 tiles.
-  // Combined with world z=0-3 (100), critical ≈ 860 tiles × sources.
+  // These warm in the BACKGROUND after the veil lifts (not awaited by it) —
+  // the globe is section 5, so there is ample scroll time to fill them.
   // Lite (mobile) drops z=14/z=12 and thins z=13 to r=1 → 29 per city.
   for (const c of centers) {
     if (!lite) {
@@ -249,19 +259,27 @@ export async function warmPlacesMapCache(
     }
   }
 
-  // CRITICAL: await. The arrival veil consumes this promise so it only
-  // dismisses once the ramp is actually in HTTP cache.
-  await runFetchQueue(critical, 16);
+  // WORLD: the only tier the veil awaits (~100 tiles) — so it lifts on its
+  // ritual floor, not network-bound, and doesn't contend with page load.
+  await runFetchQueue(world, 16);
 
-  // Deferred runs after; do not await.
+  // The caller (veil) can return here. `blockOn:"all"` keeps the legacy
+  // behavior of awaiting the full ramp too.
   const ric = (
     window as unknown as {
       requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => void;
     }
   ).requestIdleCallback;
-  const runDeferred = () => {
-    void runFetchQueue(deferred, 6);
+  const runRampThenDeferred = async () => {
+    await runFetchQueue(critical, 16); // per-city ramp, background
+    void runFetchQueue(deferred, 6); // wider radii, lowest priority
   };
-  if (typeof ric === "function") ric(runDeferred, { timeout: 2000 });
-  else setTimeout(runDeferred, 1200);
+
+  if (opts.blockOn === "all") {
+    await runRampThenDeferred();
+    return;
+  }
+  // Veil path: warm the ramp in the background after reveal.
+  if (typeof ric === "function") ric(() => void runRampThenDeferred(), { timeout: 2000 });
+  else setTimeout(() => void runRampThenDeferred(), 1200);
 }
