@@ -86,6 +86,10 @@ type Trip = {
 const TRIPS_LOOP_MS = 6000;   // one lap around the animation clock
 const TRIP_TRAIL_MS = 1400;   // how long a trail lingers
 const MAX_TRIPS = 8000;       // target per city — dense, city-scale traffic
+// Mobile budget: phone GPUs choke on the desktop trip count (8k animated
+// paths); a quarter of the traffic still reads as a living city at
+// phone size. Applied when the viewport is below md at map init.
+const MAX_TRIPS_MOBILE = 2000;
 
 export const CityMap = forwardRef<CityMapHandle, Props>(function CityMap(
   { initial, className, onLanded, onDeparting, arcPairs, showArcs, preWarmViews, onPreWarmed },
@@ -125,6 +129,9 @@ export const CityMap = forwardRef<CityMapHandle, Props>(function CityMap(
   // passes through clean base map (no fill-extrusion cost mid-transition)
   // and buildings resolve only once the city is settled.
   const buildingLayerIdsRef = useRef<string[]>([]);
+  // Trip budget for this device class — set at map init (below-md viewports
+  // get MAX_TRIPS_MOBILE); read by the progressive reseed.
+  const maxTripsRef = useRef(MAX_TRIPS);
 
   // Fade the building extrusion layers to the given opacity. Uses the
   // `-transition` installed in style.load so 0/1 transitions smoothly.
@@ -218,18 +225,19 @@ export const CityMap = forwardRef<CityMapHandle, Props>(function CityMap(
       }
       const candidates = extractTripCandidates(map);
       if (candidates.length === 0) return;
+      const maxTrips = maxTripsRef.current;
       const firstBatch = 100;
       const stepBatch = 500;
       const stepMs = 150;
       let built = 0;
       const buildNext = (targetCount: number) => {
         if (token !== tripsReseedTokenRef.current) return;
-        const end = Math.min(targetCount, MAX_TRIPS);
+        const end = Math.min(targetCount, maxTrips);
         const batch = buildTripsFromCandidates(candidates, built, end);
         // New array reference so deck.gl re-uploads this batch once.
         tripsRef.current = tripsRef.current.concat(batch);
         built = end;
-        if (built < MAX_TRIPS) {
+        if (built < maxTrips) {
           window.setTimeout(() => buildNext(built + stepBatch), stepMs);
         }
       };
@@ -304,10 +312,16 @@ export const CityMap = forwardRef<CityMapHandle, Props>(function CityMap(
     const container = containerRef.current;
     if (!container || mapRef.current) return;
 
+    // Device-class budgets (below-md viewport = phone): fewer parse
+    // workers (phone cores are scarcer) and a lighter trip target.
+    const smallScreen = window.matchMedia("(max-width: 767px)").matches;
+    maxTripsRef.current = smallScreen ? MAX_TRIPS_MOBILE : MAX_TRIPS;
+
     // Doubled worker pool so PBF + building-extrusion parses during
-    // zoom-in don't queue-stall. Default 4 → 8. One-time, module-level.
+    // zoom-in don't queue-stall. Default 4 → 8 on desktop. One-time,
+    // module-level.
     try {
-      maplibregl.setWorkerCount(8);
+      maplibregl.setWorkerCount(smallScreen ? 4 : 8);
     } catch {
       /* older maplibre without setWorkerCount */
     }

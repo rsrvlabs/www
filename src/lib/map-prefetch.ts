@@ -197,6 +197,13 @@ export async function warmPlacesMapCache(
     }
   };
 
+  // Mobile budget (below-md viewport): the full ramp is ~860 tiles — real
+  // data on a phone plan, all fetched behind the arrival veil, for a
+  // maybe-one-city visit. The lite ramp keeps the world layer + a thin
+  // per-city spine (~330 tiles); landing-zoom tiles (z12-15) stream live
+  // during the first flight instead.
+  const lite = window.matchMedia("(max-width: 767px)").matches;
+
   // World z=0..3 — midpoint pan layer for every z=2 flight.
   for (let z = 0; z <= 3; z++) {
     enqueue(worldTileUrls(templatesAt(sources, z), z), critical);
@@ -216,10 +223,15 @@ export async function warmPlacesMapCache(
   //
   // Total per city: 25+25+25+9+9+1+1 = 95 tiles × 8 cities = 760 tiles.
   // Combined with world z=0-3 (100), critical ≈ 860 tiles × sources.
+  // Lite (mobile) drops z=14/z=12 and thins z=13 to r=1 → 29 per city.
   for (const c of centers) {
-    enqueue(cityTileWindowUrls(templatesAt(sources, 14), c, 14, 2), critical);
-    enqueue(cityTileWindowUrls(templatesAt(sources, 13), c, 13, 2), critical);
-    enqueue(cityTileWindowUrls(templatesAt(sources, 12), c, 12, 2), critical);
+    if (!lite) {
+      enqueue(cityTileWindowUrls(templatesAt(sources, 14), c, 14, 2), critical);
+    }
+    enqueue(cityTileWindowUrls(templatesAt(sources, 13), c, 13, lite ? 1 : 2), critical);
+    if (!lite) {
+      enqueue(cityTileWindowUrls(templatesAt(sources, 12), c, 12, 2), critical);
+    }
     enqueue(cityTileWindowUrls(templatesAt(sources, 11), c, 11, 1), critical);
     enqueue(cityTileWindowUrls(templatesAt(sources, 9), c, 9, 1), critical);
     enqueue(cityTileWindowUrls(templatesAt(sources, 7), c, 7, 0), critical);
@@ -227,10 +239,14 @@ export async function warmPlacesMapCache(
   }
 
   // Deferred — wider radii at key ramp zooms for smoother pan post-land.
-  for (const c of centers) {
-    enqueue(cityTileWindowUrls(templatesAt(sources, 14), c, 14, 3), deferred);
-    enqueue(cityTileWindowUrls(templatesAt(sources, 11), c, 11, 2), deferred);
-    enqueue(cityTileWindowUrls(templatesAt(sources, 9), c, 9, 2), deferred);
+  // Skipped entirely on mobile: don't spend background data on radii the
+  // user may never pan to.
+  if (!lite) {
+    for (const c of centers) {
+      enqueue(cityTileWindowUrls(templatesAt(sources, 14), c, 14, 3), deferred);
+      enqueue(cityTileWindowUrls(templatesAt(sources, 11), c, 11, 2), deferred);
+      enqueue(cityTileWindowUrls(templatesAt(sources, 9), c, 9, 2), deferred);
+    }
   }
 
   // CRITICAL: await. The arrival veil consumes this promise so it only
