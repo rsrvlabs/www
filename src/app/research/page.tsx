@@ -38,6 +38,12 @@ const essays: Array<{
   },
   {
     n: "03",
+    title: "We went looking for someone already doing this.",
+    status: "PUBLISHED",
+    href: "/research/prior-art",
+  },
+  {
+    n: "04",
     title: "What replaces the meeting?",
     status: "IN PROGRESS",
   },
@@ -85,7 +91,7 @@ export default function ResearchPage() {
                   LEFT, still utility link RIGHT — same recipe as the doors
                   flagship, so landing + research read as one system. */}
               <SpecRow
-                spec="series 01 · 2 published · 1 in progress"
+                spec="series 01 · 3 published · 1 in progress"
                 action="read the first essay →"
               />
             </Link>
