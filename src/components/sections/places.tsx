@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import type { CityMapHandle } from "@/components/visuals/city-map";
+import type { CityMapHandle, CityView } from "@/components/visuals/city-map";
 import { cities, GLOBE_VIEW } from "@/data/places";
 
 const CityMap = dynamic(
@@ -29,7 +29,25 @@ export function Places() {
     return () => window.clearTimeout(t);
   }, []);
 
-  const preWarmViews = useMemo(() => cities.map((c) => c.view), []);
+  // Mobile (below md): skip the 8-city pre-warm sequence — parsing eight
+  // cities of z≈15 vector tiles is heavy on phone CPU + data for a maybe-
+  // one-city visit. Empty views → onPreWarmed fires immediately, so the
+  // globe reveals as soon as it paints; a first flight streams its tiles
+  // during the approach instead of landing pre-composed.
+  const preWarmViews = useMemo(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) return [];
+    return cities.map((c) => c.view);
+  }, []);
+
+  // Mobile: the z=1.4 globe is wider than a phone viewport (the sphere's
+  // pixel size is fixed per zoom) — drop to z=1 so the whole planet
+  // composes inside the narrow first screen instead of being cropped.
+  const initialView = useMemo<CityView>(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return { ...GLOBE_VIEW, zoom: 1 };
+    }
+    return GLOBE_VIEW;
+  }, []);
 
   const mapRef = useRef<CityMapHandle | null>(null);
   const committedRef = useRef<number | null>(null);
@@ -100,7 +118,7 @@ export function Places() {
         >
           <CityMap
             ref={mapRef}
-            initial={GLOBE_VIEW}
+            initial={initialView}
             arcPairs={arcPairs}
             showArcs={showArcs}
             preWarmViews={preWarmViews}
@@ -143,7 +161,9 @@ export function Places() {
         <div className="absolute left-0 right-0 top-[8svh] z-20 mx-auto w-full max-w-[88rem] px-6 md:px-10">
           <div className="kicker flex items-baseline justify-between gap-6 text-paper/55">
             <span>N° 05 · Places — where crossed paths should count</span>
-            <span className="tabular-nums">
+            {/* Counter never wraps: on phones the long label breaks into two
+                lines and used to squeeze the counter into a broken stack. */}
+            <span className="shrink-0 whitespace-nowrap tabular-nums">
               {landed !== null ? String(landed + 1).padStart(2, "0") : "——"} / {String(cities.length).padStart(2, "0")}
             </span>
           </div>
@@ -152,6 +172,40 @@ export function Places() {
         {/* Left block: globe intro OR per-city typography.
             During flight this block is empty — no text misaligns with the map. */}
         <div className="absolute bottom-[12svh] left-0 right-0 z-20 mx-auto w-full max-w-[88rem] px-6 md:px-10">
+          {/* Mobile city nav: compact pip row IN the text stack, directly
+              above the caption — flow positioning, so it can never collide
+              with the typography below it (the old absolute row hung off a
+              hard-coded 13rem offset). Disabled during flight, like desktop. */}
+          <nav
+            aria-label="Cities"
+            className="mb-8 flex w-full items-center gap-2 md:hidden"
+          >
+            {cities.map((c, i) => {
+              const isLanded = i === landed;
+              const isCommitted = i === committed && !isLanded;
+              return (
+                <button
+                  key={c.slug}
+                  type="button"
+                  onClick={() => tryCommit(i)}
+                  disabled={inFlight}
+                  aria-current={isLanded ? "true" : undefined}
+                  aria-label={c.name}
+                  className="flex-1 rounded-sm py-3 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-sun/70 disabled:opacity-60"
+                >
+                  <span
+                    className={`block h-px w-full transition-all duration-500 ${
+                      isLanded
+                        ? "bg-sun"
+                        : isCommitted
+                          ? "bg-sun/70"
+                          : "bg-paper/30"
+                    }`}
+                  />
+                </button>
+              );
+            })}
+          </nav>
           <AnimatePresence mode="wait">
             {onGlobe && (
               <motion.div
@@ -274,38 +328,6 @@ export function Places() {
           })}
         </nav>
 
-        {/* Mobile: compact horizontal row, anchored directly above
-            the caption block so it reads as part of the text stack. */}
-        <nav
-          aria-label="Cities"
-          className="absolute bottom-[calc(12svh+13rem)] left-0 right-0 z-30 mx-auto flex w-full max-w-[88rem] items-center gap-2 px-6 md:hidden"
-        >
-          {cities.map((c, i) => {
-            const isLanded = i === landed;
-            const isCommitted = i === committed && !isLanded;
-            return (
-              <button
-                key={c.slug}
-                type="button"
-                onClick={() => tryCommit(i)}
-                disabled={inFlight}
-                aria-current={isLanded ? "true" : undefined}
-                aria-label={c.name}
-                className="flex-1 rounded-sm py-2 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-sun/70 disabled:opacity-60"
-              >
-                <span
-                  className={`block h-px w-full transition-all duration-500 ${
-                    isLanded
-                      ? "bg-sun"
-                      : isCommitted
-                        ? "bg-sun/70"
-                        : "bg-paper/30"
-                  }`}
-                />
-              </button>
-            );
-          })}
-        </nav>
       </div>
     </section>
   );
