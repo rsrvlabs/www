@@ -14,7 +14,7 @@ import { Group } from "@visx/group";
 
 const W = 720;
 const H = 300;
-const M = { top: 16, right: 16, bottom: 40, left: 16 };
+const M = { top: 20, right: 20, bottom: 40, left: 16 };
 const iw = W - M.left - M.right;
 const ih = H - M.top - M.bottom;
 
@@ -24,7 +24,8 @@ const CEILING = [0, 0.2, 0.38, 0.45, 0.47, 0.48]; // rises, then the restriction
 const FLOOR = [0.18, 0.32, 0.5, 0.66, 0.82, 0.95]; // tracks the model, held from below
 
 const x = scaleLinear({ domain: [0, 1], range: [0, iw] });
-const y = scaleLinear({ domain: [0, 1], range: [ih, 0] });
+// headroom so the lines that reach 1.0 don't touch the top edge
+const y = scaleLinear({ domain: [0, 1.08], range: [ih, 0] });
 
 const SERIES = [
   {
@@ -57,10 +58,31 @@ export function FloorVsCeiling() {
   const [active, setActive] = useState<string | null>(null);
   return (
     <figure className="my-14 border border-[oklch(0.985_0_0_/_0.14)] bg-[oklch(0.985_0_0_/_0.015)] px-5 py-7 md:px-8">
-      <figcaption className="mb-5 flex items-baseline justify-between">
+      <figcaption className="mb-4 flex items-baseline justify-between">
         <span className="kicker text-paper/55">FIG. — CAPABILITY YOU CAN ACTUALLY USE, UNDER TWO HARNESS DESIGNS</span>
         <span className="kicker hidden text-paper/35 md:inline">USABLE × MODEL CAPABILITY</span>
       </figcaption>
+
+      {/* legend — replaces colliding end-of-line labels */}
+      <div className="mb-3 flex flex-wrap gap-x-6 gap-y-2">
+        {SERIES.map((s) => {
+          const on = active === s.key;
+          return (
+            <button
+              key={s.key}
+              type="button"
+              onMouseEnter={() => setActive(s.key)}
+              onMouseLeave={() => setActive(null)}
+              className="flex items-center gap-2 text-left"
+            >
+              <svg width="26" height="8" aria-hidden>
+                <line x1="0" y1="4" x2="26" y2="4" stroke="var(--color-paper)" strokeWidth={s.width} strokeDasharray={s.dash} strokeOpacity={s.key === "raw" ? 0.55 : 0.9} />
+              </svg>
+              <span className={`font-mono text-[0.68rem] uppercase tracking-[0.1em] ${on ? "text-paper" : "text-paper/50"}`}>{s.label}</span>
+            </button>
+          );
+        })}
+      </div>
 
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Usable capability under a ceiling harness (caps) vs a floor harness (tracks the model)">
         <Group left={M.left} top={M.top}>
@@ -84,17 +106,6 @@ export function FloorVsCeiling() {
                   fill="none"
                 />
                 <circle cx={x(1)} cy={y(s.data[s.data.length - 1])} r={on ? 4 : 3} fill="var(--color-paper)" fillOpacity={dim ? 0.3 : 1} />
-                <text
-                  x={x(1) - 6}
-                  y={y(s.data[s.data.length - 1]) + (s.key === "ceiling" ? 18 : -10)}
-                  textAnchor="end"
-                  fontSize={12}
-                  fontFamily="ui-sans-serif, system-ui"
-                  fill="oklch(0.965 0.012 78)"
-                  fillOpacity={dim ? 0.3 : 0.85}
-                >
-                  {s.label}
-                </text>
               </Group>
             );
           })}
