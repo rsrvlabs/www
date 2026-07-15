@@ -43,7 +43,7 @@ export function Arrival() {
           transition={{ duration: 1.4, delay: 0.4 }}
           className="kicker mb-10 text-[0.62rem] tracking-[0.3em] text-paper/55"
         >
-          <DecryptText text="N° 01 · AI-native studio" />
+          <DecryptText text="N° 01 · The studio" />
         </motion.p>
 
         {/* Display: big-but-light (insforge computed: wt400, tight leading) —
@@ -52,11 +52,7 @@ export function Arrival() {
             line 1 needs 11.01px width per font-px, so >120px wraps inside the
             1328px content column (8rem = 128px provably wrapped). */}
         <h1 className="font-display font-semibold uppercase text-paper leading-[0.96] tracking-[-0.02em] text-[clamp(2.5rem,7.5vw,7.4rem)]">
-          <Line text="We build AI-native products." accentWord="AI-native" baseDelay={0.55} />
-          <br />
-          <span className="text-paper/55 font-display">
-            <Line text="The company itself is one." baseDelay={1.45} />
-          </span>
+          <Line text="Our first product is the studio." accentWord="studio." baseDelay={0.55} />
         </h1>
 
         <motion.div
