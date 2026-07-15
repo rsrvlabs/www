@@ -25,7 +25,9 @@
   --color-ink-faint: oklch(0.62 0.012 70);
   --color-moss: oklch(0.46 0.05 132);
   /* Sun accent: chroma retuned 0.12 → 0.10 for the neutral ground (2026-07-04) */
-  --color-sun: oklch(0.74 0.1 70);
+  --color-sun: oklch(0.985 0 0); /* MONOCHROME (Ryvn 2026-07-15): accent is now
+     brightness, not colour — Le Labo is black/white/kraft, no gold. Name kept to
+     avoid a churny rename; bg-sun/text-sun now read as brightest white. */
   /* Ink-pair (ploy): text color for ON-sun surfaces — never auto-black on accent */
   --color-sun-ink: oklch(0.28 0.06 60);
   --color-dusk: oklch(0.34 0.05 38);
@@ -201,8 +203,8 @@
 
 /* Night-shift status dot (ploy cadence: 2.4s) — sun-accent ring pulse */
 @keyframes dot-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 oklch(0.74 0.1 70 / 0.35); }
-  50% { box-shadow: 0 0 0 7px oklch(0.74 0.1 70 / 0); }
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.985 0 0 / 0.35); }
+  50% { box-shadow: 0 0 0 7px oklch(0.985 0 0 / 0); }
 }
 .night-dot {
   animation: dot-pulse 2.4s var(--ease-ui) infinite;

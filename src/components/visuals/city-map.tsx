@@ -67,7 +67,9 @@ const STONE_OPEN = "#666666";     // parks/wood/grass at low alpha (was moss)
 
 // THE one accent on the globe — --color-sun (#e8b55f) as RGB for deck.gl.
 // Arcs and trips both draw from this single value; there is no second hue.
-const SUN_RGB: [number, number, number] = [232, 181, 95];
+// MONOCHROME (2026-07-15): was gold [232,181,95]; the map's traffic accent is now
+// a warm off-white to match the kraft/paper palette — no gold anywhere.
+const SUN_RGB: [number, number, number] = [230, 226, 219];
 
 // Trips: one gold, two intensities — full sun for major arteries, dimmed
 // sun for ordinary streets. Hierarchy by alpha, not by a second hue (the
