@@ -20,6 +20,7 @@ Contact: hello@rsrvlabs.com
 - [We went looking for someone already doing this](https://rsrvlabs.com/research/prior-art): a prior-art survey of the flagship's space.
 - [Don't let the agent grade itself](https://rsrvlabs.com/research/agent-self-evaluation): 2026's agent bottleneck is verification, not generation; self-evaluation is the deepest failure. Unless the evaluator is isolated from the evaluated, no score can be trusted — and the three-account structure Reserve runs instead.
 - [The harness has an expiration date. Ours mostly doesn't.](https://rsrvlabs.com/research/harness-that-compounds): the bitter-lesson claim that scaffolding matters less as models scale is right — for the harness that compensates for a weak model. A second harness (memory, accountability, permission, cadence) compounds instead of expiring; Reserve builds mostly the second kind.
+- [Build the floor, not the ceiling](https://rsrvlabs.com/research/build-the-floor): closes the harness trilogy. A gate is a floor (guarantees an outcome, scales with the model) or a ceiling (restricts a process, expires). Build floors; rewrite restrictions as verifications; keep only irreversible actions gated, as the thinnest confirm-before membrane — so the harness leverages model growth instead of fighting it.
 
 ## Contact
 - Email: hello@rsrvlabs.com

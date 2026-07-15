@@ -20,4 +20,5 @@ export const ROUTES: Array<{ path: string; updated: string; priority: number }> 
   { path: "/research/prior-art", updated: "2026-07-09", priority: 0.6 },
   { path: "/research/agent-self-evaluation", updated: "2026-07-15", priority: 0.6 },
   { path: "/research/harness-that-compounds", updated: "2026-07-15", priority: 0.6 },
+  { path: "/research/build-the-floor", updated: "2026-07-15", priority: 0.6 },
 ];
