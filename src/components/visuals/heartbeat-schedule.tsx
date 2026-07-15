@@ -74,7 +74,7 @@ export function HeartbeatSchedule() {
           {!reduce && (
             <motion.div
               aria-hidden
-              className="pointer-events-none absolute top-6 bottom-0 w-px bg-sun/50"
+              className="pointer-events-none absolute top-6 bottom-0 w-px bg-paper/25"
               style={{ left: "8.5rem" }}
               initial={{ x: 0, opacity: 0 }}
               animate={{
@@ -102,7 +102,7 @@ export function HeartbeatSchedule() {
                   onFocus={() => setActive(r)}
                   onClick={() => setActive(r)}
                   aria-pressed={isActive}
-                  className="grid w-full grid-cols-[8.5rem_repeat(7,1fr)] items-center gap-x-1 py-3 text-left focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-sun/70"
+                  className="grid w-full grid-cols-[8.5rem_repeat(7,1fr)] items-center gap-x-1 py-3 text-left focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-paper/40"
                 >
                   <span
                     className={`truncate pr-3 font-display text-[0.95rem] transition-colors duration-200 ${
@@ -119,7 +119,7 @@ export function HeartbeatSchedule() {
                           className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
                             on
                               ? isActive
-                                ? "bg-sun"
+                                ? "bg-paper"
                                 : "bg-paper/55"
                               : "bg-paper/10"
                           }`}
