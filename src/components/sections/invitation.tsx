@@ -30,7 +30,7 @@ export function Invitation() {
   return (
     <section
       id="invitation"
-      className="relative overflow-hidden bg-night pb-[10svh] pt-[24svh]"
+      className="relative overflow-hidden pb-[10svh] pt-[24svh]"
     >
       {/* Pure structure, no raster: a neutral glow lifts the invitation zone,
           weighted toward the voice (restrained asymmetry, founder debt #3)… */}

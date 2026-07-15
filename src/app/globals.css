@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Gambarino", "Cambria", "Georgia", serif;
+  --font-display: "Switzer", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Supreme", ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-display);
   /* Machine layer (DESIGN.md): mono annotates the page — labels, indices, metadata. */
@@ -147,6 +147,55 @@
   }
   .hairline-dashed-night {
     border-top: 1px dashed oklch(0.985 0 0 / 0.18);
+  }
+
+  /* ── Lab material ground (Le Labo): brushed charcoal + raking top light, so
+     the page reads as a concrete/steel laboratory surface, not flat black. */
+  .lab-ground {
+    background-color: var(--color-night);
+    background-image:
+      radial-gradient(120% 80% at 8% -8%, oklch(0.985 0 0 / 0.05), transparent 52%),
+      linear-gradient(104deg, oklch(0.985 0 0 / 0.03) 0%, transparent 30%, oklch(0 0 0 / 0.4) 100%);
+  }
+
+  /* ── Exposed structural grid (Le Labo): the building's ruled columns, drawn
+     faint so specimens sit ON a measured plan. Pair over .lab-ground. */
+  .lab-columns {
+    background-image: repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(8.3333% - 1px),
+      oklch(0.985 0 0 / 0.05) calc(8.3333% - 1px),
+      oklch(0.985 0 0 / 0.05) 8.3333%
+    );
+  }
+
+  /* ── Registration ticks (Le Labo): drafting corner marks on a specimen frame.
+     Apply to a positioned parent; ::before/::after draw the top corners, use
+     .reg-frame-b for the bottom pair. */
+  .reg-frame {
+    position: relative;
+  }
+  .reg-frame::before,
+  .reg-frame::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: oklch(0.985 0 0 / 0.45);
+    z-index: 2;
+  }
+  .reg-frame::before {
+    top: 10px;
+    left: 10px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .reg-frame::after {
+    top: 10px;
+    right: 10px;
+    border-top: 1px solid;
+    border-right: 1px solid;
   }
 }
 

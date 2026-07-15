@@ -1,5 +1,19 @@
 # Reserve design system — brutalist × French minimal
 
+> **⚠ DIRECTION UPDATE — 2026-07-15 (Ryvn):** the site is moving to a
+> **Le Labo (brutalist laboratory) × Byredo (big-image exhibition)** language —
+> *"Reserve = a design laboratory that exhibits its own works; 用素材傳達概念"*
+> (imagery leads, text recedes to clinical captions). Ryvn's ranking: he cares
+> most about **background/visual + content**, LEAST about font. **NOT editorial**
+> (no magazine drop-caps/serif-column/pull-quotes — those are being removed).
+> **Serif display Gambarino → grotesk Switzer** (2026-07-15). New primitives:
+> `.lab-ground` / `.lab-columns` / `.reg-frame` (globals.css) + the exhibition
+> kit (`src/components/site/exhibition.tsx`, `src/components/sections/rooms.tsx`)
+> — each work shown as a framed **specimen + clinical spec plate**; specimens are
+> concept placeholders (option c) until real 素材 lands. The sections below
+> predate this shift and will be rewritten once the direction locks; treat the
+> live code + this banner as canonical meanwhile.
+
 The design spec for `rsrvlabs/www` (and later the Reserve research blog). Aesthetic target
 (founder, 2026-07-03/04): **法式簡約 × 黑鏡科技, unmistakably post-2026 — explicitly NOT the
 "Google / engineer 華國美學" look.** References analyzed 2026-07-04/05: insforge.dev (component +

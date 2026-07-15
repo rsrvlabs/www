@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  */
 export default function AiNativeCompanyEssay() {
   return (
-    <main className="relative min-h-[100svh] w-full overflow-x-clip bg-night">
+    <main className="lab-ground relative min-h-[100svh] w-full overflow-x-clip">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[40svh] grid-paper-night"
@@ -36,10 +36,8 @@ export default function AiNativeCompanyEssay() {
         </h1>
 
         <div className="mx-auto mt-14 max-w-[850px]">
-          <div className="hairline-dashed-night space-y-7 pt-12 font-display text-[19px] leading-[1.7] text-paper/85">
-            {/* 5rem drop cap — the blueprint value (design-refs/scrunch.md /
-                DESIGN.md blog blueprint; code had drifted to 4.6rem) */}
-            <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:font-display first-letter:text-[5rem] first-letter:leading-[0.75] first-letter:text-paper">
+          <div className="hairline-dashed-night space-y-7 pt-12 font-sans text-[17px] leading-[1.85] text-paper/85">
+            <p>
               Every company is a machine for turning attention into decisions.
               Most of that machine was never the product: it is the meetings,
               the handoffs, the status updates, the documents nobody reads
@@ -59,7 +57,7 @@ export default function AiNativeCompanyEssay() {
               argue with our plans before we commit to them. The brain
               remembers. The agents operate. The humans decide.
             </p>
-            <blockquote className="mx-auto max-w-[24ch] py-6 text-center font-display italic text-[clamp(1.5rem,2.6vw,1.95rem)] leading-[1.3] text-paper">
+            <blockquote className="mx-auto max-w-[40ch] border-l border-paper/25 py-4 pl-6 font-display not-italic text-[clamp(1.35rem,2.3vw,1.75rem)] leading-[1.35] text-paper/90">
               The org chart is a cache of old decisions. We wanted a company
               that re-decides its defaults every morning.
             </blockquote>

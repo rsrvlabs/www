@@ -15,7 +15,7 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function Note() {
   return (
-    <section className="relative bg-night py-[18svh]">
+    <section className="relative py-[18svh]">
       <div className="mx-auto w-full max-w-[68rem] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-6">
           <motion.div

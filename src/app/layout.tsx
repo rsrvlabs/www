@@ -18,7 +18,7 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=gambarino@400&f[]=supreme@300,400,500&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=supreme@300,400,500&display=swap"
         />
         {/* Warm the map tile CDN before the user scrolls to Places */}
         <link rel="preconnect" href="https://tiles.openfreemap.org" crossOrigin="anonymous" />

@@ -155,7 +155,7 @@ export function Subpage({
   children: ReactNode;
 }) {
   return (
-    <main className="relative min-h-[100svh] w-full overflow-x-clip bg-night">
+    <main className="lab-ground relative min-h-[100svh] w-full overflow-x-clip">
       {/* Instrument-room texture band behind the title (insforge grammar) */}
       <div
         aria-hidden

@@ -51,7 +51,7 @@ const essays: Array<{
 
 export default function ResearchPage() {
   return (
-    <main className="relative min-h-[100svh] w-full overflow-x-clip bg-night">
+    <main className="lab-ground relative min-h-[100svh] w-full overflow-x-clip">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[52svh] grid-paper-night"

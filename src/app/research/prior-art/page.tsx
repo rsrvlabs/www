@@ -17,7 +17,7 @@ export const metadata: Metadata = {
  */
 export default function PriorArtEssay() {
   return (
-    <main className="relative min-h-[100svh] w-full overflow-x-clip bg-night">
+    <main className="lab-ground relative min-h-[100svh] w-full overflow-x-clip">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[40svh] grid-paper-night"
@@ -30,8 +30,8 @@ export default function PriorArtEssay() {
         </h1>
 
         <div className="mx-auto mt-14 max-w-[850px]">
-          <div className="hairline-dashed-night space-y-7 pt-12 font-display text-[19px] leading-[1.7] text-paper/85">
-            <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-2 first-letter:font-display first-letter:text-[5rem] first-letter:leading-[0.75] first-letter:text-paper">
+          <div className="hairline-dashed-night space-y-7 pt-12 font-sans text-[17px] leading-[1.85] text-paper/85">
+            <p>
               The responsible way to build something strange is to find the
               people who already built it and copy their homework. So before we
               committed to running a studio on a single agentic brain, we did
@@ -65,7 +65,7 @@ export default function PriorArtEssay() {
               earning its software more trust over time. Not a codebase we could
               read. An account we could nod at.
             </p>
-            <blockquote className="mx-auto max-w-[26ch] py-6 text-center font-display italic text-[clamp(1.5rem,2.6vw,1.95rem)] leading-[1.3] text-paper">
+            <blockquote className="mx-auto max-w-[40ch] border-l border-paper/25 py-4 pl-6 font-display not-italic text-[clamp(1.35rem,2.3vw,1.75rem)] leading-[1.35] text-paper/90">
               The quadrant we live in came back empty. That is a strange place
               to be proud of, and a good place to be nervous.
             </blockquote>

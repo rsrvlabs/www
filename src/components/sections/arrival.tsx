@@ -16,7 +16,7 @@ export function Arrival() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-night pb-[14svh]"
+      className="relative flex min-h-[100svh] items-end overflow-hidden pb-[14svh]"
     >
       {/* Pure night ground — the silk shader is DELETED, not recolored
           (design-refs/lelabo PATH A: decoration replaced by information;
@@ -51,10 +51,10 @@ export function Arrival() {
             Cap is 7.4rem, NOT the ~8rem first proposed: measured 2026-07-04,
             line 1 needs 11.01px width per font-px, so >120px wraps inside the
             1328px content column (8rem = 128px provably wrapped). */}
-        <h1 className="font-display font-normal text-paper leading-[1.02] tracking-[-0.03em] text-[clamp(2.5rem,7.5vw,7.4rem)]">
+        <h1 className="font-display font-semibold uppercase text-paper leading-[0.96] tracking-[-0.02em] text-[clamp(2.5rem,7.5vw,7.4rem)]">
           <Line text="We build AI-native products." accentWord="AI-native" baseDelay={0.55} />
           <br />
-          <span className="text-paper/70 italic font-display">
+          <span className="text-paper/55 font-display">
             <Line text="The company itself is one." baseDelay={1.45} />
           </span>
         </h1>
