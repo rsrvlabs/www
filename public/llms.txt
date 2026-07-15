@@ -1,0 +1,24 @@
+# Reserve
+
+> Reserve is a design studio run with one machine — an AI-native company whose first product is the studio itself. It builds consumer and fintech products on an operating system it built, where software agents hold standing jobs and humans make the calls. Two engines: Frontier (forward-deployed engagements inside client teams) and Labs (its own products).
+
+Reserve exhibits its work like a laboratory: each product is a specimen with a record. The company runs on a file-based "brain" — a shared knowledge base an agent maintains so knowledge compounds — plus a daily heartbeat that wakes and runs standing jobs (competitor sweeps, reviews, briefs) whether or not anyone is at a keyboard. A core operating principle: no system grades its own work — evaluation is kept structurally isolated from what it evaluates.
+
+Contact: hello@rsrvlabs.com
+
+## Products (Labs)
+- [Social Wearable (SW)](https://rsrvlabs.com/sw): the flagship — a dating app with a physical signature; real co-presence via BLE proximity, so the people you actually crossed paths with stay findable. In development.
+- [Reserve Finance](https://rsrvlabs.com/labs): a US-equities research desk that reasons in public — it scores the market, publishes a daily brief, and holds itself accountable to an isolated, immutable ledger. Live.
+- [Glow](https://rsrvlabs.com/labs): beauty tech, in formulation.
+
+## Frontier
+- [Frontier engagements](https://rsrvlabs.com/frontiers): forward-deployment into a client's "frontier" — a domain where AI hasn't been made to work yet. Reserve embeds, builds with the team, and leaves running systems; the work feeds the products.
+
+## Research (field notes on running an AI-native company)
+- [The AI-native company](https://rsrvlabs.com/research/ai-native-company): what it means to run a company where agents hold jobs.
+- [Does an AI-native company still need departments?](https://rsrvlabs.com/research/departments): replacing the org chart with a schedule — a heartbeat that keeps un-forgetful attention on each domain.
+- [We went looking for someone already doing this](https://rsrvlabs.com/research/prior-art): a prior-art survey of the flagship's space.
+- [Don't let the agent grade itself](https://rsrvlabs.com/research/agent-self-evaluation): 2026's agent bottleneck is verification, not generation; self-evaluation is the deepest failure. Unless the evaluator is isolated from the evaluated, no score can be trusted — and the three-account structure Reserve runs instead.
+
+## Contact
+- Email: hello@rsrvlabs.com

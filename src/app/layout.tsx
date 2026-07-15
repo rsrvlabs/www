@@ -1,11 +1,42 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
+
+const TITLE = "Reserve — the AI-native studio. Our first product is the studio.";
+const DESCRIPTION =
+  "A studio run with one machine. A dating app with a physical signature, a finance desk that publishes itself daily, beauty tech in the making — all on an operating system we built, where agents hold jobs.";
 
 export const metadata: Metadata = {
-  title: "Reserve — the AI-native studio. The company itself is one.",
-  description:
-    "A studio run with one machine. A dating app with a physical signature, a finance desk that publishes itself daily, beauty tech in the making — all on an AI-native operating system, where agents hold jobs.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s — Reserve",
+  },
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "AI-native company",
+    "AI-native studio",
+    "autonomous agents",
+    "social wearable",
+    "AI finance research",
+    "Reserve",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
