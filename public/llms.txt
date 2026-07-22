@@ -7,7 +7,7 @@ Reserve exhibits its work like a laboratory: each product is a specimen with a r
 Contact: hello@rsrvlabs.com
 
 ## Products (Labs)
-- [Social Wearable (SW)](https://rsrvlabs.com/sw): the flagship — a dating app with a physical signature; real co-presence via BLE proximity, so the people you actually crossed paths with stay findable. In development.
+- [Lime](https://rsrvlabs.com/sw): the flagship — Lime, short for limerence: a dating app with a physical signature. Real co-presence via BLE proximity (rotating ephemeral IDs, nothing identifying on the air), so the people you actually crossed paths with stay findable; joinable "rooms" (activities at venues/events) scope discovery to who's actually there. Built and in field testing.
 - [Reserve Finance](https://rsrvlabs.com/labs): a US-equities research desk that reasons in public — it scores the market, publishes a daily brief, and holds itself accountable to an isolated, immutable ledger. Live.
 - [Glow](https://rsrvlabs.com/labs): beauty tech, in formulation.
 

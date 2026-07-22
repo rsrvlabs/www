@@ -1,24 +1,72 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Subpage, Entry, Movement } from "@/components/site/subpage";
 
 export const metadata: Metadata = {
-  title: "Reserve — the flagship: a dating app with a physical signature",
+  title: "Lime — date people you've actually crossed paths with",
   description:
-    "You only match with people you've actually crossed paths with. Presence becomes a signature; the one who made your heart skip doesn't get lost in the crowd.",
+    "Lime (short for limerence) is Reserve's flagship: a dating app with a physical signature. Phones recognize each other over Bluetooth when you truly cross paths — the people you were genuinely near stay findable, and a room you join scopes the app to the people in it.",
 };
 
-export default function SWPage() {
+/** The three real screens, framed as specimens. Simulator captures of the
+ *  actual build — labeled as such (honesty outranks register). */
+function ScreenShelf() {
+  const SHOTS = [
+    {
+      src: "/lime/nearby.png",
+      alt: "Lime nearby screen — a photo grid of the people you actually crossed paths with",
+      tag: "NEARBY · 附近的人",
+    },
+    {
+      src: "/lime/venue.png",
+      alt: "Lime rooms screen — public activities you can join at venues and events",
+      tag: "ROOMS · 場域",
+    },
+    {
+      src: "/lime/detail.png",
+      alt: "Lime activity page — who's here, shown as a softly blurred presence pile until you meet in person",
+      tag: "WHO'S HERE · 現場的人",
+    },
+  ];
+  return (
+    <section className="py-10">
+      <span className="kicker text-[0.6rem] tracking-[0.26em] text-paper/45">
+        THE BUILD — SIMULATOR CAPTURES, 2026-07
+      </span>
+      <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {SHOTS.map(({ src, alt, tag }) => (
+          <figure key={src} className="flex flex-col">
+            <div className="overflow-hidden rounded-[1.4rem] border border-paper/15">
+              <Image
+                src={src}
+                alt={alt}
+                width={780}
+                height={1696}
+                className="h-auto w-full"
+              />
+            </div>
+            <figcaption className="kicker mt-3 text-[0.6rem] text-paper/50">
+              {tag}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function LimePage() {
   return (
     <Subpage
       index="F"
-      label="Flagship"
+      label="Lime"
       current="/sw"
-      title="The one in the crowd, found again."
-      intro="You noticed someone. The crowd pulled you apart; the city swallowed them. Our flagship ends that story differently — real co-presence becomes a physical signature, and the people you actually crossed paths with stay findable."
+      title="Lime — date people you've actually crossed paths with."
+      intro="Lime is short for limerence — the involuntary state of being lit up by another person. You noticed someone; the crowd pulled you apart; the city swallowed them. Lime ends that story differently: your phone recognizes theirs the moment you genuinely cross paths, so the one who made the room feel different stays findable — instead of lost in a feed of strangers you'll never meet."
       cta={{
         line: "The crowd is big. The list is short.",
         label: "Request early access",
-        subject: "SW early access",
+        subject: "Lime early access",
       }}
     >
       <Movement kicker="THE THESIS" title="The physical world has no undo.">
@@ -29,29 +77,30 @@ export default function SWPage() {
           and forgot the ones you actually did.
         </p>
         <p>
-          Reserve builds the other graph: the people you were genuinely near,
-          kept findable after the moment has passed. Not a wider net — a truer
-          one.
+          Lime builds the other graph: the people you were genuinely near, kept
+          findable after the moment has passed. Not a wider net — a truer one.
         </p>
       </Movement>
+
+      <ScreenShelf />
 
       <Entry
         tag="SIGNATURE"
         title="Cross paths, then find each other"
-        blurb="Bluetooth turns being in the same place at the same time into a signature only the two of you share. Walk out of the venue; the connection walks out with you."
+        blurb="Phones recognize each other directly over Bluetooth — being in the same place at the same time becomes a signature only the two of you share. Not a GPS guess; proof of presence. Walk out of the venue, and the connection walks out with you."
         spec="signature · bluetooth · co-presence"
       />
       <Entry
-        tag="WEARABLE"
-        title="Presence without the phone"
-        blurb="The destination is a wearable — no app to open, no screen between you and the world. Your presence does the talking."
-        spec="wearable · no app · no screen"
+        tag="ROOMS"
+        title="Join the room you're in"
+        blurb="Anyone can open an activity at a venue, a party, an expo — public, or gated behind a code and a QR at the door. While you're in one, Lime shows only the people who are there with you: density and intent arrive together, one room at a time."
+        spec="rooms · activities · one at a time"
       />
       <Entry
-        tag="BIOSIGNAL"
-        title="Your body knows first"
-        blurb="Heart-rate as a matching signal: the moment something sparks, before you've found the words for it. The most honest swipe is a heartbeat."
-        spec="biosignal · heart-rate · matching signal"
+        tag="CONSENT"
+        title="Seen only as you choose"
+        blurb="Nothing identifying ever goes on the air — the radio carries a rotating ephemeral ID only our server can resolve. Every profile field is disclosed by choice; a block removes you from someone's world everywhere at once. The creep factor is a design problem, and we designed for it first."
+        spec="ephemeral id · disclosure · server-truth"
       />
 
       <Movement kicker="WHAT THE ROOM TAUGHT US" title="Presence is personal.">
@@ -59,13 +108,18 @@ export default function SWPage() {
           We sat with the people who would want this, and they disagreed —
           usefully. One wants it in a club; another at an expo. The scene is
           not universal; the <em>purpose</em> is. So the signature is
-          scene-agnostic: it works wherever you already had a reason to be.
+          scene-agnostic, and Lime scopes to rooms instead of betting on one
+          kind of venue.
         </p>
         <p>
           And the most consistent thing we heard was not excitement. It was:
           don&rsquo;t make me feel tracked. So the profile is yours to reveal,
           never the room&rsquo;s to take — disclosure is a control, not a
           default.
+        </p>
+        <p>
+          The app is built and running across real devices — discovery,
+          matching, chat, rooms — now in field testing ahead of launch.
         </p>
       </Movement>
 
@@ -84,6 +138,16 @@ export default function SWPage() {
           co-presence, meters and seconds; not a mass feed but curated rooms
           where being there already meant something. We would rather win one
           real scene than fake a crowd.
+        </p>
+      </Movement>
+
+      <Movement kicker="WHERE THIS GOES" title="Presence without the phone.">
+        <p>
+          The destination is a wearable — no app to open, no screen between you
+          and the world. And beneath it, a question we are equipped to study
+          rather than hype: what your body already knows in the moment
+          something sparks. Heart-rate as self-insight, validated by a founder
+          trained in psychophysiology — offered with consent, or not at all.
         </p>
       </Movement>
     </Subpage>

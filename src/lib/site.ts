@@ -10,8 +10,8 @@ export const SITE_NAME = "Reserve";
 // Every indexable route, with a stable last-updated stamp for the sitemap.
 // Update the date when a page's content materially changes.
 export const ROUTES: Array<{ path: string; updated: string; priority: number }> = [
-  { path: "/", updated: "2026-07-15", priority: 1 },
-  { path: "/sw", updated: "2026-07-15", priority: 0.8 },
+  { path: "/", updated: "2026-07-22", priority: 1 },
+  { path: "/sw", updated: "2026-07-22", priority: 0.8 },
   { path: "/labs", updated: "2026-07-15", priority: 0.8 },
   { path: "/frontiers", updated: "2026-07-15", priority: 0.8 },
   { path: "/research", updated: "2026-07-15", priority: 0.7 },
