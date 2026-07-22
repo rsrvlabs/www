@@ -13,7 +13,7 @@ import Link from "next/link";
 export const NAV_ITEMS = [
   // `index` = each page's own machine tag letter (SubpageHeader `N° F · …`);
   // the mobile menu overlay renders it next to the route title.
-  { href: "/sw", label: "Flagship", index: "F" },
+  { href: "/sw", label: "Lime", index: "F" },
   { href: "/labs", label: "Labs", index: "L" },
   { href: "/frontiers", label: "Frontiers", index: "R" },
   { href: "/research", label: "Research", index: "Q" },
