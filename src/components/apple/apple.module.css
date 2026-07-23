@@ -25,7 +25,12 @@
   border-bottom: 1px solid rgba(0,0,0,0.08);
   font-size: 0.75rem; letter-spacing: 0.01em;
 }
-.nav a { color: var(--ink); opacity: 0.85; text-decoration: none; }
+/* Links stretch to the full 44px bar so the tap target is the bar, not the
+   18px glyph box — otherwise every mobile tap lands in the gap between items. */
+.nav a {
+  color: var(--ink); opacity: 0.85; text-decoration: none;
+  display: flex; align-items: center; align-self: stretch; padding: 0 0.2rem;
+}
 .nav a:hover { opacity: 1; }
 .navBrand { font-weight: 600; }
 
