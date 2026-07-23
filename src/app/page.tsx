@@ -5,7 +5,6 @@ import {
   Eyebrow,
   H2,
   Body,
-  Rule,
   Tile,
   CtaButton,
   Footer,
@@ -73,7 +72,6 @@ export default function Home() {
         </div>
       </Section>
 
-      <Rule />
 
       {/* What we do */}
       <Section tinted center>
@@ -115,7 +113,6 @@ export default function Home() {
         </div>
       </Section>
 
-      <Rule />
 
       {/* Invitation */}
       <Section center>

@@ -1,6 +1,6 @@
-/* Apple-style product page surface — light, spacious, type-led.
-   Scoped to the Lime page (Ryvn 2026-07-23: www should follow Apple design;
-   the company-level pages keep the Le Labo night language for now). */
+/* Apple-style page surface — light, spacious, type-led. Used sitewide.
+   Apple's grammar, not just its palette: no all-caps overlines, no stroked
+   cards, body copy in near-black, text inside a surface always flush left. */
 .page {
   --ink: #1d1d1f;
   --ink-soft: #6e6e73;
@@ -47,21 +47,25 @@
   font-size: clamp(1.15rem, 2vw, 1.6rem);
   line-height: 1.45;
   letter-spacing: -0.01em;
-  color: var(--ink-soft);
+  color: var(--ink);
   font-weight: 400;
 }
 .h2 {
   font-size: clamp(2rem, 4.4vw, 3.4rem);
   line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin: 0;
 }
+/* Body copy is near-black. Apple reserves the soft grey for captions and
+   footnotes only — grey body text is what makes a page read washed-out. */
 .body {
   margin-top: 1.1rem; max-width: 46ch;
-  font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.6; color: var(--ink-soft);
+  font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.6; color: var(--ink);
 }
 .bodyCenter { composes: body; margin-left: auto; margin-right: auto; }
+/* Section lead-in. Apple sets these in the headline's own ink — a coloured
+   label above every heading is Material's overline, not Apple's grammar. */
 .eyebrow {
   font-size: 0.95rem; font-weight: 600; letter-spacing: 0.005em;
-  color: var(--link); margin: 0 0 0.6rem;
+  color: var(--ink-soft); margin: 0 0 0.6rem;
 }
 
 .linkRow { margin-top: 1.6rem; display: flex; gap: 1.8rem; justify-content: center; flex-wrap: wrap; }
@@ -85,18 +89,24 @@
 .device img { display: block; width: 100%; height: auto; }
 .caption {
   margin-top: 0.9rem; text-align: center;
-  font-size: 0.82rem; letter-spacing: 0.02em; color: var(--ink-soft);
+  font-size: 0.85rem; letter-spacing: 0; color: var(--ink-soft);
 }
 
 /* feature grid */
 .grid { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(3, minmax(0,1fr)); }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+/* No stroke. A 1px-outlined card is Material 3's outlined-card component;
+   Apple separates surfaces with fill and whitespace, and always sets the
+   text inside a surface flush left even when the section is centred. */
 .card {
-  background: #fff; border-radius: 1.25rem; padding: clamp(1.6rem, 2.4vw, 2.2rem);
-  border: 1px solid var(--hair);
+  background: var(--tint); border-radius: 1.5rem; padding: clamp(1.8rem, 2.6vw, 2.4rem);
+  text-align: left;
 }
+.tinted .card { background: #fff; }
+/* a spec line trailing the body needs the gap above it, not below */
+.cardBody + .tileKicker { margin: 1rem 0 0; }
 .cardTitle { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
-.cardBody { font-size: 1rem; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+.cardBody { font-size: 1rem; line-height: 1.6; color: var(--ink); margin: 0; }
 
 .rule { height: 1px; background: var(--hair); border: 0; margin: 0; }
 
@@ -140,17 +150,19 @@
 
 /* A tile is tint-on-white. Inside a tinted section that would be invisible,
    so it inverts to white-on-tint — same surface, opposite ground. */
-.tinted .tile { background: #fff; border: 1px solid var(--hair); }
+.tinted .tile { background: #fff; }
 .tile {
-  background: var(--tint); border-radius: 1.6rem; padding: clamp(2rem, 3.6vw, 3rem);
+  background: var(--tint); border-radius: 1.75rem; text-align: left; padding: clamp(2rem, 3.6vw, 3rem);
   display: flex; flex-direction: column; min-height: 17rem;
   text-decoration: none; color: inherit;
   transition: transform 220ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 .tile:hover { transform: translateY(-3px); }
-.tileKicker { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 0.9rem; }
+/* Sentence case, normal tracking. All-caps + wide tracking is Material's
+   overline role; Apple's marketing pages practically never use it. */
+.tileKicker { font-size: 0.85rem; letter-spacing: 0; color: var(--ink-soft); margin: 0 0 0.9rem; }
 .tileTitle { font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 600; letter-spacing: -0.015em; margin: 0 0 0.7rem; line-height: 1.1; }
-.tileBody { font-size: 1rem; line-height: 1.55; color: var(--ink-soft); margin: 0 0 1.4rem; }
+.tileBody { font-size: 1rem; line-height: 1.55; color: var(--ink); margin: 0 0 1.4rem; }
 .tileLink { margin-top: auto; color: var(--link); font-size: 1rem; }
 
 .grid2 { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -178,4 +190,4 @@
 }
 @media (max-width: 620px) { .trow { grid-template-columns: 4.5rem 1fr; gap: 1rem; } }
 .ttime { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 1rem; }
-.ttext { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.55; }
+.ttext { color: var(--ink); font-size: 1.02rem; line-height: 1.55; }

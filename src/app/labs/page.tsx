@@ -8,7 +8,6 @@ import {
   Footer,
   H2,
   Page,
-  Rule,
   Section,
   apple,
   CONTACT,
@@ -27,13 +26,13 @@ const ENTRIES = [
       "Reserve Finance runs a cold, quantitative US-equities desk that generates and publishes its own morning brief at 08:00 every trading day. Numbers and probabilities, zero hype. No human touches it.",
   },
   {
-    tag: "ADVISOR",
+    tag: "Advisor",
     title: "Reasoning you can audit",
     blurb:
       "An advisor that never hands down a verdict: every read comes with its full reasoning chain, its data, and its uncertainty. Teach-the-why, from first principles — you leave understanding the market, not just obeying a call.",
   },
   {
-    tag: "BEAUTY",
+    tag: "Beauty",
     title: "Glow — beauty, instrumented",
     blurb:
       "AI meets beauty tech: personal, sensor-informed, and opinionated. The lab's next character.",
@@ -65,11 +64,10 @@ export default function LabsPage() {
         </div>
       </Section>
 
-      <Rule />
 
       {/* The lab + the inventory */}
       <Section tinted center id="lab">
-        <Eyebrow>THE LAB</Eyebrow>
+        <Eyebrow>The lab</Eyebrow>
         <H2>Software that runs itself.</H2>
         <Body center>
           The lab has one obsession: products that operate without a hand on the wheel.
@@ -109,7 +107,6 @@ export default function LabsPage() {
         </Body>
       </Section>
 
-      <Rule />
 
       {/* Close */}
       <Section tinted center>

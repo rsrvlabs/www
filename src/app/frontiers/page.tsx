@@ -8,7 +8,6 @@ import {
   Footer,
   H2,
   Page,
-  Rule,
   Section,
   apple,
   CONTACT,
@@ -21,32 +20,32 @@ export const metadata: Metadata = {
 
 const ENTRIES = [
   {
-    tag: "TRAVEL",
+    tag: "Travel",
     title: "Travel tech",
     blurb:
       "Production AI inside a travel platform — the systems that decide, rank, and respond while the traveler is still typing.",
-    spec: "in production · travel · rank + respond",
+    spec: "In production · travel · rank + respond",
   },
   {
-    tag: "SPORTS CV",
+    tag: "Sports CV",
     title: "Golf, seen by machines",
     blurb:
       "Computer vision that reads a swing the way a coach does — frame by frame, in production.",
-    spec: "in production · golf · computer vision",
+    spec: "In production · golf · computer vision",
   },
   {
-    tag: "HEALTH",
+    tag: "Health",
     title: "Health & wearables",
     blurb:
       "Wearable data turned into daily guidance — the same domain knowledge that powers our flagship.",
-    spec: "in production · health · wearables",
+    spec: "In production · health · wearables",
   },
   {
-    tag: "LEGAL",
+    tag: "Legal",
     title: "Legal tech",
     blurb:
       "Applied AI where precision is non-negotiable: documents, citations, and judgment support.",
-    spec: "in production · legal · documents",
+    spec: "In production · legal · documents",
   },
 ];
 
@@ -76,11 +75,10 @@ export default function FrontiersPage() {
         </div>
       </Section>
 
-      <Rule />
 
       {/* The model + the frontiers */}
       <Section tinted center id="work">
-        <Eyebrow>THE MODEL</Eyebrow>
+        <Eyebrow>The model</Eyebrow>
         <H2>We don&rsquo;t consult. We deploy.</H2>
         <Body center>
           The model is forward deployment: senior engineers embedded inside your team,
@@ -107,7 +105,7 @@ export default function FrontiersPage() {
 
       {/* Why it compounds */}
       <Section center>
-        <Eyebrow>WHY IT COMPOUNDS</Eyebrow>
+        <Eyebrow>Why it compounds</Eyebrow>
         <H2>Client work that pays us twice.</H2>
         <Body center>
           A frontier engagement is not a detour from the products — it is how they get
@@ -121,7 +119,6 @@ export default function FrontiersPage() {
         </Body>
       </Section>
 
-      <Rule />
 
       {/* Close */}
       <Section tinted center>
