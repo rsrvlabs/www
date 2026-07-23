@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   AppleNav,
   Page,
@@ -72,6 +73,18 @@ export default function Home() {
           <a className={apple.link} href="/research">
             Read the field notes &rsaquo;
           </a>
+        </div>
+
+        {/* The one product object on the landing. A simulator capture of the
+            shipped Lime build — real, not a render. */}
+        <div className={apple.heroDevice}>
+          <Image
+            src="/lime/nearby-en.png"
+            alt="Lime running on iPhone: the people you actually crossed paths with"
+            width={780}
+            height={1696}
+            priority
+          />
         </div>
       </Section>
 
