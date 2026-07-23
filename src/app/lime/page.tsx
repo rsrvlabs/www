@@ -99,11 +99,11 @@ export default function LimePage() {
             <p className={s.eyebrow}>How it works</p>
             <h2 className={s.h2}>Presence, verified.</h2>
           </div>
-          <div className={s.grid}>
+          <div className={s.statements}>
             {FEATURES.map((f) => (
-              <div className={s.card} key={f.title}>
-                <h3 className={s.cardTitle}>{f.title}</h3>
-                <p className={s.cardBody}>{f.body}</p>
+              <div className={s.statement} key={f.title}>
+                <h3 className={s.statementTitle}>{f.title}</h3>
+                <p className={s.statementBody}>{f.body}</p>
               </div>
             ))}
           </div>
@@ -121,24 +121,24 @@ export default function LimePage() {
               We read the autopsies.
             </h2>
           </div>
-          <div className={s.grid}>
-            <div className={s.card}>
-              <h3 className={s.cardTitle}>Trust</h3>
-              <p className={s.cardBody}>
+          <div className={s.statements}>
+            <div className={s.statement}>
+              <h3 className={s.statementTitle}>Trust</h3>
+              <p className={s.statementBody}>
                 A radius is a rumor. Only phones actually hearing each other makes
                 &ldquo;we crossed paths&rdquo; worth acting on.
               </p>
             </div>
-            <div className={s.card}>
-              <h3 className={s.cardTitle}>Density</h3>
-              <p className={s.cardBody}>
+            <div className={s.statement}>
+              <h3 className={s.statementTitle}>Density</h3>
+              <p className={s.statementBody}>
                 A city-scoped feed needs a million users to feel alive. A room needs thirty
                 people at one bar, tonight.
               </p>
             </div>
-            <div className={s.card}>
-              <h3 className={s.cardTitle}>Consent</h3>
-              <p className={s.cardBody}>
+            <div className={s.statement}>
+              <h3 className={s.statementTitle}>Consent</h3>
+              <p className={s.statementBody}>
                 The creep factor is an architecture problem, not a policy problem — which is
                 why consent is built into the radio itself.
               </p>
