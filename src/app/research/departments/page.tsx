@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { HeartbeatSchedule } from "@/components/visuals/heartbeat-schedule";
 
 export const metadata: Metadata = {
   title: "Does an AI-native company still need departments? — Reserve Research",
@@ -48,9 +47,6 @@ export default function DepartmentsEssay() {
             jobs and runs the ones that are due.
           </p>
 
-          <div className={apple.figure}>
-            <HeartbeatSchedule />
-          </div>
 
           <p>
             This is the whole trick, and it is less magical than it sounds. A

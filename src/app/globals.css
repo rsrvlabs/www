@@ -14,7 +14,6 @@
   /* House easing pair + pop (DESIGN.md motion rules — don't multiply easings) */
   --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-ui: cubic-bezier(0.32, 0.72, 0, 1);
-  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Warm cream-paper palette (the TEXT voice), OKLCH, tinted toward sun-gold hue (~75°). */
   --color-paper: oklch(0.965 0.012 78);
@@ -133,15 +132,6 @@
     background-size: 100% 1px;
   }
 
-  /* ── Grid-paper texture for dark sections (insforge): two 1px gradients,
-     masked so the lattice breathes instead of tiling to the edges. */
-  .grid-paper-night {
-    background-image:
-      linear-gradient(to right, oklch(0.985 0 0 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.985 0 0 / 0.06) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 55%, transparent 100%);
-  }
 
   /* ── Hairline separators (scrunch): dashed 1px is the ONLY divider on paper. */
   .hairline-dashed {
@@ -151,54 +141,8 @@
     border-top: 1px dashed oklch(0.985 0 0 / 0.18);
   }
 
-  /* ── Lab material ground (Le Labo): brushed charcoal + raking top light, so
-     the page reads as a concrete/steel laboratory surface, not flat black. */
-  .lab-ground {
-    background-color: var(--color-night);
-    background-image:
-      radial-gradient(120% 80% at 8% -8%, oklch(0.985 0 0 / 0.05), transparent 52%),
-      linear-gradient(104deg, oklch(0.985 0 0 / 0.03) 0%, transparent 30%, oklch(0 0 0 / 0.4) 100%);
-  }
 
-  /* ── Exposed structural grid (Le Labo): the building's ruled columns, drawn
-     faint so specimens sit ON a measured plan. Pair over .lab-ground. */
-  .lab-columns {
-    background-image: repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent calc(8.3333% - 1px),
-      oklch(0.985 0 0 / 0.05) calc(8.3333% - 1px),
-      oklch(0.985 0 0 / 0.05) 8.3333%
-    );
-  }
 
-  /* ── Registration ticks (Le Labo): drafting corner marks on a specimen frame.
-     Apply to a positioned parent; ::before/::after draw the top corners, use
-     .reg-frame-b for the bottom pair. */
-  .reg-frame {
-    position: relative;
-  }
-  .reg-frame::before,
-  .reg-frame::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: oklch(0.985 0 0 / 0.45);
-    z-index: 2;
-  }
-  .reg-frame::before {
-    top: 10px;
-    left: 10px;
-    border-top: 1px solid;
-    border-left: 1px solid;
-  }
-  .reg-frame::after {
-    top: 10px;
-    right: 10px;
-    border-top: 1px solid;
-    border-right: 1px solid;
-  }
 }
 
 /* Night-shift status dot (ploy cadence: 2.4s) — sun-accent ring pulse */

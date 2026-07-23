@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { VerificationGap } from "@/components/visuals/verification-gap";
 
 export const metadata: Metadata = {
   title: "Don't let the agent grade itself — Reserve Research",
@@ -67,9 +66,6 @@ export default function AgentSelfEvaluationEssay() {
             reflection.
           </p>
 
-          <div className={apple.figure}>
-            <VerificationGap />
-          </div>
 
           <p>
             It gets worse once the agent is optimizing. Reward hacking is when

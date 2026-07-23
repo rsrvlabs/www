@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { FloorVsCeiling } from "@/components/visuals/floor-vs-ceiling";
 
 export const metadata: Metadata = {
   title: "Build the floor, not the ceiling — Reserve Research",
@@ -69,15 +68,12 @@ export default function BuildTheFloorEssay() {
             model gets strong.
           </p>
 
-          <div className={apple.figure}>
-            <FloorVsCeiling />
-          </div>
 
           <p>
             A ceiling caps what a capable model is allowed to attempt, so it
             starts to bind at exactly the moment the model gets good enough to
             exceed it. The capability is there; the harness refuses to let you
-            spend it. That is the widening gap in the figure — capability you
+            spend it. That gap widens with every model release — capability you
             paid for and threw away — and it is why the &ldquo;delete your
             scaffolding as the model improves&rdquo; instinct is right about
             this kind of gate. A ceiling is the compensating harness wearing a

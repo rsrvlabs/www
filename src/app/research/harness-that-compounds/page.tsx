@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { TwoHarnesses } from "@/components/visuals/two-harnesses";
 
 export const metadata: Metadata = {
   title: "The harness has an expiration date. Ours mostly doesn't. — Reserve Research",
@@ -67,9 +66,6 @@ export default function HarnessEssay() {
             expiration date. The second compounds.
           </p>
 
-          <div className={apple.figure}>
-            <TwoHarnesses />
-          </div>
 
           <p>
             The compensating harness is the one the bitter lesson is right
