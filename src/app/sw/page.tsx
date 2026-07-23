@@ -125,19 +125,34 @@ export default function LimePage() {
 
       <Movement
         kicker="THE BET"
-        title="Proximity social is a graveyard. We know."
+        title="Proximity social is a graveyard. We read the autopsies."
       >
         <p>
           People have tried to make &ldquo;someone is near you&rdquo; matter
-          for fifteen years, and the field is littered. The failures share a
-          cause: loose location, no reason to be real, nothing left the morning
-          after.
+          for fifteen years, and the field is littered — the common reading is
+          that the category doesn&rsquo;t work. We read it differently: the
+          failures died of three specific, separable causes, and each one is a
+          design decision, not a fate.
         </p>
         <p>
-          Our bet is narrower and harder to fake — not a radius but genuine
-          co-presence, meters and seconds; not a mass feed but curated rooms
-          where being there already meant something. We would rather win one
-          real scene than fake a crowd.
+          Trust — a radius is a rumor; only phones actually hearing each other
+          makes &ldquo;we crossed paths&rdquo; worth acting on. Density — a
+          city-scoped feed needs a million users to feel alive; a room needs
+          thirty people at one bar, tonight. And the creep factor — an
+          architecture problem, not a policy problem, which is why consent is
+          built into the radio itself. We would rather win one real room than
+          fake a crowd.
+        </p>
+      </Movement>
+
+      <Movement kicker="WHY US" title="Two backgrounds, two halves of the product.">
+        <p>
+          One founder trained in psychophysiology — the science of what
+          attraction actually does in the body, in person, in seconds. The
+          other led AI R&amp;D on a wearable program that shipped over ten
+          million units — consumer Bluetooth at a scale where the hard problems
+          stop being theoretical. A product that runs from verified co-presence
+          to on-body signals needs exactly this pair.
         </p>
       </Movement>
 
