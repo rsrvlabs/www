@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { AppleNav } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
@@ -35,15 +36,7 @@ const FEATURES = [
 export default function LimePage() {
   return (
     <main className={s.page}>
-      <nav className={s.nav}>
-        <Link href="/" className={s.navBrand}>
-          Reserve
-        </Link>
-        <Link href="/lime">Lime</Link>
-        <Link href="/labs">Labs</Link>
-        <Link href="/frontiers">Frontiers</Link>
-        <Link href="/research">Research</Link>
-      </nav>
+      <AppleNav />
 
       {/* Hero — Apple's opening move: one huge line, one quiet line, the product */}
       <section className={`${s.section} ${s.center}`}>

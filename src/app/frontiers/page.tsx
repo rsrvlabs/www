@@ -123,6 +123,14 @@ export default function FrontiersPage() {
       {/* Close */}
       <Section tinted center>
         <H2>Have a frontier? It starts with one email.</H2>
+        <div className={apple.linkRow}>
+          {/* /effects is the outcome page for this business. It was live and
+              public but linked from nowhere, so nobody evaluating an engagement
+              could reach it. */}
+          <a className={apple.link} href="/effects">
+            See what changes when we arrive &rsaquo;
+          </a>
+        </div>
         <CtaButton subject="Frontier engagement" label="Start a conversation" />
       </Section>
 
