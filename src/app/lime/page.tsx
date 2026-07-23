@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { AppleNav } from "@/components/apple/kit";
+import { AppleNav, Section } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
@@ -39,8 +39,7 @@ export default function LimePage() {
       <AppleNav />
 
       {/* Hero — Apple's opening move: one huge line, one quiet line, the product */}
-      <section className={`${s.section} ${s.center}`}>
-        <div className={s.inner}>
+      <Section center>
           <h1 className={s.hero}>Lime</h1>
           <p className={s.sub}>Date people you&rsquo;ve actually crossed paths with.</p>
           <div className={s.linkRow}>
@@ -62,14 +61,12 @@ export default function LimePage() {
               </figure>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       <hr className={s.rule} />
 
       {/* Thesis */}
-      <section className={`${s.section} ${s.center} ${s.tinted}`}>
-        <div className={s.inner}>
+      <Section center tinted>
           <p className={s.eyebrow}>The thesis</p>
           <h2 className={s.h2}>The physical world has no undo.</h2>
           <p className={s.bodyCenter}>
@@ -82,12 +79,10 @@ export default function LimePage() {
             Lime builds the other graph: the people you were genuinely near, kept findable
             after the moment has passed. Not a wider net — a truer one.
           </p>
-        </div>
-      </section>
+      </Section>
 
       {/* Features */}
-      <section className={s.section} id="how">
-        <div className={s.inner}>
+      <Section id="how">
           <div className={s.center}>
             <p className={s.eyebrow}>How it works</p>
             <h2 className={s.h2}>Presence, verified.</h2>
@@ -100,12 +95,10 @@ export default function LimePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* The bet */}
-      <section className={`${s.section} ${s.tinted}`}>
-        <div className={s.inner}>
+      <Section tinted>
           <div className={s.center}>
             <p className={s.eyebrow}>The bet</p>
             <h2 className={s.h2}>
@@ -137,12 +130,10 @@ export default function LimePage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Why us */}
-      <section className={`${s.section} ${s.center}`}>
-        <div className={s.inner}>
+      <Section center>
           <p className={s.eyebrow}>Why us</p>
           <h2 className={s.h2}>Two backgrounds, two halves of the product.</h2>
           <p className={s.bodyCenter}>
@@ -152,14 +143,12 @@ export default function LimePage() {
             scale where the hard problems stop being theoretical. A product that runs from
             verified co-presence to on-body signals needs exactly this pair.
           </p>
-        </div>
-      </section>
+      </Section>
 
       <hr className={s.rule} />
 
       {/* Close */}
-      <section className={`${s.section} ${s.center}`}>
-        <div className={s.inner}>
+      <Section center>
           <h2 className={s.h2}>The crowd is big. The list is short.</h2>
           <a
             className={s.cta}
@@ -167,8 +156,7 @@ export default function LimePage() {
           >
             Request early access
           </a>
-        </div>
-      </section>
+      </Section>
 
       <footer className={`${s.footer} ${s.center}`}>
         <Link href="/" style={{ color: "inherit" }}>
