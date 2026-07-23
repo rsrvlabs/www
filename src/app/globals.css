@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Switzer", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Supreme", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Erode", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Switzer", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-display);
   /* Machine layer (DESIGN.md): mono annotates the page — labels, indices, metadata. */
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "IBM Plex Mono", Menlo, monospace;

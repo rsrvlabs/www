@@ -9,7 +9,7 @@
   --link: #0071e3;
   background: #fff;
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Switzer", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100svh;
 }
@@ -43,10 +43,11 @@
 
 /* Apple headline scale: very large, tight, semibold */
 .hero {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(2.6rem, 7.2vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  font-weight: 500;
   margin: 0;
 }
 .sub {
@@ -59,8 +60,9 @@
   font-weight: 400;
 }
 .h2 {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(2rem, 4.4vw, 3.4rem);
-  line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin: 0;
+  line-height: 1.14; letter-spacing: -0.008em; font-weight: 500; margin: 0;
 }
 /* Body copy is near-black. Apple reserves the soft grey for captions and
    footnotes only — grey body text is what makes a page read washed-out. */
@@ -153,8 +155,9 @@
 
 /* oversized landing statement — apple.com's "hello" moment */
 .display {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(3.2rem, 11vw, 8rem);
-  line-height: 0.98; letter-spacing: -0.035em; font-weight: 600; margin: 0;
+  line-height: 1.0; letter-spacing: -0.02em; font-weight: 500; margin: 0;
 }
 
 /* two-column feature block, alternating image/text — Apple's product rows */
@@ -190,7 +193,7 @@
 /* long-form article measure (research posts) */
 .article { max-width: 42rem; margin: 0 auto; }
 .article p { font-size: 1.13rem; line-height: 1.72; color: #333336; margin: 0 0 1.4rem; }
-.article h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 600; letter-spacing: -0.018em; margin: 3rem 0 1rem; line-height: 1.15; }
+.article h2 { font-family: "Erode", "Iowan Old Style", Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 500; letter-spacing: -0.006em; margin: 3rem 0 1rem; line-height: 1.15; }
 .article h3 { font-size: 1.3rem; font-weight: 600; margin: 2.2rem 0 0.7rem; }
 .article ul, .article ol { margin: 0 0 1.4rem 1.2rem; font-size: 1.13rem; line-height: 1.72; color: #333336; }
 .article li { margin-bottom: 0.5rem; }
