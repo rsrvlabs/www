@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 const TITLE = "Reserve — the AI-native studio. Our first product is the studio.";
@@ -48,13 +47,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
+        {/* Marks JS as available before first paint, so the scroll-reveal
+            styles only apply when something can actually reveal them. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=supreme@300,400,500&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=erode@400,500,600&display=swap"
         />
       </head>
       <body className="min-h-full flex flex-col bg-white text-[#1d1d1f] selection:bg-[#0071e3] selection:text-white">
-        <SmoothScroll />
         {children}
       </body>
     </html>

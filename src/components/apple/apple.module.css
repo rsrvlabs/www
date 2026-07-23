@@ -9,7 +9,7 @@
   --link: #0071e3;
   background: #fff;
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Switzer", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100svh;
 }
@@ -43,10 +43,11 @@
 
 /* Apple headline scale: very large, tight, semibold */
 .hero {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(2.6rem, 7.2vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  font-weight: 500;
   margin: 0;
 }
 .sub {
@@ -59,8 +60,9 @@
   font-weight: 400;
 }
 .h2 {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(2rem, 4.4vw, 3.4rem);
-  line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin: 0;
+  line-height: 1.14; letter-spacing: -0.008em; font-weight: 500; margin: 0;
 }
 /* Body copy is near-black. Apple reserves the soft grey for captions and
    footnotes only — grey body text is what makes a page read washed-out. */
@@ -153,8 +155,9 @@
 
 /* oversized landing statement — apple.com's "hello" moment */
 .display {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(3.2rem, 11vw, 8rem);
-  line-height: 0.98; letter-spacing: -0.035em; font-weight: 600; margin: 0;
+  line-height: 1.0; letter-spacing: -0.02em; font-weight: 500; margin: 0;
 }
 
 /* two-column feature block, alternating image/text — Apple's product rows */
@@ -166,16 +169,6 @@
 @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
 
 /* product/room tile — big rounded surface, the "buy a product" card */
-/* Essay figures are drawn in near-white ink, so they ride a dark panel inside
-   the light page. They also break out of the 42rem reading measure — at column
-   width the figures' own labels collide. */
-.figure {
-  background: #1d1d1f; border-radius: 1.25rem;
-  padding: clamp(1rem, 2vw, 1.75rem);
-  margin: 2.5rem 0;
-  width: min(58rem, 92vw);
-  margin-left: 50%; transform: translateX(-50%);
-}
 
 /* A tile is tint-on-white. Inside a tinted section that would be invisible,
    so it inverts to white-on-tint — same surface, opposite ground. */
@@ -200,7 +193,7 @@
 /* long-form article measure (research posts) */
 .article { max-width: 42rem; margin: 0 auto; }
 .article p { font-size: 1.13rem; line-height: 1.72; color: #333336; margin: 0 0 1.4rem; }
-.article h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 600; letter-spacing: -0.018em; margin: 3rem 0 1rem; line-height: 1.15; }
+.article h2 { font-family: "Erode", "Iowan Old Style", Georgia, serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 500; letter-spacing: -0.006em; margin: 3rem 0 1rem; line-height: 1.15; }
 .article h3 { font-size: 1.3rem; font-weight: 600; margin: 2.2rem 0 0.7rem; }
 .article ul, .article ol { margin: 0 0 1.4rem 1.2rem; font-size: 1.13rem; line-height: 1.72; color: #333336; }
 .article li { margin-bottom: 0.5rem; }
@@ -220,3 +213,54 @@
 @media (max-width: 620px) { .trow { grid-template-columns: 4.5rem 1fr; gap: 1rem; } }
 .ttime { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 1rem; }
 .ttext { color: var(--ink); font-size: 1.02rem; line-height: 1.55; }
+
+/* ── Motion ───────────────────────────────────────────────────────────────
+   One gesture per section, exponential ease-out, transform + opacity only.
+   The page settles; it never performs. */
+
+/* Progressive enhancement: the default is the SETTLED state, so a visitor with
+   no JavaScript (or a failed hydration) gets the whole page, not a blank one.
+   The `js` class is set synchronously in <head>, so the hidden state applies
+   before first paint and there is no flash. */
+.reveal {
+  transition:
+    opacity 760ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+:global(html.js) .reveal:not(.revealIn) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.revealIn { opacity: 1; transform: none; }
+
+/* The signature moment: the landing statement arrives a beat before its
+   supporting line, which arrives a beat before the links. Nothing else on the
+   site staggers — this is the one place the page introduces itself. */
+.revealIn .display,
+.revealIn .hero { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.revealIn .sub { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 110ms both; }
+.revealIn .linkRow { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Press feedback. Pointer-down, not click — the surface should answer the
+   finger, not the event. */
+.tile:active { transform: translateY(-1px) scale(0.994); transition-duration: 120ms; }
+.cta { transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), filter 180ms ease; }
+.cta:active { transform: scale(0.97); }
+.link { transition: opacity 180ms ease; }
+.link:active { opacity: 0.6; }
+
+/* Reduced motion gets the SETTLED composition, not a stripped-down one:
+   everything is already in its final position, with no transition to run. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .revealIn .display,
+  .revealIn .hero,
+  .revealIn .sub,
+  .revealIn .linkRow { animation: none; }
+  .tile, .tile:hover, .tile:active, .cta:active { transform: none; transition: none; }
+}

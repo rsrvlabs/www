@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { PriorArtMap } from "@/components/visuals/prior-art-map";
 
 export const metadata: Metadata = {
   title: "We went looking for someone already doing this — Reserve Research",
@@ -48,9 +47,6 @@ export default function PriorArtEssay() {
             on a schedule, with humans kept for the calls that matter.
           </p>
 
-          <div className={apple.figure}>
-            <PriorArtMap />
-          </div>
 
           <p>
             Plot what exists by two questions — is it a tool you run, or a
