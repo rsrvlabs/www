@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 const CONTACT = "hello@rsrvlabs.com";
 
 const SHOTS = [
-  { src: "/lime/nearby.png", alt: "Lime Nearby — the people you actually crossed paths with", caption: "NEARBY" },
-  { src: "/lime/venue.png", alt: "Lime Venues — public activities you can join", caption: "ROOMS" },
-  { src: "/lime/detail.png", alt: "Lime activity — who's here, shown as a softly blurred presence pile", caption: "WHO'S HERE" },
+  { src: "/lime/nearby-en.png", alt: "Lime Nearby — the people you actually crossed paths with", caption: "NEARBY" },
+  { src: "/lime/venue-en.png", alt: "Lime Venues — public activities you can join", caption: "ROOMS" },
+  { src: "/lime/detail-en.png", alt: "Lime activity — who's here, shown as a softly blurred presence pile", caption: "WHO'S HERE" },
 ];
 
 const FEATURES = [
