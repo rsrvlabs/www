@@ -109,3 +109,73 @@
 .cta:hover { filter: brightness(1.08); }
 
 .footer { padding: 2.5rem 1.5rem 4rem; font-size: 0.8rem; color: var(--ink-soft); }
+
+/* ── sitewide additions (Ryvn 2026-07-23: all pages in Apple grammar) ────── */
+
+/* oversized landing statement — apple.com's "hello" moment */
+.display {
+  font-size: clamp(3.2rem, 11vw, 8rem);
+  line-height: 0.98; letter-spacing: -0.035em; font-weight: 600; margin: 0;
+}
+
+/* two-column feature block, alternating image/text — Apple's product rows */
+.split {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+}
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+
+/* product/room tile — big rounded surface, the "buy a product" card */
+/* Essay figures are drawn in near-white ink, so they ride a dark panel inside
+   the light page. They also break out of the 42rem reading measure — at column
+   width the figures' own labels collide. */
+.figure {
+  background: #1d1d1f; border-radius: 1.25rem;
+  padding: clamp(1rem, 2vw, 1.75rem);
+  margin: 2.5rem 0;
+  width: min(58rem, 92vw);
+  margin-left: 50%; transform: translateX(-50%);
+}
+
+/* A tile is tint-on-white. Inside a tinted section that would be invisible,
+   so it inverts to white-on-tint — same surface, opposite ground. */
+.tinted .tile { background: #fff; border: 1px solid var(--hair); }
+.tile {
+  background: var(--tint); border-radius: 1.6rem; padding: clamp(2rem, 3.6vw, 3rem);
+  display: flex; flex-direction: column; min-height: 17rem;
+  text-decoration: none; color: inherit;
+  transition: transform 220ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.tile:hover { transform: translateY(-3px); }
+.tileKicker { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 0.9rem; }
+.tileTitle { font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 600; letter-spacing: -0.015em; margin: 0 0 0.7rem; line-height: 1.1; }
+.tileBody { font-size: 1rem; line-height: 1.55; color: var(--ink-soft); margin: 0 0 1.4rem; }
+.tileLink { margin-top: auto; color: var(--link); font-size: 1rem; }
+
+.grid2 { margin-top: clamp(2rem, 4vw, 3rem); display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(2, minmax(0,1fr)); }
+@media (max-width: 820px) { .grid2 { grid-template-columns: 1fr; } }
+
+/* long-form article measure (research posts) */
+.article { max-width: 42rem; margin: 0 auto; }
+.article p { font-size: 1.13rem; line-height: 1.72; color: #333336; margin: 0 0 1.4rem; }
+.article h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 600; letter-spacing: -0.018em; margin: 3rem 0 1rem; line-height: 1.15; }
+.article h3 { font-size: 1.3rem; font-weight: 600; margin: 2.2rem 0 0.7rem; }
+.article ul, .article ol { margin: 0 0 1.4rem 1.2rem; font-size: 1.13rem; line-height: 1.72; color: #333336; }
+.article li { margin-bottom: 0.5rem; }
+.article strong { font-weight: 600; color: var(--ink); }
+.article code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; background: var(--tint); padding: 0.15em 0.4em; border-radius: 4px; }
+.article a { color: var(--link); }
+.articleMeta { color: var(--ink-soft); font-size: 0.92rem; margin-top: 1rem; }
+
+.backLink { display: inline-block; margin-top: 3rem; color: var(--link); text-decoration: none; font-size: 1rem; }
+
+/* day-in-the-life timeline (homepage evidence strip) */
+.timeline { margin-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--hair); }
+.trow {
+  display: grid; grid-template-columns: 6.5rem 1fr; gap: 1.5rem;
+  padding: 1.15rem 0; border-bottom: 1px solid var(--hair); align-items: baseline;
+}
+@media (max-width: 620px) { .trow { grid-template-columns: 4.5rem 1fr; gap: 1rem; } }
+.ttime { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 1rem; }
+.ttext { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.55; }
