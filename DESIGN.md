@@ -1,4 +1,41 @@
-# Reserve design system — brutalist × French minimal
+# Reserve design system — Apple design language (sitewide)
+
+> **⚠ DIRECTION LOCKED — 2026-07-23 (Ryvn): the site follows the APPLE DESIGN
+> LANGUAGE, sitewide.** Everything below this banner — the Le Labo × Byredo
+> exhibition language, the dark `night` ground, the mono machine layer, the
+> `.lab-ground` / `.reg-frame` primitives — is **superseded history**. Do not
+> design against it. It is kept only to explain why old commits look the way
+> they do.
+>
+> **Canonical now:** `src/components/apple/apple.module.css` (tokens + layout
+> primitives) and `src/components/apple/kit.tsx` (`AppleNav` / `Section` /
+> `Tile` / `Card` / `CtaButton` / `Footer`). Every page composes from that kit.
+>
+> **Apple's grammar, not just its palette** (the mistake made and corrected on
+> 2026-07-23 — the first pass copied Apple's colours onto a Material component
+> grammar and read as Material Design):
+> - **No ALL-CAPS wide-tracked labels.** That is Material's *overline* type role.
+>   Kickers and eyebrows are sentence case at normal tracking.
+> - **No coloured eyebrows.** A section lead-in is `--ink-soft`, never `--link`.
+> - **No stroked cards.** Surfaces separate by fill (`--tint` on white, white on
+>   `--tint`) and whitespace. A 1px-outlined card is Material 3's outlined card.
+> - **Body copy is near-black** (`--ink`). `--ink-soft` is for captions, meta and
+>   the footer only. Grey body copy is what makes a page read washed-out.
+> - **Text inside a surface is flush left**, even when the section is centred.
+> - **No hairline rules between sections.** Alternate `--tint` fill instead.
+>   (Hairlines *within* a list — the timeline, the statement rows — are correct.)
+> - **No symmetric 3-up card grids.** Three equal cards in a row is the most
+>   recognisable AI-generated layout. Use `.statements` (one claim per full-width
+>   row) or a 2-up `.grid2`.
+> - **Tap targets fill the bar.** Nav links stretch to the full 44px.
+>
+> **Known open gap:** company-level pages carry no imagery. Apple's pages are
+> image-led; type-and-boxes cannot fully read Apple however well tuned. `/lime`
+> looks closest because it has real device screenshots. Imagery for the
+> company pages is an open founder decision.
+
+<details>
+<summary><strong>Superseded — the 2026-07-15 dark exhibition direction (history only)</strong></summary>
 
 > **⚠ DIRECTION UPDATE — 2026-07-15 (Ryvn):** the site is moving to a
 > **Le Labo (brutalist laboratory) × Byredo (big-image exhibition)** language —
@@ -493,3 +530,5 @@ not from memory; re-verify exact values against the live sites before long-term 
 - Every new section states which grammar it uses (paper vs dark) — mixing needs a reason written here.
 - Reference teardowns (raw HTML/CSS of insforge/scrunch) are in the analysis session scratchpad;
   re-fetch fresh if lifting exact rules.
+
+</details>
