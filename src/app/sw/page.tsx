@@ -15,17 +15,17 @@ function ScreenShelf() {
     {
       src: "/lime/nearby.png",
       alt: "Lime nearby screen — a photo grid of the people you actually crossed paths with",
-      tag: "NEARBY · 附近的人",
+      tag: "NEARBY",
     },
     {
       src: "/lime/venue.png",
       alt: "Lime rooms screen — public activities you can join at venues and events",
-      tag: "ROOMS · 場域",
+      tag: "ROOMS",
     },
     {
       src: "/lime/detail.png",
       alt: "Lime activity page — who's here, shown as a softly blurred presence pile until you meet in person",
-      tag: "WHO'S HERE · 現場的人",
+      tag: "WHO'S HERE",
     },
   ];
   return (

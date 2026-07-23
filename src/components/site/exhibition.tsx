@@ -1,7 +1,7 @@
 // Exhibition kit — the Le Labo (brutalist laboratory) × Byredo (big-image
 // exhibition) language, applied for real. A ROOM = one work, shown as a framed
 // specimen + a clinical spec plate. Specimens are concept placeholders (option
-// c, 2026-07-15): swap `image` in ROOMS for real 素材 and the frame renders it.
+// c, 2026-07-15): swap `image` in ROOMS for a real specimen image and the frame renders it.
 
 import Image from "next/image";
 
@@ -11,12 +11,12 @@ export type Room = {
   index: string; // "01"
   kicker: string; // "N° 01 · FLAGSHIP"
   title: string; // "Social\nWearable"
-  cn: string; // "社交穿戴"
+  cn: string; // English sub-label under the title, e.g. "Proximity Social"
   blurb: string;
   specimen: "ring" | "ledger" | "bloom" | "lattice";
   spec: Spec[];
   href: string;
-  image?: string; // when real 素材 lands, this fills the frame
+  image?: string; // when a real specimen image lands, this fills the frame
 };
 
 // ── clinical plate strip (top/bottom of a room or the page) ─────────────────
@@ -30,7 +30,7 @@ export function Plate({ left, mid, right }: { left: string; mid?: string; right:
   );
 }
 
-// ── concept-placeholder specimens (geometry, until real 素材) ────────────────
+// ── concept-placeholder specimens (geometry, until real imagery) ─────────────
 function Specimen({ kind }: { kind: Room["specimen"] }) {
   const stroke = "var(--color-paper)";
   if (kind === "ring") {
