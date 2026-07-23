@@ -52,14 +52,6 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=supreme@300,400,500&display=swap"
         />
-        {/* Warm the map tile CDN before the user scrolls to Places */}
-        <link rel="preconnect" href="https://tiles.openfreemap.org" crossOrigin="anonymous" />
-        <link
-          rel="preload"
-          as="fetch"
-          href="https://tiles.openfreemap.org/styles/liberty"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="min-h-full flex flex-col bg-white text-[#1d1d1f] selection:bg-[#0071e3] selection:text-white">
         <SmoothScroll />
