@@ -17,7 +17,7 @@ const ROOMS: Room[] = [
       ["FORMULA", "BLE · CO-PRESENCE · ROOMS"],
       ["STATUS", "IN FIELD TESTING"],
     ],
-    href: "/sw",
+    href: "/lime",
   },
   {
     index: "02",

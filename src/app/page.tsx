@@ -12,13 +12,16 @@ import {
 } from "@/components/apple/kit";
 
 /** A day the company runs without anyone awake — the evidence strip.
- *  Copy carried over verbatim from the previous landing's Weather section. */
+ *  Every line is a job that actually runs: the 04:30 launchd heartbeat and the
+ *  jobs on its schedule (brain `autonomy/schedule.md`). The earlier version of
+ *  this section described the finance desk's morning almost exclusively, which
+ *  read as one product rather than the studio (Ryvn 2026-07-23). */
 const DAY: Array<[string, string]> = [
-  ["22:00", "The repair agent reads the day's bug tickets — and fixes them."],
-  ["05:00", "New York closes. The finance desk starts its read of the day."],
-  ["07:30", "Reserve Finance writes the morning brief. Every number, checked twice."],
-  ["07:50", "The watchdog sweeps the pipeline; anything broken heals itself."],
-  ["08:00", "The brief publishes. The curators are still asleep."],
+  ["04:30", "The heartbeat wakes and reads the schedule — it decides the day's work, not us."],
+  ["Daily", "Meeting notes land in the brain. A digest goes to the team channel."],
+  ["Tuesday", "The competitor sweep runs, and opens a ticket only if something actually moved."],
+  ["Thursday", "The board is cleaned: stale tickets chased, missing owners flagged."],
+  ["Weekly", "An essay is drafted and arrives as a pull request. A human merges it, or doesn't."],
 ];
 
 const WORKS = [
@@ -26,7 +29,7 @@ const WORKS = [
     kicker: "Flagship",
     title: "Lime",
     body: "Short for limerence — a dating app with a physical signature. You only meet the people you actually crossed paths with, one room at a time.",
-    href: "/sw",
+    href: "/lime",
   },
   {
     kicker: "Labs",
@@ -63,7 +66,7 @@ export default function Home() {
           hold jobs.
         </p>
         <div className={apple.linkRow}>
-          <a className={apple.link} href="/sw">
+          <a className={apple.link} href="/lime">
             Meet Lime &rsaquo;
           </a>
           <a className={apple.link} href="/research">

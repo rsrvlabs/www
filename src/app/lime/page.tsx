@@ -39,7 +39,7 @@ export default function LimePage() {
         <Link href="/" className={s.navBrand}>
           Reserve
         </Link>
-        <Link href="/sw">Lime</Link>
+        <Link href="/lime">Lime</Link>
         <Link href="/labs">Labs</Link>
         <Link href="/frontiers">Frontiers</Link>
         <Link href="/research">Research</Link>
