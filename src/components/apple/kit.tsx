@@ -4,20 +4,7 @@ import s from "./apple.module.css";
 
 export const CONTACT = "hello@rsrvlabs.com";
 
-/** apple.com's chrome: a 44px translucent bar, tiny type, nothing else. */
-export function AppleNav() {
-  return (
-    <nav className={s.nav}>
-      <Link href="/" className={s.navBrand}>
-        Reserve
-      </Link>
-      <Link href="/lime">Lime</Link>
-      <Link href="/labs">Labs</Link>
-      <Link href="/frontiers">Frontiers</Link>
-      <Link href="/research">Research</Link>
-    </nav>
-  );
-}
+export { AppleNav } from "./nav";
 
 export function Page({ children }: { children: ReactNode }) {
   return <main className={s.page}>{children}</main>;

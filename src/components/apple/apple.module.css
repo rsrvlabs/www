@@ -33,6 +33,9 @@
 }
 .nav a:hover { opacity: 1; }
 .navBrand { font-weight: 600; }
+/* The one question a nav must answer: where am I. Marked by ink weight, not a
+   coloured underline — apple.com never colours its current section either. */
+.navActive { opacity: 1 !important; font-weight: 500; }
 
 .section { padding: clamp(4.5rem, 9vw, 8.5rem) 1.5rem; }
 .inner { max-width: 62rem; margin: 0 auto; }
