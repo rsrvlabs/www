@@ -143,6 +143,9 @@
   padding: 0.85rem 1.6rem; border-radius: 980px;
 }
 .cta:hover { filter: brightness(1.08); }
+.ctaFallback { margin: 0.9rem 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+.ctaFallback a { color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+.ctaFallback a:hover { color: var(--link); }
 
 .footer { padding: 2.5rem 1.5rem 4rem; font-size: 0.8rem; color: var(--ink-soft); }
 

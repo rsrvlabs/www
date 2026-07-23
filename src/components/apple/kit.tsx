@@ -94,11 +94,20 @@ export function Card({
   );
 }
 
+/** mailto: is the site's only conversion path, and it silently does nothing for
+ *  anyone on webmail without a registered protocol handler — a large share of
+ *  the corporate desktop visitors this site is written for. Print the address
+ *  underneath so a click that goes nowhere still leaves something to copy. */
 export function CtaButton({ subject, label }: { subject: string; label: string }) {
   return (
-    <a className={s.cta} href={`mailto:${CONTACT}?subject=${encodeURIComponent(subject)}`}>
-      {label}
-    </a>
+    <>
+      <a className={s.cta} href={`mailto:${CONTACT}?subject=${encodeURIComponent(subject)}`}>
+        {label}
+      </a>
+      <p className={s.ctaFallback}>
+        or write to <a href={`mailto:${CONTACT}?subject=${encodeURIComponent(subject)}`}>{CONTACT}</a>
+      </p>
+    </>
   );
 }
 
