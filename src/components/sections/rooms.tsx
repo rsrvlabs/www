@@ -1,6 +1,6 @@
 // The exhibition wing of the homepage: each work shown as a specimen room.
 // Copy is factual (no invented product claims); specimens are concept
-// placeholders (option c) until real 素材 lands.
+// placeholders (option c) until real imagery lands.
 import { ExhibitionRoom, type Room } from "@/components/site/exhibition";
 
 const ROOMS: Room[] = [
@@ -8,7 +8,7 @@ const ROOMS: Room[] = [
     index: "01",
     kicker: "N° 01 · FLAGSHIP",
     title: "Lime",
-    cn: "擦肩交友",
+    cn: "Proximity Social",
     blurb: "Short for limerence — a dating app with a physical signature. You only meet the people you actually crossed paths with, one room at a time.",
     specimen: "ring",
     spec: [
@@ -23,7 +23,7 @@ const ROOMS: Room[] = [
     index: "02",
     kicker: "N° 02 · DESK",
     title: "Reserve\nFinance",
-    cn: "金融桌",
+    cn: "Equities Desk",
     blurb: "A US-equities desk that reasons in public — it scores the market, publishes its brief, and answers for the call.",
     specimen: "ledger",
     spec: [
@@ -38,7 +38,7 @@ const ROOMS: Room[] = [
     index: "03",
     kicker: "N° 03 · FORMULA",
     title: "Glow",
-    cn: "美妝科技",
+    cn: "Beauty Tech",
     blurb: "Beauty tech, in the making — the third work on the bench.",
     specimen: "bloom",
     spec: [
@@ -53,7 +53,7 @@ const ROOMS: Room[] = [
     index: "04",
     kicker: "N° 04 · APPARATUS",
     title: "The\nOperating\nSystem",
-    cn: "公司作業系統",
+    cn: "Company OS",
     blurb: "The machine the company runs on — a file-based brain where agents hold jobs and the work compounds.",
     specimen: "lattice",
     spec: [
