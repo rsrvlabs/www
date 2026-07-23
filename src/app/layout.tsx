@@ -61,7 +61,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-night text-paper selection:bg-paper selection:text-night">
+      <body className="min-h-full flex flex-col bg-white text-[#1d1d1f] selection:bg-[#0071e3] selection:text-white">
         <SmoothScroll />
         {children}
       </body>

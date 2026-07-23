@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import s from "./apple.module.css";
+import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
   title: "Lime — date people you've actually crossed paths with",

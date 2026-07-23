@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { SubpageHeader, MetaBar, CtaBand } from "@/components/site/subpage";
+import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "The AI-native company — Reserve Research",
@@ -9,110 +8,87 @@ export const metadata: Metadata = {
 };
 
 /**
- * Post page — the scrunch blueprint at night (design-refs/scrunch.md):
- * mono metadata bar → serif H1 at a narrow measure → 850px body column,
- * 19px serif at 1.7 leading, drop cap on the first paragraph, one centered
- * italic pull quote, dashed-divider author footer. No hero image until an
- * honest one exists (no stock, no generated filler).
+ * Post page in the Apple grammar (Ryvn 2026-07-23: the whole site follows
+ * Apple design): centered title + standfirst, then a 42rem long-form column.
+ * The prose is the published essay, unchanged.
  */
 export default function AiNativeCompanyEssay() {
   return (
-    <main className="lab-ground relative min-h-[100svh] w-full overflow-x-clip">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[40svh] grid-paper-night"
-      />
-      <SubpageHeader index="Q" label="Research" current="/research" />
-      <article className="relative mx-auto w-full max-w-[68rem] px-6 pb-[16svh] pt-[22svh] md:px-10">
-        {/* wide → narrow funnel: metadata bar → H1 → body snaps to 850px */}
-        {/* The MetaBar IS this post's honest spec row (scrunch metadata bar =
-            the essay's machine label: Series · Essay · Published date) — no
-            fabricated reading-metric is invented to force a card spec here. */}
-        <MetaBar items={["Series 01 · Essay 01", "Reserve", "Published 07.2026"]} />
-        {/* Label-scale hero (DESIGN.md title register): editorial H1 informs,
-            not performs — well under the landing 7.4rem display concept. */}
-        <h1 className="mt-8 max-w-[16ch] font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.015em] text-paper">
-          The AI-native company
-        </h1>
+    <Page>
+      <AppleNav />
 
-        <div className="mx-auto mt-14 max-w-[850px]">
-          <div className="hairline-dashed-night space-y-7 pt-12 font-sans text-[17px] leading-[1.85] text-paper/85">
-            <p>
-              Every company is a machine for turning attention into decisions.
-              Most of that machine was never the product: it is the meetings,
-              the handoffs, the status updates, the documents nobody reads
-              twice — the connective tissue between people who are each holding
-              a fragment of the whole. For fifty years software has nibbled at
-              the edges of that tissue. We think the tissue itself has become
-              programmable.
-            </p>
-            <p>
-              Reserve is a studio that runs on an AI operating system we
-              built for ourselves. There is one shared brain — a
-              knowledge base that the agents and the humans read and write,
-              where meetings, decisions, and lessons land as pages instead of
-              memories. And there are agents with actual jobs: a finance desk
-              that researches and publishes its own morning brief before we
-              wake up, a product manager that triages tickets, reviewers that
-              argue with our plans before we commit to them. The brain
-              remembers. The agents operate. The humans decide.
-            </p>
-            <blockquote className="mx-auto max-w-[40ch] border-l border-paper/25 py-4 pl-6 font-display not-italic text-[clamp(1.35rem,2.3vw,1.75rem)] leading-[1.35] text-paper/90">
+      <Section center>
+        <h1 className={apple.hero}>The AI-native company</h1>
+        <p className={apple.sub}>
+          What changes when a studio runs on an AI operating system — one shared
+          brain, agents with jobs, humans making the calls.
+        </p>
+        <p className={apple.articleMeta}>
+          Series 01 · Essay 01 · Published 07.2026 · Reserve — curators, one brain.
+        </p>
+      </Section>
+
+      <Section>
+        <div className={apple.article}>
+          <p>
+            Every company is a machine for turning attention into decisions.
+            Most of that machine was never the product: it is the meetings,
+            the handoffs, the status updates, the documents nobody reads
+            twice — the connective tissue between people who are each holding
+            a fragment of the whole. For fifty years software has nibbled at
+            the edges of that tissue. We think the tissue itself has become
+            programmable.
+          </p>
+          <p>
+            Reserve is a studio that runs on an AI operating system we
+            built for ourselves. There is one shared brain — a
+            knowledge base that the agents and the humans read and write,
+            where meetings, decisions, and lessons land as pages instead of
+            memories. And there are agents with actual jobs: a finance desk
+            that researches and publishes its own morning brief before we
+            wake up, a product manager that triages tickets, reviewers that
+            argue with our plans before we commit to them. The brain
+            remembers. The agents operate. The humans decide.
+          </p>
+          <p>
+            <strong>
               The org chart is a cache of old decisions. We wanted a company
               that re-decides its defaults every morning.
-            </blockquote>
-            <p>
-              None of this makes the humans superhuman. It makes them
-              un-forgetful, which turns out to be most of what a company is
-              for. A department, seen coldly, is a promise that somebody will
-              keep paying attention to a domain after the humans stop. When
-              attention can be delegated to something that never sleeps and
-              never files a resignation, the department stops being a room full
-              of people and becomes a role the brain can wear — with a human
-              still accountable for every call that matters.
-            </p>
-            <p>
-              The honest version of this story includes the failures: agents
-              that confidently did the wrong job, knowledge that went stale the
-              moment nobody linted it, safety rails we added only after
-              something leaked past us. Running a company this way is not a
-              productivity hack. It is an organizational experiment, and the
-              experiment fails in new ways weekly. That is exactly why it is
-              worth writing down.
-            </p>
-            <p>
-              This series is our field notes, published as we learn them: the
-              org design, the failures, and the parts that feel like the
-              future. We will write what actually happened — not what would
-              look good in a deck.
-            </p>
-          </div>
+            </strong>
+          </p>
+          <p>
+            None of this makes the humans superhuman. It makes them
+            un-forgetful, which turns out to be most of what a company is
+            for. A department, seen coldly, is a promise that somebody will
+            keep paying attention to a domain after the humans stop. When
+            attention can be delegated to something that never sleeps and
+            never files a resignation, the department stops being a room full
+            of people and becomes a role the brain can wear — with a human
+            still accountable for every call that matters.
+          </p>
+          <p>
+            The honest version of this story includes the failures: agents
+            that confidently did the wrong job, knowledge that went stale the
+            moment nobody linted it, safety rails we added only after
+            something leaked past us. Running a company this way is not a
+            productivity hack. It is an organizational experiment, and the
+            experiment fails in new ways weekly. That is exactly why it is
+            worth writing down.
+          </p>
+          <p>
+            This series is our field notes, published as we learn them: the
+            org design, the failures, and the parts that feel like the
+            future. We will write what actually happened — not what would
+            look good in a deck.
+          </p>
 
-          {/* Author footer — dashed divider, mono label (scrunch grammar) */}
-          <footer className="hairline-dashed-night mt-16 grid grid-cols-1 gap-4 pt-8 md:grid-cols-[220px_1fr]">
-            <span className="kicker text-paper/50">Author</span>
-            <div>
-              <p className="font-display text-xl leading-snug text-paper">
-                Reserve — curators, one brain.
-              </p>
-              <Link
-                href="/research"
-                className="label-mono link-underline mt-5 inline-block text-paper/60"
-              >
-                ← all research
-              </Link>
-            </div>
-          </footer>
-
-          {/* Post tail keeps the loop alive (gap #8, band half only —
-              related-covers wait for the honest cover system) */}
-          <CtaBand
-            line="New essays land as we learn."
-            label="Get pinged when they do"
-            subject="Research pings"
-          />
+          <a className={apple.backLink} href="/research">
+            &lsaquo; Research
+          </a>
         </div>
-      </article>
-    </main>
+      </Section>
+
+      <Footer />
+    </Page>
   );
 }
