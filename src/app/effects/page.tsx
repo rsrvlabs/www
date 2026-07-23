@@ -6,7 +6,6 @@ import {
   Eyebrow,
   H2,
   Body,
-  Rule,
   Tile,
   CtaButton,
   Footer,
@@ -51,7 +50,6 @@ export default function EffectsPage() {
         </p>
       </Section>
 
-      <Rule />
 
       <Section tinted>
         <div className={apple.center}>
