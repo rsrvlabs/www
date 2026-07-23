@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   AppleNav,
   Body,
-  Card,
   CtaButton,
   Eyebrow,
   Footer,
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 
 const ENTRIES = [
   {
-    tag: "LIVE · 08:00 DAILY",
+    tag: "Live · 08:00 daily",
     title: "A market desk that publishes itself",
     blurb:
       "Reserve Finance runs a cold, quantitative US-equities desk that generates and publishes its own morning brief at 08:00 every trading day. Numbers and probabilities, zero hype. No human touches it.",
@@ -80,21 +79,22 @@ export default function LabsPage() {
           that does the work and tells you what it found.
         </Body>
 
-        <div className={apple.grid}>
+        <div className={apple.statements}>
           {ENTRIES.map((entry) => (
-            <Card
-              key={entry.title}
-              kicker={entry.tag}
-              title={entry.title}
-              body={entry.blurb}
-            />
+            <div className={apple.statement} key={entry.title}>
+              <div>
+                <p className={apple.tileKicker}>{entry.tag}</p>
+                <h3 className={apple.statementTitle}>{entry.title}</h3>
+              </div>
+              <p className={apple.statementBody}>{entry.blurb}</p>
+            </div>
           ))}
         </div>
       </Section>
 
       {/* The through-line */}
       <Section center>
-        <Eyebrow>THE THROUGH-LINE</Eyebrow>
+        <Eyebrow>The through-line</Eyebrow>
         <H2>Instrument it, then have an opinion.</H2>
         <Body center>
           Each product takes a domain people navigate on gut — the market, the mirror — and

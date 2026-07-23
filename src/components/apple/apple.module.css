@@ -25,7 +25,12 @@
   border-bottom: 1px solid rgba(0,0,0,0.08);
   font-size: 0.75rem; letter-spacing: 0.01em;
 }
-.nav a { color: var(--ink); opacity: 0.85; text-decoration: none; }
+/* Links stretch to the full 44px bar so the tap target is the bar, not the
+   18px glyph box — otherwise every mobile tap lands in the gap between items. */
+.nav a {
+  color: var(--ink); opacity: 0.85; text-decoration: none;
+  display: flex; align-items: center; align-self: stretch; padding: 0 0.2rem;
+}
 .nav a:hover { opacity: 1; }
 .navBrand { font-weight: 600; }
 
@@ -91,6 +96,24 @@
   margin-top: 0.9rem; text-align: center;
   font-size: 0.85rem; letter-spacing: 0; color: var(--ink-soft);
 }
+
+/* Statement rows — the cardless alternative to a symmetric 3-up feature grid.
+   Three equal cards in a row is the most recognisable AI-generated layout;
+   Apple gives each claim its own full-width row, title left, prose right. */
+.statements { margin-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--hair); }
+.statement {
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  padding: clamp(1.6rem, 2.8vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--hair);
+  text-align: left; align-items: baseline;
+}
+@media (max-width: 760px) { .statement { grid-template-columns: 1fr; gap: 0.5rem; } }
+.statementTitle {
+  font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 600;
+  letter-spacing: -0.015em; margin: 0; line-height: 1.15;
+}
+.statementBody { font-size: 1.06rem; line-height: 1.62; color: var(--ink); margin: 0; }
 
 /* feature grid */
 .grid { margin-top: clamp(2.5rem, 5vw, 4rem); display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(3, minmax(0,1fr)); }
