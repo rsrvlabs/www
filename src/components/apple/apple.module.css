@@ -213,3 +213,54 @@
 @media (max-width: 620px) { .trow { grid-template-columns: 4.5rem 1fr; gap: 1rem; } }
 .ttime { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 1rem; }
 .ttext { color: var(--ink); font-size: 1.02rem; line-height: 1.55; }
+
+/* ── Motion ───────────────────────────────────────────────────────────────
+   One gesture per section, exponential ease-out, transform + opacity only.
+   The page settles; it never performs. */
+
+/* Progressive enhancement: the default is the SETTLED state, so a visitor with
+   no JavaScript (or a failed hydration) gets the whole page, not a blank one.
+   The `js` class is set synchronously in <head>, so the hidden state applies
+   before first paint and there is no flash. */
+.reveal {
+  transition:
+    opacity 760ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 760ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+:global(html.js) .reveal:not(.revealIn) {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.revealIn { opacity: 1; transform: none; }
+
+/* The signature moment: the landing statement arrives a beat before its
+   supporting line, which arrives a beat before the links. Nothing else on the
+   site staggers — this is the one place the page introduces itself. */
+.revealIn .display,
+.revealIn .hero { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.revealIn .sub { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 110ms both; }
+.revealIn .linkRow { animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Press feedback. Pointer-down, not click — the surface should answer the
+   finger, not the event. */
+.tile:active { transform: translateY(-1px) scale(0.994); transition-duration: 120ms; }
+.cta { transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), filter 180ms ease; }
+.cta:active { transform: scale(0.97); }
+.link { transition: opacity 180ms ease; }
+.link:active { opacity: 0.6; }
+
+/* Reduced motion gets the SETTLED composition, not a stripped-down one:
+   everything is already in its final position, with no transition to run. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .revealIn .display,
+  .revealIn .hero,
+  .revealIn .sub,
+  .revealIn .linkRow { animation: none; }
+  .tile, .tile:hover, .tile:active, .cta:active { transform: none; transition: none; }
+}

@@ -5,6 +5,8 @@ import s from "./apple.module.css";
 export const CONTACT = "hello@rsrvlabs.com";
 
 export { AppleNav } from "./nav";
+import { Reveal } from "./reveal";
+export { Reveal };
 
 export function Page({ children }: { children: ReactNode }) {
   return <main className={s.page}>{children}</main>;
@@ -28,7 +30,9 @@ export function Section({
         .filter(Boolean)
         .join(" ")}
     >
-      <div className={s.inner}>{children}</div>
+      <div className={s.inner}>
+        <Reveal>{children}</Reveal>
+      </div>
     </section>
   );
 }
