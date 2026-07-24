@@ -311,8 +311,45 @@ export default function WhyLimePage() {
           </div>
       </Section>
 
-      {/* Sources */}
+      {/* The market */}
       <Section center tinted>
+          <p className={s.eyebrow}>The market</p>
+          <h2 className={s.h2}>The money is in a shrinking category.<br />The instrument is in a booming one.</h2>
+          <p className={s.bodyCenter}>
+            Dating apps took in about six billion dollars in 2024, from over 350 million
+            users. And the incumbents are shrinking anyway. Match Group lost 5% of its
+            payers last year. Bumble&rsquo;s revenue fell 10%. Tinder&rsquo;s fell 4%. The
+            spend is real. The satisfaction is not. A category this big, running on a
+            broken input, is not a dead market. It is an opening.
+          </p>
+          <p className={s.bodyCenter}>
+            Meanwhile the instrument layer is compounding. Wearables are an $87 billion
+            market headed past $230 billion. Half a billion devices shipped last year.
+            Smart rings are growing near 30% a year. Oura passed five million rings and
+            roughly a billion dollars in revenue. Whoop crossed a ten-billion-dollar
+            valuation. Almost one in three American adults already wears a sensor. The
+            hardware that reads the body went mainstream. Nobody points it at the room.
+            Social chemistry is still the largest unmeasured signal in daily life.
+          </p>
+          <BarPair
+            title="Two markets, one gap"
+            aLabel="Dating apps, global revenue (2024)" aValue={6.2}
+            bLabel="Wearables, global revenue (2025)" bValue={86.8}
+            max={100} unit="B"
+            source="Business of Apps, 2025; Fortune Business Insights, 2025"
+            href="https://www.fortunebusinessinsights.com/wearable-technology-market-106000"
+          />
+          <p className={s.bodyCenter} style={{ marginTop: "1.4rem" }}>
+            The wedge math is bottom-up. Nearly half of U.S. adults under 30 are single.
+            More than half of that age group has used a dating app. Category payers
+            already spend about twenty dollars a month, by Match&rsquo;s own average. Our
+            first market is the burned-out majority of those users: people who still want
+            to meet someone, and already wear the sensor that could help.
+          </p>
+      </Section>
+
+      {/* Sources */}
+      <Section center>
           <p className={s.eyebrow}>Sources</p>
           <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "left" }}>
             {[
@@ -331,6 +368,14 @@ export default function WhyLimePage() {
               "U.S. Bureau of Labor Statistics. (2003\u20132023). American Time Use Survey [Data set]. Analysis published by The Washington Post (2024).",
               "Vorauer, J. D., & Ratner, R. K. (1996). Who\u2019s going to make the first move? Pluralistic ignorance as an impediment to relationship formation. Journal of Social and Personal Relationships, 13(4), 483\u2013506. https://doi.org/10.1177/0265407596134001",
               "Wedekind, C., Seebeck, T., Bettens, F., & Paepke, A. J. (1995). MHC-dependent mate preferences in humans. Proceedings of the Royal Society of London. Series B: Biological Sciences, 260(1359), 245\u2013249. https://doi.org/10.1098/rspb.1995.0087",
+              "Business of Apps. (2025). Dating app revenue and usage statistics. https://www.businessofapps.com/data/dating-app-market/",
+              "Match Group. (2026, February 3). Q4 2025 results [SEC Form 8-K, Ex-99.1]. U.S. Securities and Exchange Commission.",
+              "Bumble Inc. (2026, March 11). Fourth quarter and full year 2025 results [Press release].",
+              "Fortune Business Insights. (2025). Wearable technology market; Smart ring market. https://www.fortunebusinessinsights.com/wearable-technology-market-106000",
+              "International Data Corporation. (2024, December 16). Worldwide Quarterly Wearable Device Tracker [Press release].",
+              "National Heart, Lung, and Blood Institute. (2023, June 15). Study reveals wearable device trends among U.S. adults. National Institutes of Health.",
+              "Pew Research Center. (2023, February 8). For Valentine\u2019s Day, 5 facts about single Americans.",
+              "CNBC. (2025, October 14). Oura raises about $900 million at an $11 billion valuation; TechCrunch. (2026, March 31). Whoop raises $575M Series G at a $10.1B valuation.",
             ].map((ref) => (
               <p key={ref.slice(0, 30)} className={s.chartSource}
                  style={{ margin: "0 0 0.55rem", paddingLeft: "1.4rem", textIndent: "-1.4rem" }}>
