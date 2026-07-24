@@ -65,6 +65,12 @@ const essays: Array<{
     body: "Series 01, essay 06: in 2026 guardrails became the bottleneck. But a gate is either a floor (guarantees an outcome, scales with the model) or a ceiling (restricts a process, expires). Build floors; keep only the irreversible as a thin membrane. The design law that closes the harness trilogy.",
     href: "/research/build-the-floor",
   },
+  {
+    kicker: "Governance",
+    title: "Autonomy is granted, not assumed.",
+    body: "Series 01, essay 07: how much should an agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. The ladder it climbed, and why the permissions live outside its memory.",
+    href: "/research/trust-ladder",
+  },
 ];
 
 export default function ResearchPage() {
