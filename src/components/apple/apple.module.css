@@ -352,3 +352,39 @@
 .sigTable th { font-weight: 600; font-size: 0.85rem; color: var(--ink-soft); }
 .sigYes { color: #1d7d3f; font-weight: 600; }
 .sigNo { color: #b3261e; font-weight: 600; }
+
+/* ── /lime/why: argument-chain diagrams ── */
+.chainFlow {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 0.5rem 0.35rem; max-width: 46rem; margin: 1.8rem auto 0;
+}
+.chainNode {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 2rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.5rem; font-size: 0.85rem; font-weight: 500;
+}
+.chainNum {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.45rem; height: 1.45rem; border-radius: 50%;
+  background: #0071e3; color: #fff; font-size: 0.75rem; font-weight: 700;
+}
+.chainArrow { color: var(--ink-soft); font-size: 0.9rem; user-select: none; }
+.deriv {
+  display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0.6rem 0.5rem; align-items: center; text-align: left;
+  max-width: 44rem; margin: 1.8rem auto 0; font-size: 0.88rem;
+}
+.derivHead { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); text-transform: none; }
+.derivCell {
+  background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 0.9rem;
+  padding: 0.6rem 0.8rem; line-height: 1.4;
+}
+.derivCite { display: block; margin-top: 0.15rem; font-size: 0.74rem; color: var(--ink-soft); }
+.derivTo { color: var(--ink-soft); text-align: center; }
+.derivFeature { border-color: rgba(0,113,227,0.35); font-weight: 600; }
+@media (max-width: 640px) {
+  .deriv { grid-template-columns: 1fr; gap: 0.35rem; }
+  .derivTo { transform: rotate(90deg); line-height: 1; padding: 0.1rem 0; }
+  .derivHead { display: none; }
+  .derivFeature { margin-bottom: 1.1rem; }
+}
