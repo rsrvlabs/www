@@ -18,6 +18,21 @@ const SHOTS = [
   { src: "/lime/detail-en.png", alt: "Lime activity — who's here, shown as a softly blurred presence pile", caption: "Who’s here" },
 ];
 
+const FLOW_VIDEOS = [
+  {
+    src: "/lime/lime-flow-dual-profile.mp4",
+    caption: "One face, two rooms — join as who you are tonight",
+  },
+  {
+    src: "/lime/lime-flow-nearby-reconnect.mp4",
+    caption: "The room breathes — and Crossed paths remembers",
+  },
+  {
+    src: "/lime/lime-flow-match-chat.mp4",
+    caption: "Match, open with something real, keep talking",
+  },
+];
+
 const FEATURES = [
   {
     title: "Cross paths, then find each other",
@@ -96,6 +111,30 @@ export default function LimePage() {
             ))}
           </div>
       </Section>
+
+      {/* In motion — the three YC flows, real captures of the shipped build */}
+      <Section center>
+          <p className={s.eyebrow}>In motion</p>
+          <h2 className={s.h2}>Watch a night move through it.</h2>
+          <div className={s.devices}>
+            {FLOW_VIDEOS.map((v) => (
+              <figure key={v.src} style={{ margin: 0 }}>
+                <div className={s.device}>
+                  <video src={v.src} autoPlay loop muted playsInline width={780} height={1696} />
+                </div>
+                <figcaption className={s.caption}>{v.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className={s.heroDevice}>
+            {/* palindrome loop — forward, reversed, forever */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/lime/lime-login-loop.gif" alt="Lime sign-up screen, ambient looping hero" />
+          </div>
+          <figcaption className={s.caption}>The front door</figcaption>
+      </Section>
+
+      <hr className={s.rule} />
 
       {/* The bet */}
       <Section tinted>
