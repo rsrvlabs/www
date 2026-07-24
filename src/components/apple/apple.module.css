@@ -276,3 +276,25 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 24px 50px rgba(0,0,0,0.10);
 }
 .heroDevice img { display: block; width: 100%; height: auto; }
+
+/* ── feature split — one flow per section: the capture beside its story.
+   Apple's product-page rhythm: media and copy share a row, alternate sides,
+   stack on mobile. (Ryvn 2026-07-24: 每個 section 都有其畫面+一段文字) ── */
+.split {
+  display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
+}
+.splitAlt { direction: rtl; }
+.splitAlt > * { direction: ltr; }
+.splitMedia { max-width: 320px; margin-inline: auto; width: 100%; }
+.splitTitle {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.12;
+  letter-spacing: -0.015em; font-weight: 700; margin: 0 0 0.9rem;
+  text-wrap: balance;
+}
+.splitText { font-size: 1.02rem; line-height: 1.65; color: var(--ink-soft); max-width: 32rem; }
+.splitText + .splitText { margin-top: 0.8rem; }
+@media (max-width: 780px) {
+  .split, .splitAlt { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
+  .splitMedia { max-width: min(300px, 78vw); }
+}
