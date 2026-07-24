@@ -25,11 +25,11 @@ type Feature = {
 const FEATURES: Feature[] = [
   {
     id: "crossed",
-    eyebrow: "No time",
-    title: "Too busy to meet anyone? You already did.",
+    eyebrow: "1 · The moment",
+    title: "The moment passes. The person doesn’t have to.",
     paras: [
       "You cross paths with interesting people every day — you just don't have the time to do anything about it in the moment. Lime notices genuine co-presence, keeps the room ordered by who's actually near, and remembers everyone after the night ends.",
-      "Crossed paths turns your existing day into a social surface. The moment passes; the person doesn't have to.",
+      "Crossed paths turns the day you already live into a social surface — no extra time required.",
     ],
     media: {
       src: "/lime/lime-flow-nearby-reconnect.mp4",
@@ -38,10 +38,10 @@ const FEATURES: Feature[] = [
   },
   {
     id: "open",
-    eyebrow: "No nerve",
-    title: "Know who's open to chat — before you walk over.",
+    eyebrow: "2 · The approach",
+    title: "Everyone waits for a sign. Now there is one.",
     paras: [
-      "The hardest part of a room is not knowing who wants to be approached. Join the room you're in — a venue, a party, an expo — and Lime shows only the people who are there with you, and open to it.",
+      "Psychology has a name for why nobody makes the first move: everyone underestimates how much everyone else wants them to. Join the room you're in — a venue, a party, an expo — and see exactly who's there with you, and open to being approached.",
       "And you decide who each room meets: keep more than one profile, pick which one to bring, confirm, walk in. A founders meetup at nine, a club at midnight — same person, different disclosure.",
     ],
     media: {
@@ -52,8 +52,8 @@ const FEATURES: Feature[] = [
   },
   {
     id: "start",
-    eyebrow: "No script",
-    title: "Never sure how to start? Start from something real.",
+    eyebrow: "3 · The opening",
+    title: "The first line, from something real.",
     paras: [
       "A like back lands in realtime — the locked chat springs open the moment it happens. And the empty thread isn't empty: Lime suggests an opener built from what they chose to share, one tap to use.",
       "You met in the same room. The first message should sound like it.",
@@ -105,9 +105,10 @@ export default function LimePage() {
             exist in person.
           </p>
           <p className={s.bodyCenter}>
-            But meeting in person has its own failure modes: no time, no nerve, no idea
-            who&rsquo;s open to it, no read on what the moment is telling you. Lime is the
-            bridge — an assistant for socializing where it actually works.
+            But an in-person encounter fails at four points, in order: the moment slips
+            away, the approach never happens, the opening falls flat, and the signals go
+            unread. Lime is an assistant for each step — a navigator for the part of
+            social life that actually works.
           </p>
       </Section>
 
@@ -135,7 +136,7 @@ export default function LimePage() {
 
       {/* Read the body — the hardware ladder stays abstract on purpose */}
       <Section center tinted id="body">
-          <p className={s.eyebrow}>Read the body</p>
+          <p className={s.eyebrow}>4 · The read</p>
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
             Attraction happens in the body — in signals people can&rsquo;t type and apps
