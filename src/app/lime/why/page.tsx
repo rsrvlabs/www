@@ -28,7 +28,7 @@ function BarPair({
         <rect x="0" y="24" width={w(aValue) * 4} height="16" rx="8" fill="#0071e3" />
         <text x={w(aValue) * 4 + 8} y="37" fontSize="13" fontWeight="600" fill="#1d1d1f">{aValue}{unit}</text>
         <text x="0" y="66" fontSize="13" fill="#6e6e73">{bLabel}</text>
-        <rect x="0" y="74" width={w(bValue) * 4} height="16" rx="8" fill="#b3261e" />
+        <rect x="0" y="74" width={w(bValue) * 4} height="16" rx="8" fill="#c00000" />
         <text x={w(bValue) * 4 + 8} y="87" fontSize="13" fontWeight="600" fill="#1d1d1f">{bValue}{unit}</text>
       </svg>
       <p className={s.chartSource}>Source: <a href={href} target="_blank" rel="noreferrer">{source}</a></p>
