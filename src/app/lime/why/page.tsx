@@ -231,6 +231,12 @@ export default function WhyLimePage() {
             over illegible.
           </p>
           <p className={s.bodyCenter}>
+            Be concrete about the alternative. Tonight, a single person who wants to
+            meet someone will stand in a room full of people, read nothing, go home,
+            and open an app on the couch. The room lost to the couch. Not because the
+            room had less to offer, but because the couch was legible.
+          </p>
+          <p className={s.bodyCenter}>
             This failure has been measured. Across six studies, people who wanted to make a
             first move explained their own stillness as fear of rejection, then read the
             other person&rsquo;s identical stillness as lack of interest (Vorauer &amp;
@@ -304,10 +310,12 @@ export default function WhyLimePage() {
           </p>
           <DerivationMap />
           <p className={s.bodyCenter} style={{ marginTop: "1.6rem" }}>
-            On the last row: the 2022 study measured attraction with glasses and
-            wearables, at three levels, the environment, the pair, the person. That is
-            not our metaphor. That is the method. Lime starts as that instrument, built
-            for everyday life.
+            The first three rows are not a vision. They are built: crossed paths, rooms
+            that show who is open, and the navigator all run in the app today. The
+            fourth row is the roadmap, and it is not our metaphor. The 2022 study
+            measured attraction with glasses and wearables, at three levels, the
+            environment, the pair, the person. That is the method. Lime grows into that
+            instrument, built for everyday life.
           </p>
           <p className={s.bodyCenter}>
             Other apps tried to make rooms legible, and they died. They broadcast guesses about
