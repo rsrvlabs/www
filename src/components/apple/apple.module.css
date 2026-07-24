@@ -336,3 +336,19 @@
 .waitBtnGhost { background: transparent; color: #0071e3; border: 1px solid #0071e3; }
 .waitBtnGhost:hover { background: rgba(0,113,227,0.06); }
 .waitNote { margin-top: 0.7rem; font-size: 0.85rem; color: var(--ink-soft); }
+
+/* ── /lime/why: evidence charts (inline SVG, real sourced numbers) ── */
+.chartCard {
+  background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 1.25rem;
+  padding: 1.6rem 1.6rem 1.2rem; margin: clamp(1.6rem, 3vw, 2.4rem) auto 0;
+  max-width: 34rem;
+}
+.tinted .chartCard { border-color: rgba(0,0,0,0.06); }
+.chartTitle { font-size: 0.95rem; font-weight: 600; margin: 0 0 1rem; }
+.chartSource { margin-top: 0.9rem; font-size: 0.78rem; color: var(--ink-soft); }
+.chartSource a { color: inherit; }
+.sigTable { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.sigTable th, .sigTable td { padding: 0.55rem 0.4rem; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.sigTable th { font-weight: 600; font-size: 0.85rem; color: var(--ink-soft); }
+.sigYes { color: #1d7d3f; font-weight: 600; }
+.sigNo { color: #b3261e; font-weight: 600; }
