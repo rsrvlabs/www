@@ -176,8 +176,6 @@ export default function WhyLimePage() {
           <ChainMap />
       </Section>
 
-      <hr className={s.rule} />
-
       {/* Step 1 */}
       <Section center tinted>
           <p className={s.eyebrow}>Step 1</p>
@@ -278,7 +276,7 @@ export default function WhyLimePage() {
       </Section>
 
       {/* Step 5 */}
-      <Section center>
+      <Section center tinted>
           <p className={s.eyebrow}>Step 5</p>
           <h2 className={s.h2}>The barriers are beliefs. Beliefs respond to help.</h2>
           <p className={s.bodyCenter}>
@@ -297,7 +295,7 @@ export default function WhyLimePage() {
       </Section>
 
       {/* Step 6 */}
-      <Section center tinted>
+      <Section center>
           <p className={s.eyebrow}>Step 6</p>
           <h2 className={s.h2}>The evidence writes the product.</h2>
           <p className={s.bodyCenter}>
@@ -330,10 +328,8 @@ export default function WhyLimePage() {
           </div>
       </Section>
 
-      <hr className={s.rule} />
-
       {/* Sources */}
-      <Section center>
+      <Section center tinted>
           <p className={s.eyebrow}>Sources</p>
           <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "left" }}>
             {[
