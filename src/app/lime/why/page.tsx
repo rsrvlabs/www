@@ -4,7 +4,7 @@ import { AppleNav, Section } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
-  title: "Why Lime matters — the case in five steps",
+  title: "Why Lime matters — the case in six steps",
   description:
     "Half of adults say they are lonely. We spend less than half the time with friends that we did twenty years ago. Online dating became the default and left people worn out. The case for assisting real-world social life, with sources.",
 };
@@ -56,7 +56,7 @@ function SignalTable() {
     ["Scent (immune-system matching)", "Wedekind 1995, Proc. R. Soc. B", "Absent"],
     ["Micro-expressions, mirrored in 30 ms", "Dimberg 2000, Psychological Science", "Absent"],
     ["Voice, tone and timing", "Kraus 2017, American Psychologist", "Stripped by text"],
-    ["Brain-to-brain sync, face to face", "fNIRS hyperscanning studies", "Absent"],
+    ["Heart-rate and skin-conductance sync", "Prochazkova et al. 2022, Nat. Hum. Behav.", "Absent"],
   ];
   return (
     <div className={s.chartCard}>
@@ -95,7 +95,7 @@ export default function WhyLimePage() {
 
       <Section center>
           <p className={s.eyebrow}>Lime · The case</p>
-          <h1 className={s.h2}>Why this matters, in five steps.</h1>
+          <h1 className={s.h2}>Why this matters, in six steps.</h1>
           <p className={s.bodyCenter}>
             Each step is a documented fact. Together they point at one missing product.
           </p>
@@ -144,20 +144,31 @@ export default function WhyLimePage() {
       {/* Step 3 */}
       <Section center tinted>
           <p className={s.eyebrow}>Step 3</p>
-          <h2 className={s.h2}>The default fix wears people out.</h2>
+          <h2 className={s.h2}>If rooms matter, why did everyone go online?</h2>
           <p className={s.bodyCenter}>
-            Meeting online became the single most common way couples start. It also became
-            a grind. Nearly half of online daters describe their experience as negative.
-            Swiping is work, and the work is not producing connection.
+            Because rooms are illegible. In a bar you cannot see who is single, who is
+            open, or who would say yes. Apps won by making one thing visible: who is
+            available. People did not choose screens over chemistry. They chose legible
+            over illegible.
+          </p>
+          <p className={s.bodyCenter}>
+            Then the bill arrived. By 2024, 78% of dating-app users report burnout, and
+            the top reason they name is the inability to find a real connection. The
+            legibility was real. The connection was not.
           </p>
           <BarPair
-            title="Online dating: dominant, and disliked"
-            aLabel="New couples who met online (2017, U.S.)" aValue={39}
-            bLabel="Dating-app users with negative experiences (2022, U.S.)" bValue={46}
-            max={60} unit="%"
-            source="Rosenfeld et al., HCMST (Stanford); Pew Research Center, 2023"
-            href="https://www.pewresearch.org/internet/2023/02/02/the-experiences-of-u-s-online-daters/"
+            title="The trade that failed"
+            aLabel="Dating-app users reporting burnout (2024, U.S.)" aValue={78}
+            bLabel="Users naming ‘can’t find a real connection’ as the top cause" bValue={40}
+            max={90} unit="%"
+            source="Forbes Health / OnePoll survey, 2024"
+            href="https://www.forbes.com/health/dating/dating-app-fatigue/"
           />
+          <p className={s.chartSource} style={{ maxWidth: "30rem", margin: "0.6rem auto 0" }}>
+            Context: meeting online became the most common way U.S. couples form (39% by
+            2017, Stanford HCMST), and 46% of users call their experience negative (Pew,
+            2023).
+          </p>
       </Section>
 
       {/* Step 4 */}
@@ -165,38 +176,57 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>Step 4</p>
           <h2 className={s.h2}>The screen cannot carry chemistry.</h2>
           <p className={s.bodyCenter}>
-            This is the part most people miss. The problem is not that matching is
-            inaccurate. A whole class of signals that decide attraction never enters the
-            channel at all. No profile field carries them, at any bandwidth.
-          </p>
-          <SignalTable />
-          <p className={s.bodyCenter} style={{ marginTop: "1.4rem" }}>
-            There is one more failure, and it is measured, not assumed. Commuters who were
-            asked to talk to strangers predicted it would be unpleasant. It was the
-            opposite: they enjoyed the ride more (Epley &amp; Schroeder, 2014). And after
-            real conversations, people reliably underestimate how much the other person
-            liked them (Boothby et al., 2018).
+            This is the part most people miss. In 2022, researchers put people on real
+            blind dates and measured everything. Smiles, laughter, eye contact, and
+            mimicry did not predict attraction. What predicted it was invisible: two
+            bodies syncing, heartbeat to heartbeat, skin to skin conductance (Nature
+            Human Behaviour, 2022; replicated 2024).
           </p>
           <p className={s.bodyCenter}>
-            People are not bad at connection. They mispredict it, in both directions, so
-            in rooms full of willing people, everyone waits.
+            Attraction runs on signals people cannot see, cannot fake, and cannot type.
+            No profile field carries them, at any bandwidth.
           </p>
+          <SignalTable />
       </Section>
 
       {/* Step 5 */}
-      <Section center tinted>
+      <Section center>
           <p className={s.eyebrow}>Step 5</p>
-          <h2 className={s.h2}>So the missing product is a bridge.</h2>
+          <h2 className={s.h2}>The barriers are beliefs. Beliefs respond to help.</h2>
           <p className={s.bodyCenter}>
-            Follow the steps. People are lonely. They are out of practice. The online
-            default drains them, and it cannot carry the signals that matter. The fix is
-            not a better feed. It is help where attraction actually works: in person.
+            Commuters told to talk to strangers predicted it would be unpleasant. It was
+            the opposite: they enjoyed the ride more (Epley &amp; Schroeder, 2014). After
+            real conversations, people reliably underestimate how much the other person
+            liked them (Boothby et al., 2018). People are not bad at connection. They
+            mispredict it, in both directions, so rooms full of willing people stay quiet.
           </p>
           <p className={s.bodyCenter}>
-            That help has three jobs, one per failure. Turn the people you already pass
-            into real chances (step 2). Show who in the room is open, so nobody has to
-            mispredict (step 4). And keep the channel where chemistry actually lives: in
-            person (steps 3 and 4). That product is Lime.
+            And this is fixable. One week of guided practice at approaching strangers made
+            people less afraid of rejection and more confident in conversation, and the
+            effect held after the study ended (Sandstrom et al., 2022, n = 286). Nobody
+            needs a new personality. They need a scaffold.
+          </p>
+      </Section>
+
+      {/* Step 6 */}
+      <Section center tinted>
+          <p className={s.eyebrow}>Step 6</p>
+          <h2 className={s.h2}>The evidence writes the product.</h2>
+          <p className={s.bodyCenter}>
+            Read the six steps back and three lacks fall out. A lack of signals: rooms do
+            not show who is open, which is the exact legibility that pulled everyone
+            online (step 3). A lack of knowledge: people mispredict rejection and liking,
+            and guided practice corrects it (step 5). And a lack of access to the signals
+            that actually decide attraction, because they are physiological and invisible
+            (step 4).
+          </p>
+          <p className={s.bodyCenter}>
+            So the product is determined, not guessed. Make presence legible: crossed
+            paths, and rooms that show who is open. Scaffold the approach: an assistant
+            that lowers the first step, the way the intervention did. And read the body:
+            the 2022 study measured attraction with glasses and wearables, at three
+            levels, the environment, the pair, the person. That is not our metaphor. That
+            is the method. Lime is that instrument, built for everyday life.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
@@ -223,7 +253,11 @@ export default function WhyLimePage() {
             Prochazkova et al. and related fNIRS hyperscanning literature on face-to-face
             neural synchrony ·
             Epley &amp; Schroeder, Mistakenly Seeking Solitude, JEP: General (2014) ·
-            Boothby et al., The Liking Gap, Psychological Science (2018).
+            Boothby et al., The Liking Gap, Psychological Science (2018) ·
+            Sandstrom, Boothby &amp; Cooney, Talking to Strangers, J. Exp. Soc. Psychol. (2022) ·
+            Prochazkova et al., Physiological synchrony and attraction in a blind date
+            setting, Nature Human Behaviour (2022); Communications Psychology (2024) ·
+            Forbes Health / OnePoll, Dating App Burnout Survey (2024).
           </p>
       </Section>
 
