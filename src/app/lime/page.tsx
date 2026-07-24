@@ -99,10 +99,10 @@ export default function LimePage() {
           <p className={s.eyebrow}>The thesis</p>
           <h2 className={s.h2}>Online dating is a different channel.<br />We&rsquo;re building the other one.</h2>
           <p className={s.bodyCenter}>
-            Swiping apps compete online. Lime assists the real world. The research is
-            unambiguous: a whole class of signals that decide attraction — the ones people
-            call chemistry — simply doesn&rsquo;t travel through screens. It only exists in
-            person.
+            A profile is self-report. A swipe is self-report. And self-report is noise.
+            The research is unambiguous: the signals that actually decide attraction — the
+            ones people call chemistry — don&rsquo;t travel through screens. They only
+            exist in person.
           </p>
           <p className={s.bodyCenter}>
             But meeting in person has its own failure modes: no time, no nerve, no idea
