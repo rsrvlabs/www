@@ -28,7 +28,7 @@ function BarPair({
         <rect x="0" y="24" width={w(aValue) * 4} height="16" rx="8" fill="#0071e3" />
         <text x={w(aValue) * 4 + 8} y="37" fontSize="13" fontWeight="600" fill="#1d1d1f">{aValue}{unit}</text>
         <text x="0" y="66" fontSize="13" fill="#6e6e73">{bLabel}</text>
-        <rect x="0" y="74" width={w(bValue) * 4} height="16" rx="8" fill="#b3261e" />
+        <rect x="0" y="74" width={w(bValue) * 4} height="16" rx="8" fill="#c00000" />
         <text x={w(bValue) * 4 + 8} y="87" fontSize="13" fontWeight="600" fill="#1d1d1f">{bValue}{unit}</text>
       </svg>
       <p className={s.chartSource}>Source: <a href={href} target="_blank" rel="noreferrer">{source}</a></p>
@@ -100,7 +100,7 @@ function ChainMap() {
   return (
     <div className={s.chainFlow} role="img" aria-label="The argument chain, six steps">
       {steps.map((label, i) => (
-        <span key={label} style={{ display: "contents" }}>
+        <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
           {i > 0 && <span className={s.chainArrow}>&rarr;</span>}
           <span className={s.chainNode}>
             <span className={s.chainNum}>{i + 1}</span>
@@ -175,8 +175,6 @@ export default function WhyLimePage() {
           </p>
           <ChainMap />
       </Section>
-
-      <hr className={s.rule} />
 
       {/* Step 1 */}
       <Section center tinted>
@@ -278,7 +276,7 @@ export default function WhyLimePage() {
       </Section>
 
       {/* Step 5 */}
-      <Section center>
+      <Section center tinted>
           <p className={s.eyebrow}>Step 5</p>
           <h2 className={s.h2}>The barriers are beliefs. Beliefs respond to help.</h2>
           <p className={s.bodyCenter}>
@@ -297,7 +295,7 @@ export default function WhyLimePage() {
       </Section>
 
       {/* Step 6 */}
-      <Section center tinted>
+      <Section center>
           <p className={s.eyebrow}>Step 6</p>
           <h2 className={s.h2}>The evidence writes the product.</h2>
           <p className={s.bodyCenter}>
@@ -330,10 +328,8 @@ export default function WhyLimePage() {
           </div>
       </Section>
 
-      <hr className={s.rule} />
-
       {/* Sources */}
-      <Section center>
+      <Section center tinted>
           <p className={s.eyebrow}>Sources</p>
           <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "left" }}>
             {[
