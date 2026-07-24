@@ -5,7 +5,7 @@ import TrustLadder from "@/components/visuals/trust-ladder";
 export const metadata: Metadata = {
   title: "Autonomy is granted, not assumed — Reserve Research",
   description:
-    "Series 01, essay 07: how much should an AI agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. Here is the ladder it climbed, and why the permissions live outside the agent's memory.",
+    "Series 01, essay 08: how much should an AI agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. Here is the ladder it climbed, and why the permissions live outside the agent's memory.",
   keywords: [
     "AI agent autonomy",
     "agent permissions",
@@ -29,7 +29,7 @@ export default function TrustLadderEssay() {
           decision record. Here is the ladder it climbed.
         </p>
         <p className={apple.articleMeta}>
-          Series 01 · Essay 07 · Published 07.2026 · Reserve — curators, one brain.
+          Series 01 · Essay 08 · Published 07.2026 · Reserve — curators, one brain.
         </p>
       </Section>
 

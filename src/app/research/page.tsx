@@ -69,7 +69,7 @@ const essays: Array<{
   {
     kicker: "Governance",
     title: "Autonomy is granted, not assumed.",
-    body: "Series 01, essay 07: how much should an agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. The ladder it climbed, and why the permissions live outside its memory.",
+    body: "Series 01, essay 08: how much should an agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. The ladder it climbed, and why the permissions live outside its memory.",
     href: "/research/trust-ladder",
   },
   {
