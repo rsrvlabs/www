@@ -88,30 +88,6 @@ function SignalTable() {
   );
 }
 
-function ChainMap() {
-  const steps = [
-    "Half the country is lonely",
-    "Encounters don\u2019t convert",
-    "Apps won on legibility",
-    "Chemistry is invisible",
-    "The barriers are fixable",
-    "The product falls out",
-  ];
-  return (
-    <div className={s.chainFlow} role="img" aria-label="The argument chain, six steps">
-      {steps.map((label, i) => (
-        <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
-          {i > 0 && <span className={s.chainArrow}>&rarr;</span>}
-          <span className={s.chainNode}>
-            <span className={s.chainNum}>{i + 1}</span>
-            {label}
-          </span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
 function DerivationMap() {
   const rows: [string, string, string, string][] = [
     [
@@ -173,7 +149,6 @@ export default function WhyLimePage() {
           <p className={s.bodyCenter}>
             The first five steps are documented findings. The sixth is what they force. Together they point at one missing product.
           </p>
-          <ChainMap />
       </Section>
 
       {/* Step 1 */}
