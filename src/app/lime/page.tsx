@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, Section } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
+import { WaitlistForm } from "./WaitlistForm";
 
 export const metadata: Metadata = {
   title: "Lime — your IRL social AI navigator",
   description:
-    "Lime (short for limerence) is Reserve's flagship: an app that assists real-world socializing. Online apps map strangers and miss the chemistry that only happens in person; Lime is the bridge for meeting in real life — cross paths, know who's open to chat, and let AI help you read the room.",
+    "Lime helps you meet the people you actually cross paths with. See who is open to meeting, reconnect after the moment passes, and start conversations that begin in real life.",
 };
 
 const CONTACT = "hello@rsrvlabs.com";
 
-/* One flow per section: the capture beside its story. Public copy stays at
-   the outcome level by design — no protocols, no sensor names. */
+/* Copy rules (copy-editing + nature-polishing skills, 2026-07-24):
+   plain words, 10–30-word sentences, one idea each, no em dashes,
+   read-aloud natural. Public copy stays at the outcome level. */
 type Feature = {
   id: string;
   eyebrow: string;
@@ -26,41 +28,41 @@ const FEATURES: Feature[] = [
   {
     id: "crossed",
     eyebrow: "1 · The moment",
-    title: "The moment passes. The person doesn’t have to.",
+    title: "You already met someone today.",
     paras: [
-      "You cross paths with interesting people every day — you just don't have the time to do anything about it in the moment. Lime notices genuine co-presence, keeps the room ordered by who's actually near, and remembers everyone after the night ends.",
-      "Crossed paths turns the day you already live into a social surface — no extra time required.",
+      "Think about your week. The person next to you at the meetup. The one who laughed at the same joke. You noticed them, and then life moved on.",
+      "Lime noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
     ],
     media: {
       src: "/lime/lime-flow-nearby-reconnect.mp4",
-      alt: "Lime Nearby — people appearing as they arrive, then Crossed paths after the event",
+      alt: "Lime Nearby, people appearing as they arrive, then Crossed paths after the event",
     },
   },
   {
     id: "open",
     eyebrow: "2 · The approach",
-    title: "Everyone waits for a sign. Now there is one.",
+    title: "See who wants to be approached.",
     paras: [
-      "Psychology has a name for why nobody makes the first move: everyone underestimates how much everyone else wants them to. Join the room you're in — a venue, a party, an expo — and see exactly who's there with you, and open to being approached.",
-      "And you decide who each room meets: keep more than one profile, pick which one to bring, confirm, walk in. A founders meetup at nine, a club at midnight — same person, different disclosure.",
+      "Nobody makes the first move because nobody can tell who wants them to. Psychologists have a name for this: everyone underestimates how much other people want to talk.",
+      "Walk into a venue on Lime and the guessing stops. You see who is in the room and open to meeting people. You also pick which version of you the room gets: the work profile at nine, the weekend one at midnight.",
     ],
     media: {
       src: "/lime/lime-flow-dual-profile.mp4",
-      alt: "Lime rooms and profiles — joining a morning meetup and a night venue as two different identities",
+      alt: "Lime rooms and profiles, joining a morning meetup and a night venue as two different identities",
     },
     flip: true,
   },
   {
     id: "start",
     eyebrow: "3 · The opening",
-    title: "The first line, from something real.",
+    title: "Start with something real.",
     paras: [
-      "A like back lands in realtime — the locked chat springs open the moment it happens. And the empty thread isn't empty: Lime suggests an opener built from what they chose to share, one tap to use.",
-      "You met in the same room. The first message should sound like it.",
+      "When someone likes you back, you know right away. The chat unlocks in front of you. No refreshing, no wondering.",
+      "And you never stare at an empty text box. Lime suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
       src: "/lime/lime-flow-match-chat.mp4",
-      alt: "Lime match and chat — realtime match, suggested opener, first exchange",
+      alt: "Lime match and chat, realtime match, suggested opener, first exchange",
     },
     flip: false,
   },
@@ -71,48 +73,43 @@ export default function LimePage() {
     <main className={s.page}>
       <AppleNav />
 
-      {/* Hero */}
-      <Section center>
-          <h1 className={s.hero}>Lime</h1>
-          <p className={s.sub}>Your IRL social AI navigator.</p>
-          <div className={s.linkRow}>
-            <a className={s.link} href={`mailto:${CONTACT}?subject=${encodeURIComponent("Lime early access")}`}>
-              Request early access &rsaquo;
-            </a>
-            <a className={s.link} href="#crossed">
-              See it move &rsaquo;
-            </a>
+      {/* Hero: words left, the product right */}
+      <Section>
+          <div className={s.heroSplit}>
+            <div className={s.heroLeft}>
+              <h1 className={s.heroTitle}>Lime</h1>
+              <p className={s.heroTag}>Your IRL social AI navigator.</p>
+              <WaitlistForm />
+            </div>
+            <div className={s.heroMedia}>
+              <div className={s.device}>
+                {/* palindrome loop: forward, reversed, forever */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/lime/lime-login-loop.gif" alt="Lime sign-up screen, ambient looping hero" />
+              </div>
+            </div>
           </div>
-
-          <div className={s.heroDevice}>
-            {/* palindrome loop — forward, reversed, forever */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/lime/lime-login-loop.gif" alt="Lime sign-up screen, ambient looping hero" />
-          </div>
-          <p className={s.caption}>A real capture of the shipped build</p>
       </Section>
 
       <hr className={s.rule} />
 
-      {/* Thesis — a different channel, not a better feed */}
+      {/* Thesis */}
       <Section center tinted>
-          <p className={s.eyebrow}>The thesis</p>
-          <h2 className={s.h2}>Online dating is a different channel.<br />We&rsquo;re building the other one.</h2>
+          <p className={s.eyebrow}>Why Lime</p>
+          <h2 className={s.h2}>Chemistry never made it online.</h2>
           <p className={s.bodyCenter}>
             A profile is self-report. A swipe is self-report. And self-report is noise.
-            The research is unambiguous: the signals that actually decide attraction — the
-            ones people call chemistry — don&rsquo;t travel through screens. They only
-            exist in person.
+            What actually decides attraction is chemistry, and chemistry only happens in
+            person. Science has known this for decades.
           </p>
           <p className={s.bodyCenter}>
-            But an in-person encounter fails at four points, in order: the moment slips
-            away, the approach never happens, the opening falls flat, and the signals go
-            unread. Lime is an assistant for each step — a navigator for the part of
-            social life that actually works.
+            But meeting people in person is hard for boring reasons. You are busy. You
+            cannot tell who wants to talk. You never know how to start. Lime fixes each
+            one, in order.
           </p>
       </Section>
 
-      {/* One shortfall per section — the capture beside its answer */}
+      {/* One problem per section, the capture beside its answer */}
       {FEATURES.map((f) => (
         <Section id={f.id} key={f.id}>
           <div className={f.flip ? `${s.split} ${s.splitAlt}` : s.split}>
@@ -134,70 +131,62 @@ export default function LimePage() {
         </Section>
       ))}
 
-      {/* Read the body — the hardware ladder stays abstract on purpose */}
+      {/* Read the body */}
       <Section center tinted id="body">
           <p className={s.eyebrow}>4 · The read</p>
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
-            Attraction happens in the body — in signals people can&rsquo;t type and apps
-            can&rsquo;t render. Lime is built to read the room at three levels: the
-            environment you&rsquo;re in, the interaction between two people, and what your
-            own body is telling you.
+            Attraction happens in the body, in signals nobody can type. Lime is learning
+            to read three things: the room you are in, the moment between two people, and
+            what your own body is telling you.
           </p>
           <p className={s.bodyCenter}>
-            It starts with the phone in your pocket. A ring, a watch, a pair of glasses —
-            each device you choose to wear adds a layer only it can see, and each layer
-            deepens the read. Not another feed: an assistant that helps you unleash your
-            social potential in person.
+            It starts with your phone. A ring, a watch, a pair of glasses will each add a
+            layer your phone cannot see. The goal is simple: help you show up better in
+            person.
           </p>
       </Section>
 
       {/* The bet */}
-      <Section tinted>
+      <Section>
           <div className={s.center}>
             <p className={s.eyebrow}>The bet</p>
-            <h2 className={s.h2}>
-              Proximity social is a graveyard.
-              <br />
-              We read the autopsies.
-            </h2>
+            <h2 className={s.h2}>Apps for meeting nearby keep dying.<br />We studied why.</h2>
           </div>
           <div className={s.statements}>
             <div className={s.statement}>
               <h3 className={s.statementTitle}>Trust</h3>
               <p className={s.statementBody}>
-                A radius is a rumor. Verified co-presence — actually being there — is the
-                only version of &ldquo;we crossed paths&rdquo; worth acting on.
+                An app can guess you were close. Lime knows you were actually there.
+                Only that is worth acting on.
               </p>
             </div>
             <div className={s.statement}>
               <h3 className={s.statementTitle}>Density</h3>
               <p className={s.statementBody}>
-                A city-scoped feed needs a million users to feel alive. A room needs thirty
-                people at one bar, tonight.
+                A citywide feed needs a million users to feel alive. A bar needs thirty
+                people, tonight.
               </p>
             </div>
             <div className={s.statement}>
               <h3 className={s.statementTitle}>Consent</h3>
               <p className={s.statementBody}>
-                Nothing identifying is ever broadcast, every field is disclosed by choice,
-                and a block removes you everywhere at once. Consent is architecture, not
-                policy.
+                Your name is never broadcast. You choose what every room sees. Blocking
+                someone removes you from their world completely. This is built into the
+                product, not written in a policy.
               </p>
             </div>
           </div>
       </Section>
 
       {/* Why us */}
-      <Section center>
+      <Section center tinted>
           <p className={s.eyebrow}>Why us</p>
-          <h2 className={s.h2}>Two backgrounds, two halves of the product.</h2>
+          <h2 className={s.h2}>The science of the moment.<br />The hardware to read it.</h2>
           <p className={s.bodyCenter}>
-            One founder trained in psychophysiology — the science of what attraction
-            actually does in the body, in person, in seconds. The other led AI R&amp;D on a
-            wearable program that shipped over ten million units — consumer hardware at a
-            scale where the hard problems stop being theoretical. A product that runs from
-            verified co-presence to on-body signals needs exactly this pair.
+            One founder studied psychophysiology, the science of what attraction does in
+            the body. The other ran AI research for a wearable that shipped more than ten
+            million units. This product needs exactly that pair.
           </p>
       </Section>
 

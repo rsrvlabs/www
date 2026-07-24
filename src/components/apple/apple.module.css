@@ -298,3 +298,41 @@
   .split, .splitAlt { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
   .splitMedia { max-width: min(300px, 78vw); }
 }
+
+/* ── hero split: words left, the product right (Ryvn 2026-07-24) ── */
+.heroSplit {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.8fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
+}
+.heroLeft { text-align: left; }
+.heroTitle {
+  font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.02;
+  letter-spacing: -0.02em; font-weight: 700; margin: 0 0 0.6rem;
+}
+.heroTag { font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--ink-soft); margin: 0 0 1.6rem; }
+.heroMedia { max-width: 300px; margin-inline: auto; width: 100%; }
+@media (max-width: 780px) {
+  .heroSplit { grid-template-columns: 1fr; gap: 2rem; }
+  .heroLeft { text-align: center; }
+}
+
+/* waitlist form — one field, two doors */
+.waitRow { display: flex; gap: 0.6rem; flex-wrap: wrap; max-width: 30rem; }
+@media (max-width: 780px) { .waitRow { margin-inline: auto; justify-content: center; } }
+.waitInput {
+  flex: 1 1 14rem; font-size: 1rem; padding: 0.72rem 1rem;
+  border: 1px solid rgba(0,0,0,0.18); border-radius: 0.75rem;
+  background: #fff; color: inherit; min-width: 0;
+}
+.waitInput:focus { outline: 2px solid #0071e3; outline-offset: 1px; border-color: transparent; }
+.waitBtns { display: flex; gap: 0.6rem; margin-top: 0.7rem; flex-wrap: wrap; }
+@media (max-width: 780px) { .waitBtns { justify-content: center; } }
+.waitBtn {
+  font-size: 0.98rem; font-weight: 600; padding: 0.7rem 1.25rem;
+  border-radius: 2rem; border: none; cursor: pointer;
+  background: #0071e3; color: #fff;
+}
+.waitBtn:hover { background: #0077ed; }
+.waitBtnGhost { background: transparent; color: #0071e3; border: 1px solid #0071e3; }
+.waitBtnGhost:hover { background: rgba(0,113,227,0.06); }
+.waitNote { margin-top: 0.7rem; font-size: 0.85rem; color: var(--ink-soft); }
