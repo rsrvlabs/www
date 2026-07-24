@@ -107,6 +107,11 @@ export default function LimePage() {
             cannot tell who wants to talk. You never know how to start. Lime fixes each
             one, in order.
           </p>
+          <div className={s.linkRow}>
+            <Link className={s.link} href="/lime/why">
+              The full case, with data &rsaquo;
+            </Link>
+          </div>
       </Section>
 
       {/* One problem per section, the capture beside its answer */}
