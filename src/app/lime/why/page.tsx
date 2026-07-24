@@ -88,6 +88,80 @@ function SignalTable() {
   );
 }
 
+function ChainMap() {
+  const steps = [
+    "Half the country is lonely",
+    "Encounters don\u2019t convert",
+    "Apps won on legibility",
+    "Chemistry is invisible",
+    "The barriers are fixable",
+    "The product falls out",
+  ];
+  return (
+    <div className={s.chainFlow} role="img" aria-label="The argument chain, six steps">
+      {steps.map((label, i) => (
+        <span key={label} style={{ display: "contents" }}>
+          {i > 0 && <span className={s.chainArrow}>&rarr;</span>}
+          <span className={s.chainNode}>
+            <span className={s.chainNum}>{i + 1}</span>
+            {label}
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function DerivationMap() {
+  const rows: [string, string, string, string][] = [
+    [
+      "Ties form from repeated encounters, and today none of them convert",
+      "Festinger et al., 1950 \u00b7 ATUS, 2024",
+      "The encounters vanish unrecorded",
+      "Crossed paths",
+    ],
+    [
+      "When both people are interested, both hold back and misread the other\u2019s silence",
+      "Vorauer & Ratner, 1996",
+      "No one can signal openness",
+      "Rooms that show who is open",
+    ],
+    [
+      "People mispredict rejection and liking; a week of scaffolded practice corrects it",
+      "Epley 2014 \u00b7 Boothby 2018 \u00b7 Sandstrom 2022",
+      "No scaffold at the moment it counts",
+      "The navigator: openers and nudges",
+    ],
+    [
+      "Attraction is predicted by physiological synchrony, not by visible behaviour",
+      "Prochazkova et al., 2022",
+      "The deciding signals are invisible",
+      "The read: sensing, on the roadmap",
+    ],
+  ];
+  return (
+    <div className={s.deriv} role="table" aria-label="From evidence to product features">
+      <span className={s.derivHead}>The finding</span>
+      <span aria-hidden="true" />
+      <span className={s.derivHead}>The gap it exposes</span>
+      <span aria-hidden="true" />
+      <span className={s.derivHead}>The feature it demands</span>
+      {rows.map(([finding, cite, gap, feature]) => (
+        <span key={feature} style={{ display: "contents" }}>
+          <span className={s.derivCell}>
+            {finding}
+            <span className={s.derivCite}>{cite}</span>
+          </span>
+          <span className={s.derivTo}>&rarr;</span>
+          <span className={s.derivCell}>{gap}</span>
+          <span className={s.derivTo}>&rarr;</span>
+          <span className={`${s.derivCell} ${s.derivFeature}`}>{feature}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function WhyLimePage() {
   return (
     <main className={s.page}>
@@ -99,6 +173,7 @@ export default function WhyLimePage() {
           <p className={s.bodyCenter}>
             Each step is a documented fact. Together they point at one missing product.
           </p>
+          <ChainMap />
       </Section>
 
       <hr className={s.rule} />
@@ -130,6 +205,12 @@ export default function WhyLimePage() {
             hours a day.
           </p>
           <p className={s.bodyCenter}>
+            And repetition is exactly where relationships come from. In the classic
+            housing study, people became friends with whoever they happened to pass most
+            often (Festinger et al., 1950). Proximity is the raw material of connection.
+            Modern life still supplies it every day.
+          </p>
+          <p className={s.bodyCenter}>
             So the problem is not attendance. It is conversion. Hundreds of encounters a
             week, and almost none of them turn into anything.
           </p>
@@ -150,6 +231,13 @@ export default function WhyLimePage() {
             open, or who would say yes. Apps won by making one thing visible: who is
             available. People did not choose screens over chemistry. They chose legible
             over illegible.
+          </p>
+          <p className={s.bodyCenter}>
+            The illegibility is measured. Across six studies, people who wanted to make a
+            first move explained their own stillness as fear of rejection, then read the
+            other person&rsquo;s identical stillness as lack of interest (Vorauer &amp;
+            Ratner, 1996). Two interested people, both waiting, each certain the other
+            said no.
           </p>
           <p className={s.bodyCenter}>
             Then the bill arrived. By 2024, 78% of dating-app users report burnout, and
@@ -179,8 +267,9 @@ export default function WhyLimePage() {
             This is the part most people miss. In 2022, researchers put people on real
             blind dates and measured everything. Smiles, laughter, eye contact, and
             mimicry did not predict attraction. What predicted it was invisible: two
-            bodies syncing, heartbeat to heartbeat, skin to skin conductance (Nature
-            Human Behaviour, 2022; replicated 2024).
+            bodies syncing, heartbeat to heartbeat, skin to skin conductance (Prochazkova
+            et al., 2022). An independent 2024 study went further: inducing synchrony
+            raised romantic attraction (Cohen et al., 2024).
           </p>
           <p className={s.bodyCenter}>
             Attraction runs on signals people cannot see, cannot fake, and cannot type.
@@ -213,20 +302,27 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>Step 6</p>
           <h2 className={s.h2}>The evidence writes the product.</h2>
           <p className={s.bodyCenter}>
-            Read the six steps back and three lacks fall out. A lack of signals: rooms do
-            not show who is open, which is the exact legibility that pulled everyone
-            online (step 3). A lack of knowledge: people mispredict rejection and liking,
-            and guided practice corrects it (step 5). And a lack of access to the signals
-            that actually decide attraction, because they are physiological and invisible
-            (step 4).
+            Read the chain back and each feature is forced by a finding. Not brainstormed.
+            Derived.
+          </p>
+          <DerivationMap />
+          <p className={s.bodyCenter} style={{ marginTop: "1.6rem" }}>
+            On the last row: the 2022 study measured attraction with glasses and
+            wearables, at three levels, the environment, the pair, the person. That is
+            not our metaphor. That is the method. Lime starts as that instrument, built
+            for everyday life.
           </p>
           <p className={s.bodyCenter}>
-            So the product is determined, not guessed. Make presence legible: crossed
-            paths, and rooms that show who is open. Scaffold the approach: an assistant
-            that lowers the first step, the way the intervention did. And read the body:
-            the 2022 study measured attraction with glasses and wearables, at three
-            levels, the environment, the pair, the person. That is not our metaphor. That
-            is the method. Lime is that instrument, built for everyday life.
+            Others tried to make rooms legible and died. They broadcast guesses about
+            strangers, with no consent and no density. Legibility without consent is
+            surveillance. Ours is opt-in, room by room, and built for venues where thirty
+            people are enough.
+          </p>
+          <p className={s.bodyCenter}>
+            And the timing is not incidental. Wearables are mainstream, assistants are
+            finally good enough to help in the moment, and fatigue with the old default
+            has never been higher. The chain was always true. Only now can a product
+            close it.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
@@ -240,25 +336,30 @@ export default function WhyLimePage() {
       {/* Sources */}
       <Section center>
           <p className={s.eyebrow}>Sources</p>
-          <p className={s.chartSource} style={{ maxWidth: "38rem", margin: "0 auto", textAlign: "left" }}>
-            U.S. Surgeon General, Our Epidemic of Loneliness and Isolation (2023) ·
-            American Time Use Survey 2003–2023, analysis via The Washington Post (2024) ·
-            Rosenfeld, Thomas &amp; Hausen, How Couples Meet and Stay Together, Stanford ·
-            Pew Research Center, The Experiences of U.S. Online Daters (Feb 2023) ·
-            Wedekind et al., MHC-dependent mate preferences in humans, Proc. R. Soc. B (1995) ·
-            Dimberg, Thunberg &amp; Elmehed, Unconscious facial reactions to emotional facial
-            expressions, Psychological Science (2000) ·
-            Kraus, Voice-only communication enhances empathic accuracy, American
-            Psychologist (2017) ·
-            Prochazkova et al. and related fNIRS hyperscanning literature on face-to-face
-            neural synchrony ·
-            Epley &amp; Schroeder, Mistakenly Seeking Solitude, JEP: General (2014) ·
-            Boothby et al., The Liking Gap, Psychological Science (2018) ·
-            Sandstrom, Boothby &amp; Cooney, Talking to Strangers, J. Exp. Soc. Psychol. (2022) ·
-            Prochazkova et al., Physiological synchrony and attraction in a blind date
-            setting, Nature Human Behaviour (2022); Communications Psychology (2024) ·
-            Forbes Health / OnePoll, Dating App Burnout Survey (2024).
-          </p>
+          <div style={{ maxWidth: "40rem", margin: "0 auto", textAlign: "left" }}>
+            {[
+              "Boothby, E. J., Cooney, G., Sandstrom, G. M., & Clark, M. S. (2018). The liking gap in conversations: Do people like us more than we think? Psychological Science, 29(11), 1742\u20131756. https://doi.org/10.1177/0956797618783714",
+              "Cohen, M., Abargil, M., Ahissar, M., & Atzil, S. (2024). Social and nonsocial synchrony are interrelated and romantically attractive. Communications Psychology, 2, Article 57. https://doi.org/10.1038/s44271-024-00109-1",
+              "Dimberg, U., Thunberg, M., & Elmehed, K. (2000). Unconscious facial reactions to emotional facial expressions. Psychological Science, 11(1), 86\u201389. https://doi.org/10.1111/1467-9280.00221",
+              "Epley, N., & Schroeder, J. (2014). Mistakenly seeking solitude. Journal of Experimental Psychology: General, 143(5), 1980\u20131999. https://doi.org/10.1037/a0037323",
+              "Festinger, L., Schachter, S., & Back, K. (1950). Social pressures in informal groups: A study of human factors in housing. Harper & Brothers.",
+              "Forbes Health. (2024, May 9). Forbes Health survey: 78% of all users report dating app burnout [OnePoll survey of 1,000 U.S. dating-app users]. Forbes. https://www.forbes.com/health/dating/dating-app-fatigue/",
+              "Kraus, M. W. (2017). Voice-only communication enhances empathic accuracy. American Psychologist, 72(7), 644\u2013654. https://doi.org/10.1037/amp0000147",
+              "McClain, C., & Gelles-Watnick, R. (2023, February 2). The experiences of U.S. online daters. Pew Research Center. https://www.pewresearch.org/internet/2023/02/02/the-experiences-of-u-s-online-daters/",
+              "Office of the U.S. Surgeon General. (2023). Our epidemic of loneliness and isolation: The U.S. Surgeon General\u2019s advisory on the healing effects of social connection and community. U.S. Department of Health and Human Services.",
+              "Prochazkova, E., Sjak-Shie, E., Behrens, F., Lindh, D., & Kret, M. E. (2022). Physiological synchrony is associated with attraction in a blind date setting. Nature Human Behaviour, 6(2), 269\u2013278. https://doi.org/10.1038/s41562-021-01197-3",
+              "Rosenfeld, M. J., Thomas, R. J., & Hausen, S. (2019). Disintermediating your friends: How online dating in the United States displaces other ways of meeting. Proceedings of the National Academy of Sciences, 116(36), 17753\u201317758. https://doi.org/10.1073/pnas.1908630116",
+              "Sandstrom, G. M., Boothby, E. J., & Cooney, G. (2022). Talking to strangers: A week-long intervention reduces psychological barriers to social connection. Journal of Experimental Social Psychology, 102, Article 104356. https://doi.org/10.1016/j.jesp.2022.104356",
+              "U.S. Bureau of Labor Statistics. (2003\u20132023). American Time Use Survey [Data set]. Analysis published by The Washington Post (2024).",
+              "Vorauer, J. D., & Ratner, R. K. (1996). Who\u2019s going to make the first move? Pluralistic ignorance as an impediment to relationship formation. Journal of Social and Personal Relationships, 13(4), 483\u2013506. https://doi.org/10.1177/0265407596134001",
+              "Wedekind, C., Seebeck, T., Bettens, F., & Paepke, A. J. (1995). MHC-dependent mate preferences in humans. Proceedings of the Royal Society of London. Series B: Biological Sciences, 260(1359), 245\u2013249. https://doi.org/10.1098/rspb.1995.0087",
+            ].map((ref) => (
+              <p key={ref.slice(0, 30)} className={s.chartSource}
+                 style={{ margin: "0 0 0.55rem", paddingLeft: "1.4rem", textIndent: "-1.4rem" }}>
+                {ref}
+              </p>
+            ))}
+          </div>
       </Section>
 
       <footer className={`${s.footer} ${s.center}`}>
