@@ -4,7 +4,7 @@ import { AppleNav, Section } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
-  title: "Why Lime matters — the case in six steps",
+  title: "Why Lime matters: the case in six steps",
   description:
     "Half of adults say they are lonely. We spend less than half the time with friends that we did twenty years ago. Online dating became the default and left people worn out. The case for assisting real-world social life, with sources.",
 };
@@ -81,8 +81,8 @@ function SignalTable() {
         </tbody>
       </table>
       <p className={s.chartSource}>
-        Peer-reviewed findings; citations in the footer. The pattern is structural: these
-        channels carry zero bandwidth online, at any video quality.
+        Peer-reviewed findings; citations in the footer. The pattern is structural. These
+        signals do not survive the trip online, at any video quality.
       </p>
     </div>
   );
@@ -171,7 +171,7 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>Lime · The case</p>
           <h1 className={s.h2}>Why this matters, in six steps.</h1>
           <p className={s.bodyCenter}>
-            Each step is a documented fact. Together they point at one missing product.
+            The first five steps are documented findings. The sixth is what they force. Together they point at one missing product.
           </p>
           <ChainMap />
       </Section>
@@ -233,21 +233,20 @@ export default function WhyLimePage() {
             over illegible.
           </p>
           <p className={s.bodyCenter}>
-            The illegibility is measured. Across six studies, people who wanted to make a
+            This failure has been measured. Across six studies, people who wanted to make a
             first move explained their own stillness as fear of rejection, then read the
             other person&rsquo;s identical stillness as lack of interest (Vorauer &amp;
-            Ratner, 1996). Two interested people, both waiting, each certain the other
-            said no.
+            Ratner, 1996). Two interested people, both waiting, each sure the answer is no.
           </p>
           <p className={s.bodyCenter}>
             Then the bill arrived. By 2024, 78% of dating-app users report burnout, and
-            the top reason they name is the inability to find a real connection. The
+            the top reason they name is the inability to find a good connection. The
             legibility was real. The connection was not.
           </p>
           <BarPair
             title="The trade that failed"
             aLabel="Dating-app users reporting burnout (2024, U.S.)" aValue={78}
-            bLabel="Users naming ‘can’t find a real connection’ as the top cause" bValue={40}
+            bLabel="Users naming ‘can’t find a good connection’ as the top cause" bValue={40}
             max={90} unit="%"
             source="Forbes Health / OnePoll survey, 2024"
             href="https://www.forbes.com/health/dating/dating-app-fatigue/"
@@ -267,7 +266,7 @@ export default function WhyLimePage() {
             This is the part most people miss. In 2022, researchers put people on real
             blind dates and measured everything. Smiles, laughter, eye contact, and
             mimicry did not predict attraction. What predicted it was invisible: two
-            bodies syncing, heartbeat to heartbeat, skin to skin conductance (Prochazkova
+            heart rates aligning, skin conductance rising and falling together (Prochazkova
             et al., 2022). An independent 2024 study went further: inducing synchrony
             raised romantic attraction (Cohen et al., 2024).
           </p>
@@ -313,16 +312,16 @@ export default function WhyLimePage() {
             for everyday life.
           </p>
           <p className={s.bodyCenter}>
-            Others tried to make rooms legible and died. They broadcast guesses about
+            Other apps tried to make rooms legible, and they died. They broadcast guesses about
             strangers, with no consent and no density. Legibility without consent is
             surveillance. Ours is opt-in, room by room, and built for venues where thirty
             people are enough.
           </p>
           <p className={s.bodyCenter}>
-            And the timing is not incidental. Wearables are mainstream, assistants are
+            And the timing is not incidental. Wearables are mainstream, AI assistants are
             finally good enough to help in the moment, and fatigue with the old default
-            has never been higher. The chain was always true. Only now can a product
-            close it.
+            has never been higher. The chain was always there. Only now can a product
+            act on it.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
