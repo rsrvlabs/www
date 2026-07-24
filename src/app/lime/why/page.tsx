@@ -100,7 +100,7 @@ function ChainMap() {
   return (
     <div className={s.chainFlow} role="img" aria-label="The argument chain, six steps">
       {steps.map((label, i) => (
-        <span key={label} style={{ display: "contents" }}>
+        <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
           {i > 0 && <span className={s.chainArrow}>&rarr;</span>}
           <span className={s.chainNode}>
             <span className={s.chainNum}>{i + 1}</span>
