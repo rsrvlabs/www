@@ -122,11 +122,16 @@ export default function WhyLimePage() {
       {/* Step 2 */}
       <Section center>
           <p className={s.eyebrow}>Step 2</p>
-          <h2 className={s.h2}>We stopped practicing.</h2>
+          <h2 className={s.h2}>Your day is full of people.<br />Your life is not.</h2>
           <p className={s.bodyCenter}>
-            Americans now spend less than half the time with friends that they did twenty
-            years ago. Practice is how social skill survives. Less time in rooms means
-            more people who find rooms hard.
+            Time with friends has fallen by more than half in twenty years. But look at
+            the number carefully. People did not stop being around people. We still
+            commute, work, queue, and show up at events, surrounded by strangers for
+            hours a day.
+          </p>
+          <p className={s.bodyCenter}>
+            So the problem is not attendance. It is conversion. Hundreds of encounters a
+            week, and almost none of them turn into anything.
           </p>
           <BarPair
             title="Minutes per day spent with friends, U.S. adults"
@@ -147,8 +152,8 @@ export default function WhyLimePage() {
           </p>
           <BarPair
             title="Online dating: dominant, and disliked"
-            aLabel="Couples who met online (2017)" aValue={39}
-            bLabel="Online daters reporting negative experiences" bValue={46}
+            aLabel="New couples who met online (2017, U.S.)" aValue={39}
+            bLabel="Dating-app users with negative experiences (2022, U.S.)" bValue={46}
             max={60} unit="%"
             source="Rosenfeld et al., HCMST (Stanford); Pew Research Center, 2023"
             href="https://www.pewresearch.org/internet/2023/02/02/the-experiences-of-u-s-online-daters/"
@@ -162,13 +167,19 @@ export default function WhyLimePage() {
           <p className={s.bodyCenter}>
             This is the part most people miss. The problem is not that matching is
             inaccurate. A whole class of signals that decide attraction never enters the
-            channel at all. You cannot upload them, and no algorithm can recover them.
+            channel at all. No profile field carries them, at any bandwidth.
           </p>
           <SignalTable />
           <p className={s.bodyCenter} style={{ marginTop: "1.4rem" }}>
-            There is one more failure, and it is human. People systematically underestimate
-            how much others want to talk to them. Psychologists call it pluralistic
-            ignorance. So in real rooms, full of lonely people, everyone waits.
+            There is one more failure, and it is measured, not assumed. Commuters who were
+            asked to talk to strangers predicted it would be unpleasant. It was the
+            opposite: they enjoyed the ride more (Epley &amp; Schroeder, 2014). And after
+            real conversations, people reliably underestimate how much the other person
+            liked them (Boothby et al., 2018).
+          </p>
+          <p className={s.bodyCenter}>
+            People are not bad at connection. They mispredict it, in both directions, so
+            in rooms full of willing people, everyone waits.
           </p>
       </Section>
 
@@ -182,9 +193,10 @@ export default function WhyLimePage() {
             not a better feed. It is help where attraction actually works: in person.
           </p>
           <p className={s.bodyCenter}>
-            That help has three jobs. Turn the people you already pass into real chances.
-            Show who in the room is open, so nobody has to guess. And over time, read the
-            physical signals that people cannot type. That product is Lime.
+            That help has three jobs, one per failure. Turn the people you already pass
+            into real chances (step 2). Show who in the room is open, so nobody has to
+            mispredict (step 4). And keep the channel where chemistry actually lives: in
+            person (steps 3 and 4). That product is Lime.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
@@ -210,6 +222,7 @@ export default function WhyLimePage() {
             Psychologist (2017) ·
             Prochazkova et al. and related fNIRS hyperscanning literature on face-to-face
             neural synchrony ·
+            Epley &amp; Schroeder, Mistakenly Seeking Solitude, JEP: General (2014) ·
             Boothby et al., The Liking Gap, Psychological Science (2018).
           </p>
       </Section>
