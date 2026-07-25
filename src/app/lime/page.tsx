@@ -142,8 +142,8 @@ export default function LimePage() {
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
             Attraction happens in the body, in signals nobody can type. Lime is learning
-            to read three things: the room you are in, the moment between two people, and
-            what your own body is telling you.
+            to read three things: the room you are in, the encounter between two people,
+            and what your own body is telling you.
           </p>
           <p className={s.bodyCenter}>
             And this is not a weekend thing. Your days are full of rooms: the office, the
