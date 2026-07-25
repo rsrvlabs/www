@@ -289,8 +289,9 @@ export default function WhyLimePage() {
             that show who is open, and the navigator all run in the app today. The
             fourth row is the roadmap, and it is not our metaphor. The 2022 study
             measured attraction with glasses and wearables, at three levels, the
-            environment, the pair, the person. That is the method. Lime grows into that
-            instrument, built for everyday life.
+            environment, the pair, the person. That is the method. Until now these
+            signals have only ever been measured in a lab. Lime grows into the
+            instrument that measures them where life actually happens.
           </p>
           <p className={s.bodyCenter}>
             Other apps tried to make rooms legible, and they died. They broadcast guesses about
@@ -299,10 +300,11 @@ export default function WhyLimePage() {
             people are enough.
           </p>
           <p className={s.bodyCenter}>
-            And the timing is not incidental. Wearables are mainstream, AI assistants are
-            finally good enough to help in the moment, and fatigue with the old default
-            has never been higher. The chain was always there. Only now can a product
-            act on it.
+            And the timing is not incidental. Wearables are mainstream. AI assistants
+            are finally good enough to help in the moment, and their cost falls tenfold
+            a year, so we build for where prices are going, not where they are. Fatigue
+            with the old default has never been higher. The chain was always there. Only
+            now can a product act on it.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
