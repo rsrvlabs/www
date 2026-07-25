@@ -43,7 +43,7 @@ const FEATURES: Feature[] = [
     eyebrow: "2 · The approach",
     title: "See who wants to be approached.",
     paras: [
-      "Nobody makes the first move because nobody can tell who wants them to. Psychologists have a name for this: everyone underestimates how much other people want to talk.",
+      "Nobody makes the first move because nobody can tell who wants them to. Study after study finds the same thing. Everyone underestimates how much the other person wants to talk.",
       "Walk into a venue on Lime and the guessing stops. You see who is in the room and open to meeting people. You also pick which version of you the room gets: the work profile at nine, the weekend one at midnight.",
     ],
     media: {
@@ -57,7 +57,7 @@ const FEATURES: Feature[] = [
     eyebrow: "3 · The opening",
     title: "Start with something real.",
     paras: [
-      "When someone likes you back, you know right away. The chat unlocks in front of you. No refreshing, no wondering.",
+      "When someone likes you back, you know right away. The chat unlocks in front of you. You never have to refresh a screen or guess.",
       "And you never stare at an empty text box. Lime suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
@@ -104,8 +104,8 @@ export default function LimePage() {
           </p>
           <p className={s.bodyCenter}>
             But meeting people in person is hard for boring reasons. You are busy. You
-            cannot tell who wants to talk. You never know how to start. Lime fixes each
-            one, in order.
+            cannot tell who wants to talk. You never know how to start. Lime fixes all
+            three.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime/why">
@@ -174,8 +174,8 @@ export default function LimePage() {
             <div className={s.statement}>
               <h3 className={s.statementTitle}>Density</h3>
               <p className={s.statementBody}>
-                A citywide feed needs a million users to feel alive. A bar needs thirty
-                people, tonight.
+                A citywide feed needs a million users to feel alive. A bar only needs
+                thirty people who are in it tonight.
               </p>
             </div>
             <div className={s.statement}>

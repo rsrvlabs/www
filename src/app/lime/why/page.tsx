@@ -6,7 +6,7 @@ import s from "@/components/apple/apple.module.css";
 export const metadata: Metadata = {
   title: "Why Lime matters: the case in six steps",
   description:
-    "Half of adults say they are lonely. We spend less than half the time with friends that we did twenty years ago. Online dating became the default and left people worn out. The case for assisting real-world social life, with sources.",
+    "Half of adults say they are lonely. We spend less than half the time with friends that we did twenty years ago. Online dating became the default and left people worn out. The case for assisting real-world social life. Every claim here is sourced.",
 };
 
 /* Every number on this page is sourced and linked. House rule: no number
@@ -82,7 +82,7 @@ function SignalTable() {
       </table>
       <p className={s.chartSource}>
         Peer-reviewed findings; citations in the footer. The pattern is structural. These
-        signals do not survive the trip online, at any video quality.
+        signals do not survive the trip online. Better video does not bring them back.
       </p>
     </div>
   );
@@ -145,9 +145,9 @@ export default function WhyLimePage() {
 
       <Section center>
           <p className={s.eyebrow}>Lime · The case</p>
-          <h1 className={s.h2}>Why this matters, in six steps.</h1>
+          <h1 className={s.h2}>Six steps, one missing product.</h1>
           <p className={s.bodyCenter}>
-            The first five steps are documented findings. The sixth is what they force. Together they point at one missing product.
+            The first five steps are documented findings. The sixth is what they add up to.
           </p>
       </Section>
 
@@ -172,8 +172,8 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>Step 2</p>
           <h2 className={s.h2}>Your day is full of people.<br />Your life is not.</h2>
           <p className={s.bodyCenter}>
-            Time with friends has fallen by more than half in twenty years. But look at
-            the number carefully. People did not stop being around people. We still
+            Time with friends has fallen by more than half in twenty years. But people
+            did not stop being around people. We still
             commute, work, queue, and show up at events, surrounded by strangers for
             hours a day.
           </p>
@@ -184,8 +184,8 @@ export default function WhyLimePage() {
             Modern life still supplies it every day.
           </p>
           <p className={s.bodyCenter}>
-            So the problem is not attendance. It is conversion. Hundreds of encounters a
-            week, and almost none of them turn into anything.
+            So the problem is conversion, not attendance. Hundreds of encounters a week,
+            and almost none of them turn into anything.
           </p>
           <BarPair
             title="Minutes per day spent with friends, U.S. adults"
@@ -206,10 +206,10 @@ export default function WhyLimePage() {
             over illegible.
           </p>
           <p className={s.bodyCenter}>
-            Be concrete about the alternative. Tonight, a single person who wants to
-            meet someone will stand in a room full of people, read nothing, go home,
-            and open an app on the couch. The room lost to the couch. Not because the
-            room had less to offer, but because the couch was legible.
+            Tonight, a single person who wants to meet someone will stand in a room full
+            of people, read nothing, go home, and open an app on the couch. The room lost
+            to the couch. Not because the room had less to offer, but because the couch
+            was legible.
           </p>
           <p className={s.bodyCenter}>
             This failure has been measured. Across six studies, people who wanted to make a
@@ -218,9 +218,9 @@ export default function WhyLimePage() {
             Ratner, 1996). Two interested people, both waiting, each sure the answer is no.
           </p>
           <p className={s.bodyCenter}>
-            Then the bill arrived. By 2024, 78% of dating-app users report burnout, and
-            the top reason they name is the inability to find a good connection. The
-            legibility was real. The connection was not.
+            The trade came with a bill. By 2024, 78% of dating-app users report burnout,
+            and the top reason they name is the inability to find a good connection. The
+            apps delivered legibility. They never delivered the connection.
           </p>
           <BarPair
             title="The trade that failed"
@@ -251,7 +251,7 @@ export default function WhyLimePage() {
           </p>
           <p className={s.bodyCenter}>
             Attraction runs on signals people cannot see, cannot fake, and cannot type.
-            No profile field carries them, at any bandwidth.
+            No profile field carries them.
           </p>
           <SignalTable />
       </Section>
@@ -265,7 +265,7 @@ export default function WhyLimePage() {
             the opposite: they enjoyed the ride more (Epley &amp; Schroeder, 2014). After
             real conversations, people reliably underestimate how much the other person
             liked them (Boothby et al., 2018). People are not bad at connection. They
-            mispredict it, in both directions, so rooms full of willing people stay quiet.
+            misjudge it in both directions, so rooms full of willing people stay quiet.
           </p>
           <p className={s.bodyCenter}>
             And this is fixable. One week of guided practice at approaching strangers made
@@ -280,18 +280,17 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>Step 6</p>
           <h2 className={s.h2}>The evidence writes the product.</h2>
           <p className={s.bodyCenter}>
-            Read the chain back and each feature is forced by a finding. Not brainstormed.
-            Derived.
+            Every feature below traces back to a finding above. The list came out of the
+            evidence, not out of a whiteboard.
           </p>
           <DerivationMap />
           <p className={s.bodyCenter} style={{ marginTop: "1.6rem" }}>
-            The first three rows are not a vision. They are built: crossed paths, rooms
-            that show who is open, and the navigator all run in the app today. The
-            fourth row is the roadmap, and it is not our metaphor. The 2022 study
-            measured attraction with glasses and wearables, at three levels, the
-            environment, the pair, the person. That is the method. Until now these
-            signals have only ever been measured in a lab. Lime grows into the
-            instrument that measures them where life actually happens.
+            The first three rows already exist. Crossed paths, rooms that show who is
+            open, and the navigator all run in the app today. The fourth row is the
+            roadmap, and we did not invent the method. The 2022 study measured attraction
+            with glasses and wearables at three levels: the environment, the pair, and
+            the person. Until now these signals have only ever been measured in a lab.
+            Lime grows into the instrument that measures them where life actually happens.
           </p>
           <p className={s.bodyCenter}>
             Other apps tried to make rooms legible, and they died. They broadcast guesses about
@@ -300,11 +299,10 @@ export default function WhyLimePage() {
             people are enough.
           </p>
           <p className={s.bodyCenter}>
-            And the timing is not incidental. Wearables are mainstream. AI assistants
-            are finally good enough to help in the moment, and their cost falls tenfold
-            a year, so we build for where prices are going, not where they are. Fatigue
-            with the old default has never been higher. The chain was always there. Only
-            now can a product act on it.
+            Wearables are mainstream now. AI assistants are finally good enough to help
+            in the moment, and their cost falls tenfold a year, so we build for where
+            prices are going, not where they are. Fatigue with the old default has never
+            been higher. The chain was always there. Only now can a product act on it.
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
@@ -321,11 +319,11 @@ export default function WhyLimePage() {
             Dating apps took in about six billion dollars in 2024, from over 350 million
             users. And the incumbents are shrinking anyway. Match Group lost 5% of its
             payers last year. Bumble&rsquo;s revenue fell 10%. Tinder&rsquo;s fell 4%. The
-            spend is real. The satisfaction is not. A category this big, running on a
-            broken input, is not a dead market. It is an opening.
+            money keeps coming in. The satisfaction keeps going down. A category this big,
+            running on a broken input, is not a dead market. It is an opening.
           </p>
           <p className={s.bodyCenter}>
-            Meanwhile the instrument layer is compounding. Wearables are an $87 billion
+            Meanwhile the instrument layer is growing fast. Wearables are an $87 billion
             market headed past $230 billion. Half a billion devices shipped last year.
             Smart rings are growing near 30% a year. Oura passed five million rings and
             roughly a billion dollars in revenue. Whoop crossed a ten-billion-dollar
@@ -342,7 +340,7 @@ export default function WhyLimePage() {
             href="https://www.fortunebusinessinsights.com/wearable-technology-market-106000"
           />
           <p className={s.bodyCenter} style={{ marginTop: "1.4rem" }}>
-            The wedge math is bottom-up. Nearly half of U.S. adults under 30 are single.
+            The arithmetic is small and concrete. Nearly half of U.S. adults under 30 are single.
             More than half of that age group has used a dating app. Category payers
             already spend about twenty dollars a month, by Match&rsquo;s own average. Our
             first market is the burned-out majority of those users: people who still want
