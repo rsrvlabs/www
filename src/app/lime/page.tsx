@@ -146,9 +146,14 @@ export default function LimePage() {
             what your own body is telling you.
           </p>
           <p className={s.bodyCenter}>
+            And this is not a weekend thing. Your days are full of rooms: the office, the
+            gym, the queue, the party. Your body has an opinion in every one of them.
+            Lime works the days, not just the nights.
+          </p>
+          <p className={s.bodyCenter}>
             It starts with your phone. A ring, a watch, a pair of glasses will each add a
-            layer your phone cannot see. The goal is simple: help you show up better in
-            person.
+            layer your phone cannot see. Until now, chemistry has only ever been measured
+            in labs. Lime is how it gets measured in real life.
           </p>
       </Section>
 
@@ -171,6 +176,13 @@ export default function LimePage() {
               <p className={s.statementBody}>
                 A citywide feed needs a million users to feel alive. A bar needs thirty
                 people, tonight.
+              </p>
+            </div>
+            <div className={s.statement}>
+              <h3 className={s.statementTitle}>Daily</h3>
+              <p className={s.statementBody}>
+                Meeting apps wait for the weekend. Crossed paths happen every day. A tool
+                you open daily becomes a habit. A tool you open monthly becomes a chore.
               </p>
             </div>
             <div className={s.statement}>
