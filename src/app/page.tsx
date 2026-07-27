@@ -28,7 +28,7 @@ const DAY: Array<[string, string]> = [
 const WORKS = [
   {
     kicker: "Flagship",
-    title: "Lime",
+    title: "Limere",
     body: "Short for limerence — a dating app with a physical signature. You only meet the people you actually crossed paths with, one room at a time.",
     href: "/lime",
   },
@@ -68,7 +68,7 @@ export default function Home() {
         </p>
         <div className={apple.linkRow}>
           <a className={apple.link} href="/lime">
-            Meet Lime &rsaquo;
+            Meet Limere &rsaquo;
           </a>
           <a className={apple.link} href="/research">
             Read the field notes &rsaquo;
@@ -76,11 +76,11 @@ export default function Home() {
         </div>
 
         {/* The one product object on the landing. A simulator capture of the
-            shipped Lime build — real, not a render. */}
+            shipped Limere build — real, not a render. */}
         <div className={apple.heroDevice}>
           <Image
             src="/lime/nearby-en.png"
-            alt="Lime running on iPhone: the people you actually crossed paths with"
+            alt="Limere running on iPhone: the people you actually crossed paths with"
             width={780}
             height={1696}
             priority
