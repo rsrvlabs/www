@@ -5,9 +5,9 @@ import s from "@/components/apple/apple.module.css";
 import { WaitlistForm } from "./WaitlistForm";
 
 export const metadata: Metadata = {
-  title: "Lime — your IRL social AI navigator",
+  title: "Limere — your IRL social AI navigator",
   description:
-    "Lime helps you meet the people you actually cross paths with. See who is open to meeting, reconnect after the moment passes, and start conversations that begin in real life.",
+    "Limere helps you meet the people you actually cross paths with. See who is open to meeting, reconnect after the moment passes, and start conversations that begin in real life.",
 };
 
 const CONTACT = "hello@rsrvlabs.com";
@@ -31,11 +31,11 @@ const FEATURES: Feature[] = [
     title: "You already met someone today.",
     paras: [
       "Think about your week. The person next to you at the meetup. The one who laughed at the same joke. You noticed them, and then life moved on.",
-      "Lime noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
+      "Limere noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
     ],
     media: {
       src: "/lime/lime-flow-nearby-reconnect.mp4",
-      alt: "Lime Nearby, people appearing as they arrive, then Crossed paths after the event",
+      alt: "Limere Nearby, people appearing as they arrive, then Crossed paths after the event",
     },
   },
   {
@@ -44,11 +44,11 @@ const FEATURES: Feature[] = [
     title: "See who wants to be approached.",
     paras: [
       "Nobody makes the first move because nobody can tell who wants them to. Study after study finds the same thing. Everyone underestimates how much the other person wants to talk.",
-      "Walk into a venue on Lime and the guessing stops. You see who is in the room and open to meeting people. You also pick which version of you the room gets: the work profile at nine, the weekend one at midnight.",
+      "Walk into a venue on Limere and the guessing stops. You see who is in the room and open to meeting people. You also pick which version of you the room gets: the work profile at nine, the weekend one at midnight.",
     ],
     media: {
       src: "/lime/lime-flow-dual-profile.mp4",
-      alt: "Lime rooms and profiles, joining a morning meetup and a night venue as two different identities",
+      alt: "Limere rooms and profiles, joining a morning meetup and a night venue as two different identities",
     },
     flip: true,
   },
@@ -58,11 +58,11 @@ const FEATURES: Feature[] = [
     title: "Start with something real.",
     paras: [
       "When someone likes you back, you know right away. The chat unlocks in front of you. You never have to refresh a screen or guess.",
-      "And you never stare at an empty text box. Lime suggests a first line based on what they chose to share. One tap, edit if you like, send.",
+      "And you never stare at an empty text box. Limere suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
       src: "/lime/lime-flow-match-chat.mp4",
-      alt: "Lime match and chat, realtime match, suggested opener, first exchange",
+      alt: "Limere match and chat, realtime match, suggested opener, first exchange",
     },
     flip: false,
   },
@@ -77,7 +77,7 @@ export default function LimePage() {
       <Section>
           <div className={s.heroSplit}>
             <div className={s.heroLeft}>
-              <h1 className={s.heroTitle}>Lime</h1>
+              <h1 className={s.heroTitle}>Limere</h1>
               <p className={s.heroTag}>Your IRL social AI navigator.</p>
               <WaitlistForm />
             </div>
@@ -85,7 +85,7 @@ export default function LimePage() {
               <div className={s.device}>
                 {/* palindrome loop: forward, reversed, forever */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/lime/lime-login-loop.gif" alt="Lime sign-up screen, ambient looping hero" />
+                <img src="/lime/lime-login-loop.gif" alt="Limere sign-up screen, ambient looping hero" />
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function LimePage() {
 
       {/* Thesis */}
       <Section center tinted>
-          <p className={s.eyebrow}>Why Lime</p>
+          <p className={s.eyebrow}>Why Limere</p>
           <h2 className={s.h2}>Chemistry never made it online.</h2>
           <p className={s.bodyCenter}>
             A profile is a self-report. A swipe is a self-report. And self-reports are
@@ -105,7 +105,7 @@ export default function LimePage() {
           </p>
           <p className={s.bodyCenter}>
             But meeting people in person is hard for boring reasons. You are busy. You
-            cannot tell who wants to talk. You never know how to start. Lime fixes all
+            cannot tell who wants to talk. You never know how to start. Limere fixes all
             three.
           </p>
           <div className={s.linkRow}>
@@ -142,19 +142,19 @@ export default function LimePage() {
           <p className={s.eyebrow}>4 · The signal</p>
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
-            Attraction happens in the body, in signals nobody can type. Lime is learning
+            Attraction happens in the body, in signals nobody can type. Limere is learning
             to read three things: the room you are in, the encounter you are having, and
             you.
           </p>
           <p className={s.bodyCenter}>
             And this is not a weekend thing. Your days are full of rooms: the office, the
             gym, the queue, the party. Your body has an opinion in every one of them.
-            Lime works the days, not just the nights.
+            Limere works the days, not just the nights.
           </p>
           <p className={s.bodyCenter}>
             It starts with your phone. A ring, a watch, a pair of glasses will each add a
             layer your phone cannot see. Until now, chemistry has only ever been measured
-            in labs. Lime is how it gets measured in real life.
+            in labs. Limere is how it gets measured in real life.
           </p>
       </Section>
 
@@ -168,7 +168,7 @@ export default function LimePage() {
             <div className={s.statement}>
               <h3 className={s.statementTitle}>Trust</h3>
               <p className={s.statementBody}>
-                An app can guess you were close. Lime knows you were actually there.
+                An app can guess you were close. Limere knows you were actually there.
                 Only that is worth acting on.
               </p>
             </div>
@@ -202,9 +202,9 @@ export default function LimePage() {
           <p className={s.eyebrow}>Why us</p>
           <h2 className={s.h2}>The science of the moment.<br />The hardware to read it.</h2>
           <p className={s.bodyCenter}>
-            One founder studied psychophysiology, the science of what attraction does in
-            the body. The other ran AI research for a wearable that shipped more than ten
-            million units. This product needs exactly that pair.
+            Reading chemistry takes two crafts that rarely meet: the science of what
+            attraction does in the body, and the engineering to read the body at scale.
+            Limere is built where the two overlap.
           </p>
       </Section>
 
@@ -215,7 +215,7 @@ export default function LimePage() {
           <h2 className={s.h2}>The crowd is big. The list is short.</h2>
           <a
             className={s.cta}
-            href={`mailto:${CONTACT}?subject=${encodeURIComponent("Lime early access")}`}
+            href={`mailto:${CONTACT}?subject=${encodeURIComponent("Limere early access")}`}
           >
             Request early access
           </a>

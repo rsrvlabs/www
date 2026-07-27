@@ -25,7 +25,7 @@ export function WaitlistForm() {
       if (!data.ok || data.stored === false) {
         // storage not wired yet — hand off to email so nothing is lost
         const subject =
-          audience === "business" ? "Partner with Lime" : "Lime early access";
+          audience === "business" ? "Partner with Limere" : "Limere early access";
         window.location.href = `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(clean)}`;
       }
       setState("done");
@@ -55,7 +55,7 @@ export function WaitlistForm() {
           Get early access
         </button>
         <button className={`${s.waitBtn} ${s.waitBtnGhost}`} disabled={state === "busy"} onClick={() => submit("business")}>
-          Partner with Lime
+          Partner with Limere
         </button>
       </div>
       <p className={s.waitNote}>No spam. One email when your city opens.</p>

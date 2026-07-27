@@ -4,7 +4,7 @@ import { AppleNav, Section } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 
 export const metadata: Metadata = {
-  title: "Why Lime matters: the case in six steps",
+  title: "Why Limere matters: the case in six steps",
   description:
     "Half of adults say they are lonely. We spend less than half the time with friends that we did twenty years ago. Online dating became the default and left people worn out. The case for assisting real-world social life. Every claim here is sourced.",
 };
@@ -144,7 +144,7 @@ export default function WhyLimePage() {
       <AppleNav />
 
       <Section center>
-          <p className={s.eyebrow}>Lime · The case</p>
+          <p className={s.eyebrow}>Limere · The case</p>
           <h1 className={s.h2}>Six steps, one missing product.</h1>
           <p className={s.bodyCenter}>
             The first five steps are documented findings. The sixth is what they add up to.
@@ -290,7 +290,7 @@ export default function WhyLimePage() {
             roadmap, and we did not invent the method. The 2022 study measured attraction
             with glasses and wearables at three levels: the environment, the pair, and
             the person. Until now these signals have only ever been measured in a lab.
-            Lime grows into the instrument that measures them where life actually happens.
+            Limere grows into the instrument that measures them where life actually happens.
           </p>
           <p className={s.bodyCenter}>
             Other apps tried to make rooms legible, and they died. They broadcast guesses about
@@ -306,7 +306,7 @@ export default function WhyLimePage() {
           </p>
           <div className={s.linkRow}>
             <Link className={s.link} href="/lime">
-              See Lime &rsaquo;
+              See Limere &rsaquo;
             </Link>
           </div>
       </Section>
@@ -386,7 +386,7 @@ export default function WhyLimePage() {
       </Section>
 
       <footer className={`${s.footer} ${s.center}`}>
-        <Link href="/lime" style={{ color: "inherit" }}>Lime</Link> ·{" "}
+        <Link href="/lime" style={{ color: "inherit" }}>Limere</Link> ·{" "}
         <Link href="/" style={{ color: "inherit" }}>Reserve</Link>
       </footer>
     </main>

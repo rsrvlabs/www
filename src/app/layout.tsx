@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "AI-native company",
     "AI-native studio",
     "autonomous agents",
-    "Lime dating app",
+    "Limere dating app",
     "limerence",
     "AI finance research",
     "Reserve",

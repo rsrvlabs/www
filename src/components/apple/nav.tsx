@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import s from "./apple.module.css";
 
 const ITEMS = [
-  { href: "/lime", label: "Lime" },
+  { href: "/lime", label: "Limere" },
   { href: "/labs", label: "Labs" },
   { href: "/frontiers", label: "Frontiers" },
   { href: "/research", label: "Research" },
