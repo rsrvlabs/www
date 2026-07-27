@@ -98,7 +98,8 @@ export default function LimePage() {
           <p className={s.eyebrow}>Why Lime</p>
           <h2 className={s.h2}>Chemistry never made it online.</h2>
           <p className={s.bodyCenter}>
-            A profile is self-report. A swipe is self-report. And self-report is noise.
+            A profile is a self-report. A swipe is a self-report. And self-reports are
+            noise.
             What actually decides attraction is chemistry, and chemistry only happens in
             person. Science has known this for decades.
           </p>
@@ -142,8 +143,8 @@ export default function LimePage() {
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
             Attraction happens in the body, in signals nobody can type. Lime is learning
-            to read three things: the room you are in, the encounter between two people,
-            and what your own body is telling you.
+            to read three things: the room you are in, the encounter you are having, and
+            you.
           </p>
           <p className={s.bodyCenter}>
             And this is not a weekend thing. Your days are full of rooms: the office, the
