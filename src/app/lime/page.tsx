@@ -139,7 +139,7 @@ export default function LimePage() {
 
       {/* Read the body */}
       <Section center tinted id="body">
-          <p className={s.eyebrow}>4 · The read</p>
+          <p className={s.eyebrow}>4 · The signal</p>
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
             Attraction happens in the body, in signals nobody can type. Lime is learning

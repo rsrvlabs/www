@@ -112,7 +112,7 @@ function DerivationMap() {
       "Attraction is predicted by physiological synchrony, not by visible behaviour",
       "Prochazkova et al., 2022",
       "The deciding signals are invisible",
-      "The read: sensing, on the roadmap",
+      "The signal: sensing, on the roadmap",
     ],
   ];
   return (
