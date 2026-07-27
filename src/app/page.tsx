@@ -30,7 +30,7 @@ const WORKS = [
     kicker: "Flagship",
     title: "Limere",
     body: "Short for limerence — a dating app with a physical signature. You only meet the people you actually crossed paths with, one room at a time.",
-    href: "/lime",
+    href: "/limere",
   },
   {
     kicker: "Labs",
@@ -67,7 +67,7 @@ export default function Home() {
           hold jobs.
         </p>
         <div className={apple.linkRow}>
-          <a className={apple.link} href="/lime">
+          <a className={apple.link} href="/limere">
             Meet Limere &rsaquo;
           </a>
           <a className={apple.link} href="/research">
@@ -79,7 +79,7 @@ export default function Home() {
             shipped Limere build — real, not a render. */}
         <div className={apple.heroDevice}>
           <Image
-            src="/lime/nearby-en.png"
+            src="/limere/nearby-en.png"
             alt="Limere running on iPhone: the people you actually crossed paths with"
             width={780}
             height={1696}

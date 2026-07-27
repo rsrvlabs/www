@@ -34,7 +34,7 @@ const FEATURES: Feature[] = [
       "Limere noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
     ],
     media: {
-      src: "/lime/lime-flow-nearby-reconnect.mp4",
+      src: "/limere/limere-flow-nearby-reconnect.mp4",
       alt: "Limere Nearby, people appearing as they arrive, then Crossed paths after the event",
     },
   },
@@ -47,7 +47,7 @@ const FEATURES: Feature[] = [
       "Walk into a venue on Limere and the guessing stops. You see who is in the room and open to meeting people. You also pick which version of you the room gets: the work profile at nine, the weekend one at midnight.",
     ],
     media: {
-      src: "/lime/lime-flow-dual-profile.mp4",
+      src: "/limere/limere-flow-dual-profile.mp4",
       alt: "Limere rooms and profiles, joining a morning meetup and a night venue as two different identities",
     },
     flip: true,
@@ -61,7 +61,7 @@ const FEATURES: Feature[] = [
       "And you never stare at an empty text box. Limere suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
-      src: "/lime/lime-flow-match-chat.mp4",
+      src: "/limere/limere-flow-match-chat.mp4",
       alt: "Limere match and chat, realtime match, suggested opener, first exchange",
     },
     flip: false,
@@ -85,7 +85,7 @@ export default function LimePage() {
               <div className={s.device}>
                 {/* palindrome loop: forward, reversed, forever */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/lime/lime-login-loop.gif" alt="Limere sign-up screen, ambient looping hero" />
+                <img src="/limere/limere-login-loop.gif" alt="Limere sign-up screen, ambient looping hero" />
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function LimePage() {
             three.
           </p>
           <div className={s.linkRow}>
-            <Link className={s.link} href="/lime/why">
+            <Link className={s.link} href="/limere/why">
               The full case, with data &rsaquo;
             </Link>
           </div>

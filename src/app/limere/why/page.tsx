@@ -305,7 +305,7 @@ export default function WhyLimePage() {
             been higher. The chain was always there. Only now can a product act on it.
           </p>
           <div className={s.linkRow}>
-            <Link className={s.link} href="/lime">
+            <Link className={s.link} href="/limere">
               See Limere &rsaquo;
             </Link>
           </div>
@@ -386,7 +386,7 @@ export default function WhyLimePage() {
       </Section>
 
       <footer className={`${s.footer} ${s.center}`}>
-        <Link href="/lime" style={{ color: "inherit" }}>Limere</Link> ·{" "}
+        <Link href="/limere" style={{ color: "inherit" }}>Limere</Link> ·{" "}
         <Link href="/" style={{ color: "inherit" }}>Reserve</Link>
       </footer>
     </main>
