@@ -60,7 +60,7 @@ function SignalTable() {
   ];
   return (
     <div className={s.chartCard}>
-      <p className={s.chartTitle}>Signals that decide attraction, and whether a screen carries them</p>
+      <p className={s.chartTitle}>Signals that pass between two people in person, and whether a screen carries them</p>
       <table className={s.sigTable}>
         <thead>
           <tr><th>Signal</th><th>Evidence</th><th>On a screen</th></tr>
