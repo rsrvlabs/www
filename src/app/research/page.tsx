@@ -77,6 +77,12 @@ const essays: Array<{
     body: "Series 01, essay 10: Y Combinator made the company brain an official startup category and has funded at least five of them. We have been running one since June. Notes on what the category will get wrong, from inside the thing it describes.",
     href: "/research/company-brain",
   },
+  {
+    kicker: "The graveyard",
+    title: "Apps for meeting nearby keep dying.",
+    body: "Series 01, essay 11: the proximity graveyard is the most useful document in the category. Read separately, the autopsies show three doors: trust, density, consent. None of them is locked. Why our flagship is built to walk past all three, and what would still have to go wrong.",
+    href: "/research/graveyard",
+  },
 ];
 
 export default function ResearchPage() {
