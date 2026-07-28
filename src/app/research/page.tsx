@@ -65,6 +65,18 @@ const essays: Array<{
     body: "Series 01, essay 06: in 2026 guardrails became the bottleneck. But a gate is either a floor (guarantees an outcome, scales with the model) or a ceiling (restricts a process, expires). Build floors; keep only the irreversible as a thin membrane. The design law that closes the harness trilogy.",
     href: "/research/build-the-floor",
   },
+  {
+    kicker: "The shift",
+    title: "The bottleneck moved.",
+    body: "Series 01, essay 09: a frontier lab just co-founded a $1.5B services firm to deploy its own models. That is a price signal: the scarce thing in AI is no longer the model. It is everything a company knows that its software does not.",
+    href: "/research/bottleneck-moved",
+  },
+  {
+    kicker: "The category",
+    title: "YC put a name on the company brain.",
+    body: "Series 01, essay 10: Y Combinator made the company brain an official startup category and has funded at least five of them. We have been running one since June. Notes on what the category will get wrong, from inside the thing it describes.",
+    href: "/research/company-brain",
+  },
 ];
 
 export default function ResearchPage() {
