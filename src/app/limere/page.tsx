@@ -26,21 +26,8 @@ type Feature = {
 
 const FEATURES: Feature[] = [
   {
-    id: "crossed",
-    eyebrow: "1 · The moment",
-    title: "You already met someone today.",
-    paras: [
-      "Think about your week. The person next to you at the meetup. The one who laughed at the same joke. You noticed them, and then life moved on.",
-      "Limere noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
-    ],
-    media: {
-      src: "/limere/limere-flow-nearby-reconnect.mp4",
-      alt: "Limere Nearby, people appearing as they arrive, then Crossed paths after the event",
-    },
-  },
-  {
     id: "open",
-    eyebrow: "2 · The approach",
+    eyebrow: "The room",
     title: "See who wants to be approached.",
     paras: [
       "Nobody makes the first move because nobody can tell who wants them to. Study after study finds the same thing. Everyone underestimates how much the other person wants to talk.",
@@ -50,11 +37,24 @@ const FEATURES: Feature[] = [
       src: "/limere/limere-flow-dual-profile.mp4",
       alt: "Limere rooms and profiles, joining a morning meetup and a night venue as two different identities",
     },
+  },
+  {
+    id: "crossed",
+    eyebrow: "The encounter",
+    title: "You already met someone today.",
+    paras: [
+      "Think about your week. The person next to you at the meetup. The one who laughed at the same joke. You noticed them, and then life moved on.",
+      "Limere noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
+    ],
+    media: {
+      src: "/limere/limere-flow-nearby-reconnect.mp4",
+      alt: "Limere Nearby, people appearing as they arrive, then Crossed paths after the event",
+    },
     flip: true,
   },
   {
     id: "start",
-    eyebrow: "3 · The opening",
+    eyebrow: "The encounter",
     title: "Start with something real.",
     paras: [
       "When someone likes you back, you know right away. The chat unlocks in front of you. You never have to refresh a screen or guess.",
@@ -104,8 +104,8 @@ export default function LimePage() {
             person. Science has known this for decades.
           </p>
           <p className={s.bodyCenter}>
-            But meeting people in person is hard for boring reasons. You are busy. You
-            cannot tell who wants to talk. You never know how to start. Limere fixes all
+            But meeting people in person is hard for boring reasons. You cannot tell who
+            wants to talk. You are busy. You never know how to start. Limere fixes all
             three.
           </p>
           <div className={s.linkRow}>
@@ -139,7 +139,7 @@ export default function LimePage() {
 
       {/* Read the body */}
       <Section center tinted id="body">
-          <p className={s.eyebrow}>4 · The signal</p>
+          <p className={s.eyebrow}>You</p>
           <h2 className={s.h2}>Chemistry is physical.<br />So is our roadmap.</h2>
           <p className={s.bodyCenter}>
             Attraction happens in the body, in signals nobody can type. Limere is learning
