@@ -306,8 +306,9 @@
 }
 .heroLeft { text-align: left; }
 .heroTitle {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
   font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.02;
-  letter-spacing: -0.02em; font-weight: 700; margin: 0 0 0.6rem;
+  letter-spacing: -0.02em; font-weight: 500; margin: 0 0 0.6rem;
 }
 .heroTag { font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--ink-soft); margin: 0 0 1.6rem; }
 .heroMedia { max-width: 300px; margin-inline: auto; width: 100%; }
