@@ -118,6 +118,18 @@ export default function GraveyardEssay() {
             cleverness. It is a date of birth.
           </p>
           <p>
+            It is also the deepest difference between us and everyone in this
+            story. Our product has three layers: the room shows you who is
+            open, the encounter keeps the people you actually met, and the
+            third layer, You, is the one we are building next, everyday
+            wearables reading whether it clicked. The graveyard competed on
+            feeds, and a feed can be copied. An instrument for chemistry, and
+            the dataset it learns from one room at a time, has to be built
+            the slow way, by the kind of team that has spent years on exactly
+            this. That layer is why we are here at all. The rooms are the
+            entrance. You is the moat.
+          </p>
+          <p>
             None of this makes us safe. The category punishes vagueness, and
             a list of the old failure modes is not immunity to new ones. We
             could get the room mechanics right and still misjudge how often
