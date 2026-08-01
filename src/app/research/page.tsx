@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   AppleNav,
   Body,
@@ -120,6 +121,20 @@ export default function ResearchPage() {
         <p className={`${apple.articleMeta} ${apple.center}`}>
           In progress — 07 · What replaces the meeting?
         </p>
+      </Section>
+
+      <Section center tinted>
+        <H2>Lab notes — the daily tier.</H2>
+        <Body center>
+          Between essays, one mechanism a day: small, honest write-ups of what
+          running on an AI operating system actually breaks and teaches,
+          published while the bruise is fresh.
+        </Body>
+        <div className={apple.linkRow}>
+          <Link href="/research/notes" className={apple.link}>
+            Read the lab notes
+          </Link>
+        </div>
       </Section>
 
       <Section center>
