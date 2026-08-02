@@ -1,13 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AppleNav, Page, Section, CtaButton, Footer, apple } from "@/components/apple/kit";
 import m from "../mock.module.css";
 
-/** MOCK B — 主張先行 (the stance).
- *  The hero is a position, not an introduction: one rule that explains the whole
- *  company, then the rest of what the house believes as the page's architecture.
- *  The works sit underneath as evidence the beliefs produced something.
- *  Reference: 37signals — a numbered manifesto is the homepage; products are
- *  two links in the corner. Founder review only; not in nav or sitemap. */
+/** MOCK B v2 — 主張先行 (the stance), revised after founder review 2026-08-02.
+ *  Changes from v1: Limere is unmistakably the flagship (its own section with
+ *  the product still); Reserve Finance is in internal testing so it drops to the
+ *  same weight as Glow and both sit under one Labs line; and the copy was taken
+ *  through a de-AI pass — the parallel triads, the em-dash appositives and the
+ *  six identically-shaped imperative headings were the tell.
+ *  Founder review only; not in nav or sitemap. */
 
 export const metadata = {
   title: "Reserve — mock B",
@@ -17,59 +19,47 @@ export const metadata = {
 const STANCE: Array<[string, string, string]> = [
   [
     "01",
-    "Products first. Engagements pay for them.",
-    "Client work funds the products, never the other way round. It also keeps us honest — you cannot sell an AI system into production and still believe your own slides.",
+    "Products first.",
+    "The engagements pay for the products. We don't build products to win engagements. Working inside someone else's production system also keeps us honest about what ships and what only demos well.",
   ],
   [
     "02",
-    "Ship weekly, in public.",
-    "Every week something leaves the building: a build, an essay, a note on what broke. Nothing waits for a launch date that keeps moving.",
+    "Something leaves every week.",
+    "A build, or an essay. Some weeks it is a note about what broke. Nothing here waits for a launch date that keeps moving.",
   ],
   [
     "03",
-    "Every claim shows its work.",
-    "Numbers come with their workings and sources; a finding that cannot be traced does not get published. It is the same standard we hold our own desk to.",
+    "Show the workings.",
+    "If a number can't be traced back to where it came from, we don't publish it. That started as a rule for our own research and now covers everything we put out.",
   ],
   [
     "04",
-    "AI-native, from the inside out.",
-    "The company runs on an operating system we built. Agents hold standing jobs — the digest, the sweep, the board — and a human signs anything that leaves the building.",
+    "AI-native, and specific about it.",
+    "The company runs on an operating system we built. Agents here hold standing jobs and keep them, so the digest goes out whether or not anyone is awake. Nothing reaches you without a human signing it first.",
   ],
   [
     "05",
-    "Finish in the real world.",
-    "Software that ends on a screen is only half of the thing. Limere is not finished until you and the other person are in the same room.",
+    "It has to end in the real world.",
+    "An app that finishes on the screen is only half of Limere. It isn't done until you and the other person are in the same room. That constraint has cost us features we liked.",
   ],
   [
     "06",
-    "Say the boring part out loud.",
-    "What failed, what we stopped building, what we still cannot prove — the journal is where that goes, unedited.",
+    "We write down what didn't work.",
+    "The journal carries the failures too: what we stopped building, what we still can't prove. Not out of humility. It is the only way to remember.",
   ],
 ];
 
-const WORKS: Array<{ name: string; body: string; meta: string; href: string }> = [
+const REST: Array<{ name: string; body: string; meta: string; href: string }> = [
   {
-    name: "Limere",
-    body: "A dating app you finish in person — you only meet the people you actually crossed paths with.",
-    meta: "Flagship",
-    href: "/limere",
-  },
-  {
-    name: "Reserve Finance",
-    body: "A US-equities desk that scores the market, publishes the brief, and answers for the call.",
-    meta: "Labs",
+    name: "Labs",
+    body: "Reserve Finance and Glow. Both in testing, both quiet for now — we'll say more when they are ready to be used.",
+    meta: "In testing",
     href: "/labs",
   },
   {
-    name: "Glow",
-    body: "Beauty tech, on the bench.",
-    meta: "Labs",
-    href: "/labs",
-  },
-  {
-    name: "Forward deployment",
-    body: "Senior engineers embedded in a client's team, shipping AI systems into production.",
-    meta: "Frontiers",
+    name: "Frontiers",
+    body: "Senior engineers embedded in a client's team, shipping AI systems into production. This is the work that pays for the rest.",
+    meta: "Open",
     href: "/frontiers",
   },
 ];
@@ -81,14 +71,17 @@ export default function MockB() {
 
       <Section center>
         <p className={m.tag}>Reserve · an AI-native studio in Taipei</p>
-        <h1 className={apple.display}>Products first. Engagements pay for them.</h1>
+        <h1 className={apple.display}>We build our own products. The first is Limere.</h1>
         <p className={apple.sub}>
-          One rule decides the rest — what we build, what we turn down, how fast
-          it ships. Here is the rest of it, and the four things it has produced.
+          A dating app that only counts if you meet in person: you see the people
+          whose paths actually crossed yours, one room at a time. Two more are in
+          testing under Labs, and a few embedded engineering teams pay for all of
+          it.
         </p>
       </Section>
 
       <Section tinted>
+        <p className={m.tag}>How we work</p>
         <div className={m.stance}>
           {STANCE.map(([n, title, body]) => (
             <div className={m.stanceItem} key={n}>
@@ -100,10 +93,34 @@ export default function MockB() {
         </div>
       </Section>
 
-      <Section>
-        <h2 className={apple.h2}>What it has produced.</h2>
+      <Section center>
+        <p className={m.tag}>The flagship</p>
+        <h2 className={apple.h2}>Limere</h2>
+        <p className={m.ledeCenter}>
+          You see the people whose paths actually crossed yours, one room and one
+          evening at a time. Everything else in the app exists to get you to the
+          part that happens off the screen. In testing now.
+        </p>
+        <div className={apple.linkRow}>
+          <a className={apple.link} href="/limere">
+            See how it works &rsaquo;
+          </a>
+        </div>
+        <div className={m.still}>
+          <Image
+            src="/limere/nearby-en.png"
+            alt="Limere on iPhone — the people you actually crossed paths with"
+            width={780}
+            height={1696}
+            priority
+          />
+        </div>
+      </Section>
+
+      <Section tinted>
+        <h2 className={apple.h2}>The rest of the bench.</h2>
         <div className={m.index}>
-          {WORKS.map((w) => (
+          {REST.map((w) => (
             <Link key={w.name} href={w.href} className={m.row}>
               <span className={m.num}>&mdash;</span>
               <span>
@@ -117,10 +134,10 @@ export default function MockB() {
       </Section>
 
       <Section center>
-        <h2 className={apple.h2}>Disagree? Write to us.</h2>
+        <h2 className={apple.h2}>Write to us.</h2>
         <p className={m.ledeCenter}>
-          Early access, an embedded team, or an argument about any of the six.
-          One address — we answer everything.
+          Early access to Limere, an embedded team, or an argument about any of
+          the six. One address, and we answer everything.
         </p>
         <CtaButton subject="Hello Reserve" label="Get in touch" />
       </Section>
