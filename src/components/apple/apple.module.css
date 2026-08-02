@@ -606,6 +606,12 @@
    Deliberately NOT all-caps: DESIGN.md rules out the all-caps overline, and
    an italic serif label reads more like a menu anyway. */
 .menuSection { max-width: 46rem; margin: 0 auto; }
+/* On a phone the section's own 1.5rem is all that stands between the rules and
+   the screen edge, and the block read cramped (Ryvn 2026-08-02). A menu keeps a
+   wide margin on its paper — give the whole block, rules included, more inset. */
+@media (max-width: 640px) {
+  .menuSection { padding-inline: 1.1rem; }
+}
 
 .menuLabel {
   text-align: center;
