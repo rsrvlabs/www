@@ -1,8 +1,9 @@
 // Single source of truth for the canonical origin (sitemap, robots, OG, llms.txt).
-// Defaults to the contact-email domain; override with NEXT_PUBLIC_SITE_URL if the
-// production domain differs. ⚠ Confirm the real domain before launch.
+// Production is www.rsrvlabs.com — the apex 308-redirects there, so the www host
+// is the canonical one and the sitemap must not advertise the redirecting form.
+// Override with NEXT_PUBLIC_SITE_URL for preview deployments.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://rsrvlabs.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.rsrvlabs.com"
 ).replace(/\/$/, "");
 
 export const SITE_NAME = "Reserve";
@@ -12,8 +13,10 @@ export const SITE_NAME = "Reserve";
 export const ROUTES: Array<{ path: string; updated: string; priority: number }> = [
   { path: "/", updated: "2026-08-02", priority: 1 },
   { path: "/limere", updated: "2026-07-27", priority: 0.8 },
+  { path: "/limere/why", updated: "2026-08-02", priority: 0.7 },
   { path: "/labs", updated: "2026-07-15", priority: 0.8 },
   { path: "/frontiers", updated: "2026-07-15", priority: 0.8 },
+  { path: "/effects", updated: "2026-08-02", priority: 0.7 },
   { path: "/research", updated: "2026-07-15", priority: 0.7 },
   { path: "/research/ai-native-company", updated: "2026-07-08", priority: 0.6 },
   { path: "/research/departments", updated: "2026-07-09", priority: 0.6 },
