@@ -316,33 +316,35 @@ export default function WhyLimePage() {
           <p className={s.eyebrow}>The market</p>
           <h2 className={s.h2}>The money is in a shrinking category.<br />The instrument is in a booming one.</h2>
           <p className={s.bodyCenter}>
-            Dating apps took in about six billion dollars in 2024, from over 350 million
-            users. And the incumbents are shrinking anyway. Match Group lost 5% of its
-            payers last year. Bumble&rsquo;s revenue fell 10%. Tinder&rsquo;s fell 4%. The
+            Dating apps took in about six billion dollars in 2025, from over 350 million
+            users. And the incumbents are shrinking anyway. In 2025 Match Group lost 5% of
+            its payers, Bumble&rsquo;s revenue fell 10%, and Tinder&rsquo;s fell 4%. The
             money keeps coming in. The satisfaction keeps going down. A category this big,
             running on a broken input, is not a dead market. It is an opening.
           </p>
           <p className={s.bodyCenter}>
-            Meanwhile the instrument layer is growing fast. Wearables are an $87 billion
-            market headed past $230 billion. Half a billion devices shipped last year.
-            Smart rings are growing near 30% a year. Oura passed five million rings and
-            roughly a billion dollars in revenue. Whoop crossed a ten-billion-dollar
-            valuation. Almost one in three American adults already wears one. The
-            hardware that reads the body went mainstream. Nobody points it at the room.
-            Social chemistry is still the largest unmeasured signal in daily life.
+            Meanwhile the instrument layer is growing fast. Wearables were an $87 billion
+            market in 2025, forecast past $230 billion by 2034. Shipments hit 538 million
+            in 2024. Smart rings are growing near 30% a year. Oura has sold more than five
+            million rings and said it expected a billion dollars in sales in 2025. Whoop
+            crossed a ten-billion-dollar valuation in 2026. By 2020, almost one in three
+            American adults already wore one. The hardware that reads the body went
+            mainstream. Nobody points it at the room. Social chemistry is still the largest
+            unmeasured signal in daily life.
           </p>
           <BarPair
             title="Two markets, one gap"
-            aLabel="Dating apps, global revenue (2024)" aValue={6.2}
+            aLabel="Dating apps, global revenue (2025)" aValue={6.1}
             bLabel="Wearables, global revenue (2025)" bValue={86.8}
             max={100} unit="B"
-            source="Business of Apps, 2025; Fortune Business Insights, 2025"
+            source="Business of Apps, 2026; Fortune Business Insights, 2025"
             href="https://www.fortunebusinessinsights.com/wearable-technology-market-106000"
           />
           <p className={s.bodyCenter} style={{ marginTop: "1.4rem" }}>
             The arithmetic is small and concrete. Nearly half of U.S. adults under 30 are single.
-            More than half of that age group has used a dating app. Category payers
-            already spend about twenty dollars a month, by Match&rsquo;s own average. Our
+            More than half of that age group has ever used a dating site or app. Category
+            payers already spend about twenty dollars a month, by Match&rsquo;s own 2025
+            average. Our
             first market is the burned-out majority of those users: people who still want
             to meet someone, and already wear the device that could help.
           </p>
@@ -361,6 +363,7 @@ export default function WhyLimePage() {
               "Forbes Health. (2024, May 9). Forbes Health survey: 78% of all users report dating app burnout [OnePoll survey of 1,000 U.S. dating-app users]. Forbes. https://www.forbes.com/health/dating/dating-app-fatigue/",
               "Kraus, M. W. (2017). Voice-only communication enhances empathic accuracy. American Psychologist, 72(7), 644\u2013654. https://doi.org/10.1037/amp0000147",
               "McClain, C., & Gelles-Watnick, R. (2023, February 2). The experiences of U.S. online daters. Pew Research Center. https://www.pewresearch.org/internet/2023/02/02/the-experiences-of-u-s-online-daters/",
+              "Pew Research Center. (2023, February 2). Key findings about online dating in the U.S. [53% of U.S. adults under 30 report having ever used a dating site or app]. https://www.pewresearch.org/short-reads/2023/02/02/key-findings-about-online-dating-in-the-u-s/",
               "Office of the U.S. Surgeon General. (2023). Our epidemic of loneliness and isolation: The U.S. Surgeon General\u2019s advisory on the healing effects of social connection and community. U.S. Department of Health and Human Services.",
               "Prochazkova, E., Sjak-Shie, E., Behrens, F., Lindh, D., & Kret, M. E. (2022). Physiological synchrony is associated with attraction in a blind date setting. Nature Human Behaviour, 6(2), 269\u2013278. https://doi.org/10.1038/s41562-021-01197-3",
               "Rosenfeld, M. J., Thomas, R. J., & Hausen, S. (2019). Disintermediating your friends: How online dating in the United States displaces other ways of meeting. Proceedings of the National Academy of Sciences, 116(36), 17753\u201317758. https://doi.org/10.1073/pnas.1908630116",
@@ -368,12 +371,13 @@ export default function WhyLimePage() {
               "U.S. Bureau of Labor Statistics. (2003\u20132023). American Time Use Survey [Data set]. Analysis published by The Washington Post (2024).",
               "Vorauer, J. D., & Ratner, R. K. (1996). Who\u2019s going to make the first move? Pluralistic ignorance as an impediment to relationship formation. Journal of Social and Personal Relationships, 13(4), 483\u2013506. https://doi.org/10.1177/0265407596134001",
               "Wedekind, C., Seebeck, T., Bettens, F., & Paepke, A. J. (1995). MHC-dependent mate preferences in humans. Proceedings of the Royal Society of London. Series B: Biological Sciences, 260(1359), 245\u2013249. https://doi.org/10.1098/rspb.1995.0087",
-              "Business of Apps. (2025). Dating app revenue and usage statistics. https://www.businessofapps.com/data/dating-app-market/",
-              "Match Group. (2026, February 3). Q4 2025 results [SEC Form 8-K, Ex-99.1]. U.S. Securities and Exchange Commission.",
+              "Business of Apps. (2026). Dating app revenue and usage statistics. https://www.businessofapps.com/data/dating-app-market/",
+              "Match Group. (2026, February 3). Q4 and full year 2025 results [SEC Form 8-K, Ex-99.1 (payers, revenue per payer) and Ex-99.2 (Tinder direct revenue)]. U.S. Securities and Exchange Commission.",
               "Bumble Inc. (2026, March 11). Fourth quarter and full year 2025 results [Press release].",
-              "Fortune Business Insights. (2025). Wearable technology market; Smart ring market. https://www.fortunebusinessinsights.com/wearable-technology-market-106000",
-              "International Data Corporation. (2024, December 16). Worldwide Quarterly Wearable Device Tracker [Press release].",
-              "National Heart, Lung, and Blood Institute. (2023, June 15). Study reveals wearable device trends among U.S. adults. National Institutes of Health.",
+              "Fortune Business Insights. (2025). Wearable technology market. https://www.fortunebusinessinsights.com/wearable-technology-market-106000",
+              "Fortune Business Insights. (2025). Smart ring market. https://www.fortunebusinessinsights.com/smart-ring-market-111418",
+              "International Data Corporation. (2024, December 16). Worldwide Quarterly Wearable Device Tracker [Press release; 538 million units shipped in 2024].",
+              "National Heart, Lung, and Blood Institute. (2023, June 15). Study reveals wearable device trends among U.S. adults [analysis of HINTS 2019–2020 data]. National Institutes of Health.",
               "Pew Research Center. (2023, February 8). For Valentine\u2019s Day, 5 facts about single Americans.",
               "CNBC. (2025, October 14). Oura raises about $900 million at an $11 billion valuation; TechCrunch. (2026, March 31). Whoop raises $575M Series G at a $10.1B valuation.",
             ].map((ref) => (
