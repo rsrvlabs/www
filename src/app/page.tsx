@@ -3,6 +3,7 @@ import {
   Page,
   Section,
   IndexRow,
+  MenuLabel,
   StanceItem,
   CtaButton,
   Footer,
@@ -18,68 +19,52 @@ import {
  *  index right underneath, and only then how we work.
  *
  *  Frontiers leads the index because it is the arm people actually write in
- *  about — the previous homepage buried it in the fourth tile. Limere keeps the
- *  flagship label at product scale, and Reserve Finance stays with the small
- *  group using it, sharing one quiet Labs line with Glow.
+ *  about. Limere keeps the flagship label at product scale, and Reserve
+ *  Finance stays with the small group using it, sharing one quiet Labs line
+ *  with Glow.
  *
- *  Copy rules learned the hard way, on this page more than anywhere: no studio
- *  site anywhere talks about which arm pays the bills (ustwo, Metalab and
- *  thoughtbot all describe the practice instead); the subject is "we", never
- *  "the same people" or "the founders"; and status words are plain English, not
- *  build-server English. */
+ *  Set like a menu, at the founder's direction: air around everything, a
+ *  centred italic label per course, the name and its standing on one baseline
+ *  with a leader between them, and ONE short line under each — a menu never
+ *  explains a dish in a paragraph. Every section here is held to that.
+ *
+ *  Copy rules, learned the hard way on this page: no studio site anywhere
+ *  talks about which arm pays the bills; the subject is "we", never "the same
+ *  people" or "the founders"; status words are plain English, not build-server
+ *  English; and no city — the client list is not local. */
 
 const HOUSE: Array<{ name: string; body: string; meta: string; href: string }> = [
   {
     name: "Frontiers",
-    body: "Senior engineers who join your team and build in your codebase. Travel, sports vision, health and legal systems are running in production now.",
+    body: "Engineers inside your team, shipping to production. Travel, sports vision, health, legal.",
     meta: "Taking projects",
     href: "/frontiers",
   },
   {
     name: "Limere",
-    body: "A dating app that only counts if you meet in person. You see the people whose paths actually crossed yours, one room at a time.",
+    body: "A dating app that only counts if you meet in person.",
     meta: "Flagship · early access",
     href: "/limere",
   },
   {
     name: "Labs",
-    body: "Reserve Finance and Glow. Both are with a small group of people we know, and we'll introduce them properly when they're ready.",
+    body: "Reserve Finance and Glow, with a small circle of people for now.",
     meta: "On the bench",
     href: "/labs",
   },
 ];
 
 const STANCE: Array<[string, string, string]> = [
-  [
-    "01",
-    "Products first.",
-    "We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other.",
-  ],
-  [
-    "02",
-    "Something leaves every week.",
-    "A build, or an essay. Some weeks it is a note about what broke. Nothing here waits for a launch date that keeps moving.",
-  ],
-  [
-    "03",
-    "Show the workings.",
-    "If a number can't be traced back to where it came from, we don't publish it. That started as a rule for our own research and now covers everything we put out.",
-  ],
+  ["01", "Products first.", "Client work makes the products sharper. Neither is a detour."],
+  ["02", "Something leaves every week.", "A build, an essay, or a note on what broke."],
+  ["03", "Show the workings.", "If a number can't be traced, we don't publish it."],
   [
     "04",
     "AI-native, and specific about it.",
-    "The company runs on an operating system we built. Agents here hold standing jobs and keep them, so the digest goes out whether or not anyone is awake. Nothing reaches you without a human signing it first.",
+    "Agents hold standing jobs here. A human signs anything that reaches you.",
   ],
-  [
-    "05",
-    "It has to end in the real world.",
-    "An app that finishes on the screen is only half of Limere. It isn't done until you and the other person are in the same room. That constraint has cost us features we liked.",
-  ],
-  [
-    "06",
-    "We write down what didn't work.",
-    "The journal carries the failures too: what we stopped building, what we still can't prove. Not out of humility. It is the only way to remember.",
-  ],
+  ["05", "It has to end in the real world.", "Limere isn't done until you're both in the room."],
+  ["06", "We write down what didn't work.", "The journal carries the failures too."],
 ];
 
 export default function Home() {
@@ -89,12 +74,11 @@ export default function Home() {
 
       {/* Arrival — both arms, in the first sentence */}
       <Section center>
-        <p className={apple.tag}>Reserve · an AI-native studio in Taipei</p>
+        <p className={apple.tag}>Reserve · an AI-native studio</p>
         <h1 className={apple.display}>We build AI products. Ours, and yours.</h1>
         <p className={apple.sub}>
-          We join your team and work in your codebase until the system is
-          running. We also build Limere, an app for meeting the people you
-          actually crossed paths with.
+          We join your team and build until it runs in production. And we build
+          Limere, an app for meeting the people you crossed paths with.
         </p>
         <div className={apple.linkRow}>
           <a
@@ -109,9 +93,10 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* The shape of the house, in the order a visitor cares about it */}
+      {/* The house, set as the menu */}
       <Section>
-        <div className={apple.index}>
+        <div className={apple.menuSection}>
+          <MenuLabel>The house</MenuLabel>
           {HOUSE.map((w) => (
             <IndexRow key={w.name} {...w} />
           ))}
@@ -120,13 +105,11 @@ export default function Home() {
 
       {/* The arm people write in about */}
       <Section tinted center>
-        <p className={apple.tag}>Working with us</p>
+        <MenuLabel>Working with us</MenuLabel>
         <h2 className={apple.h2}>We consult by building.</h2>
         <p className={apple.ledeCenter}>
-          We sit with your team, write in your codebase, and stay until the thing
-          is live and someone on your side can run it. The opinion and the
-          implementation arrive together. We take the domains other people call
-          too messy.
+          We sit with your team and stay until it is live. The opinion and the
+          implementation arrive together.
         </p>
         <div className={apple.linkRow}>
           <a className={apple.link} href="/frontiers">
@@ -137,16 +120,16 @@ export default function Home() {
 
       {/* The flagship, at product scale */}
       <Section center>
-        <p className={apple.tag}>The flagship</p>
+        <MenuLabel>The flagship</MenuLabel>
         <h2 className={apple.h2}>Limere</h2>
         <p className={apple.ledeCenter}>
           Everything in the app exists to get you to the part that happens off
-          the screen. Open to a first group of people now.
+          the screen.
         </p>
         <div className={apple.still}>
-          {/* The sign-up loop, as MP4 rather than the 4.2 MB GIF /limere still
-              serves — same frames, a tenth of the weight, and this one is on
-              the page every first-time visitor lands on. */}
+          {/* The sign-up loop as MP4 rather than the 4.2 MB GIF /limere serves —
+              same frames, a tenth of the weight, and this is the page every
+              first-time visitor lands on. */}
           <video
             src="/limere/limere-login-loop.mp4"
             autoPlay
@@ -162,11 +145,13 @@ export default function Home() {
 
       {/* How the house works */}
       <Section tinted>
-        <p className={apple.tag}>How we work</p>
-        <div className={apple.stance}>
-          {STANCE.map(([n, title, body]) => (
-            <StanceItem key={n} n={n} title={title} body={body} />
-          ))}
+        <div className={apple.menuSection}>
+          <MenuLabel>How we work</MenuLabel>
+          <div className={apple.stance}>
+            {STANCE.map(([n, title, body]) => (
+              <StanceItem key={n} n={n} title={title} body={body} />
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -174,8 +159,7 @@ export default function Home() {
       <Section center>
         <h2 className={apple.h2}>Let&rsquo;s talk.</h2>
         <p className={apple.ledeCenter}>
-          A project you want built, early access to Limere, or an argument about
-          any of the six. One address, and we answer everything.
+          A project, early access to Limere, or an argument about any of the six.
         </p>
         <CtaButton subject="Working with Reserve" label="Get in touch" />
       </Section>

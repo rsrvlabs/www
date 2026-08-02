@@ -77,32 +77,37 @@ export function Tile({
   );
 }
 
-/** One arm of the house: a hairline row with its name, a line about it, and its
- *  current standing. The homepage index is built from these; /labs and
- *  /frontiers can use the same row rather than inventing a second list style. */
+/** One arm of the house, set like a line on a menu: the name and its standing
+ *  share a baseline with a leader between them, and one short line sits under.
+ *  The homepage index is built from these; /labs and /frontiers can use the
+ *  same row rather than inventing a second list style. */
 export function IndexRow({
   name,
   body,
   meta,
   href,
-  marker = "—",
 }: {
   name: string;
   body: string;
   meta: string;
   href: string;
-  marker?: string;
 }) {
   return (
-    <Link href={href} className={s.row}>
-      <span className={s.num}>{marker}</span>
-      <span>
-        <h2 className={s.rowName}>{name}</h2>
-        <p className={s.rowBody}>{body}</p>
+    <Link href={href} className={s.menuRow}>
+      <span className={s.menuHead}>
+        <h2 className={s.menuName}>{name}</h2>
+        <span className={s.menuLeader} aria-hidden="true" />
+        <span className={s.menuMeta}>{meta}</span>
       </span>
-      <span className={s.rowMeta}>{meta}</span>
+      <p className={s.menuBody}>{body}</p>
     </Link>
   );
+}
+
+/** A centred italic section label with a short rule under it — the menu's way
+ *  of naming a course. Replaces the eyebrow on pages that use the menu set. */
+export function MenuLabel({ children }: { children: ReactNode }) {
+  return <p className={s.menuLabel}>{children}</p>;
 }
 
 /** A numbered position. Six of these are the spine of the homepage — the part
