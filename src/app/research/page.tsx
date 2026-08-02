@@ -92,7 +92,7 @@ export default function ResearchPage() {
       <AppleNav />
 
       <Section center>
-        <h1 className={apple.hero}>One studio. One brain. Agents with jobs.</h1>
+        <h1 className={apple.hero}>An AI-native studio. Agents with jobs.</h1>
         <p className={apple.sub}>
           We run this company on an operating system we built: one shared brain,
           agents with jobs, humans making the calls. These notes document the
@@ -119,7 +119,8 @@ export default function ResearchPage() {
           ))}
         </div>
         <p className={`${apple.articleMeta} ${apple.center}`}>
-          In progress — 07 · What replaces the meeting?
+          Two numbers are missing. Essays 07 and 08 aren&apos;t published; the
+          ones that are keep the numbers they shipped with.
         </p>
       </Section>
 

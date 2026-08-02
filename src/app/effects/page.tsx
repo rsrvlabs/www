@@ -28,7 +28,7 @@ const EFFECTS = [
     cta: "See the frontier work",
   },
   {
-    kicker: "Compounding · retention · words pending",
+    kicker: "Compounding · repeat engagements",
     title: "Engagements that extend",
     body: "Frontiers keep us past the first project — the strongest effect we can show. Their words will live here, verbatim, as they give them.",
     href: "/frontiers",

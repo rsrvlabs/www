@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "YC put a name on the company brain — Reserve Research",
@@ -27,9 +27,7 @@ export default function CompanyBrainEssay() {
           Most versions will be built as software. The hard part is not
           software.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 10 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 10 · Published 28 July 2026</ArticleMeta>
       </Section>
 
       <Section>

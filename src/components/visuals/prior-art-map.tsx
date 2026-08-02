@@ -34,7 +34,7 @@ const POINTS: Point[] = [
   { id: "ecc", label: "ECC", x: 30, y: 46, stars: "228k★", what: "A vast skill/command library + a dev harness. Enormous, and still a harness you drive." },
   { id: "openclaw", label: "OpenClaw", x: 40, y: 58, stars: "382k★", what: "A always-on personal-assistant runtime with a heartbeat. Operates tasks — for one person, not a company." },
   { id: "agency", label: "agency writeup", x: 66, y: 66, stars: "no repo", what: "The one public account of agency ops on a Claude-Code second brain. Notify-first, earning write access over time. The nearest neighbor — and it's a blog post, not a codebase." },
-  { id: "reserve", label: "Reserve", x: 84, y: 78, stars: "us", what: "A studio's whole operations — digest, research, tickets, GTM watch — run by one brain on a schedule, with humans on the calls. We looked for this to copy. We didn't find it. That is less flattering than it sounds: the empty quadrant is empty for reasons we're still learning.", us: true },
+  { id: "reserve", label: "Reserve", x: 84, y: 78, stars: "us", what: "A studio's whole operations — digest, research, tickets, GTM watch — run by a single agentic brain on a schedule, with humans on the calls. We looked for this to copy. We didn't find it. That is less flattering than it sounds: the empty quadrant is empty for reasons we're still learning.", us: true },
 ];
 
 export function PriorArtMap() {

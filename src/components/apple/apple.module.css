@@ -37,6 +37,72 @@
    coloured underline — apple.com never colours its current section either. */
 .navActive { opacity: 1 !important; font-weight: 500; }
 
+/* ---- Narrow screens: the row becomes a sheet ---------------------------- */
+/* Five items in a 44px bar is fine on a laptop and cramped on a phone, so the
+   links move behind a button below 620px. The button is a 44×44 tap target —
+   the same height as the bar — and its two rules cross into an ✕ when open. */
+.navLinks { display: contents; }
+.navToggle { display: none; }
+
+.navBar {
+  display: block;
+  width: 17px; height: 1.5px;
+  background: var(--ink);
+  border-radius: 1px;
+  transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.navBarTop { transform: translateY(2.75px) rotate(45deg); }
+.navBarBottom { transform: translateY(-2.75px) rotate(-45deg); }
+
+.navScrim {
+  position: fixed; inset: 44px 0 0; z-index: 48;
+  background: rgba(0, 0, 0, 0.18);
+  border: 0; padding: 0;
+  animation: navFade 220ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+.navSheet {
+  position: fixed; top: 44px; left: 0; right: 0; z-index: 49;
+  display: flex; flex-direction: column;
+  /* Near-opaque on purpose: at 0.94 the headline behind it read through the
+     sheet on any browser that drops the backdrop filter. */
+  background: rgba(255, 255, 255, 0.985);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  animation: navDrop 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+.navSheetLink {
+  padding: 0.95rem 1.5rem;
+  font-size: 1.05rem; letter-spacing: -0.01em;
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+}
+.navSheetLink:last-child { border-bottom: 0; }
+.navSheetActive { font-weight: 600; }
+
+@keyframes navFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes navDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 620px) {
+  .nav { justify-content: space-between; padding: 0 1rem; gap: 0; }
+  .navLinks { display: none; }
+  .navToggle {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px;
+    width: 44px; height: 44px;
+    margin-right: -0.6rem; /* optical: the glyph sits on the same margin as the text */
+    background: none; border: 0; padding: 0; cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navBar { transition: none; }
+  .navScrim, .navSheet { animation: none; }
+}
+
 .section { padding: clamp(4.5rem, 9vw, 8.5rem) 1.5rem; }
 .inner { max-width: 62rem; margin: 0 auto; }
 .center { text-align: center; }
@@ -373,4 +439,246 @@
   .derivTo { transform: rotate(90deg); line-height: 1; padding: 0.1rem 0; }
   .derivHead { display: none; }
   .derivFeature { margin-bottom: 1.1rem; }
+}
+
+
+/* ===== House page shapes (homepage 2026-08-02) ==========================
+   An index row per arm of the house, a numbered stance grid, and a single
+   product still. Added to the kit rather than the page so /labs and
+   /frontiers can reuse the same grammar instead of inventing their own. */
+/* ---- Index of works (direction A) --------------------------------------- */
+.index {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--hair);
+}
+.row {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr auto;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: clamp(1.5rem, 3vw, 2.4rem) 0;
+  border-bottom: 1px solid var(--hair);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.row:hover { opacity: 0.62; }
+.num {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.rowName {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin: 0;
+}
+.rowBody {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0.5rem 0 0;
+  max-width: 46ch;
+}
+.rowMeta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Numbered stance rows (direction B) --------------------------------- */
+.stance {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--hair);
+}
+.stanceItem {
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.2rem, 2.5vw, 2.2rem) clamp(1.6rem, 3vw, 2.4rem) 0;
+  border-bottom: 1px solid var(--hair);
+}
+.stanceNum {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+.stanceTitle {
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+.stanceBody {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+  max-width: 42ch;
+}
+
+/* ---- Journal rows (direction C) ----------------------------------------- */
+.journal {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--hair);
+}
+.jrow {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--hair);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.jrow:hover { opacity: 0.62; }
+.jmeta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.jtitle {
+  font-size: 1.08rem;
+  line-height: 1.45;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+
+/* ---- Shared bits -------------------------------------------------------- */
+/* A single quiet product still, sized so it never becomes the whole page. */
+.still {
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+  width: min(268px, 62vw);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.14);
+}
+.still img { display: block; width: 100%; height: auto; }
+
+.stillRow {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  justify-content: center;
+  align-items: flex-end;
+}
+.stillRow > div { width: min(212px, 28vw); border-radius: 22px; overflow: hidden;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.13); }
+.stillRow img { display: block; width: 100%; height: auto; }
+
+.lede {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  max-width: 34ch;
+  margin: 1.4rem 0 0;
+}
+.ledeCenter { composes: lede; margin-left: auto; margin-right: auto; }
+
+.tag {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.2rem;
+}
+
+@media (max-width: 720px) {
+  .row { grid-template-columns: 2.4rem 1fr; }
+  .rowMeta { grid-column: 2; }
+  .stance { grid-template-columns: 1fr; }
+  .jrow { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+
+/* ===== Menu typography (homepage, 2026-08-02) ==========================
+   Ryvn: the house index should feel like a Western restaurant menu — air
+   around everything, and not much text. Three cues do the work: a centred
+   italic section label with a short rule under it, the item name and its
+   standing sharing one baseline with a dotted leader between them, and a
+   single short line of description instead of a paragraph.
+   Deliberately NOT all-caps: DESIGN.md rules out the all-caps overline, and
+   an italic serif label reads more like a menu anyway. */
+.menuSection { max-width: 46rem; margin: 0 auto; }
+/* On a phone the section's own 1.5rem is all that stands between the rules and
+   the screen edge, and the block read cramped (Ryvn 2026-08-02). A menu keeps a
+   wide margin on its paper — give the whole block, rules included, more inset. */
+@media (max-width: 640px) {
+  .menuSection { padding-inline: 1.1rem; }
+}
+
+.menuLabel {
+  text-align: center;
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.015em;
+  color: var(--ink-soft);
+  margin: 0 0 clamp(2rem, 4vw, 3.2rem);
+}
+.menuLabel::after {
+  content: "";
+  display: block;
+  width: 2.2rem; height: 1px;
+  background: var(--hair);
+  margin: 1rem auto 0;
+}
+
+.menuRow {
+  padding: clamp(1.7rem, 3.4vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--hair);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.menuRow:first-child { border-top: 1px solid var(--hair); }
+.menuRow:hover { opacity: 0.6; }
+
+.menuHead { display: flex; align-items: baseline; gap: 0.9rem; }
+.menuName {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.1;
+  margin: 0;
+  white-space: nowrap;
+}
+/* The leader is the single strongest menu cue — a dotted rule carrying the eye
+   from the dish to its price. Nudged up so it sits on the x-height, not the
+   baseline, or it reads as an underline. */
+.menuLeader {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted var(--hair);
+  transform: translateY(-0.3em);
+}
+.menuMeta {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.menuBody {
+  margin: 0.65rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 44ch;
+}
+
+@media (max-width: 560px) {
+  /* A long dish name plus a price cannot share one line on a phone; the price
+     drops under the name and the leader retires rather than wrapping badly. */
+  .menuHead { flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+  .menuLeader { display: none; }
+  .menuName { white-space: normal; }
+  .menuMeta { width: 100%; }
 }

@@ -53,6 +53,22 @@ export function Rule() {
   return <hr className={s.rule} />;
 }
 
+/** One byline for everything published under /research. It lives here, once, so
+ *  that changing how the studio signs its writing is a single edit rather than
+ *  a sweep across every essay and lab note. */
+export const BYLINE = "Reserve — an AI-native studio.";
+
+/** The meta line under an article title. Callers pass the part that differs —
+ *  the series/essay numbering, or "Lab note", plus the real publication date —
+ *  and the byline is appended from the shared constant above. */
+export function ArticleMeta({ children }: { children: ReactNode }) {
+  return (
+    <p className={s.articleMeta}>
+      {children} · {BYLINE}
+    </p>
+  );
+}
+
 /** A big rounded product tile — the landing's "shop the line-up" surface. */
 export function Tile({
   kicker,
@@ -74,6 +90,59 @@ export function Tile({
       <p className={s.tileBody}>{body}</p>
       <span className={s.tileLink}>{cta} &rsaquo;</span>
     </Link>
+  );
+}
+
+/** One arm of the house, set like a line on a menu: the name and its standing
+ *  share a baseline with a leader between them, and one short line sits under.
+ *  The homepage index is built from these; /labs and /frontiers can use the
+ *  same row rather than inventing a second list style. */
+export function IndexRow({
+  name,
+  body,
+  meta,
+  href,
+}: {
+  name: string;
+  body: string;
+  meta: string;
+  href: string;
+}) {
+  return (
+    <Link href={href} className={s.menuRow}>
+      <span className={s.menuHead}>
+        <h2 className={s.menuName}>{name}</h2>
+        <span className={s.menuLeader} aria-hidden="true" />
+        <span className={s.menuMeta}>{meta}</span>
+      </span>
+      <p className={s.menuBody}>{body}</p>
+    </Link>
+  );
+}
+
+/** A centred italic section label with a short rule under it — the menu's way
+ *  of naming a course. Replaces the eyebrow on pages that use the menu set. */
+export function MenuLabel({ children }: { children: ReactNode }) {
+  return <p className={s.menuLabel}>{children}</p>;
+}
+
+/** A numbered position. Six of these are the spine of the homepage — the part
+ *  that says how the house works rather than what it sells. */
+export function StanceItem({
+  n,
+  title,
+  body,
+}: {
+  n: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className={s.stanceItem}>
+      <p className={s.stanceNum}>{n}</p>
+      <h2 className={s.stanceTitle}>{title}</h2>
+      <p className={s.stanceBody}>{body}</p>
+    </div>
   );
 }
 

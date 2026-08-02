@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
-const TITLE = "Reserve — the AI-native studio. Our first product is the studio.";
+const TITLE = "Reserve — an AI-native studio. We build AI products: ours, and yours.";
 const DESCRIPTION =
-  "A studio run with one machine. A dating app with a physical signature, a finance desk that publishes itself daily, beauty tech in the making — all on an operating system we built, where agents hold jobs.";
+  "An AI-native studio. Our engineers join your team and ship AI systems into production; we also build Limere, an app for meeting the people you crossed paths with.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
