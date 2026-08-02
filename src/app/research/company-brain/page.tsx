@@ -27,7 +27,7 @@ export default function CompanyBrainEssay() {
           Most versions will be built as software. The hard part is not
           software.
         </p>
-        <ArticleMeta>Series 01 · Essay 10 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 10 · Published 28 July 2026</ArticleMeta>
       </Section>
 
       <Section>
