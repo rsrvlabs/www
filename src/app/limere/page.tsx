@@ -57,7 +57,7 @@ const FEATURES: Feature[] = [
     eyebrow: "The opening",
     title: "Start with something real.",
     paras: [
-      "The chat opens, and then the hard part starts. Nobody wants to be the one who sends hey.",
+      "The chat opens, and then the hard part starts. Nobody wants to be the one who sends “hey”.",
       "You never stare at an empty text box. Limere suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
