@@ -20,7 +20,7 @@ export default function PriorArtEssay() {
           hoping to copy it. What we found was a lot of tools, a few demos, and
           one empty quadrant.
         </p>
-        <ArticleMeta>Series 01 · Essay 03 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 03 · Published 10 July 2026</ArticleMeta>
       </Section>
 
       <Section>

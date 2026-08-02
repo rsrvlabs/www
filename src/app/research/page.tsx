@@ -118,7 +118,8 @@ export default function ResearchPage() {
           ))}
         </div>
         <p className={`${apple.articleMeta} ${apple.center}`}>
-          In progress — 07 · What replaces the meeting?
+          Two numbers are missing. Essays 07 and 08 aren&apos;t published; the
+          ones that are keep the numbers they shipped with.
         </p>
       </Section>
 

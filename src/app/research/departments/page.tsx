@@ -22,7 +22,7 @@ export default function DepartmentsEssay() {
           domain. We deleted the org chart and wrote a schedule instead — and
           here is what that traded away.
         </p>
-        <ArticleMeta>Series 01 · Essay 02 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 02 · Published 10 July 2026</ArticleMeta>
       </Section>
 
       <Section>

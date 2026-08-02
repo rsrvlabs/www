@@ -23,7 +23,7 @@ export default function AiNativeCompanyEssay() {
           What changes when a studio runs on an AI operating system — one shared
           brain, agents with jobs, humans making the calls.
         </p>
-        <ArticleMeta>Series 01 · Essay 01 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 01 · Published 4 July 2026</ArticleMeta>
       </Section>
 
       <Section>

@@ -27,7 +27,7 @@ export default function AgentSelfEvaluationEssay() {
           2026&rsquo;s agent bottleneck isn&rsquo;t generation, it&rsquo;s
           verification — and the deepest failure is self-evaluation.
         </p>
-        <ArticleMeta>Series 01 · Essay 04 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 04 · Published 15 July 2026</ArticleMeta>
       </Section>
 
       <Section>

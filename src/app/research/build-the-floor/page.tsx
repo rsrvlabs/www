@@ -27,7 +27,7 @@ export default function BuildTheFloorEssay() {
           A gate either guarantees an outcome or restricts a process. One scales
           with the model. The other expires.
         </p>
-        <ArticleMeta>Series 01 · Essay 06 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 06 · Published 15 July 2026</ArticleMeta>
       </Section>
 
       <Section>

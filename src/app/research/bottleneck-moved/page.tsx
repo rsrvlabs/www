@@ -26,7 +26,7 @@ export default function BottleneckMovedEssay() {
           A $1.5 billion bet that the scarce thing in AI is no longer the
           model. It is everything around the model.
         </p>
-        <ArticleMeta>Series 01 · Essay 09 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 09 · Published 28 July 2026</ArticleMeta>
       </Section>
 
       <Section>

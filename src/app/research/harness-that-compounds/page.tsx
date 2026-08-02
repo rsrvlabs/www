@@ -29,7 +29,7 @@ export default function HarnessEssay() {
           As models get stronger, the bitter lesson says delete your
           scaffolding. True — for one of the two harnesses.
         </p>
-        <ArticleMeta>Series 01 · Essay 05 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 05 · Published 15 July 2026</ArticleMeta>
       </Section>
 
       <Section>

@@ -27,7 +27,7 @@ export default function GraveyardEssay() {
           We read the autopsies before we built. They all died at the same
           three doors, and none of the doors is locked.
         </p>
-        <ArticleMeta>Series 01 · Essay 11 · Published 07.2026</ArticleMeta>
+        <ArticleMeta>Series 01 · Essay 11 · Published 28 July 2026</ArticleMeta>
       </Section>
 
       <Section>
