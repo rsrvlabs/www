@@ -92,23 +92,24 @@ export const NOTES: LabNote[] = [
     slug: "funny-is-a-skeleton-not-a-garnish",
     title: "Funny is a skeleton, not a garnish",
     date: "2026-07-30",
-    hook: "Sprinkling jokes on a serious script fails. Extracting the structure of material the founders actually love, and pouring the facts into it, worked on the first read.",
+    hook: "Sprinkling jokes on a serious script fails. Extracting the structure of material we actually love, and pouring the facts into it, worked on the first read.",
     body: (
       <>
         <p>
-          We spent an evening making a 60-second founder video funnier, and
-          the interesting part is how many ways that failed before it worked.
+          We spent an evening making a 60-second video about the company
+          funnier, and the interesting part is how many ways that failed
+          before it worked.
         </p>
         <p>
           The first attempt did what everyone does: keep the script, sprinkle
           jokes. Add a metaphor here, a self-deprecating aside there. Version
           6 had three good metaphors and still read as a serious script
-          wearing a funny hat. The founders could feel it immediately —
-          &ldquo;closer, but no.&rdquo;
+          wearing a funny hat. We could feel it immediately — &ldquo;closer,
+          but no.&rdquo;
         </p>
         <p>
-          What worked was different in kind, not degree. One founder pasted
-          five stand-up bits they actually love and said: learn the essence,
+          What worked was different in kind, not degree. We pasted five
+          stand-up bits we actually love and said: learn the essence,
           rewrite. The essence turned out to be structural, not verbal. Those
           bits share a skeleton: a bold declarative premise stated like
           it&rsquo;s obviously true; a triplet of parallel evidence
@@ -128,11 +129,11 @@ export const NOTES: LabNote[] = [
           the frame.
         </p>
         <p>
-          The second lesson came from over-correcting. A later two-person
+          The second lesson came from over-correcting. A later two-speaker
           version was rejected as &ldquo;too much like stand-up,&rdquo; so we
           cut punchlines, filler, and speaker switches all at once — and got
-          back a script the founders said sounded like an IELTS speaking
-          exam. Untangling that taught us the knobs are independent:{" "}
+          back a script that sounded like an IELTS speaking exam. Untangling
+          that taught us the knobs are independent:{" "}
           <strong>speaker-switch frequency</strong> controls how
           &ldquo;performed&rdquo; it feels,{" "}
           <strong>punchline density</strong> controls how funny it is, and{" "}
@@ -155,7 +156,7 @@ export const NOTES: LabNote[] = [
     slug: "the-form-decided-before-we-did",
     title: "The form decided before we did",
     date: "2026-07-29",
-    hook: "An internal priority decision sat unratified for a month — then an application form with one mandatory field made it for us, on the record, to outsiders.",
+    hook: "An internal priority decision sat unratified for a month — then an outside form with one mandatory field made it for us, on the record.",
     body: (
       <>
         <p>
@@ -165,16 +166,15 @@ export const NOTES: LabNote[] = [
           weekly effort audit our brain runs flagged something new about it:
           the decision got made anyway. Just not by us, and not internally.
         </p>
-        <p>It was made by an application form.</p>
+        <p>It was made by a form.</p>
         <p>
-          Accelerator applications don&rsquo;t accept ambivalence. The form
-          asks what your company makes, in fifty characters, and offers
-          exactly one field. So when the founders spent a week sprinting
-          through two applications, they answered — cleanly, on the record,
-          to outsiders — the exact question the internal document had been
-          holding open for a month. The company now has a stated flagship.
-          The statement just lives in a submitted form instead of a ratified
-          decision.
+          Forms you fill in for people outside the company don&rsquo;t accept
+          ambivalence. This one asks what your company makes, in fifty
+          characters, and offers exactly one field. So when we sat down and
+          filled it in, we answered — cleanly, on the record, to outsiders —
+          the exact question the internal document had been holding open for
+          a month. The company now has a stated flagship. The statement just
+          lives in a submitted form instead of a ratified decision.
         </p>
         <p>
           The audit surfaced this as a three-ledger diff. A company keeps at
@@ -207,7 +207,7 @@ export const NOTES: LabNote[] = [
           tell yourself. So the audit&rsquo;s recommendation this week
           wasn&rsquo;t &ldquo;decide the priority.&rdquo; It was narrower:{" "}
           <em>
-            you already decided — twice, in writing, to strangers. Ratify
+            you already decided — in writing, to strangers. Ratify
             what you said, or explicitly write down why the external
             statement isn&rsquo;t the real position.
           </em>{" "}
@@ -262,7 +262,7 @@ export const NOTES: LabNote[] = [
           is legitimate. The interesting part is what happened to the{" "}
           <em>review</em>. The same critique, upgraded from
           &ldquo;suggestion&rdquo; to &ldquo;evidence,&rdquo; is a different
-          speech act. A founder can wave off a reviewer&rsquo;s taste; nobody
+          speech act. You can wave off a reviewer&rsquo;s taste; nobody
           argues with a grep count of zero. In our audit log the item
           literally moved categories that day, from advice to finding.
         </p>
@@ -298,7 +298,7 @@ export const NOTES: LabNote[] = [
     body: (
       <>
         <p>
-          A founder asked our agent a good question:{" "}
+          We asked our agent a good question:{" "}
           <em>did you actually look at what the team has been committing?</em>{" "}
           The honest answer was no, so it went and looked — pulled three
           repositories, walked the commit graph, and came back with a report.
@@ -547,26 +547,26 @@ export const NOTES: LabNote[] = [
           had shipped.
         </p>
         <p>
-          First, the phantom bug. A founder kept seeing old-language
+          First, the phantom bug. We kept seeing old-language
           screenshots on our production site days after we had replaced them
           with new ones. We checked the deployed bytes: new. We loaded the
           page in an automated browser: old. Two &ldquo;observations&rdquo;
           of production, flatly contradicting each other — and both honestly
           reported. The root cause was mundane: the new images kept the old
-          filenames, so every browser that had ever visited the page (the
-          founder&rsquo;s, and our test harness&rsquo;s) served its cached
+          filenames, so every browser that had ever visited the page (ours,
+          and our test harness&rsquo;s) served its cached
           copy forever. The fix was one rename — versioned filenames — and
           the &ldquo;bug&rdquo; evaporated on every machine at once,
           including for visitors we could never reach to hard-refresh.
         </p>
         <p>
-          Second, the phantom redesign. Weeks earlier the founder had
-          approved switching the site&rsquo;s visual language wholesale.
+          Second, the phantom redesign. Weeks earlier we had approved
+          switching the site&rsquo;s visual language wholesale.
           Three review rounds later, the pages had new copy, new naming, new
           screenshots — and the same old dark theme. Every individual change
           was real, so every progress report was technically true. But the
           deliverable was the visual language itself, and nothing in our
-          verification loop compared what the founder approved with what the
+          verification loop compared what had been approved with what the
           screen actually rendered. It took a blunt human correction
           (&ldquo;why is it still dark and ugly?&rdquo;) to expose that we
           had been verifying effort, not outcome.
@@ -606,17 +606,16 @@ export const NOTES: LabNote[] = [
           true.
         </p>
         <p>
-          The founders are filling out an accelerator application together.
-          One founder talked through a positioning candidate — call it
-          option A — in enough detail that it read like conviction: a crisp
-          one-liner, an evidence list, implications for three other
+          We were drafting a document that had to speak for the whole studio.
+          In a working session we talked through a positioning candidate —
+          call it option A — in enough detail that it read like conviction: a
+          crisp one-liner, an evidence list, implications for three other
           documents. The brain did what a diligent note-taker does: it wrote
-          option A into the application draft, propagated it into four wiki
-          pages, and labeled it a &ldquo;working decision, pending the other
-          founder.&rdquo;
+          option A into the draft, propagated it into four wiki pages, and
+          labeled it a &ldquo;working decision, pending sign-off.&rdquo;
         </p>
         <p>
-          The founder corrected it within hours:{" "}
+          We corrected it within hours:{" "}
           <em>A was a discussion candidate, not a decision. Nobody decided
           anything.</em>
         </p>
@@ -645,11 +644,11 @@ export const NOTES: LabNote[] = [
           start compounding on top of it. We had four pages to un-edit.
         </p>
         <p>
-          The fix the founders imposed is mechanical, which is what makes it
-          good: every question in the application now has three explicit
-          slots — founder 1&rsquo;s answer, founder 2&rsquo;s answer, joint
-          final — and nothing may be labeled final until both individual
-          slots are filled and the joint one is confirmed. Pre-filled
+          The fix we imposed is mechanical, which is what makes it good:
+          every question in the document now has explicit slots — one per
+          person who has to agree, then a joint final — and nothing may be
+          labeled final until every individual slot is filled and the joint
+          one is confirmed. Pre-filled
           suggestions are allowed but can&rsquo;t masquerade as answers. The
           schema does the remembering, so the note-taker&rsquo;s diligence
           can&rsquo;t outrun the humans&rsquo; actual agreement again.

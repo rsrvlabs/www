@@ -43,7 +43,7 @@ export default async function LabNotePage({
       <Section center>
         <h1 className={apple.hero}>{note.title}</h1>
         <p className={apple.articleMeta}>
-          Lab note · {note.date} · Reserve — curators, one brain.
+          Lab note · {note.date} · Reserve — an AI-native studio.
         </p>
       </Section>
 
