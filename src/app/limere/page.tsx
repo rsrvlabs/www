@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppleNav, Section } from "@/components/apple/kit";
+import { AppleNav, Section, StanceItem } from "@/components/apple/kit";
 import s from "@/components/apple/apple.module.css";
 import { WaitlistForm } from "./WaitlistForm";
 
@@ -54,11 +54,11 @@ const FEATURES: Feature[] = [
   },
   {
     id: "start",
-    eyebrow: "The encounter",
+    eyebrow: "The opening",
     title: "Start with something real.",
     paras: [
-      "When someone likes you back, you know right away. The chat unlocks in front of you. You never have to refresh a screen or guess.",
-      "And you never stare at an empty text box. Limere suggests a first line based on what they chose to share. One tap, edit if you like, send.",
+      "The chat opens, and then the hard part starts. Nobody wants to be the one who sends hey.",
+      "You never stare at an empty text box. Limere suggests a first line based on what they chose to share. One tap, edit if you like, send.",
     ],
     media: {
       src: "/limere/limere-flow-match-chat.mp4",
@@ -67,6 +67,43 @@ const FEATURES: Feature[] = [
     flip: false,
   },
 ];
+
+/* Shipped since the three blocks above were written, and each one is its own
+   position rather than another split block: none of them has a capture yet, and
+   five more device videos would bury the three that do. Same numbered grammar
+   as the homepage stance grid, straight from the kit.
+
+   Outcome language only, like the rest of the page — what you get, never how
+   the app gets it. */
+const SHIPPED: Array<[string, string, string]> = [
+  [
+    "01",
+    "The match lands while you are still in the room.",
+    "When you and someone in the same room like each other, both of you see it at that moment. Not in a notification the next morning, when the room is empty and the moment has gone.",
+  ],
+  [
+    "02",
+    "An event stays open for a week.",
+    "For seven days afterwards you can go back and see who you crossed paths with there. The name you never caught. The face you meant to find again. The night does not close the second the lights come up.",
+  ],
+  [
+    "03",
+    "Being there is the whole point.",
+    "An event can be pinned to a real place, and Limere knows who is genuinely on site and who is following along from home. The people you see in the room are the people in the room.",
+  ],
+  [
+    "04",
+    "A different you for a different night.",
+    "Show up as one person at a work meetup and another at a Friday party. Whoever matched you keeps seeing the you they met, for good. How you appear tomorrow never rewrites who someone met tonight.",
+  ],
+  [
+    "05",
+    "Hosts start on a map.",
+    "Creating an event begins with a pin. Drop it, set how far the room reaches, and that is the edge of it: the venue, the block, or the whole park.",
+  ],
+];
+
+const ODD_TAIL = SHIPPED.length % 2 === 1;
 
 export default function LimePage() {
   return (
@@ -136,6 +173,30 @@ export default function LimePage() {
           </div>
         </Section>
       ))}
+
+      {/* What has landed in the app since those three blocks were written */}
+      <Section id="shipped">
+          <p className={s.eyebrow}>Shipped</p>
+          <h2 className={s.h2}>New in the app.</h2>
+          <div className={s.stance}>
+            {SHIPPED.map(([n, title, body], i) => (
+              // The stance grid is two columns, and an odd count leaves the last
+              // position alone with its hairline stopping mid-page. Let that one
+              // span, so the rule closes the list the way it closes every other
+              // row. Below 720px the grid is a single column and this is a no-op.
+              <div
+                key={n}
+                style={
+                  ODD_TAIL && i === SHIPPED.length - 1
+                    ? { gridColumn: "1 / -1" }
+                    : undefined
+                }
+              >
+                <StanceItem n={n} title={title} body={body} />
+              </div>
+            ))}
+          </div>
+      </Section>
 
       {/* Read the body */}
       <Section center tinted id="body">

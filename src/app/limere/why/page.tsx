@@ -327,7 +327,7 @@ export default function WhyLimePage() {
             market headed past $230 billion. Half a billion devices shipped last year.
             Smart rings are growing near 30% a year. Oura passed five million rings and
             roughly a billion dollars in revenue. Whoop crossed a ten-billion-dollar
-            valuation. Almost one in three American adults already wears a sensor. The
+            valuation. Almost one in three American adults already wears one. The
             hardware that reads the body went mainstream. Nobody points it at the room.
             Social chemistry is still the largest unmeasured signal in daily life.
           </p>
@@ -344,7 +344,7 @@ export default function WhyLimePage() {
             More than half of that age group has used a dating app. Category payers
             already spend about twenty dollars a month, by Match&rsquo;s own average. Our
             first market is the burned-out majority of those users: people who still want
-            to meet someone, and already wear the sensor that could help.
+            to meet someone, and already wear the device that could help.
           </p>
       </Section>
 
