@@ -4,7 +4,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 const TITLE = "Reserve — an AI-native studio. We build AI products: ours, and yours.";
 const DESCRIPTION =
-  "An AI-native studio in Taipei. Our engineers join your team and ship AI systems into production; we also build Limere, an app for meeting the people you actually crossed paths with.";
+  "An AI-native studio. Our engineers join your team and ship AI systems into production; we also build Limere, an app for meeting the people you crossed paths with.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

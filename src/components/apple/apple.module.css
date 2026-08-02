@@ -595,3 +595,84 @@
   .stance { grid-template-columns: 1fr; }
   .jrow { grid-template-columns: 1fr; gap: 0.3rem; }
 }
+
+
+/* ===== Menu typography (homepage, 2026-08-02) ==========================
+   Ryvn: the house index should feel like a Western restaurant menu — air
+   around everything, and not much text. Three cues do the work: a centred
+   italic section label with a short rule under it, the item name and its
+   standing sharing one baseline with a dotted leader between them, and a
+   single short line of description instead of a paragraph.
+   Deliberately NOT all-caps: DESIGN.md rules out the all-caps overline, and
+   an italic serif label reads more like a menu anyway. */
+.menuSection { max-width: 46rem; margin: 0 auto; }
+
+.menuLabel {
+  text-align: center;
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.015em;
+  color: var(--ink-soft);
+  margin: 0 0 clamp(2rem, 4vw, 3.2rem);
+}
+.menuLabel::after {
+  content: "";
+  display: block;
+  width: 2.2rem; height: 1px;
+  background: var(--hair);
+  margin: 1rem auto 0;
+}
+
+.menuRow {
+  padding: clamp(1.7rem, 3.4vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--hair);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.menuRow:first-child { border-top: 1px solid var(--hair); }
+.menuRow:hover { opacity: 0.6; }
+
+.menuHead { display: flex; align-items: baseline; gap: 0.9rem; }
+.menuName {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  line-height: 1.1;
+  margin: 0;
+  white-space: nowrap;
+}
+/* The leader is the single strongest menu cue — a dotted rule carrying the eye
+   from the dish to its price. Nudged up so it sits on the x-height, not the
+   baseline, or it reads as an underline. */
+.menuLeader {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted var(--hair);
+  transform: translateY(-0.3em);
+}
+.menuMeta {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.menuBody {
+  margin: 0.65rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 44ch;
+}
+
+@media (max-width: 560px) {
+  /* A long dish name plus a price cannot share one line on a phone; the price
+     drops under the name and the leader retires rather than wrapping badly. */
+  .menuHead { flex-wrap: wrap; gap: 0.35rem 0.9rem; }
+  .menuLeader { display: none; }
+  .menuName { white-space: normal; }
+  .menuMeta { width: 100%; }
+}
