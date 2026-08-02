@@ -77,6 +77,54 @@ export function Tile({
   );
 }
 
+/** One arm of the house: a hairline row with its name, a line about it, and its
+ *  current standing. The homepage index is built from these; /labs and
+ *  /frontiers can use the same row rather than inventing a second list style. */
+export function IndexRow({
+  name,
+  body,
+  meta,
+  href,
+  marker = "—",
+}: {
+  name: string;
+  body: string;
+  meta: string;
+  href: string;
+  marker?: string;
+}) {
+  return (
+    <Link href={href} className={s.row}>
+      <span className={s.num}>{marker}</span>
+      <span>
+        <h2 className={s.rowName}>{name}</h2>
+        <p className={s.rowBody}>{body}</p>
+      </span>
+      <span className={s.rowMeta}>{meta}</span>
+    </Link>
+  );
+}
+
+/** A numbered position. Six of these are the spine of the homepage — the part
+ *  that says how the house works rather than what it sells. */
+export function StanceItem({
+  n,
+  title,
+  body,
+}: {
+  n: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <div className={s.stanceItem}>
+      <p className={s.stanceNum}>{n}</p>
+      <h2 className={s.stanceTitle}>{title}</h2>
+      <p className={s.stanceBody}>{body}</p>
+    </div>
+  );
+}
+
 export function Card({
   title,
   body,
