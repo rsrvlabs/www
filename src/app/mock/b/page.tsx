@@ -43,7 +43,7 @@ const STANCE: Array<[string, string, string]> = [
   [
     "01",
     "Products first.",
-    "We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other, which is why the same engineers do both.",
+    "We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other.",
   ],
   [
     "02",
@@ -81,9 +81,9 @@ export default function MockB() {
         <p className={m.tag}>Reserve · an AI-native studio in Taipei</p>
         <h1 className={apple.display}>We build AI products. Ours, and yours.</h1>
         <p className={apple.sub}>
-          Our engineers join your team and work in your codebase until the system
-          is running. The same people build Limere, our own app for meeting the
-          people you actually crossed paths with.
+          We join your team and work in your codebase until the system is
+          running. We also build Limere, an app for meeting the people you
+          actually crossed paths with.
         </p>
         <div className={apple.linkRow}>
           <a
@@ -117,10 +117,10 @@ export default function MockB() {
         <p className={m.tag}>Working with us</p>
         <h2 className={apple.h2}>We consult by building.</h2>
         <p className={m.ledeCenter}>
-          You get the opinion and the implementation from the same people. Our
-          engineers sit with your team, write in your codebase, and stay until
-          the thing is live and someone on your side can run it. We take the
-          domains other people call too messy.
+          We sit with your team, write in your codebase, and stay until the
+          thing is live and someone on your side can run it. The opinion and the
+          implementation arrive together. We take the domains other people call
+          too messy.
         </p>
         <div className={apple.linkRow}>
           <a className={apple.link} href="/frontiers">
