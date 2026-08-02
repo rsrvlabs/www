@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "The bottleneck moved — Reserve Research",
@@ -26,9 +26,7 @@ export default function BottleneckMovedEssay() {
           A $1.5 billion bet that the scarce thing in AI is no longer the
           model. It is everything around the model.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 09 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 09 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
@@ -113,8 +111,9 @@ export default function BottleneckMovedEssay() {
           </p>
           <p>
             The honest caveat is that being AI-native is cheap only if you
-            start that way. We started with two people and a repository, which
-            is exactly when starting that way costs nothing. An enterprise
+            start that way. We started with a repository and nothing to
+            migrate, which is exactly when starting that way costs nothing. An
+            enterprise
             with thirty years of undocumented process cannot copy this, and
             that asymmetry is the whole point. The largest companies in the
             world are about to spend a decade and a trillion dollars paying

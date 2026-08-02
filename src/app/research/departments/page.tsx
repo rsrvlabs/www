@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "Does an AI-native company still need departments? — Reserve Research",
@@ -22,9 +22,7 @@ export default function DepartmentsEssay() {
           domain. We deleted the org chart and wrote a schedule instead — and
           here is what that traded away.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 02 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 02 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
@@ -33,13 +31,13 @@ export default function DepartmentsEssay() {
             A department is not a room full of people. Seen coldly, it is a
             standing promise: that somebody will keep paying attention to a
             domain — the money, the customers, the competition, the health of
-            the codebase — long after the founders&rsquo; attention has moved
-            on. The people are how companies have always kept that promise.
+            the codebase — long after anyone&rsquo;s attention has moved on.
+            The people are how companies have always kept that promise.
             They are not the only way to keep it.
           </p>
           <p>
-            So when we started Reserve as two engineers, we did not draw an
-            org chart with empty boxes waiting for hires. We asked a narrower
+            So when we started Reserve, we did not draw an org chart with
+            empty boxes waiting for hires. We asked a narrower
             question: what does this company owe itself attention on, and how
             often? Then we wrote the answer down as a schedule. There is one
             heartbeat — a scheduled process that wakes once a day whether or
@@ -78,8 +76,8 @@ export default function DepartmentsEssay() {
             We got that boundary wrong at first, in the instructive
             direction. The heartbeat had quietly forbidden itself from posting
             anything at all while unattended — the safe default of a system
-            afraid of its own reach. A founder had to overrule it: you are
-            allowed to speak to us, just not for us. The permission became a
+            afraid of its own reach. We had to overrule it: you are allowed
+            to speak to us, just not for us. The permission became a
             written, revocable decision, the way every expansion of what the
             machine may do on its own has. That paper trail is the real
             org chart now — not who reports to whom, but what the company has

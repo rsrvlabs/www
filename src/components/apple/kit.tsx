@@ -53,6 +53,22 @@ export function Rule() {
   return <hr className={s.rule} />;
 }
 
+/** One byline for everything published under /research. It lives here, once, so
+ *  that changing how the studio signs its writing is a single edit rather than
+ *  a sweep across every essay and lab note. */
+export const BYLINE = "Reserve — an AI-native studio.";
+
+/** The meta line under an article title. Callers pass the part that differs —
+ *  the series/essay numbering, or "Lab note", plus the real publication date —
+ *  and the byline is appended from the shared constant above. */
+export function ArticleMeta({ children }: { children: ReactNode }) {
+  return (
+    <p className={s.articleMeta}>
+      {children} · {BYLINE}
+    </p>
+  );
+}
+
 /** A big rounded product tile — the landing's "shop the line-up" surface. */
 export function Tile({
   kicker,

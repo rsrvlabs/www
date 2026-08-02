@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "Don't let the agent grade itself — Reserve Research",
@@ -27,9 +27,7 @@ export default function AgentSelfEvaluationEssay() {
           2026&rsquo;s agent bottleneck isn&rsquo;t generation, it&rsquo;s
           verification — and the deepest failure is self-evaluation.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 04 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 04 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
