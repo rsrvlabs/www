@@ -1,26 +1,42 @@
 # Reserve
 
-> Reserve is a design studio run with one machine — an AI-native company whose first product is the studio itself. It builds consumer and fintech products on an operating system it built, where software agents hold standing jobs and humans make the calls. Two engines: Frontier (forward-deployed engagements inside client teams) and Labs (its own products).
+> Reserve is an AI-native studio in Taipei. We build AI products — ours, and yours. One arm joins your team and writes in your codebase until the system is running. The other builds our own products, led by Limere, an app for meeting the people you actually crossed paths with. Contact: hello@rsrvlabs.com
 
-Reserve exhibits its work like a laboratory: each product is a specimen with a record. The company runs on a file-based "brain" — a shared knowledge base an agent maintains so knowledge compounds — plus a daily heartbeat that wakes and runs standing jobs (competitor sweeps, reviews, briefs) whether or not anyone is at a keyboard. A core operating principle: no system grades its own work — evaluation is kept structurally isolated from what it evaluates.
+The company runs on an operating system we built: one shared, file-based brain where what we learn compounds instead of scattering, and agents that hold standing jobs and keep them, so the daily work goes out whether or not anyone is awake. Nothing reaches a person without a human signing it first.
 
-Contact: hello@rsrvlabs.com
+We publish the experiment as we run it — essays on the weekly tier, lab notes on the daily one. That research is the part of Reserve people most often write in about, and it carries the failures too: what we stopped building, what we still cannot prove. Two standing rules shape everything else. No system grades its own work, so evaluation stays structurally isolated from what it evaluates. And if a number cannot be traced back to where it came from, we do not publish it.
 
-## Products (Labs)
-- [Lime](https://rsrvlabs.com/sw): the flagship — Lime, short for limerence: a dating app with a physical signature. Real co-presence via BLE proximity (rotating ephemeral IDs, nothing identifying on the air), so the people you actually crossed paths with stay findable; joinable "rooms" (activities at venues/events) scope discovery to who's actually there. Built and in field testing.
-- [Reserve Finance](https://rsrvlabs.com/labs): a US-equities research desk that reasons in public — it scores the market, publishes a daily brief, and holds itself accountable to an isolated, immutable ledger. Live.
-- [Glow](https://rsrvlabs.com/labs): beauty tech, in formulation.
+## Working with teams
+- [Frontiers](https://rsrvlabs.com/frontiers): senior engineers who join your team and build in your codebase. We sit with your people, write in your repo, and stay until the thing is live and someone on your side can run it. The opinion and the implementation arrive together, and we take the domains other people call too messy. Travel, sports vision, health and legal systems are running in production now. Status: taking projects.
 
-## Frontier
-- [Frontier engagements](https://rsrvlabs.com/frontiers): forward-deployment into a client's "frontier" — a domain where AI hasn't been made to work yet. Reserve embeds, builds with the team, and leaves running systems; the work feeds the products.
+## Products
+- [Limere](https://rsrvlabs.com/limere): the flagship, and a dating app that only counts if you meet in person. Walk into a venue and you see who is there and open to meeting. Afterwards you get back the people you actually crossed paths with, so one busy night is no longer the end of it. When you and someone in the same room like each other, both of you see it as it happens, and the app hands you a first line so the conversation starts. You choose which version of you each room gets. Everything in the app exists to get you to the part that happens off the screen. Status: early access, open to a first group of people.
+- [Why Limere](https://rsrvlabs.com/limere/why): the full case with the research behind it — why chemistry never made it online, what the evidence says decides attraction, and what that means for a product built around meeting in person.
+- [Labs](https://rsrvlabs.com/labs): Reserve Finance, a US-equities desk that scores the market and publishes its own morning brief every trading day, and Glow, our beauty-tech line. Both are with a small group of people we know. Status: on the bench — we will introduce them properly when they are ready.
 
-## Research (field notes on running an AI-native company)
-- [The AI-native company](https://rsrvlabs.com/research/ai-native-company): what it means to run a company where agents hold jobs.
-- [Does an AI-native company still need departments?](https://rsrvlabs.com/research/departments): replacing the org chart with a schedule — a heartbeat that keeps un-forgetful attention on each domain.
-- [We went looking for someone already doing this](https://rsrvlabs.com/research/prior-art): a prior-art survey of the flagship's space.
-- [Don't let the agent grade itself](https://rsrvlabs.com/research/agent-self-evaluation): 2026's agent bottleneck is verification, not generation; self-evaluation is the deepest failure. Unless the evaluator is isolated from the evaluated, no score can be trusted — and the three-account structure Reserve runs instead.
-- [The harness has an expiration date. Ours mostly doesn't.](https://rsrvlabs.com/research/harness-that-compounds): the bitter-lesson claim that scaffolding matters less as models scale is right — for the harness that compensates for a weak model. A second harness (memory, accountability, permission, cadence) compounds instead of expiring; Reserve builds mostly the second kind.
-- [Build the floor, not the ceiling](https://rsrvlabs.com/research/build-the-floor): closes the harness trilogy. A gate is a floor (guarantees an outcome, scales with the model) or a ceiling (restricts a process, expires). Build floors; rewrite restrictions as verifications; keep only irreversible actions gated, as the thinnest confirm-before membrane — so the harness leverages model growth instead of fighting it.
+## Research
+- [Research](https://rsrvlabs.com/research): the front door to both tiers, and the arm people most often write in about. We run this company on an operating system we built, and these notes document the experiment in public — written as we learn, not after we have won.
+- [Lab notes](https://rsrvlabs.com/research/notes): the daily tier. One mechanism per note, written the day it bit us — shorter and rougher than the essays, published while the bruise is fresh.
+
+## Essays
+- [The AI-native company](https://rsrvlabs.com/research/ai-native-company): series 01, essay 01. What changes when a studio runs on an AI operating system — one shared brain, agents with jobs, humans making the calls.
+- [Does an AI-native company still need departments?](https://rsrvlabs.com/research/departments): series 01, essay 02. A department is a standing promise to keep paying attention to a domain. We deleted the org chart and wrote a schedule instead, and here is what that traded away.
+- [We went looking for someone already doing this.](https://rsrvlabs.com/research/prior-art): series 01, essay 03. We scanned the field for a company already run by one agentic brain, hoping to copy it. We found a lot of tools, a few demos, and one empty quadrant.
+- [Don't let the agent grade itself.](https://rsrvlabs.com/research/agent-self-evaluation): series 01, essay 04. The 2026 agent bottleneck is verification, not generation, and the deepest failure is self-evaluation. Unless the evaluator is isolated from the evaluated, no score can be trusted. The three-account structure we run instead.
+- [The harness has an expiration date. Ours mostly doesn't.](https://rsrvlabs.com/research/harness-that-compounds): series 01, essay 05. The bitter-lesson claim that scaffolding matters less as models scale is right — for the harness that compensates for a weak model. A second harness (memory, accountability, permission, cadence) compounds instead of expiring, and we mostly build the second kind.
+- [Build the floor, not the ceiling.](https://rsrvlabs.com/research/build-the-floor): series 01, essay 06. A gate is either a floor (guarantees an outcome, scales with the model) or a ceiling (restricts a process, expires). Build floors, rewrite restrictions as verifications, and gate only the one-way actions, as the thinnest confirm-before membrane. The design law that closes the harness trilogy.
+- [The bottleneck moved.](https://rsrvlabs.com/research/bottleneck-moved): series 01, essay 09. A frontier lab co-founded a $1.5B services firm to deploy its own models. That is a price signal: the scarce thing in AI is no longer the model, it is everything a company knows that its software does not.
+- [YC put a name on the company brain.](https://rsrvlabs.com/research/company-brain): series 01, essay 10. Y Combinator made the company brain an official startup category and has funded at least five of them. We have run one since June. Notes on what the category will get wrong, from inside the thing it describes.
+- [Apps for meeting nearby keep dying.](https://rsrvlabs.com/research/graveyard): series 01, essay 11. The proximity graveyard is the most useful document in the category. Read separately, the autopsies show three doors — trust, density, consent — and none of them is locked. Why our flagship is built to walk past all three, and what would still have to go wrong.
+
+## How we work
+- Products first. We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other.
+- Something leaves every week: a build, or an essay. Some weeks it is a note about what broke. Nothing here waits for a launch date that keeps moving.
+- Show the workings. If a number cannot be traced back to where it came from, we do not publish it.
+- AI-native, and specific about it. The company runs on an operating system we built, agents hold standing jobs and keep them, and nothing reaches you without a human signing it first.
+- It has to end in the real world. An app that finishes on the screen is only half of Limere. It is not done until you and the other person are in the same room.
+- We write down what did not work — what we stopped building, what we still cannot prove. It is the only way to remember.
 
 ## Contact
 - Email: hello@rsrvlabs.com
+- Site: https://rsrvlabs.com
