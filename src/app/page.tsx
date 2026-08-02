@@ -1,55 +1,85 @@
-import Image from "next/image";
 import {
   AppleNav,
   Page,
   Section,
-  Eyebrow,
-  H2,
-  Body,
-  Tile,
+  IndexRow,
+  StanceItem,
   CtaButton,
   Footer,
   apple,
+  CONTACT,
 } from "@/components/apple/kit";
 
-/** A day the company runs without anyone awake — the evidence strip.
- *  Every line is a job that actually runs: the 04:30 launchd heartbeat and the
- *  jobs on its schedule (brain `autonomy/schedule.md`). The earlier version of
- *  this section described the finance desk's morning almost exclusively, which
- *  read as one product rather than the studio (Ryvn 2026-07-23). */
-const DAY: Array<[string, string]> = [
-  ["04:30", "The heartbeat wakes and reads the schedule — it decides the day's work, not us."],
-  ["Daily", "Meeting notes land in the brain. A digest goes to the team channel."],
-  ["Tuesday", "The competitor sweep runs, and opens a ticket only if something actually moved."],
-  ["Thursday", "The board is cleaned: stale tickets chased, missing owners flagged."],
-  ["Weekly", "An essay is drafted and arrives as a pull request. A human merges it, or doesn't."],
-];
+/** The house page (Ryvn 2026-08-02, chosen from three directions).
+ *
+ *  It is not a Limere landing page and it is not a product tour. A visitor
+ *  who asks "what does this company do" has to have the answer before they
+ *  scroll: the two arms in the headline, the three parts of the house in an
+ *  index right underneath, and only then how we work.
+ *
+ *  Frontiers leads the index because it is the arm people actually write in
+ *  about — the previous homepage buried it in the fourth tile. Limere keeps the
+ *  flagship label at product scale, and Reserve Finance stays with the small
+ *  group using it, sharing one quiet Labs line with Glow.
+ *
+ *  Copy rules learned the hard way, on this page more than anywhere: no studio
+ *  site anywhere talks about which arm pays the bills (ustwo, Metalab and
+ *  thoughtbot all describe the practice instead); the subject is "we", never
+ *  "the same people" or "the founders"; and status words are plain English, not
+ *  build-server English. */
 
-const WORKS = [
+const HOUSE: Array<{ name: string; body: string; meta: string; href: string }> = [
   {
-    kicker: "Flagship",
-    title: "Limere",
-    body: "Short for limerence — a dating app with a physical signature. You only meet the people you actually crossed paths with, one room at a time.",
+    name: "Frontiers",
+    body: "Senior engineers who join your team and build in your codebase. Travel, sports vision, health and legal systems are running in production now.",
+    meta: "Taking projects",
+    href: "/frontiers",
+  },
+  {
+    name: "Limere",
+    body: "A dating app that only counts if you meet in person. You see the people whose paths actually crossed yours, one room at a time.",
+    meta: "Flagship · early access",
     href: "/limere",
   },
   {
-    kicker: "Labs",
-    title: "Reserve Finance",
-    body: "A US-equities desk that reasons in public — it scores the market, publishes its brief, and answers for the call.",
+    name: "Labs",
+    body: "Reserve Finance and Glow. Both are with a small group of people we know, and we'll introduce them properly when they're ready.",
+    meta: "On the bench",
     href: "/labs",
   },
-  {
-    kicker: "Labs",
-    title: "Glow",
-    body: "Beauty tech, in the making — the third work on the bench.",
-    href: "/labs",
-  },
-  {
-    kicker: "Frontiers",
-    title: "Forward deployment",
-    body: "Senior engineers embedded inside a client's team, shipping AI systems into production. The frontier work feeds the products.",
-    href: "/frontiers",
-  },
+];
+
+const STANCE: Array<[string, string, string]> = [
+  [
+    "01",
+    "Products first.",
+    "We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other.",
+  ],
+  [
+    "02",
+    "Something leaves every week.",
+    "A build, or an essay. Some weeks it is a note about what broke. Nothing here waits for a launch date that keeps moving.",
+  ],
+  [
+    "03",
+    "Show the workings.",
+    "If a number can't be traced back to where it came from, we don't publish it. That started as a rule for our own research and now covers everything we put out.",
+  ],
+  [
+    "04",
+    "AI-native, and specific about it.",
+    "The company runs on an operating system we built. Agents here hold standing jobs and keep them, so the digest goes out whether or not anyone is awake. Nothing reaches you without a human signing it first.",
+  ],
+  [
+    "05",
+    "It has to end in the real world.",
+    "An app that finishes on the screen is only half of Limere. It isn't done until you and the other person are in the same room. That constraint has cost us features we liked.",
+  ],
+  [
+    "06",
+    "We write down what didn't work.",
+    "The journal carries the failures too: what we stopped building, what we still can't prove. Not out of humility. It is the only way to remember.",
+  ],
 ];
 
 export default function Home() {
@@ -57,87 +87,97 @@ export default function Home() {
     <Page>
       <AppleNav />
 
-      {/* Arrival — the studio thesis, in Apple's one-line register */}
+      {/* Arrival — both arms, in the first sentence */}
       <Section center>
-        <h1 className={apple.display}>Our first product is the studio.</h1>
+        <p className={apple.tag}>Reserve · an AI-native studio in Taipei</p>
+        <h1 className={apple.display}>We build AI products. Ours, and yours.</h1>
         <p className={apple.sub}>
-          Reserve is a studio run with one machine. We ship a dating app with a
-          physical signature, a finance desk that publishes itself, and beauty
-          tech in the making — all on an operating system we built, where agents
-          hold jobs.
+          We join your team and work in your codebase until the system is
+          running. We also build Limere, an app for meeting the people you
+          actually crossed paths with.
         </p>
         <div className={apple.linkRow}>
+          <a
+            className={apple.link}
+            href={`mailto:${CONTACT}?subject=${encodeURIComponent("Working with Reserve")}`}
+          >
+            Start a conversation &rsaquo;
+          </a>
           <a className={apple.link} href="/limere">
             Meet Limere &rsaquo;
           </a>
-          <a className={apple.link} href="/research">
-            Read the field notes &rsaquo;
+        </div>
+      </Section>
+
+      {/* The shape of the house, in the order a visitor cares about it */}
+      <Section>
+        <div className={apple.index}>
+          {HOUSE.map((w) => (
+            <IndexRow key={w.name} {...w} />
+          ))}
+        </div>
+      </Section>
+
+      {/* The arm people write in about */}
+      <Section tinted center>
+        <p className={apple.tag}>Working with us</p>
+        <h2 className={apple.h2}>We consult by building.</h2>
+        <p className={apple.ledeCenter}>
+          We sit with your team, write in your codebase, and stay until the thing
+          is live and someone on your side can run it. The opinion and the
+          implementation arrive together. We take the domains other people call
+          too messy.
+        </p>
+        <div className={apple.linkRow}>
+          <a className={apple.link} href="/frontiers">
+            How we work with teams &rsaquo;
           </a>
         </div>
+      </Section>
 
-        {/* The one product object on the landing. A simulator capture of the
-            shipped Limere build — real, not a render. */}
-        <div className={apple.heroDevice}>
-          <Image
-            src="/limere/nearby-en.png"
-            alt="Limere running on iPhone: the people you actually crossed paths with"
-            width={780}
-            height={1696}
-            priority
+      {/* The flagship, at product scale */}
+      <Section center>
+        <p className={apple.tag}>The flagship</p>
+        <h2 className={apple.h2}>Limere</h2>
+        <p className={apple.ledeCenter}>
+          Everything in the app exists to get you to the part that happens off
+          the screen. Open to a first group of people now.
+        </p>
+        <div className={apple.still}>
+          {/* The sign-up loop, as MP4 rather than the 4.2 MB GIF /limere still
+              serves — same frames, a tenth of the weight, and this one is on
+              the page every first-time visitor lands on. */}
+          <video
+            src="/limere/limere-login-loop.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            width={340}
+            height={740}
+            aria-label="Limere sign-up screen, ambient looping hero"
           />
         </div>
       </Section>
 
-
-      {/* What we do */}
-      <Section tinted center>
-        <Eyebrow>What we do</Eyebrow>
-        <H2>Products first. Engagements pay for them.</H2>
-        <Body center>
-          We build our own products. A small number of embedded engagements pay
-          for them. The company runs on an operating system we built — one
-          shared brain, agents with jobs, humans making the calls.
-        </Body>
-      </Section>
-
-      {/* The line-up */}
-      <Section>
-        <div className={apple.center}>
-          <Eyebrow>The works</Eyebrow>
-          <H2>Four things on the bench.</H2>
-        </div>
-        <div className={apple.grid2}>
-          {WORKS.map((w) => (
-            <Tile key={w.title} {...w} />
-          ))}
-        </div>
-      </Section>
-
-      {/* A day that runs itself */}
+      {/* How the house works */}
       <Section tinted>
-        <div className={apple.center}>
-          <Eyebrow>A day at the studio</Eyebrow>
-          <H2>Most of it happens while we sleep.</H2>
-        </div>
-        <div className={apple.timeline}>
-          {DAY.map(([time, text]) => (
-            <div className={apple.trow} key={time}>
-              <span className={apple.ttime}>{time}</span>
-              <span className={apple.ttext}>{text}</span>
-            </div>
+        <p className={apple.tag}>How we work</p>
+        <div className={apple.stance}>
+          {STANCE.map(([n, title, body]) => (
+            <StanceItem key={n} n={n} title={title} body={body} />
           ))}
         </div>
       </Section>
 
-
-      {/* Invitation */}
+      {/* The door */}
       <Section center>
-        <H2>A studio run with one machine.</H2>
-        <Body center>
-          Early access. An embedded team. The notes. One email — we answer
-          everything.
-        </Body>
-        <CtaButton subject="Hello Reserve" label="Get in touch" />
+        <h2 className={apple.h2}>Let&rsquo;s talk.</h2>
+        <p className={apple.ledeCenter}>
+          A project you want built, early access to Limere, or an argument about
+          any of the six. One address, and we answer everything.
+        </p>
+        <CtaButton subject="Working with Reserve" label="Get in touch" />
       </Section>
 
       <Footer />
