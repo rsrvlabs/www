@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "We went looking for someone already doing this — Reserve Research",
@@ -20,9 +20,7 @@ export default function PriorArtEssay() {
           hoping to copy it. What we found was a lot of tools, a few demos, and
           one empty quadrant.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 03 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 03 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
@@ -43,8 +41,9 @@ export default function PriorArtEssay() {
             that genuinely operate tasks for a person. What there was not, in
             any of it, was the thing we actually wanted to copy: a real
             company whose day-to-day operations — the research, the tickets,
-            the digests, the watch on the competition — are run by one brain
-            on a schedule, with humans kept for the calls that matter.
+            the digests, the watch on the competition — are run by a single
+            agentic brain on a schedule, with humans kept for the calls that
+            matter.
           </p>
 
 

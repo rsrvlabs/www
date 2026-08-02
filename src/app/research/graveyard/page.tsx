@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "Apps for meeting nearby keep dying — Reserve Research",
@@ -27,9 +27,7 @@ export default function GraveyardEssay() {
           We read the autopsies before we built. They all died at the same
           three doors, and none of the doors is locked.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 11 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 11 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
@@ -70,8 +68,9 @@ export default function GraveyardEssay() {
             and a discovery app where nobody acts is a list of strangers. The
             fix is not a better radius. It is replacing the guess with a
             fact: you appear only where you actually are, to people who were
-            actually there, and the moment two people cross paths becomes a
-            record both of them can act on later. Verified presence turns
+            actually there, and the moment your path actually crosses
+            someone else&rsquo;s becomes a record you can both act on later.
+            Verified presence turns
             who was near me from a rumor into a reason.
           </p>
           <p>
@@ -84,8 +83,7 @@ export default function GraveyardEssay() {
             people in it tonight. A conference needs one hall. Density and
             intent arrive together the moment you walk in, because everyone
             in the room chose to be there, and the product is useful at a
-            scale a two-person team can actually bootstrap, one venue at a
-            time.
+            scale we can actually bootstrap, one venue at a time.
           </p>
           <p>
             The third door is consent. The graveyard apps broadcast people to
@@ -106,7 +104,7 @@ export default function GraveyardEssay() {
             decisions, and it is the reason the timing is different now.
             Everything those apps showed you was self-report rearranged:
             profiles, check-ins, statuses. The signal that actually decides
-            whether two people connect never entered their systems, because
+            whether two strangers connect never entered their systems, because
             it could not be measured outside a laboratory. That changed
             recently. In 2022, researchers ran real blind dates at real
             events and measured everything; visible behavior predicted

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "Build the floor, not the ceiling — Reserve Research",
@@ -27,9 +27,7 @@ export default function BuildTheFloorEssay() {
           A gate either guarantees an outcome or restricts a process. One scales
           with the model. The other expires.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 06 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 06 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>

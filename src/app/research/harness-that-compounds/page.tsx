@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "The harness has an expiration date. Ours mostly doesn't. — Reserve Research",
@@ -29,9 +29,7 @@ export default function HarnessEssay() {
           As models get stronger, the bitter lesson says delete your
           scaffolding. True — for one of the two harnesses.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 05 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 05 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
@@ -105,8 +103,9 @@ export default function HarnessEssay() {
           </p>
           <p>
             This is why our operating system does not look like a pile of
-            prompt engineering, even though we are two engineers who could have
-            built exactly that. The parts we invest in are the parts with no
+            prompt engineering, even though a pile of prompt engineering is
+            the version we could have written fastest and the one we know
+            best. The parts we invest in are the parts with no
             expiration date: memory, cadence, permission, accountability. The
             parts we hold loosely are the ones a model release can obsolete
             overnight. When a new model lands, our first move is subtraction —

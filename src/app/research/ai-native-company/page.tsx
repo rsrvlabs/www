@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
 
 export const metadata: Metadata = {
   title: "The AI-native company — Reserve Research",
@@ -23,9 +23,7 @@ export default function AiNativeCompanyEssay() {
           What changes when a studio runs on an AI operating system — one shared
           brain, agents with jobs, humans making the calls.
         </p>
-        <p className={apple.articleMeta}>
-          Series 01 · Essay 01 · Published 07.2026 · Reserve — curators, one brain.
-        </p>
+        <ArticleMeta>Series 01 · Essay 01 · Published 07.2026</ArticleMeta>
       </Section>
 
       <Section>
