@@ -3,12 +3,13 @@ import Link from "next/link";
 import { AppleNav, Page, Section, CtaButton, Footer, apple, CONTACT } from "@/components/apple/kit";
 import m from "../mock.module.css";
 
-/** MOCK B v3 — the house, rebalanced after founder review 2026-08-02.
- *  v2 read as a Limere landing page. It isn't: Frontiers is the commercial
- *  engine and the thing visitors actually write in about, so it leads the index
- *  and gets the first explanation; Limere keeps the flagship label but sits at
- *  product scale, not page scale; Reserve Finance stays in internal testing and
- *  shares one quiet Labs line with Glow. Copy is post-de-AI pass (v2).
+/** MOCK B v4 — the house, after the second founder review 2026-08-02.
+ *  Three things changed. The hero no longer says out loud which arm pays the
+ *  bills (no studio site anywhere talks about its till — checked ustwo, Metalab,
+ *  thoughtbot; they all describe the practice instead). We consult, so the page
+ *  says so, without ever printing the words "forward deployment". And "in
+ *  testing" is gone as a status word — early access and on the bench say the
+ *  same thing without sounding like a build server.
  *  Founder review only; not in nav or sitemap. */
 
 export const metadata = {
@@ -20,20 +21,20 @@ export const metadata = {
 const HOUSE: Array<{ name: string; body: string; meta: string; href: string }> = [
   {
     name: "Frontiers",
-    body: "Senior engineers who embed in your team and build in your codebase. Four domains are running in production: travel, sports vision, health, legal.",
-    meta: "Engineering · open",
+    body: "Senior engineers who join your team and build in your codebase. Travel, sports vision, health and legal systems are running in production now.",
+    meta: "Taking projects",
     href: "/frontiers",
   },
   {
     name: "Limere",
     body: "A dating app that only counts if you meet in person. You see the people whose paths actually crossed yours, one room at a time.",
-    meta: "Flagship · in testing",
+    meta: "Flagship · early access",
     href: "/limere",
   },
   {
     name: "Labs",
-    body: "Reserve Finance and Glow. Both in testing, both quiet for now — we'll say more when they are ready to be used.",
-    meta: "In testing",
+    body: "Reserve Finance and Glow. Both are with a small group of people we know, and we'll introduce them properly when they're ready.",
+    meta: "On the bench",
     href: "/labs",
   },
 ];
@@ -42,7 +43,7 @@ const STANCE: Array<[string, string, string]> = [
   [
     "01",
     "Products first.",
-    "The engagements pay for the products. We don't build products to win engagements. Working inside someone else's production system also keeps us honest about what ships and what only demos well.",
+    "We build our own products, and we take client work that makes them sharper. Neither one is a detour from the other, which is why the same engineers do both.",
   ],
   [
     "02",
@@ -78,18 +79,18 @@ export default function MockB() {
 
       <Section center>
         <p className={m.tag}>Reserve · an AI-native studio in Taipei</p>
-        <h1 className={apple.display}>We build our own products, and we ship yours.</h1>
+        <h1 className={apple.display}>We build AI products. Ours, and yours.</h1>
         <p className={apple.sub}>
-          Most of what pays the bills is the second half: our engineers embed in
-          your team and put AI systems into production. The rest of the studio
-          builds Limere, and two products that aren&rsquo;t ready to talk about.
+          Our engineers join your team and work in your codebase until the system
+          is running. The same people build Limere, our own app for meeting the
+          people you actually crossed paths with.
         </p>
         <div className={apple.linkRow}>
           <a
             className={apple.link}
-            href={`mailto:${CONTACT}?subject=${encodeURIComponent("Frontier engagement")}`}
+            href={`mailto:${CONTACT}?subject=${encodeURIComponent("Working with Reserve")}`}
           >
-            Start an engagement &rsaquo;
+            Start a conversation &rsaquo;
           </a>
           <a className={apple.link} href="/limere">
             Meet Limere &rsaquo;
@@ -113,17 +114,17 @@ export default function MockB() {
       </Section>
 
       <Section tinted center>
-        <p className={m.tag}>The engineering practice</p>
-        <h2 className={apple.h2}>We don&rsquo;t consult. We deploy.</h2>
+        <p className={m.tag}>Working with us</p>
+        <h2 className={apple.h2}>We consult by building.</h2>
         <p className={m.ledeCenter}>
-          Senior engineers work inside your team, in your codebase, and leave
-          running systems behind. Not a deck, and not a pilot that dies in
-          procurement. The domains we have taken so far were the ones people call
-          too messy.
+          You get the opinion and the implementation from the same people. Our
+          engineers sit with your team, write in your codebase, and stay until
+          the thing is live and someone on your side can run it. We take the
+          domains other people call too messy.
         </p>
         <div className={apple.linkRow}>
           <a className={apple.link} href="/frontiers">
-            How an engagement works &rsaquo;
+            How we work with teams &rsaquo;
           </a>
         </div>
       </Section>
@@ -133,7 +134,7 @@ export default function MockB() {
         <h2 className={apple.h2}>Limere</h2>
         <p className={m.ledeCenter}>
           Everything in the app exists to get you to the part that happens off
-          the screen. In testing now.
+          the screen. Open to a first group of people now.
         </p>
         <div className={m.still}>
           <Image
@@ -159,12 +160,12 @@ export default function MockB() {
       </Section>
 
       <Section center>
-        <h2 className={apple.h2}>Write to us.</h2>
+        <h2 className={apple.h2}>Let&rsquo;s talk.</h2>
         <p className={m.ledeCenter}>
-          An engagement, early access to Limere, or an argument about any of the
-          six. One address, and we answer everything.
+          A project you want built, early access to Limere, or an argument about
+          any of the six. One address, and we answer everything.
         </p>
-        <CtaButton subject="Hello Reserve" label="Get in touch" />
+        <CtaButton subject="Working with Reserve" label="Get in touch" />
       </Section>
 
       <Footer />
