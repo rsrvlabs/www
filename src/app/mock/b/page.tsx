@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AppleNav, Page, Section, CtaButton, Footer, apple, CONTACT } from "@/components/apple/kit";
 import m from "../mock.module.css";
@@ -136,13 +135,11 @@ export default function MockB() {
           Everything in the app exists to get you to the part that happens off
           the screen. Open to a first group of people now.
         </p>
+        {/* The saved login loop, same asset and same plain-<img> treatment as
+            /limere uses for its hero — next/image would strip the animation. */}
         <div className={m.still}>
-          <Image
-            src="/limere/nearby-en.png"
-            alt="Limere on iPhone — the people you actually crossed paths with"
-            width={780}
-            height={1696}
-          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/limere/limere-login-loop.gif" alt="Limere sign-up screen, ambient looping hero" />
         </div>
       </Section>
 
