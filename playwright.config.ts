@@ -26,7 +26,14 @@ export default defineConfig({
     { name: "mobile", use: { ...devices["iPhone 14"] } },
   ],
   webServer: {
-    command: "pnpm dev -p 3947",
+    // CI runs a real `pnpm build` first (see the workflow) and starts the
+    // production server here instead of the dev one: `next dev` compiles
+    // each route on its first hit, and fullyParallel throws many different
+    // routes at a cold server at once, which reads as transient 404/500s
+    // that have nothing to do with the site (observed while building this
+    // suite). `next start` serves the already-compiled build, so there's no
+    // race. Locally, `next dev` stays the default for fast iteration.
+    command: process.env.CI ? "pnpm start -p 3947" : "pnpm dev -p 3947",
     url: "http://localhost:3947",
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
