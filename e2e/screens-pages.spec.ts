@@ -4,7 +4,7 @@ import { test } from "playwright/test";
 const SHOTS_DIR = process.env.SHOTS_DIR;
 test.skip(!SHOTS_DIR, "SHOTS_DIR not set");
 
-const routes = ["sw", "labs", "frontiers", "research", "effects", "research/ai-native-company"];
+const routes = ["limere", "labs", "frontiers", "research", "effects", "research/ai-native-company"];
 for (const route of routes) {
   const name = route.replaceAll("/", "-");
   test(`capture /${route}`, async ({ page }) => {

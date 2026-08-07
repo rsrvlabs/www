@@ -1,0 +1,55 @@
+name: Playwright E2E
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A new push to the same PR/branch supersedes the run already in flight —
+# no reason to keep burning minutes on a diff that's already stale.
+concurrency:
+  group: playwright-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    # The suite itself runs in well under a minute warm; this caps the whole
+    # job (install + browsers + build + test) comfortably inside ~10 minutes
+    # and turns a hang into a fast failure instead of a slow one.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Only the two engines the projects in playwright.config.ts actually
+      # use ("desktop" = Chromium, "mobile" = the iPhone 14 preset = WebKit).
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium webkit
+
+      - name: Build
+        run: pnpm build
+
+      # CI=true is set by GitHub Actions automatically; playwright.config.ts
+      # reads it to start the built production server (`next start`) instead
+      # of the dev server, and to switch on the "github" reporter + 2 retries.
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

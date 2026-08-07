@@ -190,7 +190,14 @@ export function Footer() {
       <Link href="/" style={{ color: "inherit" }}>
         Reserve
       </Link>{" "}
-      · {CONTACT}
+      · {CONTACT} ·{" "}
+      <Link href="/legal/terms" style={{ color: "inherit" }}>
+        Terms
+      </Link>{" "}
+      ·{" "}
+      <Link href="/legal/privacy" style={{ color: "inherit" }}>
+        Privacy
+      </Link>
     </footer>
   );
 }
