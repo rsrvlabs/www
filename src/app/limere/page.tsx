@@ -286,7 +286,14 @@ export default function LimePage() {
         <Link href="/" style={{ color: "inherit" }}>
           Reserve
         </Link>{" "}
-        · Screens are simulator captures of the current build, 2026.
+        · Screens are simulator captures of the current build, 2026. ·{" "}
+        <Link href="/legal/terms" style={{ color: "inherit" }}>
+          Terms
+        </Link>{" "}
+        ·{" "}
+        <Link href="/legal/privacy" style={{ color: "inherit" }}>
+          Privacy
+        </Link>
       </footer>
     </main>
   );
