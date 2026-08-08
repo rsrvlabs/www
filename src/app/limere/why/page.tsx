@@ -393,7 +393,8 @@ export default function WhyLimePage() {
         <Link href="/limere" style={{ color: "inherit" }}>Limere</Link> ·{" "}
         <Link href="/" style={{ color: "inherit" }}>Reserve</Link> ·{" "}
         <Link href="/legal/terms" style={{ color: "inherit" }}>Terms</Link> ·{" "}
-        <Link href="/legal/privacy" style={{ color: "inherit" }}>Privacy</Link>
+        <Link href="/legal/privacy" style={{ color: "inherit" }}>Privacy</Link> ·{" "}
+        <Link href="/support" style={{ color: "inherit" }}>Support</Link>
       </footer>
     </main>
   );
