@@ -84,6 +84,12 @@ const essays: Array<{
     body: "Series 01, essay 11: the proximity graveyard is the most useful document in the category. Read separately, the autopsies show three doors: trust, density, consent. None of them is locked. Why our flagship is built to walk past all three, and what would still have to go wrong.",
     href: "/research/graveyard",
   },
+  {
+    kicker: "The concession",
+    title: "The swipe is dying. Even Tinder knows it.",
+    body: "Series 01, essay 12: Tinder and Bumble are both bolting real-world rooms onto the swipe deck, on their own earnings calls. That is not a new feature. It is a concession — and the honest reading of their own data says discovery should have started with the room, not the deck.",
+    href: "/research/swipe-is-dying",
+  },
 ];
 
 export default function ResearchPage() {
