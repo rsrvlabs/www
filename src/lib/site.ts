@@ -29,6 +29,7 @@ export const ROUTES: Array<{ path: string; updated: string; priority: number }> 
   { path: "/research/harness-that-compounds", updated: "2026-07-15", priority: 0.6 },
   { path: "/research/build-the-floor", updated: "2026-07-15", priority: 0.6 },
   { path: "/research/swipe-is-dying", updated: "2026-08-10", priority: 0.6 },
+  { path: "/research/trust-ladder", updated: "2026-08-10", priority: 0.6 },
   { path: "/legal/terms", updated: "2026-08-07", priority: 0.3 },
   { path: "/legal/privacy", updated: "2026-08-07", priority: 0.3 },
   { path: "/support", updated: "2026-08-09", priority: 0.4 },

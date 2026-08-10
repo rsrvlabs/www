@@ -67,6 +67,12 @@ const essays: Array<{
     href: "/research/build-the-floor",
   },
   {
+    kicker: "Governance",
+    title: "Autonomy is granted, not assumed.",
+    body: "Series 01, essay 08: how much should an agent be allowed to do? We answer with a paper trail — every expansion of our agent's autonomy is a numbered, revocable decision record. The ladder it climbed, and why the permissions live outside its memory.",
+    href: "/research/trust-ladder",
+  },
+  {
     kicker: "The shift",
     title: "The bottleneck moved.",
     body: "Series 01, essay 09: a frontier lab just co-founded a $1.5B services firm to deploy its own models. That is a price signal: the scarce thing in AI is no longer the model. It is everything a company knows that its software does not.",
@@ -125,8 +131,8 @@ export default function ResearchPage() {
           ))}
         </div>
         <p className={`${apple.articleMeta} ${apple.center}`}>
-          Two numbers are missing. Essays 07 and 08 aren&apos;t published; the
-          ones that are keep the numbers they shipped with.
+          One number is missing. Essay 07 isn&apos;t published; the ones
+          that are keep the numbers they shipped with.
         </p>
       </Section>
 
