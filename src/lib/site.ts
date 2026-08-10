@@ -33,4 +33,5 @@ export const ROUTES: Array<{ path: string; updated: string; priority: number }> 
   { path: "/legal/terms", updated: "2026-08-07", priority: 0.3 },
   { path: "/legal/privacy", updated: "2026-08-07", priority: 0.3 },
   { path: "/support", updated: "2026-08-09", priority: 0.4 },
+  { path: "/zh/support", updated: "2026-08-10", priority: 0.4 },
 ];
