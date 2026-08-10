@@ -131,8 +131,8 @@ export default function ResearchPage() {
           ))}
         </div>
         <p className={`${apple.articleMeta} ${apple.center}`}>
-          Two numbers are missing. Essays 07 and 08 aren&apos;t published; the
-          ones that are keep the numbers they shipped with.
+          One number is missing. Essay 07 isn&apos;t published; the ones
+          that are keep the numbers they shipped with.
         </p>
       </Section>
 
