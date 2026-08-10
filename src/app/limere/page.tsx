@@ -293,6 +293,10 @@ export default function LimePage() {
         ·{" "}
         <Link href="/legal/privacy" style={{ color: "inherit" }}>
           Privacy
+        </Link>{" "}
+        ·{" "}
+        <Link href="/support" style={{ color: "inherit" }}>
+          Support
         </Link>
       </footer>
     </main>

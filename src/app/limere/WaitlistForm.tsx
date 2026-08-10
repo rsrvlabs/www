@@ -6,7 +6,12 @@ import s from "@/components/apple/apple.module.css";
 const CONTACT = "hello@rsrvlabs.com";
 
 /* One field, two doors: consumers get early access, venues and hardware
-   partners get a direct line. Same list, different flag. */
+   partners get a direct line. Same list, different flag.
+
+   TODO(post-launch): once Limere is live on the App Store, this hero CTA
+   flips from an email capture to a store badge (App Store button, deep link
+   to the listing) — the waitlist's job ends at launch. Swap this component
+   out on the launch PR rather than growing a runtime flag for it. */
 export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "busy" | "done">("idle");
