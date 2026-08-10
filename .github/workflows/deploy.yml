@@ -1,0 +1,61 @@
+name: Deploy (Vercel via admin token)
+
+# Why (2026-08-09): after the Vercel seat downgrade, only the admin account's
+# own commits trigger the Git integration — anyone else's merge to main no
+# longer deploys (verified: PR #47 still had the Vercel deployment check,
+# PR #49 did not). This workflow deploys through an admin-minted token, so
+# the deploy identity is always admin while the trigger can be any commit.
+#
+# ORG-WIDE PATTERN (founder ask: paste once, cover every project):
+#   * VERCEL_TOKEN lives as a GitHub ORGANIZATION secret — set ONCE:
+#       gh secret set VERCEL_TOKEN --org rsrvlabs --visibility all
+#     Every repo in rsrvlabs (www, lawyer-ljh, future sites) reads the same
+#     secret; rotating the token = updating that one org secret.
+#   * Per-repo config is just the two plain values below (not secrets):
+#     the Vercel team scope and the project name. Copy this file to another
+#     repo, change PROJECT, done — no per-repo pasting, ever.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-prod
+  cancel-in-progress: false
+
+env:
+  # No hardcoded scope: the admin token sees exactly one team, so the CLI's
+  # default scope is always right — and survives a future project transfer
+  # without editing this file.
+  PROJECT: www                    # Vercel project name — the only per-repo edit
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check org secret
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN org secret missing. One-time setup (org admin): gh secret set VERCEL_TOKEN --org rsrvlabs --visibility all  (paste the admin-minted token at the interactive prompt)"
+            exit 1
+          fi
+
+      # Link resolves the project by name under the team scope — no project-id
+      # secret needed anywhere.
+      - name: Link project
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel@latest link --yes --project "$PROJECT" --token "$VERCEL_TOKEN"
+
+      # Remote build on Vercel's side: ~1 GitHub minute per run, build env
+      # identical to what the dashboard would produce.
+      - name: Deploy to production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
