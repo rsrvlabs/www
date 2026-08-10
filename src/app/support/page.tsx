@@ -35,6 +35,10 @@ export default function SupportPage() {
 
       <Section>
         <div className={apple.article}>
+          <p>
+            <Link href="/zh/support">中文版 →</Link>
+          </p>
+
           <h2>Frequently asked questions</h2>
 
           <h3>What is Limere?</h3>
