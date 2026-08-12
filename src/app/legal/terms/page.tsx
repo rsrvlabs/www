@@ -35,6 +35,10 @@ export default function TermsPage() {
 
       <Section>
         <div className={apple.article}>
+          <p>
+            <Link href="/zh/legal/terms">中文版 →</Link>
+          </p>
+
           <h2>1. Agreement to these terms</h2>
           <p>
             These Terms of Service (&ldquo;Terms&rdquo;) govern your use of Limere (the app) and
@@ -87,6 +91,12 @@ export default function TermsPage() {
           <p>
             We rely on reports from users to catch what we can&rsquo;t see ourselves. If someone
             makes you uncomfortable, block and report them from within the app.
+          </p>
+          <p>
+            <strong>We review every report within 48 hours.</strong> Where a report is upheld we
+            remove the content, and we suspend or terminate the account behind repeated or serious
+            violations. We are a small team and we would rather commit to a window we can actually
+            hold than to an instant one we cannot.
           </p>
 
           <h2>5. Content you share</h2>

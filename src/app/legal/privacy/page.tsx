@@ -2,9 +2,11 @@
 // migrations), iOS Info.plist permission strings, and brain-wiki disclosure
 // rules (see the ticket / PR body for the exact sources cited) — not
 // reviewed by a lawyer. Get counsel to review this before or shortly after
-// launch, especially §7 (account deletion isn't self-serve in-app yet; the
-// 30-day turnaround is our commitment, not a legal requirement we verified)
-// and whether a jurisdiction-specific rights section (GDPR/CCPA) is needed.
+// launch, and whether a jurisdiction-specific rights section (GDPR/CCPA) is
+// needed. §7 was corrected on 2026-08-12: it used to say in-app account
+// deletion "isn't built yet", but it shipped on 2026-08-09 (sw-app PR #137).
+// A privacy policy that describes a product that no longer exists misleads
+// users and contradicts the app in front of a reviewer.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
@@ -37,6 +39,10 @@ export default function PrivacyPage() {
 
       <Section>
         <div className={apple.article}>
+          <p>
+            <Link href="/zh/legal/privacy">中文版 →</Link>
+          </p>
+
           <h2>1. Scope</h2>
           <p>
             This Privacy Policy describes how Reserve, an AI-native studio (&ldquo;Reserve,&rdquo;
@@ -139,12 +145,18 @@ export default function PrivacyPage() {
 
           <h2>7. Deleting your account</h2>
           <p>
-            You can remove individual photos from your profile at any time in the app. Self-serve
-            account deletion inside the app is on our roadmap and isn&rsquo;t built yet. Until it
-            is, email hello@rsrvlabs.com with the subject &ldquo;Delete my account,&rdquo; and
-            we&rsquo;ll delete your account and the personal data associated with it within 30
-            days, except where we need to keep limited records to meet a legal obligation or
-            resolve a dispute.
+            You can remove individual photos from your profile at any time in the app, and you can
+            delete your whole account from the app as well — it&rsquo;s under Me, and it asks you
+            to type a confirmation first. Your profile, photos, matches, and everything you&rsquo;ve
+            shared are removed right away, and you&rsquo;re signed out for good. It can&rsquo;t be
+            undone.
+          </p>
+          <p>
+            Two things stay on purpose, and we&rsquo;d rather say so than let you find out later:
+            messages you already sent may still be visible to the people you sent them to, shown as
+            coming from a deleted account; and if someone reported you, that report stays on file.
+            Beyond that, email <a href="mailto:hello@rsrvlabs.com">hello@rsrvlabs.com</a> for any
+            request about your data, and we&rsquo;ll respond within 30 days.
           </p>
 
           <h2>8. Your choices</h2>

@@ -297,6 +297,13 @@ export default function LimePage() {
         ·{" "}
         <Link href="/support" style={{ color: "inherit" }}>
           Support
+        </Link>{" "}
+        ·{" "}
+        {/* A Taiwanese visitor had no way from this page to anything in their
+            own language — the zh support page existed, the zh legal pages did
+            not, and neither was linked from here. */}
+        <Link href="/zh/legal/terms" style={{ color: "inherit" }}>
+          中文
         </Link>
       </footer>
     </main>

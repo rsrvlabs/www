@@ -5,10 +5,11 @@
 //  - "Report or block someone" mirrors the real menu entries, sw-app
 //    lib/screens/profile_detail_screen.dart and chat_screen.dart (the ••• menu,
 //    pdReportPerson/pdBlockPerson, chatReportPerson/chatBlockPerson).
-//  - "Delete my account" matches Privacy Policy §7 (email-based, 30-day
-//    turnaround) — the CURRENT truth. sw-app PR #137 adds in-app deletion
-//    ("Me" screen → "Delete account") but is NOT merged/live yet; see the
-//    inline note below and the PR body for this change.
+//  - "Delete my account" matches Privacy Policy §7. Corrected 2026-08-12:
+//    in-app deletion shipped in sw-app PR #137 on 2026-08-09 and is live in
+//    the production database, but this page and the policy both still said it
+//    did not exist. An App Store reviewer checking 5.1.1(v) reads exactly
+//    these two pages, so the lag was pointed straight at the wrong audience.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, Footer, Page, Section, apple } from "@/components/apple/kit";
@@ -69,15 +70,18 @@ export default function SupportPage() {
             corner. From there you can choose Report this person or Block this person.
           </p>
 
-          {/* TODO(support-faq): sw-app PR #137 adds in-app deletion ("Me" screen
-              → "Delete account", two-step confirm sheet) but is not merged yet.
-              Once it ships, flip this answer to point at that flow instead of
-              email, and update Privacy Policy §7 in the same change. */}
           <h3>How do I delete my account?</h3>
           <p>
-            Account deletion isn&rsquo;t self-serve in the app yet. Email hello@rsrvlabs.com with
-            the subject line &ldquo;Delete my account,&rdquo; and we&rsquo;ll delete your account
-            and its personal data within 30 days.
+            In the app: <strong>Me → Delete account</strong>. It asks you to type a confirmation
+            first. Your profile, photos, matches, and everything you&rsquo;ve shared are removed
+            right away, and you&rsquo;re signed out for good. It can&rsquo;t be undone.
+          </p>
+          <p>
+            Two things stay on purpose: messages you already sent may still be visible to the
+            people you sent them to, shown as coming from a deleted account; and if someone
+            reported you, that report stays on file. For anything else about your data, email{" "}
+            <a href="mailto:hello@rsrvlabs.com">hello@rsrvlabs.com</a> and we&rsquo;ll respond
+            within 30 days.
           </p>
 
           <h2>Contact</h2>
