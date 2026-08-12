@@ -88,6 +88,12 @@ export default function TermsPage() {
             We rely on reports from users to catch what we can&rsquo;t see ourselves. If someone
             makes you uncomfortable, block and report them from within the app.
           </p>
+          <p>
+            <strong>We review every report within 48 hours.</strong> Where a report is upheld we
+            remove the content, and we suspend or terminate the account behind repeated or serious
+            violations. We are a small team and we would rather commit to a window we can actually
+            hold than to an instant one we cannot.
+          </p>
 
           <h2>5. Content you share</h2>
           <p>
