@@ -35,6 +35,10 @@ export default function TermsPage() {
 
       <Section>
         <div className={apple.article}>
+          <p>
+            <Link href="/zh/legal/terms">中文版 →</Link>
+          </p>
+
           <h2>1. Agreement to these terms</h2>
           <p>
             These Terms of Service (&ldquo;Terms&rdquo;) govern your use of Limere (the app) and
