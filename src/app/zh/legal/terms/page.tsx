@@ -1,15 +1,36 @@
-// 中文版服務條款 —— /legal/terms 的中文對應(Ryvn 2026-08-12:「www 內部
-// 頁面 limere 無法直接連到中英文版 t and c」)。親友團內測的對象是台灣人,
-// 讓人同意一份他看不懂的條款,對一個把信任當賣點的產品是自相矛盾的。
+// 中文版服務條款 v2 —— DRAFT, NOT PUBLISHED, NOT MERGED.
 //
-// 逐節與英文版對齊,節次與標題一一對應,方便兩邊同步改。**英文版為準**
-// (§13),因為那一版才是律師之後會審的文本;這一版是為了讓人真的讀得懂。
-// EN 頁改動時同步本頁。
+// Ticket: [Feat] 隱私權條款繁中 v2 (Notion 3c9dae10-8b25-81ec-afc0-d18546b2d25b).
+// Companion to /zh/legal/privacy — read that file's header comment first; it
+// carries the shared context (why this exists, the version-numbering mismatch,
+// the stale-app-review-notes warning).
 //
-// TODO(legal-review):與英文版同樣尚未經律師審閱。
+// Draft-of-record: sw-app docs/legal/terms-zh-tw-v2-draft.md (2026-08-23.v2).
+// Section order follows it so counsel can diff page against draft. Departures,
+// all checked against origin/main (34f5ad1):
+//
+//   1. §6 — the 48-hour report-review commitment is kept from the published v1
+//      page. It is a real public commitment (store/app-store-metadata.md and
+//      docs/app-review-notes.md both state it), so dropping it while porting
+//      would quietly retract a promise. NOTE: this number is unrelated to the
+//      48-hour retention window in the privacy policy; they only look alike.
+//   2. §7 — discloses the automatic restriction that the draft omits: reports
+//      from 3 distinct reporters within 30 days restrict the account's discovery
+//      surface (R96, report_auto_restriction.sql). Automated action against a
+//      user belongs in the terms they agree to.
+//   3. §8 — adds the host rule (R161): an account cannot be deleted while it
+//      still has an activity it created that has not ended. Server-enforced.
+//   4. §6 — blocking is stated as permanent, matching the in-app confirm copy
+//      and the absence of any unblock entry point. See the privacy page §6 note.
+//
+// Before publishing: delete src/components/legal/draft-note.{tsx,module.css} and
+// every DraftBanner / LawyerFlag usage here and on the privacy page.
+//
+// TODO(legal-review): not reviewed by a Taiwanese lawyer.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
+import { DraftBanner, LawyerFlag } from "@/components/legal/draft-note";
 
 export const metadata: Metadata = {
   title: "服務條款",
@@ -24,119 +45,201 @@ export default function TermsZhPage() {
       <Section center>
         <h1 className={apple.hero}>服務條款</h1>
         <p className={apple.sub}>使用 Limere 與 Reserve 網站所適用的條款。</p>
-        <ArticleMeta>2026 年 8 月 7 日生效</ArticleMeta>
+        {/* Version + effective date stay blank until publish (ticket instruction). */}
+        <ArticleMeta>版本：＿＿＿＿＿＿　·　生效日期：＿＿＿＿＿＿</ArticleMeta>
       </Section>
 
       <Section>
         <div className={apple.article} lang="zh-Hant">
+          <DraftBanner>
+            <p>
+              這份文件是草稿。它還沒有生效、還沒有經過台灣律師審閱，也還不是 rsrvlabs.com
+              目前對外的使用者條款 —— 目前對外的仍是 2026 年 8 月 7 日那一版。
+              上方的版本與生效日期刻意留白，由發布的人在發布當下填入。
+            </p>
+            <p>
+              對照用：本頁逐節對應 sw-app 的 <code>docs/legal/terms-zh-tw-v2-draft.md</code>
+              （版本 <code>2026-08-23.v2</code>）。四處與該草稿不同的地方寫在本檔頂端的註解裡，
+              每一處都附了程式碼上的理由。
+            </p>
+          </DraftBanner>
+
           <p>
             <Link href="/legal/terms">English version →</Link>
           </p>
 
-          <h2>1. 條款的效力</h2>
+          <h2>1. 接受條款</h2>
           <p>
             本服務條款（以下稱「本條款」）規範你對 Limere（以下稱「App」）與 rsrvlabs.com
             網站（合稱「本服務」）的使用。本服務由 AI-native 工作室 Reserve（以下稱
-            「Reserve」、「我們」）營運。當你建立帳號或使用本服務，即表示你同意本條款;
-            若你不同意，請不要使用本服務。
+            「Reserve」、「我們」）營運。
           </p>
           <p>
-            Limere 目前是尚未正式上市的早期產品。我們仍在積極開發：功能會變動、有些地方會壞掉，
-            而本文件也會隨著產品與公司的成熟而修訂。
+            你在登入或建立帳號之前，可以開啟本條款與
+            <Link href="/zh/legal/privacy">隱私權政策</Link>閱讀。
+            當你完成登入、建立帳號，或繼續使用 Limere，
+            即表示你接受當時有效的本條款與隱私權政策。
+            <strong>登入按鈕是唯一的主要動作，App 不另設第二個「同意」勾選框、開關或確認彈窗。</strong>
+            若你不同意，請不要登入或使用本服務。
           </p>
-
-          <h2>2. 誰可以使用 Limere</h2>
           <p>
-            你必須年滿 18 歲才能建立帳號。註冊即表示你確認自己符合這項條件，且所提供的資訊屬實。
-            Limere 並非針對未滿 18 歲者提供，任何經查屬於未滿 18 歲者的帳號都會被關閉。
+            Limere 目前僅在台灣推出，而且是仍在持續開發的早期產品：
+            功能會變動、有些地方會壞掉，本文件也會隨著產品與公司的成熟而修訂。
           </p>
 
-          <h2>3. 你的帳號</h2>
+          <h2>2. 年齡與使用資格</h2>
           <p>
-            你要為自己帳號上的活動負責，並妥善保管登入憑證。請使用你本人的身分，不要替他人建立帳號。
-            如果你認為帳號可能遭到入侵，請通知 hello@rsrvlabs.com。
+            Limere 僅供年滿 18 歲者使用。你必須提供真實資料，不得冒用他人身分，
+            也不得替他人建立帳號。若我們合理認為某個帳號屬於未成年人，
+            或違反適用法律，可以限制或終止其服務。
           </p>
 
-          <h2>4. 可接受的使用方式</h2>
+          <h2>3. 帳號責任</h2>
+          <p>
+            你應妥善保管登入資訊，並對帳號下的操作負責。
+            若你懷疑帳號遭到未授權使用，請立即聯絡{" "}
+            <a href="mailto:hello@rsrvlabs.com">hello@rsrvlabs.com</a>。
+            不得出售、出租或轉讓帳號，也不得利用自動化手段大量建立帳號。
+          </p>
+
+          <h2>4. 服務內容與限制</h2>
+          <p>
+            Limere 協助你在真實的活動或場所中，發現曾經與你擦肩而過的人，
+            查看依隱私設定可見的個人資料，並在符合產品關係規則時互動。
+          </p>
+          <p>
+            藍牙、定位、網路、作業系統的背景限制，或對方自己的設定，都可能影響結果。
+            <strong>我們不保證你一定找得到某個特定對象、一定會配對，或一定會建立關係。</strong>
+            這一點值得說得更直白：Limere 呈現的是你曾與誰擦肩而過，
+            接下來會發生什麼，是你與對方之間的事。
+          </p>
+
+          <h2>5. 使用者內容</h2>
+          <p>
+            你保有個人檔案、照片、訊息與其他內容的權利。
+            你授權 Reserve 在提供、保護及改善 Limere 所必需的範圍內，
+            儲存、處理、顯示與傳送這些內容 —— 例如把你的個人檔案顯示給與你擦肩而過的人，
+            或把訊息送達你指定的對象。我們不會販售你的內容。
+          </p>
+          <p>
+            你要為自己張貼與傳送的內容負責。不得上傳你無權使用、違法、
+            侵害他人權利，或未經當事人同意入鏡的內容。
+          </p>
+
+          <h2>6. 安全與禁止行為</h2>
           <p>
             Limere 存在的目的是幫助人們在現實中見面。把它用在相反的用途是不被允許的。你同意不會：
           </p>
           <ul>
-            <li>在 App 內或 App 外騷擾、威脅或虐待他人。</li>
+            <li>騷擾、威脅、跟蹤、仇恨攻擊或虐待他人。</li>
             <li>冒充他人，或不實陳述自己的年齡、身分或意圖。</li>
-            <li>利用 Limere 索取金錢、販售商品或服務，或進行詐騙。</li>
-            <li>爬取、逆向工程，或干擾 App 及其背後的系統。</li>
-            <li>未經他人同意，把他人的照片、訊息或身分從 App 帶出並公開散布。</li>
+            <li>詐騙、勒索，或利用 Limere 索取金錢、販售商品或服務。</li>
+            <li>散布私密影像，或未經他人同意把他人的照片、訊息或身分帶出 App 公開散布。</li>
+            <li>規避封鎖或檢舉機制。</li>
+            <li>爬取、逆向工程、攻擊或干擾本服務及其背後的系統。</li>
             <li>在當地法律禁止你使用這類服務時使用本服務，或在我們已因安全違規將你停權後繼續使用。</li>
           </ul>
           <p>
-            我們自己看不到的部分，仰賴使用者的檢舉。如果有人讓你感到不舒服，請直接在 App 內封鎖並檢舉他。
+            實際見面時請選擇公開場所、告訴信任的人你要去哪裡，並自行判斷風險。
+            <strong>我們不會對使用者做背景調查</strong>，
+            除了他們自己選擇告訴我們的之外，我們無法查證任何人的身分或意圖。
+            請相信你自己的判斷勝過相信這個 App。
+          </p>
+          <p>
+            我們自己看不到的部分，仰賴使用者的檢舉。如果有人讓你感到不舒服，
+            請直接在 App 內封鎖並檢舉他。
+            <strong>封鎖是永久的</strong>：封鎖之後雙方無法再傳訊息、
+            現有的配對立即解除，而且你之後無法在 Limere 內解除封鎖此人。
           </p>
           <p>
             <strong>我們會在 48 小時內審視每一則檢舉。</strong>
-            檢舉成立時我們會移除該內容;對於重複或嚴重違規的帳號，我們會停權或終止。
-            我們是一個小團隊，與其承諾一個聽起來漂亮卻守不住的即時處理，不如承諾一個真的做得到的時限。
+            檢舉成立時我們會移除該內容；對於重複或嚴重違規的帳號，我們會停權或終止。
+            我們是一個小團隊，與其承諾一個聽起來漂亮卻守不住的即時處理，
+            不如承諾一個真的做得到的時限。
           </p>
 
-          <h2>5. 你分享的內容</h2>
+          <h2>7. 檢舉、限制與終止</h2>
           <p>
-            你在 Limere 上分享的照片、訊息與個人檔案資訊，所有權仍屬於你。當你透過本服務張貼或傳送內容時，
-            你授予 Reserve 為了運作 App 所必要的授權，用以儲存、顯示與傳輸這些內容 —— 例如把你的個人檔案
-            顯示給與你擦肩而過的人，或把訊息送達你指定的對象。我們不會販售你的內容。
+            我們可以依檢舉證據、服務安全與違規的嚴重程度，移除內容、限制功能、
+            暫停或終止帳號。處置不保證即時，也不代表對任何人做出法律上的判斷。
           </p>
           <p>
-            你要為自己張貼與傳送的內容負責。請不要分享你沒有權利分享的東西或任何違法內容，
-            也不要張貼未經當事人同意入鏡的照片。
+            <strong>有一項限制是自動的，我們寧可先講：</strong>
+            如果在 30 天內有 3 位以上不同的使用者檢舉同一個帳號，
+            系統會自動限制該帳號在探索與附近功能中的曝光。
+            這項自動限制不會動到活動名單、聊天或已經成立的配對，
+            也可以在人工審視後解除。
+          </p>
+          <p>
+            為了保護檢舉者並維持案件的完整性，安全與稽核資料可能依
+            <Link href="/zh/legal/privacy">隱私權政策</Link>保留，
+            且不因被檢舉者刪除帳號而消失。
           </p>
 
-          <h2>6. 與人實際見面</h2>
+          <h2>8. 你自行停止使用與刪除帳號</h2>
           <p>
-            Limere 的設計核心，是讓你能認識真的與你擦肩而過的人。那是這個產品的意義所在，
-            但那也是我們能保護你的界線盡頭。我們不會對使用者做背景調查，除了他們自己選擇告訴我們的之外，
-            我們無法查證任何人的身分或意圖。請保持一般的警覺：約在公共場所、告訴朋友你要去哪裡，
-            並且相信你自己的判斷勝過相信這個 App。
+            你隨時可以停止使用，或直接在 App 內刪除帳號。
+            現行產品採用<strong>30 日可人工復原的軟刪除</strong>：
+            在這段窗口內，帳號無法一般登入，其他使用者也看不到你。
+            窗口屆滿後依資料生命週期清除。
+          </p>
+          <p>
+            <strong>如果你正在主持一場還沒結束的活動（包含還沒開始的），
+            你必須先結束或離開那場活動，才能刪除帳號。</strong>
+            這是為了避免活動突然沒有主持人，讓參加的人卡在沒有人能結束的活動裡。
+            只是參加別人的活動不受影響。
+          </p>
+          <p>
+            已經送達對方的訊息，可能以「已刪除的使用者」的形式保留；
+            檢舉與必要的安全證據也可能依法或依正當的安全目的保留。
+            細節以<Link href="/zh/legal/privacy">隱私權政策</Link>為準。
           </p>
 
-          <h2>7. 停權與終止</h2>
+          <h2>9. 服務變更與可用性</h2>
           <p>
-            對於違反本條款、對其他使用者造成風險，或濫用本服務的帳號，我們可以在通知或不通知的情況下
-            將其停權或關閉。你隨時可以停止使用 Limere;關於如何要求刪除帳號與資料，請見
-            <Link href="/zh/legal/privacy">隱私權政策</Link>。
+            Limere 是持續開發中的 MVP。我們可以修改、暫停或終止部分功能，
+            並會對重大的政策變更提供合理通知。
+            本服務按現況提供；在法律允許的範圍內，我們不保證服務不中斷、
+            完全沒有錯誤，或符合特定個人的期待。
           </p>
 
-          <h2>8. 免責聲明</h2>
+          <h2>10. 責任限制</h2>
           <p>
-            本服務以「現狀」提供，在法律允許的最大範圍內，不提供任何明示或默示的擔保。
-            我們不保證服務不會中斷或毫無錯誤，也不保證它會替你找到對象：Limere 呈現的是
-            你曾與誰擦肩而過，接下來會發生什麼，是你與對方之間的事。
+            在適用法律允許的範圍內，Reserve 不對間接、偶發或衍生的損害負責，
+            也不為其他使用者在線上或線下的行為背書。
+            本條不排除依法不得限制的責任或消費者權利。
           </p>
 
-          <h2>9. 責任限制</h2>
+          <h2>11. 條款變更與版本</h2>
           <p>
-            在法律允許的最大範圍內，Reserve 對於因你使用本服務而生的間接、附隨或衍生性損害，
-            以及其他使用者在線上或線下的行為，均不負責。本條款中的任何內容，
-            都不會限制法律不允許被限制的責任。
+            版本號、生效日與變更摘要會公布於本頁，舊版本保存在可以公開讀取的歷史版本位置。
+            重大變更生效後，你繼續登入或使用，表示接受更新後的條款。
+            若變更依法需要其他形式的同意，我們會依法律要求處理。
           </p>
 
-          <h2>10. 條款的變更</h2>
+          <h2>12. 準據法與聯絡方式</h2>
           <p>
-            我們可能隨產品變化更新本條款。更新時，我們會同步修改上方的生效日期。
-            變更後你繼續使用本服務，即代表你接受該變更。
-          </p>
-
-          <h2>11. 準據法</h2>
-          <p>本條款以中華民國（臺灣）法律為準據法，不適用其法律衝突原則。</p>
-
-          <h2>12. 聯絡方式</h2>
-          <p>
-            關於本條款的問題，請寄到{" "}
+            本條款以中華民國（臺灣）法律為準據法，
+            但不影響依法不得排除的消費者權利。
+            問題或申訴請寄到{" "}
             <a href="mailto:hello@rsrvlabs.com">hello@rsrvlabs.com</a>。
           </p>
 
           <h2>13. 語言版本</h2>
           <p>
-            本中文版是為了讓你能真正讀懂這份條款而提供的翻譯。若中文版與
-            <Link href="/legal/terms">英文版</Link>有任何歧異，以英文版為準。
+            本頁是繁體中文版。
+            <Link href="/legal/terms">英文版</Link>目前仍停在 2026 年 8 月 7 日那一版，
+            尚未同步到這一版<strong>（en 待同步）</strong>。
+          </p>
+          <p>
+            <LawyerFlag />
+            <em>
+              給創辦人與律師：與隱私權政策同一題 —— 舊版寫著「以英文版為準」，
+              但這一版新增的第 1、7、8 節在英文版裡還不存在，
+              保留那句話等於宣告以一份較舊的文本為準。
+              請與隱私權政策第 14 節一起決定，兩頁的答案必須一致。
+              這份草稿沒有替你們選。
+            </em>
           </p>
 
           <Link className={apple.backLink} href="/zh/legal/privacy">
