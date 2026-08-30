@@ -7,6 +7,22 @@
 // deletion "isn't built yet", but it shipped on 2026-08-09 (sw-app PR #137).
 // A privacy policy that describes a product that no longer exists misleads
 // users and contradicts the app in front of a reviewer.
+//
+// 2026-08-30 truth-drift sweep — three more §3/§4/§8 sentences corrected
+// against sw-app origin/main, each of which was false to a user:
+//   · Presence ran "while the app is open" → it runs only while you are in an
+//     activity, and it CONTINUES in the background (Info.plist
+//     NSBluetoothAlwaysUsageDescription + UIBackgroundModes bluetooth-central /
+//     bluetooth-peripheral).
+//   · Location said "create or join" and "does not track your location in the
+//     background" → Info.plist NSLocationWhenInUseUsageDescription says joining
+//     never reads it, and NSLocationAlwaysAndWhenInUseUsageDescription declares
+//     a background venue-boundary monitor for departure protection.
+//   · Unblock restored the match → blocking is permanent, with no in-app
+//     unblock (app_en.arb blkActConfirmBody, blocked_list_screen.dart).
+//   · Visibility was "off at any time in settings" → the control is the ghost
+//     choice made when joining an activity (ui/persona_picker.dart), and the
+//     Me screen has no such row.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
@@ -72,19 +88,23 @@ export default function PrivacyPage() {
           </p>
           <p>
             <strong>Presence: who&rsquo;s nearby.</strong> Limere&rsquo;s core feature is showing
-            you people you&rsquo;ve actually crossed paths with. While the app is open, your phone
-            and another Limere user&rsquo;s phone can recognize that you&rsquo;re both nearby,
-            automatically. This only works between two people who both have the app and are both
+            you people you&rsquo;ve actually crossed paths with. Your phone and another Limere
+            user&rsquo;s phone can recognize that you&rsquo;re both nearby, automatically. This
+            runs only while you&rsquo;re in an activity, and it keeps running while the app is in
+            the background. It only works between two people who both have the app and are both
             using it; it doesn&rsquo;t reveal either person&rsquo;s precise location, and it does
             nothing with people who aren&rsquo;t on Limere. The signal your phone uses for this
             changes regularly, so it isn&rsquo;t a fixed identifier that someone outside the app
-            could use to follow you around. You can turn off your visibility to nearby people at
-            any time in the app&rsquo;s settings.
+            could use to follow you around. Each time you join an activity you choose whether to
+            be visible or to join as a ghost, and a ghost isn&rsquo;t shown to the people around
+            them.
           </p>
           <p>
-            <strong>Location.</strong> If you create or join an event with a venue attached, the
-            app checks your location once, to confirm you&rsquo;re actually there. It does not
-            track your location in the background or at any other time.
+            <strong>Location.</strong> The app reads your location once, when you pin a venue to
+            an activity you create. Joining an activity never reads it. If you turn on departure
+            protection for an activity with a venue pinned, the app monitors that one venue
+            boundary in the background so it can remind you to leave. It does not record your
+            route.
           </p>
           <p>
             <strong>Photos.</strong> Photos you add to your profile or send in chat. We ask for
@@ -117,9 +137,9 @@ export default function PrivacyPage() {
           </p>
           <p>
             If you block someone, you&rsquo;re immediately hidden from each other, any match
-            between you ends, and your message history is hidden from both sides. If you unblock
-            someone you were previously matched with, that match and its history are restored. If
-            you report someone, we see the report; they aren&rsquo;t told who filed it.
+            between you ends, and your message history is hidden from both sides. Blocking is
+            permanent and can&rsquo;t be undone: you won&rsquo;t be able to unblock that person in
+            Limere. If you report someone, we see the report; they aren&rsquo;t told who filed it.
           </p>
 
           <h2>5. How we store and protect information</h2>
@@ -161,8 +181,8 @@ export default function PrivacyPage() {
 
           <h2>8. Your choices</h2>
           <p>
-            You can control which optional profile fields you share, turn off your visibility to
-            nearby people, block or report anyone, and leave an event, all from within the app.
+            You can control which optional profile fields you share, join an activity as a ghost
+            instead of visibly, block or report anyone, and leave an event, all from within the app.
             Contact hello@rsrvlabs.com for any other request about your information.
           </p>
 
