@@ -117,6 +117,13 @@ test.describe("Limere activity invite handoff", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/limere/invite#AB12CD");
 
+    // The server-safe initial state renders a disabled button until hydration
+    // reads the URL fragment. Wait for the real link before exercising Tab;
+    // otherwise a slower CI machine can tab past the pre-hydration button.
+    await expect(page.getByTestId("open-limere")).toHaveAttribute(
+      "href",
+      "limere://session/AB12CD",
+    );
     await page.keyboard.press("Tab");
     await expect(page.getByTestId("open-limere")).toBeFocused();
     await expect(page.getByTestId("open-limere")).toHaveCSS("outline-style", "solid");
