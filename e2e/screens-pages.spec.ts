@@ -4,9 +4,17 @@ import { test } from "playwright/test";
 const SHOTS_DIR = process.env.SHOTS_DIR;
 test.skip(!SHOTS_DIR, "SHOTS_DIR not set");
 
-const routes = ["limere", "labs", "frontiers", "research", "effects", "research/ai-native-company"];
+const routes = [
+  "limere",
+  "limere/invite#AB12CD",
+  "labs",
+  "frontiers",
+  "research",
+  "effects",
+  "research/ai-native-company",
+];
 for (const route of routes) {
-  const name = route.replaceAll("/", "-");
+  const name = route.replaceAll("/", "-").replaceAll("#", "-");
   test(`capture /${route}`, async ({ page }) => {
     await page.goto(`/${route}`);
     await page.locator("h1").first().waitFor({ state: "visible", timeout: 30_000 });

@@ -1,0 +1,307 @@
+.page {
+  --limere-ground: #fafaf9;
+  --limere-oat: #efeae4;
+  --limere-card: #fdfcfa;
+  --limere-fill: #ece8e1;
+  --limere-olive: #84815c;
+  --limere-olive-action: #706d43;
+  --limere-olive-soft: #c6c4ac;
+  --limere-grey: #929292;
+  --limere-grey-text: #686862;
+  --limere-ink: #37352e;
+  --limere-error: #b65747;
+  --limere-line: rgba(55, 53, 46, 0.12);
+
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  background: var(--limere-ground);
+  color: var(--limere-ink);
+  padding: clamp(24px, 5vw, 64px) 20px;
+  isolation: isolate;
+}
+
+.page::before {
+  position: absolute;
+  z-index: -2;
+  top: clamp(-160px, -10vw, -90px);
+  right: clamp(-180px, -9vw, -70px);
+  width: clamp(300px, 42vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--limere-oat);
+  content: "";
+}
+
+.ambient {
+  position: absolute;
+  z-index: -1;
+  bottom: clamp(-260px, -22vw, -120px);
+  left: clamp(-240px, -10vw, -80px);
+  width: clamp(420px, 62vw, 900px);
+  aspect-ratio: 1.75;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--limere-olive-soft) 42%, transparent);
+  transform: rotate(-8deg);
+}
+
+.shell {
+  width: min(100%, 472px);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 8px 22px;
+  animation: brand-in 500ms ease-out both;
+}
+
+.wordmark {
+  font-family: "Erode", Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.brandNote {
+  color: var(--limere-grey-text);
+  font-family: "Switzer", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.inviteCard {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 30px;
+  background: color-mix(in srgb, var(--limere-card) 94%, transparent);
+  box-shadow: 0 24px 70px rgba(55, 53, 46, 0.12);
+  padding: clamp(26px, 7vw, 40px);
+  animation: card-in 620ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: var(--limere-olive-action);
+  font-family: "Erode", Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.inviteCard h1 {
+  margin: 0;
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: clamp(31px, 8vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.13;
+}
+
+.intro {
+  margin: 18px 0 0;
+  color: color-mix(in srgb, var(--limere-ink) 74%, transparent);
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.codeBlock {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 24px;
+  border: 1px solid var(--limere-line);
+  border-radius: 16px;
+  background: var(--limere-oat);
+  padding: 16px 18px;
+}
+
+.codeBlock span {
+  color: var(--limere-grey-text);
+  font-family: "Switzer", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.codeBlock strong {
+  font-family: "Switzer", ui-monospace, monospace;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.error {
+  margin: 12px 2px 0;
+  color: var(--limere-error);
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.actions {
+  display: grid;
+  gap: 11px;
+  margin-top: 28px;
+}
+
+.openButton,
+.downloadButton {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 18px;
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease,
+    transform 160ms ease;
+}
+
+.openButton {
+  border: 1px solid var(--limere-olive-action);
+  background: var(--limere-olive-action);
+  color: #fff;
+  cursor: pointer;
+}
+
+.openButton:visited {
+  background: color-mix(in srgb, var(--limere-olive-action) 88%, var(--limere-ink));
+  color: #fff;
+}
+
+.openButton:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--limere-olive-action) 90%, var(--limere-ink));
+  transform: translateY(-1px);
+}
+
+.openButton:active:not(:disabled),
+.downloadButton:active {
+  transform: translateY(1px);
+}
+
+.openButton:disabled {
+  border-color: var(--limere-fill);
+  background: var(--limere-fill);
+  color: var(--limere-grey-text);
+  cursor: not-allowed;
+}
+
+.downloadButton {
+  border: 1px solid var(--limere-line);
+  background: transparent;
+  color: var(--limere-ink);
+}
+
+.downloadButton:visited {
+  color: color-mix(in srgb, var(--limere-ink) 72%, var(--limere-olive));
+}
+
+.downloadButton:hover {
+  border-color: color-mix(in srgb, var(--limere-olive) 58%, transparent);
+  background: var(--limere-oat);
+}
+
+.openButton:focus-visible,
+.downloadButton:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--limere-olive) 55%, transparent);
+  outline-offset: 3px;
+}
+
+.assurance {
+  margin: 18px auto 0;
+  color: var(--limere-grey-text);
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.returnHint {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 18px 12px 0;
+  color: color-mix(in srgb, var(--limere-ink) 72%, transparent);
+  font-family: "Switzer", system-ui, -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  animation: hint-in 650ms 160ms ease-out both;
+}
+
+.returnHint span {
+  flex: 0 0 auto;
+  color: var(--limere-olive-action);
+  font-family: "Erode", Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@keyframes brand-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+@keyframes hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    place-items: start center;
+    padding: 24px 16px 28px;
+  }
+
+  .brand {
+    margin-bottom: 17px;
+  }
+
+  .brandNote {
+    max-width: 105px;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  .inviteCard {
+    border-radius: 26px;
+  }
+
+  .returnHint {
+    margin-top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand,
+  .inviteCard,
+  .returnHint {
+    animation: none;
+  }
+
+  .openButton,
+  .downloadButton {
+    transition: none;
+  }
+}
