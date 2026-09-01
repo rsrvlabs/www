@@ -148,8 +148,10 @@ export default function PrivacyPage() {
             You can remove individual photos from your profile at any time in the app, and you can
             delete your whole account from the app as well — it&rsquo;s under Me, and it asks you
             to type a confirmation first. Your profile, photos, matches, and everything you&rsquo;ve
-            shared are removed right away, and you&rsquo;re signed out for good. It can&rsquo;t be
-            undone.
+            shared are removed from other users right away, and you&rsquo;re signed out for good. Our
+            systems keep the data for 30 more days — if you deleted your account by mistake, email
+            us within that window and we can restore it. After 30 days, everything is permanently
+            deleted and can&rsquo;t be recovered.
           </p>
           <p>
             Two things stay on purpose, and we&rsquo;d rather say so than let you find out later:
