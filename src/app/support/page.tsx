@@ -73,8 +73,11 @@ export default function SupportPage() {
           <h3>How do I delete my account?</h3>
           <p>
             In the app: <strong>Me → Delete account</strong>. It asks you to type a confirmation
-            first. Your profile, photos, matches, and everything you&rsquo;ve shared are removed
-            right away, and you&rsquo;re signed out for good. It can&rsquo;t be undone.
+            first. Your profile, photos, matches, and everything you&rsquo;ve shared are removed from
+            other users right away, and you&rsquo;re signed out for good. Our systems keep the data
+            for 30 more days — deleted by mistake? Email us within that window and we can restore
+            your account. After 30 days, everything is permanently deleted and can&rsquo;t be
+            recovered.
           </p>
           <p>
             Two things stay on purpose: messages you already sent may still be visible to the
