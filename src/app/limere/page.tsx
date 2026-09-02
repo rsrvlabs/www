@@ -44,7 +44,7 @@ const FEATURES: Feature[] = [
     title: "You already met someone today.",
     paras: [
       "Think about your week. The person next to you at the meetup. The one who laughed at the same joke. You noticed them, and then life moved on.",
-      "Limere noticed too. It keeps a private list of the people you actually crossed paths with, ordered by who was really near. One busy night no longer has to be the end of it.",
+      "Limere noticed too. It keeps a private list of the people you actually crossed paths with, newest first. One busy night no longer has to be the end of it.",
     ],
     media: {
       src: "/limere/limere-flow-nearby-reconnect.mp4",
@@ -74,7 +74,13 @@ const FEATURES: Feature[] = [
    as the homepage stance grid, straight from the kit.
 
    Outcome language only, like the rest of the page — what you get, never how
-   the app gets it. */
+   the app gets it.
+
+   02 said "a week" until 2026-08-30. R131 (Ryvn 2026-08-20) cut the crossed-
+   paths window to 48 hours — supabase/migrations/20260820210000_retention_
+   windows_48h.sql defines encounter_history_window() as interval '48 hours',
+   the app's own copy says "Kept for 48 hours" (app_en.arb encHint), and #479
+   retired the 7-day per-event memory page so 「曾經」 is the only path left. */
 const SHIPPED: Array<[string, string, string]> = [
   [
     "01",
@@ -83,8 +89,8 @@ const SHIPPED: Array<[string, string, string]> = [
   ],
   [
     "02",
-    "An event stays open for a week.",
-    "For seven days afterwards you can go back and see who you crossed paths with there. The name you never caught. The face you meant to find again. The night does not close the second the lights come up.",
+    "An event stays open for 48 hours.",
+    "For 48 hours afterwards you can go back and see who you crossed paths with there. The name you never caught. The face you meant to find again. The night does not close the second the lights come up.",
   ],
   [
     "03",

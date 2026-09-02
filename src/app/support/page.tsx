@@ -53,7 +53,7 @@ export default function SupportPage() {
           <p>
             An empty Nearby screen usually just means nobody else around you has Limere open
             right now, and that&rsquo;s expected outside of an event. Join an activity from the
-            Activities tab: people who also have Limere open at that event will start showing up
+            Events tab: people who also have Limere open at that event will start showing up
             as you cross paths with them.
           </p>
 
