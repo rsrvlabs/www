@@ -96,6 +96,12 @@ const essays: Array<{
     body: "Series 01, essay 12: Tinder and Bumble are both bolting real-world rooms onto the swipe deck, on their own earnings calls. That is not a new feature. It is a concession — and the honest reading of their own data says discovery should have started with the room, not the deck.",
     href: "/research/swipe-is-dying",
   },
+  {
+    kicker: "Measurement",
+    title: "Errors don't lean toward comfort. The comfortable ones survive.",
+    body: "Series 01, essay 13: we found five broken instruments in one week and wrote down that every one of them flattered us. Then we counted. Three of the five pointed the other way — and had already been caught. The asymmetry is in survival, not in error.",
+    href: "/research/errors-lean-toward-comfort",
+  },
 ];
 
 export default function ResearchPage() {
