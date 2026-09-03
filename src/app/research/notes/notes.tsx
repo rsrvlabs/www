@@ -19,6 +19,1439 @@ export type LabNote = {
 
 export const NOTES: LabNote[] = [
   {
+    slug: "the-fixture-that-could-not-tell-them-apart",
+    title: "The fixture that couldn’t tell them apart",
+    date: "2026-08-30",
+    hook: "Test first, watched it go red, watched it go green — and it asserted an order that both the old and the new rule produce. Find the input where the rules disagree, or the ceremony proves nothing.",
+    body: (
+      <>
+        <p>
+          Yesterday an agent shipped a small behavioural change: an identity
+          switcher should list the <em>currently active</em> identity first,
+          instead of always pinning the account identity to the top. The agent
+          did everything our discipline asks for — wrote the test first,
+          watched it fail, made it pass, ran the full gate. Green across the
+          board. And the first version of that test was worthless.
+        </p>
+        <p>
+          In the default test fixture, the active identity <em>was</em> the
+          account identity. Under the old rule (account first) and the new
+          rule (current first), the expected list order came out identical.
+          The test asserted an ordering that both implementations produce. It
+          went red before the fix only because of an unrelated setup detail,
+          and it would have stayed green if someone later reverted the
+          feature. A test like that isn&rsquo;t evidence. It&rsquo;s a
+          decoration that happens to be the right colour.
+        </p>
+        <p>
+          The fix was to ask one question before writing the assertion:{" "}
+          <strong>
+            what is the smallest input on which the old rule and the new rule
+            disagree?
+          </strong>{" "}
+          For an ordering rule, that means constructing the discriminating
+          state — make the active identity something other than the account —
+          and asserting the order that only the new rule produces. Once the
+          fixture could tell the two rules apart, the red test finally meant
+          &ldquo;the feature is missing&rdquo; and the green test finally
+          meant &ldquo;the feature is there.&rdquo;
+        </p>
+        <p>
+          This generalizes past orderings. Any change of the form{" "}
+          <em>replace rule A with rule B</em> has a truth table, and your
+          fixture is one row of it. If A and B agree on that row, the
+          red-then-green ceremony proves nothing about the change — it proves
+          your setup code runs. Defaults are where this bites hardest, because
+          default fixtures are engineered to be unremarkable, and unremarkable
+          inputs are exactly where competing rules tend to coincide.
+        </p>
+        <p>
+          So &ldquo;find the discriminating input first&rdquo; is now a
+          required step for any rule-replacement work: name the input where
+          old and new diverge, pin the test to it, and if you can&rsquo;t find
+          one, that isn&rsquo;t a testing inconvenience — that&rsquo;s the
+          discovery that your change has no observable behaviour.
+        </p>
+        <p>
+          The embarrassing part is how familiar this is. Property-based
+          testing people have said it for years: a test is only as strong as
+          the distribution of inputs it visits. We rediscovered it the slow
+          way, on a list with four avatars in it.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-branch-that-never-knocked",
+    title: "The branch that never knocked",
+    date: "2026-08-29",
+    hook: "An agent finished the work, pushed the branch, and died before opening a pull request. Three separate watchdogs missed it, because all three assume there is a live session left to nag.",
+    body: (
+      <>
+        <p>
+          Two days ago one of our dispatch agents finished its job and died
+          without telling anyone.
+        </p>
+        <p>
+          The work itself was real and complete: an audit reconciling a mobile
+          app&rsquo;s permission declarations across three surfaces that are
+          supposed to agree, plus a new gate script with nineteen tests wired
+          into preflight. The agent committed twice, pushed its branch to the
+          remote, and started the final test run. Then the watchdog flagged it
+          as stalled — ten minutes without progress — and shortly after, the
+          whole session it belonged to crashed on a network error. The branch
+          sat on the remote. No pull request. No comment on the ticket. Nobody
+          knew.
+        </p>
+        <p>
+          We found it two days later, during a routine distillation of old
+          session transcripts, by which time the branch was thirty commits
+          behind the main line.
+        </p>
+        <p>
+          Here is the uncomfortable part: we already had three separate
+          mechanisms watching for exactly this family of failure. A watchdog
+          that catches stalled agents. A hook that catches half-finished work
+          at session end. A ledger audit that catches tickets whose last
+          comment doesn&rsquo;t match their state.{" "}
+          <strong>All three assume there is a live session left to nag.</strong>{" "}
+          When the session dies, every one of them goes quiet — and quiet is
+          also what &ldquo;nothing happened&rdquo; sounds like.
+          Finished-but-undelivered work is indistinguishable, from the
+          outside, from work that was never started. On the books,
+          done-but-not-delivered equals not done.
+        </p>
+        <p>
+          This is the second time this exact shape has bitten us in a week. An
+          earlier batch had three agents report progress and leave behind no
+          branches at all. The pattern that emerges: delivery is a chain with
+          three links — branch on the remote, pull request open, delivery
+          comment on the card — and any process that dies between links
+          strands the work invisibly. Watching the <em>workers</em> is not
+          enough; something has to walk the chain afterwards, when no worker is
+          left to speak.
+        </p>
+        <p>
+          So the fix is not another watchdog. It is a reconciliation pass at
+          batch close, owned by whoever dispatched the work, that checks those
+          three cells for every dispatched unit against ground truth — the
+          remote, the open pull requests, the card — rather than against
+          anything the agent said about itself. A row with empty cells is
+          either in flight with a live owner, or orphaned, and orphaned has to
+          be loud.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-empty-list-that-waved-us-through",
+    title: "The empty list that waved us through",
+    date: "2026-08-28",
+    hook: "A brand-new safety gate’s first act was to approve the thing it existed to block: an unauthorized query doesn’t fail, it returns an empty list — the same empty list as “all clear.”",
+    body: (
+      <>
+        <p>
+          This morning our heartbeat ran a brand-new safety rule for the first
+          time — and the rule&rsquo;s very first act was to silently approve
+          something it should have blocked. Nothing broke, because a later step
+          happened to expose the lie. But the shape of the near-miss is worth
+          writing down, because we keep meeting it wearing different costumes.
+        </p>
+        <p>
+          The rule is a backpressure gate: before the system claims new tickets
+          and opens more pull requests, count how many of its pull requests are
+          already open and waiting for a human review. Six or more, stop —
+          finish reviewing before writing more code. Simple, mechanical,
+          sensible.
+        </p>
+        <p>
+          The count came back zero. Zero open! Green light, claim away. The
+          true number was eight.
+        </p>
+        <p>
+          The query had run under the wrong command-line account — one with no
+          access to the repository at all. And here is the trap: a search from
+          an unauthorized account doesn&rsquo;t fail. It politely returns an
+          empty list. The same empty list you&rsquo;d get if the queue were
+          genuinely clear. The guard didn&rsquo;t crash; it{" "}
+          <em>misread silence as safety</em> and waved us through.
+        </p>
+        <p>
+          We have been bitten by this exact shape three times before, in
+          unrelated systems:
+        </p>
+        <ul>
+          <li>
+            A shell quirk meant an environment file was never actually loaded,
+            so an API token was empty — and the service&rsquo;s{" "}
+            <code>invalid token</code> error blamed the credential, not the
+            shell. The ingest job concluded &ldquo;no new rows&rdquo; for days.
+          </li>
+          <li>
+            Our nightly database audit once hung for four nights. No report was
+            produced — and &ldquo;no report&rdquo; looked exactly like
+            &ldquo;quiet night, nothing to say.&rdquo;
+          </li>
+          <li>
+            A page&rsquo;s structured data had a field that <em>looked</em>{" "}
+            like an application deadline and matched one exactly, once. It was
+            a wall-clock timestamp. A field that agrees with you today is not a
+            source.
+          </li>
+        </ul>
+        <p>
+          The common law underneath:{" "}
+          <strong>
+            absence of signal is not signal of absence, and a guard that can
+            fail open is not a guard.
+          </strong>{" "}
+          Any check whose &ldquo;all clear&rdquo; is byte-identical to its
+          &ldquo;I couldn&rsquo;t look&rdquo; will eventually approve the thing
+          it exists to stop — and it will do so on the first run, when your
+          trust in it is highest and your suspicion lowest.
+        </p>
+        <p>
+          The fix is boring and universal: before trusting an empty answer,
+          assert the <em>precondition of seeing</em>. Who am I authenticated
+          as? Did the file actually load? Did the reporter actually run? Our
+          backpressure gate now verifies the account identity before counting;
+          counting under the wrong identity is an error, not a zero.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-side-door",
+    title: "The side door",
+    date: "2026-08-27",
+    hook: "Five agents audited every screen and returned seventy-nine findings; a founder found the one they missed. They checked that each control enforced the rule, never how many controls the room had.",
+    body: (
+      <>
+        <p>
+          Yesterday five agents swept every screen of our app against six
+          classes of interface defect and came back with seventy-nine findings,
+          each pinned to a file and a line. A few hours later a founder,
+          testing by hand, found a real one the sweep had missed — on a surface
+          the sweep had explicitly covered.
+        </p>
+        <p>
+          The bug: during an event, your identity is frozen. The identity
+          picker knows this — it pre-selects your frozen persona and greys out
+          all the others. But the same picker has one more row: create a new
+          persona. That row only checks whether you have slots left. Create
+          one, and the picker happily selects it and sends it to the server. A
+          frozen identity, bypassed through the front door&rsquo;s neighbour.
+        </p>
+        <p>
+          Why did the sweep miss it? Because it audited <em>controls</em>, not{" "}
+          <em>outcomes</em>. Every check was of the form &ldquo;does this
+          widget enforce the rule?&rdquo; — and every widget did. The
+          greyed-out rows enforced it. The hidden switch button enforced it.
+          The audit walked the room checking that each door was locked, and
+          never asked the only question that mattered:{" "}
+          <em>how many doors does this room have?</em> The &ldquo;create
+          new&rdquo; row wasn&rsquo;t on the list of doors, so nobody checked
+          it.
+        </p>
+        <p>
+          The fix to the method is now a standing rule in our scanning
+          playbook:{" "}
+          <strong>
+            bind every invariant to the outcome, never to the action.
+          </strong>{" "}
+          Not &ldquo;the switch button must be disabled&rdquo; but &ldquo;no
+          path may result in a different persona entering this event.&rdquo;
+          Then enumerate the paths to that outcome — including the ones that
+          create their objects on the way in.
+        </p>
+        <p>
+          There was a second lesson hiding underneath. Before touching any
+          interface code we wrote a red test against a local copy of the
+          production rules: send the server every wrong persona we could
+          construct — an existing one, a freshly created one, a null. Eleven
+          checks out of eleven, the server silently swapped the frozen identity
+          back. Nobody else would ever have seen the new face. The privacy hole
+          we feared didn&rsquo;t exist; what existed was a display layer
+          promising something the server would quietly refuse.
+        </p>
+        <p>
+          That distinction — <em>is the rule broken, or is the interface lying
+          about the rule?</em> — decided the severity, the fix, and who needed
+          to be woken up. We only knew which world we were in because we tested
+          the invariant, not the widget.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-impatient-user",
+    title: "The impatient user",
+    date: "2026-08-26",
+    hook: "Three hours of device automation produced nothing closeable; one afternoon of a founder being deliberately impatient produced eight real bugs. Nineteen hundred green tests had missed every one.",
+    body: (
+      <>
+        <p>
+          A founder spent three hours yesterday trying to make a fully
+          automated end-to-end test pass on a physical phone: signed production
+          build, secure photo viewer, screenshot evidence, fixture cleanup.
+          Most of the pieces worked. The whole never did — the run kept dying
+          at the first backend checkpoint, and after a day of narrowing, the
+          failure still lived somewhere in the production session stack. Three
+          hours, zero tests that could close a ticket.
+        </p>
+        <p>
+          So he stopped. Not paused — ruled. Full-device automation was
+          demoted on the spot, and testing was split into three lanes: humans
+          walk the happy paths on real hardware; automation covers what a
+          single machine can verify locally; a thin probe checks the backend on
+          its own. Anything involving two devices, a locked screen, hardware
+          buttons, system interface, or a minute of waiting never enters
+          unattended automation again.
+        </p>
+        <p>
+          Then he picked up the phone and did the thing the robots had been
+          failing to do. He played, in his words, a <em>very impatient user</em>{" "}
+          — and in one afternoon filed eight real bug tickets. None of them
+          were crashes. They were the kind of thing no assertion had been
+          written for: two features prompting for the same permission with two
+          different explanations; an event you could leave but not end, because
+          the end control didn&rsquo;t exist on the screen where a host would
+          look for it; a status list that only updated if you happened to pull
+          down on it; a prompt that vanished the moment a <em>different</em>{" "}
+          user granted their permission.
+        </p>
+        <p>
+          The uncomfortable part is that the codebase was green. Nineteen
+          hundred automated tests passed the day before. Every one of those
+          eight bugs lived in the gap between &ldquo;the code does what the
+          spec says&rdquo; and &ldquo;a person can tell what is going on&rdquo;
+          — and our assertions are all on the first side of that gap.{" "}
+          <strong>
+            Automation verifies the promises you knew to write down. The
+            impatient user discovers the promises you didn&rsquo;t know you
+            were making.
+          </strong>
+        </p>
+        <p>
+          The economics matter too. The three automated hours produced
+          diagnostic knowledge but nothing closeable. The manual afternoon
+          produced eight tickets, and by midnight eleven fix branches had
+          merged — the human found them faster than the machines could even
+          reproduce them. That ratio won&rsquo;t hold forever; once a flow is
+          stable, automation is how it <em>stays</em> stable. But at the
+          frontier, where the product is still deciding what it is, the
+          cheapest test harness is a person with no patience and full
+          permission to be annoyed.
+        </p>
+        <p>
+          The stop-loss went onto our pre-ship question list in one line:{" "}
+          <em>
+            has a human walked this flow&rsquo;s happy path once — before you
+            automated it?
+          </em>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-dictionary-that-ate-the-duplicate",
+    title: "The dictionary that ate the duplicate",
+    date: "2026-08-25",
+    hook: "A duplicate detector poured its input into a map keyed by the very value it was hunting duplicates of. The test passed on sorting luck. Convenience containers encode the assumption you’re testing.",
+    body: (
+      <>
+        <p>
+          Yesterday an agent was asked to build a small guard: scan the
+          database migration folder and shout if two files claim the same
+          version number. Version collisions had bitten the team twice in a
+          week, so the rule was simple and the code was short. It wrote the
+          scanner, wrote a unit test with two colliding files, ran it, and the
+          test was green.
+        </p>
+        <p>
+          The agent then did something the brief had not asked for. It read its
+          own scanner again and noticed that the first thing the code did was
+          pour every file into a map keyed by version number. A map keeps one
+          value per key. So when two files shared a version, the second one
+          silently replaced the first <em>before the collision check ever
+          ran</em>. The check was looking at a collection that could not, by
+          construction, contain the thing it was checking for.
+        </p>
+        <p>
+          Why was the test green? Because the test&rsquo;s two colliding files
+          happened to sort in an order where the survivor was the one the
+          assertion looked at. Change the filenames, and the same test turns
+          red. The guard had passed on luck, not on correctness — and it would
+          have shipped that way, because a green test is the loudest possible
+          signal that you can stop thinking.
+        </p>
+        <p>
+          The fix was one line: collect a list per key instead of one value.
+          The lesson is not about maps. It is about a shape that keeps
+          recurring in our audits:{" "}
+          <strong>
+            the data structure you choose for convenience can encode the
+            assumption you are trying to test.
+          </strong>{" "}
+          &ldquo;One entry per version&rdquo; is exactly the invariant the
+          scanner exists to enforce; building the scanner on a container that
+          enforces it by default means the scanner can never observe a
+          violation. The tool was not wrong about the world — it was incapable
+          of seeing the part of the world it was for.
+        </p>
+        <p>
+          Two habits fall out. First, a guard&rsquo;s test must include the
+          failure in <em>both</em> orders, or in a randomized order, so that a
+          pass cannot depend on sorting. Second, when a detector holds its
+          input in any structure that deduplicates, ask what the structure is
+          deduplicating <em>on</em> — if the answer is the very key the
+          detector exists to find duplicates of, the detector is blind.
+        </p>
+        <p>
+          It went onto our pre-ship question list in one line:{" "}
+          <em>
+            does the container you load the input into already collapse the
+            case you are looking for?
+          </em>
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-test-you-merged-is-not-the-test-that-runs",
+    title: "The test you merged is not the test that runs",
+    date: "2026-08-24",
+    hook: "The fix merged and a verification row said “the next nightly run will prove it.” The nightly runs from a developer’s working copy, parked 281 commits back on a four-day-old branch.",
+    body: (
+      <>
+        <p>
+          Yesterday the team rewrote the judge inside its nightly audit. The
+          old judge had a hole: an error message that happened to quote the
+          success marker was counted as success. The new one anchors the
+          marker, classifies failures by exit code and error class, and ships
+          with an end-to-end test, because the original bug lived in one line
+          of shell glue rather than in the judge itself. It merged. A
+          verification row was filed: &ldquo;the first nightly run after the
+          merge will prove it.&rdquo;
+        </p>
+        <p>
+          The heartbeat checked that row tonight and found that it cannot come
+          true.
+        </p>
+        <p>
+          The nightly job is started by the operating system&rsquo;s scheduler
+          from a fixed path — a developer&rsquo;s working copy of the
+          repository. That working copy is parked on a feature branch from four
+          days ago, 281 commits behind the branch everyone merges into, with
+          three uncommitted files in it. The scheduler does not know what the
+          main line is. It runs whatever is on disk at half past three.
+          Tonight, that is the old judge, with the old hole, against the old
+          fixtures.
+        </p>
+        <p>
+          Nothing in the merge pipeline was wrong. The change was reviewed,
+          tested, squashed, and landed exactly where it was supposed to. The
+          verification row was honest about its trigger. The gap is between two
+          meanings of &ldquo;the repo&rdquo;: the one the merge button writes
+          to, and the one the scheduler reads from.{" "}
+          <strong>They are usually the same directory.</strong> Usually is the
+          whole problem — on the one night you want them to agree, nobody
+          checked.
+        </p>
+        <p>
+          Two small rules fall out of this. A scheduled job should run from a
+          checkout that tracks a named branch and nothing else — never a
+          human&rsquo;s working tree, which exists in order to be wrong for a
+          while. And a verification that says &ldquo;the next run will prove
+          it&rdquo; should name <em>which</em> run, from <em>which</em>{" "}
+          checkout; otherwise it is a hope with a date on it.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-half-kept-bargain",
+    title: "The half-kept bargain",
+    date: "2026-08-23",
+    hook: "Three clauses of a priority ruling were kept decisively; the fourth sat thirty-four days overdue. The axis nobody chose deliberately: which clauses a test can grade.",
+    body: (
+      <>
+        <p>
+          Eleven days ago the company finally settled an argument it had been
+          having with itself for weeks: which product is number one. The
+          decision had four clauses. Three were about building — make the
+          flagship the biggest track, freeze the side project, stop
+          gold-plating the internal tooling. The fourth was a floor, not a
+          build: never go two weeks without talking to somebody outside the
+          company.
+        </p>
+        <p>
+          A scheduled review ran this morning and counted. All three build
+          clauses: kept, decisively. The flagship&rsquo;s commit volume more
+          than doubled and became the majority of everything the company did.
+          The side project went from ninety-four commits to two — a founder
+          braked his own main line, which is the hardest kind of compliance to
+          get. The tooling clause held too: classifying every commit in the
+          internal repository, only twelve per cent touched tooling at all; the
+          rest was record-keeping <em>for</em> the flagship.
+        </p>
+        <p>The fourth clause was at thirty-four days.</p>
+        <p>
+          The interesting question isn&rsquo;t why people skipped it. Nobody
+          skipped it. It&rsquo;s that the three kept clauses and the one
+          dropped clause differ along an axis nobody chose deliberately:{" "}
+          <strong>
+            the kept ones have automatic acceptance and the dropped one
+            doesn&rsquo;t.
+          </strong>{" "}
+          A commit is right or wrong within minutes — tests, a preflight gate,
+          a nightly audit. Whether you have talked to a real human being this
+          month is a fact only a person can notice, and only if they go
+          looking.
+        </p>
+        <p>
+          Look at what else was overdue and the pattern repeats with no
+          exceptions. Every single card in the go-to-market lane was past its
+          date: the press kit, the waitlist form, the store assets, the first
+          real gathering with actual users. None of them are hard. None of them
+          have a test that turns red.
+        </p>
+        <p>
+          So nobody was avoiding the uncomfortable work in any psychological
+          sense. The team was doing what a gradient does — flowing toward the
+          surface that gives feedback. Engineers with an excellent
+          continuous-integration pipeline will drift toward whatever that
+          pipeline can grade, and the drift is invisible precisely because the
+          graded work is genuinely good. Six hundred commits is not
+          procrastination. It is the most legible possible form of it.
+        </p>
+        <p>
+          The fix isn&rsquo;t exhortation, and it isn&rsquo;t another reminder
+          — the alert ticket for the fourth clause already had three comments
+          on it, each one restating the number with a bigger number. An alarm
+          that only updates its count is not an alarm. What the review actually
+          did was name a single existing task that would zero the counter in
+          one evening, name the people already on it, and ask for one thing a
+          human can answer in a word: a date.
+        </p>
+        <p>
+          If your automation can grade it, it will get done. The corollary is
+          the whole job: find the clauses your automation <em>can&rsquo;t</em>{" "}
+          grade, and give those a different mechanism than a number that goes
+          up.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-alarm-grew-past-the-wire",
+    title: "The alarm grew past the wire",
+    date: "2026-08-22",
+    hook: "The nightly audit ran fine for two nights and reached nobody. We had made the report richer, and report length grows with the number of problems — the channel’s capacity doesn’t.",
+    body: (
+      <>
+        <p>
+          Two days ago we fixed a small, embarrassing bug in a nightly audit.
+          The audit runs against the real database, writes a human-readable
+          report, and posts it to a chat channel — that post is the only way a
+          person ever learns the result. The bug was that the post could fail
+          and nothing would notice: the call didn&rsquo;t treat a 4xx response
+          as an error, and the &ldquo;this run completed&rdquo; timestamp was
+          written <em>before</em> the send. So a run could finish, fail to
+          reach anybody, and still look fresh.
+        </p>
+        <p>
+          We fixed both halves. The call now fails loudly. The completion stamp
+          moved to <em>after</em> a successful delivery, on the reasoning that
+          from the reader&rsquo;s point of view, &ldquo;it didn&rsquo;t
+          run&rdquo; and &ldquo;it ran but you&rsquo;ll never know&rdquo; are
+          the same event.
+        </p>
+        <p>
+          This morning a separate scheduled job — deliberately a different
+          process, on a different schedule, because a monitor that shares a
+          fate with the thing it monitors is decoration — asked the only
+          question it is allowed to ask: when did the audit last finish?
+          Answer: forty-seven hours ago. Two nights missing.
+        </p>
+        <p>
+          The audit had run both nights. It had run fine. The report was 3,660
+          characters one night and 4,340 the next, and the channel rejects any
+          single message over two thousand. Both were refused whole. No stamp,
+          correctly.
+        </p>
+        <p>
+          The interesting part isn&rsquo;t the character limit. It&rsquo;s the
+          direction of the failure. Every report that had ever been delivered
+          was under 1,400 characters. What changed wasn&rsquo;t the limit — it
+          was us. A few weeks ago we improved the report so each red line
+          carries the underlying error text, because without it you can&rsquo;t
+          tell &ldquo;the rule really broke&rdquo; from &ldquo;the test script
+          lagged a legitimate change.&rdquo; That was a good change. It also
+          means <strong>report length grows with the number of problems.</strong>{" "}
+          The channel&rsquo;s capacity is fixed. The message&rsquo;s size is a
+          function of how bad the night was.
+        </p>
+        <p>
+          So the alarm is silent precisely on the nights it has the most to
+          say. On a quiet night it works perfectly. You cannot find this bug by
+          testing the happy path, and you cannot find it by watching
+          production, because production looks fine on exactly the days
+          you&rsquo;re watching.
+        </p>
+        <p>
+          The generalisation we&rsquo;re taking away, and adding to our
+          pre-ship checklist:{" "}
+          <strong>
+            every alert channel has a capacity, and you have to measure your
+            worst-case payload against it, not your typical one.
+          </strong>{" "}
+          Ask what the message looks like on the worst day you can construct —
+          not the day you happen to be having. Anything that summarises
+          failures is a candidate: length, attachment size, rate limits,
+          retention.
+        </p>
+        <p>
+          The consolation is that the fix from two days ago paid for itself
+          immediately. It didn&rsquo;t prevent this outage. It converted a
+          silent one into a loud one, forty-seven hours in, which is the entire
+          job of that class of fix. We&rsquo;d rather find out this way than
+          the way we found the last one.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-notebook-never-asks",
+    title: "The notebook never asks",
+    date: "2026-08-21",
+    hook: "A founder asked why we keep repeating mistakes we have written down. Sorting every lesson by one property — does anything run this, or does it wait to be re-read? — answered it.",
+    body: (
+      <>
+        <p>
+          A founder asked our agent a question that sounds rhetorical and
+          isn&rsquo;t:{" "}
+          <em>
+            when you&rsquo;re working, do you actually go back and read the
+            things you learned? What&rsquo;s the mechanism? Because if there is
+            one, how do you keep making the same mistake?
+          </em>
+        </p>
+        <p>
+          So we ran the audit. We listed every place a lesson lives in this
+          system — a conventions document, a bank of pre-ship questions,
+          incident write-ups, memory files, event hooks — and sorted them by a
+          single property:{" "}
+          <strong>
+            does anything <em>run</em> this, or does it wait to be re-read?
+          </strong>{" "}
+          The list came back lopsided. Only the hooks — small programs that
+          fire on defined events — act without being remembered. Everything
+          else depends on the agent remembering to consult it, and remembering
+          is precisely the faculty that already failed. That&rsquo;s the trap
+          in the question: a lesson stored in a document is guarded by the same
+          habit whose failure produced the lesson.
+        </p>
+        <p>
+          The same day supplied a controlled experiment, unrequested. The one
+          lesson-class that lives in a hook fired four times that day; all four
+          slips were caught and fixed on the spot. A different lesson, written
+          into the question bank <em>that very morning</em> — walk the path you
+          just paved, once, before declaring it open — was violated three more
+          times before evening. Same system, same day, same sincerity of
+          recording. The difference was never whether the lesson was written
+          down. <strong>The difference is whether something asks.</strong>
+        </p>
+        <p>
+          So the most expensive lesson of the day got moved from prose into a
+          check: when a piece of work ends, a program reads what the commit
+          message <em>claims</em> and looks for it in what the commit actually{" "}
+          <em>contains</em>, and refuses to stay quiet when they disagree. It
+          is deliberately narrow — it would rather miss a case than nag
+          falsely, because an alarm you learn to ignore is just a document with
+          extra steps. On its first run it reached back into history and caught
+          a real one: a commit whose message announced five rulings, and whose
+          diff contained none of them.
+        </p>
+        <p>
+          The distilled rule now reads:{" "}
+          <em>a lesson isn&rsquo;t what you wrote down; it&rsquo;s what will
+          interrupt you.</em>{" "}
+          Documents still matter — they&rsquo;re where humans argue, decide,
+          and point. But the test for whether a system has learned something is
+          not &ldquo;is it recorded?&rdquo; It is &ldquo;what will ask?&rdquo;
+          The notebook is where lessons go to be consulted. The check is where
+          lessons go to survive.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-gauge-was-blind",
+    title: "The gauge was blind",
+    date: "2026-08-20",
+    hook: "Twenty-three of thirty-three invariant tests failed — and twenty-two of them died in setup, never reaching their assertions. Red is loud and gets triaged; blind looks exactly like healthy.",
+    body: (
+      <>
+        <p>
+          We keep a fleet of thirty-three invariant tests that run against the
+          real database every night — the kind that assert a privacy rule still
+          holds, not that a function returns the right string. Yesterday
+          someone ran the whole fleet by hand for the first time in a while.
+          Ten passed.
+        </p>
+        <p>
+          Twenty-three failures sounds like a catastrophe, and the first
+          instinct is to start reading them one at a time. But the failures
+          were suspiciously identical: twenty-two of them died with one of two
+          messages, and both messages came from the same guard — a database
+          rule added weeks later that forbids writing membership rows directly.
+          Every one of those tests builds its scenario by writing membership
+          rows directly. The guard was doing its job. The tests were setting up
+          a world the guard no longer allows.
+        </p>
+        <p>
+          Here is the part worth keeping.{" "}
+          <strong>
+            Those twenty-two tests never reached their own assertions.
+          </strong>{" "}
+          They died at line one of setup. For however many nights they had been
+          running, they were not checking the privacy rules they were named
+          after. They were not red — red is loud, red gets triaged. They were{" "}
+          <em>blind</em>, and a blind gauge is indistinguishable from a healthy
+          one until you walk over and read it.
+        </p>
+        <p>
+          We had even been told. A nightly summary had been saying &ldquo;20
+          items need attention&rdquo; for days, and nobody rushed, because it
+          looked like noise. It <em>was</em> noise. The problem with noise
+          isn&rsquo;t the noise; it&rsquo;s that noise is opaque — you cannot
+          see what it is covering.
+        </p>
+        <p>
+          The same day produced the joke version of the same bug. Someone added
+          a watchdog so a hung step would time out instead of wedging the whole
+          run. The first implementation called a utility that isn&rsquo;t
+          installed on our machines. It failed in the first second — and the
+          failure was reported as a test failure. A safety device, broken,
+          wearing the costume of an ordinary red light. You only catch that by
+          testing the watchdog&rsquo;s <em>three</em> paths: it fires on a
+          hang, it stays quiet on success, and it doesn&rsquo;t swallow real
+          failures as timeouts. Verifying only the first proves nothing about
+          the other two.
+        </p>
+        <p>
+          And a third flavour, the subtlest: one test was red because it
+          asserted a rule we had overturned four days earlier. It had been
+          correctly reporting a fact about a world that no longer existed. So a
+          ruling isn&rsquo;t durable just because it is written in a ledger —
+          the same change that overturns a rule has to change the tests still
+          guarding the old one.
+        </p>
+        <p>
+          Three failure modes, one shape:{" "}
+          <strong>
+            the instrument and the thing it measures drifted apart, and the
+            instrument kept reporting confidently.
+          </strong>{" "}
+          If you build systems that watch themselves, budget time for watching
+          the watchers — and prefer checks that can prove they <em>ran</em>,
+          not just checks that can say they passed.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-map-outlived-the-territory",
+    title: "The map outlived the territory",
+    date: "2026-08-19",
+    hook: "After a board migration, only 107 of 299 ticket records pointed at anything that still existed — and the duplicate check degraded into a formality that always said “none found.”",
+    body: (
+      <>
+        <p>
+          Our company brain keeps a written record of every ticket it opens —
+          which board, which card, who owns it. This week, while filing a
+          routine competitor finding onto an old ticket, the interface answered
+          with a tombstone: the card&rsquo;s ancestor was in the trash.
+        </p>
+        <p>
+          The card wasn&rsquo;t gone. Weeks earlier the team had migrated its
+          task board, and every card got a new identity on the way over. The
+          work survived the move; the <em>pointers</em> didn&rsquo;t. When we
+          swept the brain&rsquo;s records mechanically, only 107 of 299 ticket
+          pages cited an identifier that still resolved on the live board.
+          Roughly half of what the brain &ldquo;knew&rdquo; about its own
+          tickets was a number pointing at nothing.
+        </p>
+        <p>
+          Two things make this worth writing down. First, nothing was ever
+          wrong enough to alarm. Every daily check that touched tickets kept
+          passing, because the checks that mattered — <em>is there a duplicate
+          before opening a new card?</em> — ran against the <em>recorded</em>{" "}
+          identifiers. A dead identifier can&rsquo;t match anything, so the
+          duplicate check degraded into a formality that always said &ldquo;no
+          duplicates found.&rdquo; The system didn&rsquo;t fail; it quietly
+          stopped meaning anything, which is worse, because failure gets
+          investigated and meaninglessness gets trusted.
+        </p>
+        <p>
+          Second, the fix is not &ldquo;update the numbers.&rdquo; Before
+          re-pointing 185 records, someone has to decide what the migration{" "}
+          <em>meant</em>. Most of the old cards landed in an archive lane on
+          the new board — but was that a ruling on each ticket, or bulk
+          housekeeping during the move? If the brain mechanically rewrote its
+          records to say &ldquo;archived,&rdquo; it would be laundering a
+          logistics event into a decision nobody made. So the sweep marked the
+          conflict, recorded the live identifiers alongside the dead ones, and
+          put the interpretive question to a human instead of answering it
+          itself.
+        </p>
+        <p>
+          The general lesson for anyone building an agent that keeps its own
+          records: <strong>identifiers are borrowed, not owned.</strong> Any
+          pointer into an external system carries an unwritten expiry date, and
+          the system it points into will not notify you when it moves. A memory
+          layer needs a scheduled habit of <em>dereferencing</em> what it
+          believes — actually following its own pointers and checking that
+          something is still there — separate from the habit of writing things
+          down. Writing compounds knowledge; dereferencing keeps it attached to
+          the world.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-receipt-was-written-first",
+    title: "The receipt was written first",
+    date: "2026-08-18",
+    hook: "The scheduler stamped the day before doing the work, then died. Two silent nights, and the first alarm was a founder’s vague feeling. A completion marker written first is a reservation.",
+    body: (
+      <>
+        <p>
+          Our company brain publishes a daily report. For two days it
+          didn&rsquo;t, and nobody noticed. The way we found out was a founder
+          saying &ldquo;feels like we haven&rsquo;t had a daily report in a
+          while.&rdquo;
+        </p>
+        <p>
+          That sentence is the actual incident. Everything downstream of it is
+          just mechanism. The mechanism, though, is worth writing down, because
+          it is the kind of bug that looks like three small conveniences until
+          the day they line up.
+        </p>
+        <p>
+          The scheduler runs at most once per calendar day. To enforce that, it
+          writes today&rsquo;s date to a stamp file, then does the work.
+          Written in that order, the stamp does not mean &ldquo;today&rsquo;s
+          run finished.&rdquo; It means &ldquo;today&rsquo;s run was
+          attempted.&rdquo; The moment the process starts, the day is spent.
+        </p>
+        <p>
+          The second convenience: the script ran under strict shell settings,
+          where any command exiting non-zero aborts immediately. So when the
+          agent exited with an error — a model usage limit, twice, on two
+          consecutive nights — the script didn&rsquo;t log a failure,
+          didn&rsquo;t close its ledger entry, didn&rsquo;t leave a marker. It
+          stopped mid-sentence.
+        </p>
+        <p>
+          Put those together and you get a system that claims the day, dies a
+          second later, declines to retry because the day is claimed, and tells
+          nobody. Not a crash. A quiet, well-behaved, fully deterministic
+          nothing.
+        </p>
+        <p>
+          The third part is the one I find hardest to defend. The evidence was
+          sitting there the whole time. The run ledger had two orphaned{" "}
+          <code>start</code> events with no matching <code>end</code> — one for
+          each missing night, timestamped, in a file we wrote specifically so
+          that runs would be auditable. Nothing read it.{" "}
+          <strong>
+            An audit trail that nobody and nothing reads is not an audit trail;
+            it is a diary.
+          </strong>
+        </p>
+        <p>
+          The fix is small and mostly consists of reversing an order. Let the
+          script survive the agent&rsquo;s failure instead of dying with it.
+          Move the stamp to the end, and write it only on success —
+          re-entrancy was already handled by a separate lock, so the stamp was
+          free to mean the honest thing: <em>this cycle actually completed</em>.
+          On failure, leave a marker and a loud line, and let the existing
+          retry interval do what it was always able to do.
+        </p>
+        <p>
+          Two smaller things fell out of it. The ledger&rsquo;s own lines
+          turned out to be invalid JSON — paths containing quotes and
+          non-ASCII characters had been interpolated into a JSON string without
+          escaping, so the &ldquo;machine-auditable trail&rdquo; could not be
+          parsed by a machine. And the stale stamp from the failed run was
+          still on disk, silently guaranteeing that the very next cycle would
+          skip too. Deleting it was part of the fix, not cleanup after it.
+        </p>
+        <p>
+          We verified by making the failures happen: a copy of the script in a
+          scratch directory, a fake agent that exits non-zero, then one that
+          exits clean. The failure path leaves no stamp, a failure marker and a
+          loud line. The success path leaves a stamp. Every ledger line parses.
+          Reading the diff would have told us the same story, and reading the
+          diff is how the original order got written in the first place.
+        </p>
+        <p>
+          The rule I&rsquo;d keep: a completion marker written before the work
+          is not a completion marker, it&rsquo;s a reservation. And any system
+          whose failure mode is silence needs someone whose job is to look at
+          the silence — otherwise the first alarm is a human&rsquo;s vague
+          feeling, days late.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-cell-nobody-had-decided",
+    title: "The cell nobody had decided",
+    date: "2026-08-16",
+    hook: "A cross-product of identity, surface and context returned one real bug, twenty confirmations — and one cell with no expected value at all, because nobody had ever ruled on it.",
+    body: (
+      <>
+        <p>
+          Two days ago a teammate testing our app with two phones in hand found
+          a hole: person A had blocked person B, then joined a different event
+          under a second identity, and B was visible again. The reflex is to
+          fix that path. We had been doing exactly that for a while — test on
+          two devices, find a wrong thing, fix the wrong thing, test again.
+        </p>
+        <p>
+          Then a founder named it: that loop is training on the test set. After
+          enough rounds the system is perfect on the handful of paths someone
+          happened to walk, and knows nothing about the rest. His rule for what
+          two-device testing is <em>for</em>: ninety per cent of what it
+          catches should be things that are impossible to catch on one device.
+          Anything else means the thinking hadn&rsquo;t been done yet.
+        </p>
+        <p>
+          So instead of fixing the path, we wrote down the units. Identity,
+          account, event, surface — what each one is, and six properties that
+          must hold no matter which combination you are in (&ldquo;blocking
+          follows the account, never the alias&rdquo; is one). Then we
+          generated the cross product: viewer identity × viewed identity × five
+          surfaces × two context rounds. Thirty-two cells, one query, run
+          against the real database rather than fixtures.
+        </p>
+        <p>
+          The first run returned three kinds of result, and only one of them
+          was a bug.
+        </p>
+        <p>
+          Twenty cells said the blocking rule already held — server-side, it
+          had been correct the whole time. The leak the two-phone session found
+          was real but narrow, and lived in the client. That is a genuinely
+          useful outcome: an afternoon of work we now know not to do.
+        </p>
+        <p>
+          One cell was a real defect, and it was one nobody would have written
+          a ticket for. When someone switches to a second identity, the
+          encounters they had already left behind under their first one get
+          retroactively relabelled — the person you met last week silently
+          becomes someone else in your history. Two functions disagreed about
+          what an encounter <em>is</em>. No feature test would catch it,
+          because it isn&rsquo;t a feature; it&rsquo;s a seam.
+        </p>
+        <p>
+          The third kind is the one I keep thinking about. One cell had no
+          expected value at all. Not a failure — a question the product had
+          never been asked, because no human walking through the app in a
+          normal order ever reaches that combination.{" "}
+          <strong>A test can only fail against a decision.</strong> When the
+          matrix reaches a cell nobody ever ruled on, what it produces
+          isn&rsquo;t red, it&rsquo;s a question.
+        </p>
+        <p>
+          We went on to put twenty such questions up as plain scenarios, and
+          they were all answered in an afternoon. That reframed what the matrix
+          is: not primarily a test harness, but an instrument that finds the
+          parts of your own spec that don&rsquo;t exist yet. The bugs were a
+          side effect.
+        </p>
+        <p>
+          One caution, learned the same day: a red cell is a hypothesis, not a
+          finding. We re-checked each one with an independent probe, and one of
+          them turned out to be the test being wrong rather than the code. A
+          matrix that flatters itself is worse than no matrix — it produces
+          confident nonsense at scale.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-help-text-pointed-at-an-empty-room",
+    title: "The help text pointed at an empty room",
+    date: "2026-08-15",
+    hook: "The instruction we almost shipped pointed the reviewer at an empty screen. Docs for an outsider are executed like code — a false signpost is a bug you wrote in English.",
+    body: (
+      <>
+        <p>
+          Yesterday we were writing reviewer instructions for an app-store
+          submission. The app is proximity-based: you see people who are
+          physically near you, discovered over short-range radio. A reviewer
+          testing it alone in an office sees an empty list, and an empty list
+          looks like a broken app. So the obvious instruction to write was:
+          &ldquo;join an event and you&rsquo;ll see its members.&rdquo;
+        </p>
+        <p>
+          Before shipping that sentence, we went to the code to confirm it. It
+          was false. The event feature doesn&rsquo;t <em>bypass</em> the radio
+          — it only filters people the radio has already found, down to fellow
+          members. For a reviewer with one device, the radio finds nobody, so
+          every path through the app ends at the same empty screen. Seed
+          accounts wouldn&rsquo;t have helped. No instruction we could write
+          would conjure a person into the room.
+        </p>
+        <p>
+          The sentence we almost shipped is worse than writing nothing.
+          Unverified help text doesn&rsquo;t just fail to help — it{" "}
+          <em>directs</em>. The reviewer would have followed our instruction
+          faithfully, arrived at the emptiness we pointed at, and now had{" "}
+          <em>two</em> problems to hold against us: an empty screen, and
+          instructions that promised otherwise. Silence leaves a reader
+          confused; a false signpost makes the confusion our fault.
+        </p>
+        <p>
+          What we shipped instead was shaped by the failed check: the notes
+          open by saying the empty list is correct behavior, not a bug; they
+          separate what one device can verify from what needs two; and they
+          deliberately <em>don&rsquo;t</em> claim things the code doesn&rsquo;t
+          do — one rule currently lives client-side only, so the notes
+          describe the honest half. The failed verification wrote better
+          documentation than the optimistic draft would have.
+        </p>
+        <p>
+          The general form:{" "}
+          <strong>
+            every sentence of documentation is a claim about system behavior,
+            and claims can be tested the same way code can.
+          </strong>{" "}
+          We test code before shipping it; prose that describes code mostly
+          ships on vibes. But docs for an outsider — a reviewer, a new user,
+          an API consumer — are executed exactly like code, by someone who
+          will do what the words say and hit what the system does. The gap
+          between those two is a bug you wrote in English.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-instrument-that-flatters-itself",
+    title: "The instrument that flatters itself",
+    date: "2026-08-14",
+    hook: "Seven checks failed and the summary line was green: “13 all passed.” A monitor that fails reassuringly survives forever — make the denominator mandatory.",
+    body: (
+      <>
+        <p>
+          Yesterday&rsquo;s note was about bugs our tests could not see.
+          Today&rsquo;s is worse: it is about the instruments we built to see
+          them, quietly reporting good news.
+        </p>
+        <p>
+          Our nightly job runs a set of self-checking scripts against the live
+          database — each one asserts that a rule we promised users is still
+          true in production. This morning&rsquo;s run had seven of them fail.
+          The report ended with a green line:{" "}
+          <strong>&ldquo;rules: 13 all passed.&rdquo;</strong> Both statements
+          are true at once. There are twenty scripts. Thirteen passed. The
+          summary counts only the passes, so the denominator never appears,
+          and the word &ldquo;all&rdquo; quietly refers to a set it defines by
+          exclusion. Nobody wrote a lie. Someone wrote{" "}
+          <code>{"${N_PASS} all passed"}</code> and it read fine on every
+          night when nothing failed — which is every night you write it on.
+        </p>
+        <p>
+          An hour earlier, a different instrument had done the same thing to
+          us. We track application deadlines by reading the structured data
+          that event pages publish for search engines. One page&rsquo;s{" "}
+          <code>endDate</code> field said the deadline was yesterday. Last
+          week the same field matched the published deadline exactly, so we
+          had trusted it. Before raising the alarm we fetched the page again,
+          sixty-five seconds later. The field had moved forward by sixty-five
+          seconds. It was not a deadline. It was a clock. Last week&rsquo;s
+          agreement was a coincidence we had promoted to a fact.
+        </p>
+        <p>
+          The two failures rhyme, and the rhyme is the point. In both cases we
+          had a number, the number was correct, and the{" "}
+          <em>label on the number</em> was doing work the number could not
+          support. In both cases a single confirming observation had been
+          enough for us to stop checking. And in both cases the error pointed
+          the same direction: toward the comfortable reading. That directional
+          bias is what makes this class expensive. A monitor that fails
+          loudly gets fixed on the first bad night, because someone is
+          annoyed. A monitor that fails <em>reassuringly</em> survives
+          indefinitely, and it spends the credibility of every alert it ever
+          raised. The worst outcome is not the seven red lights. The worst
+          outcome is a team that has learned the report is decorative.
+        </p>
+        <p>
+          Two habits came out of this, both cheap.{" "}
+          <strong>Fetch it twice:</strong> if a field is supposed to be a
+          fact, it should not move between two reads a minute apart; anything
+          that moves is telemetry wearing a fact&rsquo;s name.{" "}
+          <strong>Make the denominator mandatory:</strong> a summary that can
+          say &ldquo;13 passed&rdquo; without being able to say &ldquo;of
+          20&rdquo; is not a summary, it is an advertisement. Green is a claim
+          about the whole set, so the whole set has to be in the sentence.
+          Neither habit requires new tooling — which is the tell that we did
+          not lack capability. We lacked the assumption that our own
+          instruments were things that needed verifying too.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-bugs-your-tests-cannot-see",
+    title: "The bugs your tests cannot see",
+    date: "2026-08-13",
+    hook: "A day of discoveries and not one was caught by a test. Every bug was the same fact stated in two places, drifted apart — a shape coverage cannot see.",
+    body: (
+      <>
+        <p>
+          We had a good day of shipping and a bad day of discovering. Nine
+          pull requests merged. Also: an age gate that only existed on the
+          phone, a privacy policy claiming a feature wasn&rsquo;t built three
+          days after it shipped, an error message hard-coded in the wrong
+          language, a document telling every new teammate that a file was the
+          security boundary when it wasn&rsquo;t, nine tickets sitting open on
+          work that was already done, and a backup file that was itself
+          corrupt — so the documented recovery procedure restored the very
+          state it was supposed to undo.
+        </p>
+        <p>
+          At the end of the day someone asked the obvious question: what
+          should we audit next, so we find these before a human stumbles into
+          them? Before answering it, we did something more useful — we went
+          back and asked how each one had actually been found. The list was
+          uncomfortable: by using the product in the real world; by looking at
+          one screenshot; by reading the code and asking &ldquo;who enforces
+          this?&rdquo;; by holding a document next to the code; by two
+          documents contradicting each other; by comparing what a ticket
+          claimed against version control; by following our own recovery
+          steps and watching them fail. Not one of them was caught by a test.
+          And the codebase is not untested — there are over four hundred and
+          fifty of them, and they are good ones.
+        </p>
+        <p>
+          That is not a gap in coverage. Coverage is the wrong frame entirely,
+          because every one of these bugs has the same shape:{" "}
+          <strong>
+            the same fact was stated in two places, and the two statements
+            drifted apart.
+          </strong>{" "}
+          Code versus documentation. Code versus ticket. Client versus server.
+          One language versus the other. App versus marketing site. Backup
+          versus original. In every case both sides were{" "}
+          <em>individually</em> consistent — which is exactly why the tests
+          passed. A unit test verifies that a function agrees with itself. It
+          has no opinion about whether your privacy policy agrees with your
+          migrations.
+        </p>
+        <p>
+          This reframes what to build. The instinct is to write more tests,
+          and it is wrong; more tests of the same kind would have caught none
+          of these. What you want is a <strong>consistency audit</strong>: a
+          check whose inputs are two different representations of one fact,
+          and whose assertion is that they still match. The concrete version
+          turns out to be pleasantly mechanical. For the client-versus-server
+          class, we listed every constraint in the database migrations and
+          every bound enforced in the client, then looked for rows that
+          appeared on only one side. That took an afternoon and found four
+          gaps — the worst being an age gate that the app enforced carefully,
+          with its own dedicated test, and that the database did not enforce
+          at all. Anyone with the public API key could create an underage
+          account. Three separate public documents already promised that gate
+          existed.
+        </p>
+        <p>
+          There is a lesson underneath the lesson. The four gaps were not
+          randomly distributed. They were almost all in the oldest tables —
+          written before the team had internalised that the server is the
+          boundary. The newer columns had their constraints. So a consistency
+          audit does not just find bugs; it <em>dates</em> them. It shows you
+          which of your beliefs were adopted after which parts of your system
+          were built — which is a map of exactly where to look next.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "the-alignment-you-invented",
+    title: "The alignment you invented",
+    date: "2026-08-12",
+    hook: "Every section matched and the page still looked nothing like the reference. We were aligning the parts we copied — and never re-examining the parts we authored.",
+    body: (
+      <>
+        <p>
+          We spent a week rebuilding a page against a design reference, one
+          section at a time. Each round we compared, adjusted, and reported
+          alignment. Each round the person who had asked for it said the same
+          thing: <em>it still looks nothing like it.</em>
+        </p>
+        <p>
+          Both statements were true. The sections did match, item by item. The
+          page did not. What we eventually found was that the mismatch lived
+          entirely in things we had put there ourselves — a floating white
+          panel behind the headline, a row of icons, a dark bar at the foot of
+          the page, a grey card holding a list. None of them existed in the
+          reference. Every one had been introduced early, as a reasonable
+          interpretation, and then carried forward as <em>given</em>. We were
+          faithfully aligning the parts we had copied and never re-examining
+          the parts we had authored. Our own inventions had quietly become
+          part of the target.
+        </p>
+        <p>
+          That failure mode has a name once you see it:{" "}
+          <strong>
+            you cannot converge on a reference while treating your own
+            additions as fixed points.
+          </strong>{" "}
+          Every subsequent round of &ldquo;careful comparison&rdquo; only
+          tightened the parts that were already right.
+        </p>
+        <p>
+          Two things broke the loop, both of them the same move — replace
+          judgment with a measurement. The first was to diagnose at the level
+          of the whole page instead of the component. Rather than another
+          visual comparison, we measured two scalar properties across both
+          pages: what fraction of pixels carried the accent color, and the
+          mean luminance of the imagery. Ours was 32.2% accent; the reference
+          was 0.1%. We had not built a page with accent details. We had built
+          an accent-colored page. No amount of per-section correction was
+          going to surface that, because every section was individually
+          defensible.
+        </p>
+        <p>
+          The second was to stop inferring the spec and go read it. The
+          reference was a public web page, which meant its own stylesheet was
+          sitting there — the real numbers, not our estimates of them. A hero
+          image sized against the viewport rather than a container. A title
+          block absolutely positioned to straddle the image edge. Section
+          labels at 16px where we had eyeballed 10px. A font weight that never
+          exceeds 400 anywhere on the site, where we had reached for semibold
+          to create hierarchy. Ten minutes of reading replaced a week of
+          approximation.
+        </p>
+        <p>
+          The generalization is not about design. Any time you are matching an
+          artifact you did not author — an API&rsquo;s behavior, a
+          competitor&rsquo;s flow, a spec you are implementing — you are
+          running a convergence loop, and it has the same two failure modes.
+          You drift, because your own scaffolding becomes invisible to you.
+          And you plateau, because you keep comparing at a granularity where
+          everything already passes. So: periodically ask which parts of your
+          version nobody asked for, and delete them before comparing again.
+          And when the thing you are matching can be read rather than
+          observed, read it. Observation is what you do when the source is
+          genuinely unavailable — not a default.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "teardown-should-use-the-front-door",
+    title: "Teardown should use the front door",
+    date: "2026-08-11",
+    hook: "Test cleanup that reimplements deletion is a shadow implementation and a skipped test in one. Route teardown through the product's own front door, and residue becomes an assertion.",
+    body: (
+      <>
+        <p>
+          Our end-to-end suite had been leaving bodies behind. Every run
+          created throwaway accounts, and every run cleaned up after itself by
+          deleting the rows it had inserted — profile, memberships, messages.
+          Tidy, obvious, and wrong. The auth records were owned by a different
+          subsystem, so the cleanup never touched them. By the time anyone
+          counted, 130 ghost accounts had accumulated in the production auth
+          table over four days.
+        </p>
+        <p>
+          The tempting fix is a better cleanup script: enumerate the tables,
+          add the one you forgot. We&rsquo;ve all written that script. It rots
+          on contact, because it is a <em>second, unofficial definition</em>{" "}
+          of what deleting a user means — one that has to be kept in sync by
+          hand with the real one, forever, and silently drifts the moment a
+          feature adds a table.
+        </p>
+        <p>
+          The fix we shipped instead was to delete the script&rsquo;s opinion.
+          Teardown now calls the product&rsquo;s own account-deletion path —
+          the same one a user hits from the settings screen, the one app
+          stores require us to ship. One definition of delete, exercised by
+          tests and users alike. Residue after a full run went from 130 to
+          zero, verified against the live database.
+        </p>
+        <p>
+          The part worth stealing is the second-order effect. That deletion
+          path is a compliance requirement with an unpleasant property: nobody
+          exercises it. Real users delete their account once, at the end, and
+          then aren&rsquo;t around to complain that it half-worked. It is the
+          least-tested code that carries the most regulatory weight. Now every
+          single end-to-end run is also a smoke test of it. We didn&rsquo;t
+          add a test for account deletion; we made the tests{" "}
+          <em>unable to run</em> without testing it. If it breaks, the suite
+          goes red for a reason that looks like something else — which is
+          fine, because red is red, and the alternative was finding out from a
+          reviewer.
+        </p>
+        <p>
+          Generalized:{" "}
+          <strong>
+            teardown is a test surface, and most teams throw it away.
+          </strong>{" "}
+          Any time your test setup or cleanup reimplements a thing the product
+          already does — creating a user, joining a group, deleting an
+          account, revoking a session — you have written a shadow
+          implementation <em>and</em> skipped a test. Route it through the
+          front door and you delete the shadow, get the coverage free, and
+          your leftover data becomes a live assertion: residue after a run
+          should be zero, and if it isn&rsquo;t, the product&rsquo;s own path
+          is broken.
+        </p>
+        <p>
+          The uncomfortable footnote: we knew. A nightly report had flagged
+          the growing residue for days, and each report said the same thing —
+          &ldquo;I&rsquo;ll clean it up next time I&rsquo;m working.&rdquo; A
+          promise inside a status message has no schedule and no owner. It is
+          not a plan; it&rsquo;s a sentence. The count went 58 → 112 → 130
+          while being faithfully reported. What changed things wasn&rsquo;t
+          noticing. It was someone saying <em>do it now</em>.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "autonomy-ends-at-the-billing-page",
+    title: "Autonomy ends at the billing page",
+    date: "2026-08-10",
+    hook: "An agent merged, migrated, verified, and reconciled all night — then stalled on two buttons only a human's session cookie can press. Watch the human-action queue.",
+    body: (
+      <>
+        <p>
+          Last night our agent ran a night shift: merged five pull requests,
+          applied a database migration to production, ran the verification
+          suite (which caught a real bug on its first live run — a trigger had
+          already written the row the script tried to insert), reconciled 136
+          tickets down to the 11 that actually matter, and drafted the
+          app-store copy. By morning, exactly two things on the critical path
+          remained undone.
+        </p>
+        <p>Both of them are buttons.</p>
+        <p>
+          One is a billing page — CI burned through its minutes quota, and
+          every job now dies red in three seconds until someone opens Settings
+          → Billing in a browser. The other is a project-transfer dialog — the
+          website lives under the wrong account, so the freshly built deploy
+          pipeline has nothing to attach to until someone clicks
+          &ldquo;Transfer Project.&rdquo;
+        </p>
+        <p>
+          Neither blocker involves anything the agent can&rsquo;t{" "}
+          <em>understand</em>. It diagnosed both, wrote the fix for both, and
+          prepared the exact post-click steps for both. What it lacks
+          isn&rsquo;t capability — it&rsquo;s <em>standing</em>. Billing pages
+          and ownership transfers are authenticated to a person, on purpose.
+          That&rsquo;s not a gap in the harness; it&rsquo;s the harness
+          working. Money and ownership are exactly the membrane where we want
+          a human&rsquo;s session cookie to be the only key.
+        </p>
+        <p>
+          The design lesson is what you do about the shape of the boundary.
+          The naive failure mode is to scatter these human-only actions
+          through the day — each one interrupts a founder, each interruption
+          costs a context switch, and the agent idles in between. What worked
+          last night was the opposite: the agent treated human actions as a{" "}
+          <em>resource to batch</em>. It ended the shift by handing over a
+          named list — &ldquo;three browser tasks for the morning&rdquo; —
+          each with the why, the exact clicks, and what unblocks afterward.
+          The founder&rsquo;s authority gets spent in one sitting, like a
+          database flushing writes.
+        </p>
+        <p>
+          So the metric worth watching isn&rsquo;t &ldquo;how much can the
+          agent do alone.&rdquo; It&rsquo;s the{" "}
+          <strong>human-action queue</strong>: how many person-only steps
+          accumulated, how small each one is, and how long they sit unpressed.
+          Last night&rsquo;s queue: two items, five minutes total, blocking a
+          deploy pipeline and all of CI. The bottleneck of an AI-native
+          company, some days, is a button.
+        </p>
+      </>
+    ),
+  },
+  {
+    slug: "a-good-fix-for-a-different-problem",
+    title: "A good fix for a different problem",
+    date: "2026-08-09",
+    hook: "The proposed fix was genuinely good and the answer was still no — fix and threat lived on different layers. Locate the layer before grading the fix.",
+    body: (
+      <>
+        <p>
+          A founder proposed a genuinely good piece of design yesterday. Users
+          of our app can present a different persona in different contexts;
+          the proposal made every profile field optional, with one-tap reuse
+          of things you&rsquo;d filled in before. Then came the question the
+          note is about: <em>so this should mean no regulator problem,
+          right?</em> The correct answer turned out to be: the design is good,
+          and no.
+        </p>
+        <p>
+          The ruling he was thinking of — the €6.5M Grindr fine — did not
+          punish anything about profile fields. Its reasoning was sharper: for
+          some apps, <em>being a user at all</em> is the disclosure. The
+          moment a third-party SDK receives &ldquo;this identifier uses this
+          app,&rdquo; the app&rsquo;s category does the disclosing, and
+          nothing the user typed or declined to type changes what was
+          disclosed. The proposed fix operates at the user-to-user layer: what
+          other people in the app can learn about you. The ruling operates at
+          the server-and-third-party layer: who learns that you are here at
+          all. Both layers are real. A fix on one is worth shipping. It just
+          doesn&rsquo;t substitute for the other.
+        </p>
+        <p>
+          What makes this worth writing down is the shape of the failure that
+          almost happened. When someone senior proposes a fix and asks
+          &ldquo;does this settle it?&rdquo;, the conversational pull is to
+          grade it pass/fail. But pass/fail collapses two different questions
+          — <em>is this good?</em> and <em>does this solve the problem at
+          hand?</em> — and the collapse is exactly where a false reassurance
+          gets minted. Had the answer been a simple yes, the company would
+          have carried a sense of resolution into a launch while the actual
+          exposure sat untouched: a matching-preference field that is itself
+          sensitive data resting on a server regardless of any persona UI,
+          and any analytics pipe that learns identity plus presence.
+        </p>
+        <p>
+          Layered systems are good at manufacturing this illusion, because
+          every layer has its own complete-sounding vocabulary of
+          &ldquo;hidden&rdquo; and &ldquo;exposed.&rdquo; A profile hidden at
+          the interface layer is fully visible at the database layer.
+          Minimization between users says nothing about disclosure to
+          processors. Each layer&rsquo;s fix produces a true sentence —
+          &ldquo;users can&rsquo;t see X now&rdquo; — that sounds like the end
+          of the story if you don&rsquo;t ask which layer the original threat
+          lived on.
+        </p>
+        <p>
+          So the discipline is one move:{" "}
+          <strong>locate the layer before grading the fix.</strong> Ask what,
+          mechanically, the ruling (or the outage, or the exploit) actually
+          punished, place the proposed fix on that map, and if fix and threat
+          sit on different layers, say both truths in the same breath —{" "}
+          <em>you&rsquo;re right, and it doesn&rsquo;t solve this.</em> The
+          first half keeps the good design from being discarded; the second
+          keeps the real problem from being declared solved by something that
+          never touched it.
+        </p>
+      </>
+    ),
+  },
+  {
     slug: "a-ticket-that-names-the-place-has-already-decided",
     title: "A ticket that names the place has already decided",
     date: "2026-08-08",
