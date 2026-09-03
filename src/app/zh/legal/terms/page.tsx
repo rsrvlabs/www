@@ -28,12 +28,14 @@
 //   4. §6 — blocking is stated as permanent, matching the in-app confirm copy
 //      and the absence of any unblock entry point. See the privacy page §6 note.
 //
-// Before publishing: delete src/components/legal/draft-note.{tsx,module.css} and
-// every DraftBanner / FounderCall usage here and on the privacy page.
+// FOUNDER RULING, 2026-09-03 (Ryvn): §13 governing language — Traditional
+// Chinese governs during the Taiwan launch; where the versions differ before the
+// EN page is updated, the Chinese text wins. Same sentence as privacy §11, per
+// the instruction that both pages must answer alike. Draft banner and marker
+// removed, version v2 / effective 2026-09-03 stamped, draft-note.* deleted.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { DraftBanner, FounderCall } from "@/components/legal/draft-note";
 
 export const metadata: Metadata = {
   title: "服務條款",
@@ -48,26 +50,11 @@ export default function TermsZhPage() {
       <Section center>
         <h1 className={apple.hero}>服務條款</h1>
         <p className={apple.sub}>使用 Limere 與 Reserve 網站所適用的條款。</p>
-        {/* Version + effective date stay blank until publish (ticket instruction). */}
-        <ArticleMeta>版本：＿＿＿＿＿＿　·　生效日期：＿＿＿＿＿＿</ArticleMeta>
+        <ArticleMeta>版本：v2　·　生效日期：2026 年 9 月 3 日</ArticleMeta>
       </Section>
 
       <Section>
         <div className={apple.article} lang="zh-Hant">
-          <DraftBanner>
-            <p>
-              這份文件已經寫完，但還沒有生效，也還不是 rsrvlabs.com 目前對外的使用者條款
-              —— 目前對外的仍是 2026 年 8 月 7 日那一版。
-              上方的版本與生效日期刻意留白，由發布的人在發布當下填入。
-            </p>
-            <p>
-              對照用：本頁逐節對應 sw-app 的 <code>docs/legal/terms-zh-tw-v2-draft.md</code>
-              （版本 <code>2026-08-23.v2</code>）。與本頁一起交出的還有
-              <Link href="/zh/legal/privacy">隱私權政策</Link>，兩頁請一起讀 ——
-              條款的寫法與那一頁同一個原則：寫寬、不自綁、不寫假話。
-            </p>
-          </DraftBanner>
-
           <p>
             <Link href="/legal/terms">English version →</Link>
           </p>
@@ -233,17 +220,13 @@ export default function TermsZhPage() {
           <p>
             本頁是繁體中文版。
             <Link href="/legal/terms">英文版</Link>目前仍停在 2026 年 8 月 7 日那一版，
-            尚未同步到這一版<strong>（en 待同步）</strong>。
+            尚未同步到本版本。
           </p>
           <p>
-            <FounderCall />
-            <em>
-              給兩位：與隱私權政策同一題 —— 舊版寫著「以英文版為準」，
-              但這一版新增的第 1、7、8 節在英文版裡還不存在，
-              保留那句話等於宣告以一份較舊的文本為準。
-              建議同樣是台灣推出期間以中文版為準。
-              請與隱私權政策第 14 節一起決定，兩頁的答案必須一致。
-            </em>
+            <strong>
+              台灣推出期間，本條款以繁體中文版為準；英文版更新前，
+              兩版歧異以中文版為準。
+            </strong>
           </p>
 
           <Link className={apple.backLink} href="/zh/legal/privacy">

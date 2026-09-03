@@ -61,17 +61,20 @@
 //     20260708000006_profile_visibility.sql:9,15) — stated here as a user
 //     choice, not as a guarantee about defaults.
 //
-// STILL OPEN — two <FounderCall /> markers:
-//   * §3 — the marketing / commercial-use language versus the App Store privacy
-//     declaration, which currently says there is no advertising, remarketing or
-//     cross-app tracking. Scoped to first-party + de-identified use so the two
-//     do not contradict. Widening it further means changing the App Store
-//     answers in the same move.
-//   * §11 — which language version governs.
-//
-// Before publishing: fill version + effective date, then delete
-// src/components/legal/draft-note.{tsx,module.css} and every DraftBanner /
-// FounderCall usage on this page and on terms.
+// FOUNDER RULINGS, 2026-09-03 (Ryvn, team channel: 「1 2 都按照你建議」) — both
+// open questions are now closed, and this file is a finished, publishable text:
+//   * §3 marketing / commercial use — stays scoped to FIRST-PARTY promotion plus
+//     de-identified and aggregated use, as drafted. This is deliberately narrower
+//     than the purpose clause could be, because the App Store privacy answers and
+//     PrivacyInfo.xcprivacy currently declare no advertising, no remarketing and
+//     no cross-app tracking. WIDENING THIS CLAUSE LATER REQUIRES CHANGING THE
+//     APP STORE CONNECT ANSWERS AND xcprivacy IN THE SAME CHANGE — otherwise the
+//     policy and the review submission contradict each other.
+//   * §11 governing language — Traditional Chinese governs during the Taiwan
+//     launch; where the versions differ before the EN page is updated, the
+//     Chinese text wins. Terms §13 carries the same sentence.
+// The draft banner and both markers are removed, version v2 / effective
+// 2026-09-03 are stamped, and src/components/legal/draft-note.* is deleted.
 //
 // NOTE ON STAKES: the app's login screen links to THIS page —
 // auth_screen.dart:24-25 are rsrvlabs.com/zh/legal/{terms,privacy}, not the EN
@@ -79,7 +82,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { DraftBanner, FounderCall } from "@/components/legal/draft-note";
 
 export const metadata: Metadata = {
   title: "隱私權政策",
@@ -96,24 +98,11 @@ export default function PrivacyZhPage() {
         <p className={apple.sub}>
           Reserve 如何在 Limere 與本網站收集、使用與保護你的資訊。
         </p>
-        {/* Version + effective date stay blank until publish (ticket instruction). */}
-        <ArticleMeta>版本：＿＿＿＿＿＿　·　生效日期：＿＿＿＿＿＿</ArticleMeta>
+        <ArticleMeta>版本：v2　·　生效日期：2026 年 9 月 3 日</ArticleMeta>
       </Section>
 
       <Section>
         <div className={apple.article} lang="zh-Hant">
-          <DraftBanner>
-            <p>
-              這份文件已經寫完，但還沒有生效，也還不是 rsrvlabs.com 目前對外的隱私權政策
-              —— 目前對外的仍是 2026 年 8 月 7 日那一版。
-              上方的版本與生效日期刻意留白，由發布的人在發布當下填入。
-            </p>
-            <p>
-              兩個標著「待創辦人裁示」的地方，是起草時不願意自己決定的句子。
-              請兩位過目後告訴我要怎麼寫，或直接改掉。
-            </p>
-          </DraftBanner>
-
           <p>
             <Link href="/legal/privacy">English version →</Link>
           </p>
@@ -188,7 +177,6 @@ export default function PrivacyZhPage() {
               這類無法識別特定個人的資料，我們得為任何合法目的使用，不受本政策限制。
             </li>
             <li>
-              <FounderCall />
               向你傳達與本服務有關的通知、產品資訊與行銷內容，
               並為我們自己的產品與服務進行推廣與商業利用。
             </li>
@@ -332,19 +320,13 @@ export default function PrivacyZhPage() {
           <p>
             本頁是繁體中文版，也是 App 登入畫面連過來的版本。
             <Link href="/legal/privacy">英文版</Link>目前仍停在
-            2026 年 8 月 7 日那一版，尚未同步<strong>（en 待同步）</strong>。
+            2026 年 8 月 7 日那一版，尚未同步到本版本。
           </p>
           <p>
-            <FounderCall />
-            <em>
-              給兩位：舊版寫著「若中文版與英文版有歧異，以英文版為準」。
-              這一版的內容在英文版裡還不存在，
-              原封不動留著那句話，等於宣告以一份較舊的文本為準。
-              我的建議是<strong>台灣推出期間以中文版為準</strong>
-              （Limere 在台灣推出，App 連過來的也是這一頁），英文版之後再補齊。
-              要照這個寫，我就把那句加進來；要維持英文優先，
-              就得先把英文版同步完再發布。
-            </em>
+            <strong>
+              台灣推出期間，本政策以繁體中文版為準；英文版更新前，
+              兩版歧異以中文版為準。
+            </strong>
           </p>
 
           <Link className={apple.backLink} href="/zh/legal/terms">
