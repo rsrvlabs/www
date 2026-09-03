@@ -28,7 +28,7 @@
   margin-bottom: 0 !important;
 }
 
-/* Inline [律師必看] marker. */
+/* Inline [待創辦人裁示] marker. */
 .lawyer {
   display: inline-block;
   font-size: 0.82em;
@@ -42,56 +42,4 @@
   margin-right: 0.4em;
   white-space: nowrap;
   vertical-align: baseline;
-}
-
-/* A/B choice block: two options side by side, neither pre-selected. */
-.choice {
-  margin: 0 0 1.6rem;
-  border: 2px solid #1d4ed8;
-  border-radius: 12px;
-  background: #eff6ff;
-  padding: 1.3rem 1.4rem;
-}
-
-.choiceTitle {
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #1e3a8a;
-  margin: 0 0 0.9rem;
-}
-
-.choice p {
-  font-size: 1.02rem !important;
-  line-height: 1.68 !important;
-  color: #1e3a5f !important;
-}
-
-.option {
-  border-top: 1px solid #bfdbfe;
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-
-.optionLabel {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #1e3a8a;
-  margin: 0 0 0.5rem !important;
-}
-
-.optionBody p:last-child {
-  margin-bottom: 0 !important;
-}
-
-.choiceFoot {
-  border-top: 1px solid #bfdbfe;
-  margin-top: 1.1rem;
-  padding-top: 0.9rem;
-}
-
-.choiceFoot p {
-  font-size: 0.95rem !important;
-  color: #1e3a8a !important;
-  margin-bottom: 0 !important;
 }

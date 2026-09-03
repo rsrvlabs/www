@@ -1,9 +1,10 @@
-// 中文版服務條款 v2 —— DRAFT, NOT PUBLISHED, NOT MERGED.
+// 中文版服務條款 v2 —— 完稿，待兩位創辦人過目。NOT PUBLISHED, NOT MERGED.
 //
 // Ticket: [Feat] 隱私權條款繁中 v2 (Notion 3c9dae10-8b25-81ec-afc0-d18546b2d25b).
 // Companion to /zh/legal/privacy — read that file's header comment first; it
-// carries the shared context (why this exists, the version-numbering mismatch,
-// the stale-app-review-notes warning).
+// carries the shared context (the 2026-09-03 removal of the lawyer gate, the
+// per-sentence re-verification against sw-app origin/main, and the version
+// numbering).
 //
 // Draft-of-record: sw-app docs/legal/terms-zh-tw-v2-draft.md (2026-08-23.v2).
 // Section order follows it so counsel can diff page against draft. Departures,
@@ -14,23 +15,25 @@
 //      docs/app-review-notes.md both state it), so dropping it while porting
 //      would quietly retract a promise. NOTE: this number is unrelated to the
 //      48-hour retention window in the privacy policy; they only look alike.
-//   2. §7 — discloses the automatic restriction that the draft omits: reports
-//      from 3 distinct reporters within 30 days restrict the account's discovery
-//      surface (R96, report_auto_restriction.sql). Automated action against a
-//      user belongs in the terms they agree to.
+//   2. §7 — discloses the automatic restriction that the draft omits: repeated
+//      reports from distinct reporters restrict the account's discovery surface
+//      (R96, report_auto_restriction.sql). Automated action against a user
+//      belongs in the terms they agree to. The threshold and window are stated
+//      qualitatively, not numerically — per the 2026-09-03 founder brief, the
+//      public document must not freeze an internal parameter.
 //   3. §8 — adds the host rule (R161): an account cannot be deleted while it
 //      still has an activity it created that has not ended. Server-enforced.
+//      The 30-day recovery window is described as 「合理期間」 to match the
+//      privacy policy's retention posture.
 //   4. §6 — blocking is stated as permanent, matching the in-app confirm copy
 //      and the absence of any unblock entry point. See the privacy page §6 note.
 //
 // Before publishing: delete src/components/legal/draft-note.{tsx,module.css} and
-// every DraftBanner / LawyerFlag usage here and on the privacy page.
-//
-// TODO(legal-review): not reviewed by a Taiwanese lawyer.
+// every DraftBanner / FounderCall usage here and on the privacy page.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AppleNav, ArticleMeta, Footer, Page, Section, apple } from "@/components/apple/kit";
-import { DraftBanner, LawyerFlag } from "@/components/legal/draft-note";
+import { DraftBanner, FounderCall } from "@/components/legal/draft-note";
 
 export const metadata: Metadata = {
   title: "服務條款",
@@ -53,14 +56,15 @@ export default function TermsZhPage() {
         <div className={apple.article} lang="zh-Hant">
           <DraftBanner>
             <p>
-              這份文件是草稿。它還沒有生效、還沒有經過台灣律師審閱，也還不是 rsrvlabs.com
-              目前對外的使用者條款 —— 目前對外的仍是 2026 年 8 月 7 日那一版。
+              這份文件已經寫完，但還沒有生效，也還不是 rsrvlabs.com 目前對外的使用者條款
+              —— 目前對外的仍是 2026 年 8 月 7 日那一版。
               上方的版本與生效日期刻意留白，由發布的人在發布當下填入。
             </p>
             <p>
               對照用：本頁逐節對應 sw-app 的 <code>docs/legal/terms-zh-tw-v2-draft.md</code>
-              （版本 <code>2026-08-23.v2</code>）。四處與該草稿不同的地方寫在本檔頂端的註解裡，
-              每一處都附了程式碼上的理由。
+              （版本 <code>2026-08-23.v2</code>）。與本頁一起交出的還有
+              <Link href="/zh/legal/privacy">隱私權政策</Link>，兩頁請一起讀 ——
+              條款的寫法與那一頁同一個原則：寫寬、不自綁、不寫假話。
             </p>
           </DraftBanner>
 
@@ -165,10 +169,9 @@ export default function TermsZhPage() {
           </p>
           <p>
             <strong>有一項限制是自動的，我們寧可先講：</strong>
-            如果在 30 天內有 3 位以上不同的使用者檢舉同一個帳號，
+            如果同一個帳號在一段期間內被多位不同的使用者檢舉，
             系統會自動限制該帳號在探索與附近功能中的曝光。
-            這項自動限制不會動到活動名單、聊天或已經成立的配對，
-            也可以在人工審視後解除。
+            這項自動限制可以在人工審視後解除。
           </p>
           <p>
             為了保護檢舉者並維持案件的完整性，安全與稽核資料可能依
@@ -179,9 +182,10 @@ export default function TermsZhPage() {
           <h2>8. 你自行停止使用與刪除帳號</h2>
           <p>
             你隨時可以停止使用，或直接在 App 內刪除帳號。
-            現行產品採用<strong>30 日可人工復原的軟刪除</strong>：
-            在這段窗口內，帳號無法一般登入，其他使用者也看不到你。
-            窗口屆滿後依資料生命週期清除。
+            刪除之後，帳號立即停用，其他使用者也看不到你；
+            其餘資料我們會在合理期間內清除，
+            但依<Link href="/zh/legal/privacy">隱私權政策</Link>
+            必須繼續保存的部分除外。
           </p>
           <p>
             <strong>如果你正在主持一場還沒結束的活動（包含還沒開始的），
@@ -232,13 +236,13 @@ export default function TermsZhPage() {
             尚未同步到這一版<strong>（en 待同步）</strong>。
           </p>
           <p>
-            <LawyerFlag />
+            <FounderCall />
             <em>
-              給創辦人與律師：與隱私權政策同一題 —— 舊版寫著「以英文版為準」，
+              給兩位：與隱私權政策同一題 —— 舊版寫著「以英文版為準」，
               但這一版新增的第 1、7、8 節在英文版裡還不存在，
               保留那句話等於宣告以一份較舊的文本為準。
+              建議同樣是台灣推出期間以中文版為準。
               請與隱私權政策第 14 節一起決定，兩頁的答案必須一致。
-              這份草稿沒有替你們選。
             </em>
           </p>
 
