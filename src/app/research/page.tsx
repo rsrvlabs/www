@@ -102,6 +102,12 @@ const essays: Array<{
     body: "Series 01, essay 13: we found five broken instruments in one week and wrote down that every one of them flattered us. Then we counted. Three of the five pointed the other way — and had already been caught. The asymmetry is in survival, not in error.",
     href: "/research/errors-lean-toward-comfort",
   },
+  {
+    kicker: "Sequencing",
+    title: "Gates that guard the wrong moment.",
+    body: "Series 01, essay 14: four failures in one week, in a codebase written mostly by agents. Every check was correct on its own and mis-sequenced against the world — a guard that assumes something exists before the thing that creates it has run. The question nobody had on a checklist: what exists at the moment this runs?",
+    href: "/research/gates-that-guard-the-wrong-moment",
+  },
 ];
 
 export default function ResearchPage() {
