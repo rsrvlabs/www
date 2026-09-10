@@ -32,9 +32,9 @@ export const ROUTES: Array<{ path: string; updated: string; priority: number }> 
   { path: "/research/trust-ladder", updated: "2026-08-10", priority: 0.6 },
   { path: "/research/errors-lean-toward-comfort", updated: "2026-08-30", priority: 0.6 },
   { path: "/legal/terms", updated: "2026-08-07", priority: 0.3 },
-  { path: "/legal/privacy", updated: "2026-08-07", priority: 0.3 },
+  { path: "/legal/privacy", updated: "2026-09-10", priority: 0.3 },
   { path: "/support", updated: "2026-08-09", priority: 0.4 },
   { path: "/zh/support", updated: "2026-08-10", priority: 0.4 },
   { path: "/zh/legal/terms", updated: "2026-08-12", priority: 0.3 },
-  { path: "/zh/legal/privacy", updated: "2026-08-12", priority: 0.3 },
+  { path: "/zh/legal/privacy", updated: "2026-09-10", priority: 0.3 },
 ];
