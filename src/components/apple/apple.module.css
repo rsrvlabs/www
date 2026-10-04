@@ -267,6 +267,20 @@
 .article strong { font-weight: 600; color: var(--ink); }
 .article code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; background: var(--tint); padding: 0.15em 0.4em; border-radius: 4px; }
 .article a { color: var(--link); }
+/* one centred italic pull quote per essay — the scrunch blueprint's single
+   typographic break in the column. Serif, so it reads as a lift from the piece
+   rather than another paragraph. */
+.article .pullQuote {
+  font-family: "Erode", "Iowan Old Style", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+  line-height: 1.35;
+  letter-spacing: -0.006em;
+  color: var(--ink);
+  text-align: center;
+  max-width: 32rem;
+  margin: 2.8rem auto;
+}
 .articleMeta { color: var(--ink-soft); font-size: 0.92rem; margin-top: 1rem; }
 
 .backLink { display: inline-block; margin-top: 3rem; color: var(--link); text-decoration: none; font-size: 1rem; }
