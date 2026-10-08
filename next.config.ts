@@ -3,52 +3,12 @@ import type { NextConfig } from "next";
 /**
  * Limere's legal and support pages moved to limere.app (2026-10-08): zh-TW at `/legal/…` and
  * `/support/`, English under `/en/`, Thai legal pages under `/th/`. Every old URL here answers
- * with the matching page there.
+ * with the matching page there: the English ones below, the zh ones the app opens by the
+ * reader's language in src/proxy.ts.
  */
 const LIMERE = "https://www.limere.app";
 
-/**
- * Where a Thai reader of an old zh URL lands: the Thai legal pages (`/th/legal/…`), and the
- * English support page until a Thai one ships (then set SUPPORT to "/th", one line).
- */
-const THAI_PREFIX = { LEGAL: "/th", SUPPORT: "/en" } as const satisfies Record<string, "/en" | "/th">;
-
-/**
- * The browser's first Accept-Language tag (the primary language), as a `has` value. Anchored
- * here as well as by Next, so "en-US,th;q=0.8" can never match Thai on any router.
- */
-const primaryLanguage = (tag: string) => `^\\s*(?:${tag})(?:[-_][^,;]*)?(?:[,;].*)?$`;
-
-/**
- * The shipped app (build 48) opens `rsrvlabs.com/zh/legal/{terms,privacy}` for every app language,
- * and is live in Taiwan, the US and Thailand: each old zh URL sends the reader to their own
- * language's page (Thai → `thai`, its `THAI_PREFIX` entry; zh* → zh-TW; anything else → English). These answer 307,
- * not 308: browsers cache a 308 per URL and would pin the first language they saw.
- */
-const languageAware = (source: string, path: string, thai: "/en" | "/th") => [
-  {
-    source,
-    has: [{ type: "header" as const, key: "accept-language", value: primaryLanguage("[tT][hH]") }],
-    destination: `${LIMERE}${thai}${path}`,
-    permanent: false,
-  },
-  {
-    source,
-    has: [{ type: "header" as const, key: "accept-language", value: primaryLanguage("[zZ][hH]") }],
-    destination: `${LIMERE}${path}`,
-    permanent: false,
-  },
-  { source, destination: `${LIMERE}/en${path}`, permanent: false },
-];
-
 const nextConfig: NextConfig = {
-  async headers() {
-    // The language-aware redirects differ by Accept-Language: say so to every cache.
-    return ["/zh/legal/:doc(privacy|terms)", "/zh/support"].map((source) => ({
-      source,
-      headers: [{ key: "Vary", value: "Accept-Language" }],
-    }));
-  },
   async redirects() {
     return [
       // The product renamed twice (sw → lime 2026-07-23, lime → limere
@@ -59,9 +19,6 @@ const nextConfig: NextConfig = {
       // The English pages: one target each, 308.
       { source: "/legal/:doc(privacy|terms)", destination: `${LIMERE}/en/legal/:doc/`, permanent: true },
       { source: "/support", destination: `${LIMERE}/en/support/`, permanent: true },
-      // The zh-TW pages: by the reader's language, 307.
-      ...languageAware("/zh/legal/:doc(privacy|terms)", "/legal/:doc/", THAI_PREFIX.LEGAL),
-      ...languageAware("/zh/support", "/support/", THAI_PREFIX.SUPPORT),
     ];
   },
 };
