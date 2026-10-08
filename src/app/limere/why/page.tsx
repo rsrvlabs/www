@@ -392,9 +392,9 @@ export default function WhyLimePage() {
       <footer className={`${s.footer} ${s.center}`}>
         <Link href="/limere" style={{ color: "inherit" }}>Limere</Link> ·{" "}
         <Link href="/" style={{ color: "inherit" }}>Reserve</Link> ·{" "}
-        <Link href="/legal/terms" style={{ color: "inherit" }}>Terms</Link> ·{" "}
-        <Link href="/legal/privacy" style={{ color: "inherit" }}>Privacy</Link> ·{" "}
-        <Link href="/support" style={{ color: "inherit" }}>Support</Link>
+        <Link href="https://www.limere.app/en/legal/terms/" style={{ color: "inherit" }}>Terms</Link> ·{" "}
+        <Link href="https://www.limere.app/en/legal/privacy/" style={{ color: "inherit" }}>Privacy</Link> ·{" "}
+        <Link href="https://www.limere.app/en/support/" style={{ color: "inherit" }}>Support</Link>
       </footer>
     </main>
   );

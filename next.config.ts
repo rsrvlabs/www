@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
 
+/**
+ * Limere's legal and support pages moved to limere.app (2026-10-08): zh-TW at `/legal/…` and
+ * `/support/`, English under `/en/`, Thai under `/th/`. Every old URL here answers
+ * with the matching page there: the English ones below, the zh ones the app opens by the
+ * reader's language in src/proxy.ts.
+ */
+const LIMERE = "https://www.limere.app";
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
@@ -8,6 +16,9 @@ const nextConfig: NextConfig = {
       { source: "/sw", destination: "/limere", permanent: true },
       { source: "/lime", destination: "/limere", permanent: true },
       { source: "/lime/why", destination: "/limere/why", permanent: true },
+      // The English pages: one target each, 308.
+      { source: "/legal/:doc(privacy|terms)", destination: `${LIMERE}/en/legal/:doc/`, permanent: true },
+      { source: "/support", destination: `${LIMERE}/en/support/`, permanent: true },
     ];
   },
 };

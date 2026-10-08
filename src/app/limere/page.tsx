@@ -293,22 +293,22 @@ export default function LimePage() {
           Reserve
         </Link>{" "}
         · Screens are simulator captures of the current build, 2026. ·{" "}
-        <Link href="/legal/terms" style={{ color: "inherit" }}>
+        <Link href="https://www.limere.app/en/legal/terms/" style={{ color: "inherit" }}>
           Terms
         </Link>{" "}
         ·{" "}
-        <Link href="/legal/privacy" style={{ color: "inherit" }}>
+        <Link href="https://www.limere.app/en/legal/privacy/" style={{ color: "inherit" }}>
           Privacy
         </Link>{" "}
         ·{" "}
-        <Link href="/support" style={{ color: "inherit" }}>
+        <Link href="https://www.limere.app/en/support/" style={{ color: "inherit" }}>
           Support
         </Link>{" "}
         ·{" "}
         {/* A Taiwanese visitor had no way from this page to anything in their
             own language — the zh support page existed, the zh legal pages did
             not, and neither was linked from here. */}
-        <Link href="/zh/legal/terms" style={{ color: "inherit" }}>
+        <Link href="https://www.limere.app/legal/terms/" style={{ color: "inherit" }}>
           中文
         </Link>
       </footer>
