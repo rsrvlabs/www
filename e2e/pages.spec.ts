@@ -3,9 +3,10 @@ import { test, expect, type Page } from "playwright/test";
 /**
  * Site-wide route smoke suite (2026-08 legal-pages + CI ticket).
  * landing.spec.ts owns the homepage's own beats (veil, scroll); this file
- * covers the rest of the site's real routes plus the two NEW legal pages,
- * nav behavior (desktop links + the mobile sheet), and link health —
- * resilient by design: structure + console health + HTTP status, not pixels.
+ * covers the rest of the site's real routes, the redirects of the legal
+ * pages (moved to limere.app), nav behavior (desktop links + the mobile
+ * sheet), and link health — resilient by design: structure + console
+ * health + HTTP status, not pixels.
  */
 
 function collectPageErrors(page: Page): string[] {
@@ -32,9 +33,6 @@ const ROUTES = [
   "/frontiers",
   "/research",
   "/research/ai-native-company",
-  "/legal/terms",
-  "/legal/privacy",
-  "/support",
 ];
 
 for (const route of ROUTES) {
@@ -46,16 +44,51 @@ for (const route of ROUTES) {
   });
 }
 
-test("the legal pages the app links to resolve 200, not 404", async ({ page }) => {
-  // This is the regression that would have caught the original ticket: the
-  // Limere iOS signup gate links to /legal/terms and /legal/privacy, and
-  // both 404'd until those routes existed. Checked directly over HTTP so a
-  // future rename/removal fails CI instead of shipping quietly. /support
-  // joined the same check once it shipped — App Store Connect's Support URL
-  // field points at it, so a 404 there is a submission blocker too.
-  for (const path of ["/legal/terms", "/legal/privacy", "/support"]) {
-    const res = await page.request.get(path);
-    expect(res.status(), `${path} should resolve 200`).toBe(200);
+/** Limere's legal and support pages moved to limere.app (2026-10-08). */
+const LIMERE = "https://www.limere.app";
+
+test("the old English legal and support URLs redirect 308 to limere.app", async ({ request }) => {
+  // App Store Connect and older links point here; each must land on the English page.
+  const cases: Array<[string, string]> = [
+    ["/legal/terms", `${LIMERE}/en/legal/terms/`],
+    ["/legal/privacy", `${LIMERE}/en/legal/privacy/`],
+    ["/support", `${LIMERE}/en/support/`],
+  ];
+  for (const [path, location] of cases) {
+    const res = await request.get(path, { maxRedirects: 0 });
+    expect(res.status(), `${path} status`).toBe(308);
+    expect(res.headers()["location"], `${path} location`).toBe(location);
+  }
+});
+
+test("the zh URLs the shipped app opens redirect 307 by Accept-Language", async ({ request }) => {
+  // Build 48 opens rsrvlabs.com/zh/legal/{terms,privacy} for every app language, in Taiwan,
+  // the US and Thailand: each reader lands on their own language's page (Thai on English
+  // until the Thai pages ship), and caches are told the answer varies by language.
+  const languages: Array<[string | undefined, string]> = [
+    ["th-TH,th;q=0.9", "/en"],
+    ["en-US", "/en"],
+    ["en-US,th;q=0.8,zh;q=0.5", "/en"],
+    ["zh-TW", ""],
+    ["zh-Hant-TW,zh;q=0.9,en;q=0.8", ""],
+    [undefined, "/en"],
+  ];
+  const paths: Array<[string, string]> = [
+    ["/zh/legal/terms", "/legal/terms/"],
+    ["/zh/legal/privacy", "/legal/privacy/"],
+    ["/zh/support", "/support/"],
+  ];
+  for (const [path, page] of paths) {
+    for (const [language, prefix] of languages) {
+      const res = await request.get(path, {
+        maxRedirects: 0,
+        headers: language ? { "accept-language": language } : {},
+      });
+      const label = `${path} [${language ?? "no Accept-Language"}]`;
+      expect(res.status(), `${label} status`).toBe(307);
+      expect(res.headers()["location"], `${label} location`).toBe(`${LIMERE}${prefix}${page}`);
+      expect(res.headers()["vary"] ?? "", `${label} vary`).toMatch(/accept-language/i);
+    }
   }
 });
 

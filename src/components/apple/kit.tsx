@@ -191,15 +191,15 @@ export function Footer() {
         Reserve
       </Link>{" "}
       · {CONTACT} ·{" "}
-      <Link href="/legal/terms" style={{ color: "inherit" }}>
+      <Link href="https://www.limere.app/en/legal/terms/" style={{ color: "inherit" }}>
         Terms
       </Link>{" "}
       ·{" "}
-      <Link href="/legal/privacy" style={{ color: "inherit" }}>
+      <Link href="https://www.limere.app/en/legal/privacy/" style={{ color: "inherit" }}>
         Privacy
       </Link>{" "}
       ·{" "}
-      <Link href="/support" style={{ color: "inherit" }}>
+      <Link href="https://www.limere.app/en/support/" style={{ color: "inherit" }}>
         Support
       </Link>
     </footer>
