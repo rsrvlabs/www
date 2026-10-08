@@ -93,6 +93,22 @@ test("the zh URLs the shipped app opens redirect 307 by Accept-Language", async 
   }
 });
 
+test("the activity invite redirects 307 to limere.app", async ({ request }) => {
+  // The app's QR codes carry https://www.rsrvlabs.com/limere/invite#CODE (R190) until a build
+  // that reads limere.app has shipped; the page itself lives on limere.app now (R692). The code
+  // rides in the fragment, which never reaches a server: a Location without a fragment of its own
+  // makes the browser carry the `#CODE` over (RFC 9110 §10.2.2), so the location must have none.
+  const cases: Array<[string, string]> = [
+    ["/limere/invite", `${LIMERE}/invite/`],
+    ["/limere/invite?code=AB12CD", `${LIMERE}/invite/?code=AB12CD`],
+  ];
+  for (const [path, location] of cases) {
+    const res = await request.get(path, { maxRedirects: 0 });
+    expect(res.status(), `${path} status`).toBe(307);
+    expect(res.headers()["location"], `${path} location`).toBe(location);
+  }
+});
+
 test.describe("desktop nav", () => {
   test.use({ viewport: { width: 1280, height: 800 } });
 

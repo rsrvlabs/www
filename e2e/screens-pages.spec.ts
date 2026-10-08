@@ -6,7 +6,6 @@ test.skip(!SHOTS_DIR, "SHOTS_DIR not set");
 
 const routes = [
   "limere",
-  "limere/invite#AB12CD",
   "labs",
   "frontiers",
   "research",
