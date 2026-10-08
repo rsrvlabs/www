@@ -2,15 +2,16 @@ import type { NextConfig } from "next";
 
 /**
  * Limere's legal and support pages moved to limere.app (2026-10-08): zh-TW at `/legal/…` and
- * `/support/`, English under `/en/`. Every old URL here answers with the matching page there.
+ * `/support/`, English under `/en/`, Thai legal pages under `/th/`. Every old URL here answers
+ * with the matching page there.
  */
 const LIMERE = "https://www.limere.app";
 
 /**
- * Thai has no pages on limere.app yet, so a Thai reader of an old zh URL gets the English page.
- * When `/th/legal/…` and `/th/support/` ship, set this to "/th" (one line).
+ * Where a Thai reader of an old zh URL lands: the Thai legal pages (`/th/legal/…`), and the
+ * English support page until a Thai one ships (then set SUPPORT to "/th", one line).
  */
-const THAI_PREFIX: "/en" | "/th" = "/en";
+const THAI_PREFIX = { LEGAL: "/th", SUPPORT: "/en" } as const satisfies Record<string, "/en" | "/th">;
 
 /**
  * The browser's first Accept-Language tag (the primary language), as a `has` value. Anchored
@@ -21,14 +22,14 @@ const primaryLanguage = (tag: string) => `^\\s*(?:${tag})(?:[-_][^,;]*)?(?:[,;].
 /**
  * The shipped app (build 48) opens `rsrvlabs.com/zh/legal/{terms,privacy}` for every app language,
  * and is live in Taiwan, the US and Thailand: each old zh URL sends the reader to their own
- * language's page (Thai → `THAI_PREFIX`, zh* → zh-TW, anything else → English). These answer 307,
+ * language's page (Thai → `thai`, its `THAI_PREFIX` entry; zh* → zh-TW; anything else → English). These answer 307,
  * not 308: browsers cache a 308 per URL and would pin the first language they saw.
  */
-const languageAware = (source: string, path: string) => [
+const languageAware = (source: string, path: string, thai: "/en" | "/th") => [
   {
     source,
     has: [{ type: "header" as const, key: "accept-language", value: primaryLanguage("[tT][hH]") }],
-    destination: `${LIMERE}${THAI_PREFIX}${path}`,
+    destination: `${LIMERE}${thai}${path}`,
     permanent: false,
   },
   {
@@ -59,8 +60,8 @@ const nextConfig: NextConfig = {
       { source: "/legal/:doc(privacy|terms)", destination: `${LIMERE}/en/legal/:doc/`, permanent: true },
       { source: "/support", destination: `${LIMERE}/en/support/`, permanent: true },
       // The zh-TW pages: by the reader's language, 307.
-      ...languageAware("/zh/legal/:doc(privacy|terms)", "/legal/:doc/"),
-      ...languageAware("/zh/support", "/support/"),
+      ...languageAware("/zh/legal/:doc(privacy|terms)", "/legal/:doc/", THAI_PREFIX.LEGAL),
+      ...languageAware("/zh/support", "/support/", THAI_PREFIX.SUPPORT),
     ];
   },
 };
