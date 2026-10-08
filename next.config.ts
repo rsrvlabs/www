@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 /**
  * Limere's legal and support pages moved to limere.app (2026-10-08): zh-TW at `/legal/…` and
- * `/support/`, English under `/en/`, Thai legal pages under `/th/`. Every old URL here answers
+ * `/support/`, English under `/en/`, Thai under `/th/`. Every old URL here answers
  * with the matching page there: the English ones below, the zh ones the app opens by the
  * reader's language in src/proxy.ts.
  */

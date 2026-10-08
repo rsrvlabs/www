@@ -4,7 +4,7 @@ import { NextResponse, type NextRequest } from "next/server";
  * The shipped Limere app (build 48) opens `rsrvlabs.com/zh/legal/{terms,privacy}` (and the
  * support link `/zh/support`) for every app language, and is live in Taiwan, the US and Thailand.
  * Each reader lands on their own language's page on limere.app, by the browser's first
- * Accept-Language tag: zh* → zh-TW (unprefixed), th → `THAI_PREFIX`, anything else (or none)
+ * Accept-Language tag: zh* → zh-TW (unprefixed), th → Thai (`/th/`), anything else (or none)
  * → English. "en-US,th;q=0.8" is English: only the first tag counts.
  *
  * Here and not in next.config.ts `redirects()`: a config redirect drops every header that
@@ -15,12 +15,6 @@ import { NextResponse, type NextRequest } from "next/server";
  */
 
 const LIMERE = "https://www.limere.app";
-
-/**
- * Where a Thai reader lands: the Thai legal pages (`/th/legal/…`), and the English support page
- * until a Thai one ships (then set support to "/th", one line).
- */
-const THAI_PREFIX = { legal: "/th", support: "/en" } as const satisfies Record<string, "/en" | "/th">;
 
 const PAGE = /^\/zh\/(legal\/(?:privacy|terms)|support)\/?$/;
 
@@ -33,8 +27,7 @@ export function proxy(request: NextRequest) {
   const page = PAGE.exec(request.nextUrl.pathname)?.[1];
   if (!page) return NextResponse.next();
   const lang = primaryLanguage(request.headers.get("accept-language"));
-  const thai = page === "support" ? THAI_PREFIX.support : THAI_PREFIX.legal;
-  const prefix = lang === "zh" ? "" : lang === "th" ? thai : "/en";
+  const prefix = lang === "zh" ? "" : lang === "th" ? "/th" : "/en";
   const res = NextResponse.redirect(`${LIMERE}${prefix}/${page}/`, 307);
   res.headers.set("Vary", "Accept-Language");
   return res;

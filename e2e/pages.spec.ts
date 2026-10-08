@@ -63,8 +63,8 @@ test("the old English legal and support URLs redirect 308 to limere.app", async 
 
 test("the zh URLs the shipped app opens redirect 307 by Accept-Language", async ({ request }) => {
   // Build 48 opens rsrvlabs.com/zh/legal/{terms,privacy} for every app language, in Taiwan,
-  // the US and Thailand: each reader lands on their own language's page (Thai support on
-  // English until a Thai one ships), and caches are told the answer varies by language.
+  // the US and Thailand: each reader lands on their own language's page, and caches are told
+  // the answer varies by language.
   const languages: Array<[string | undefined, "th" | "en" | "zh"]> = [
     ["th-TH,th;q=0.9", "th"],
     ["en-US", "en"],
@@ -73,14 +73,14 @@ test("the zh URLs the shipped app opens redirect 307 by Accept-Language", async 
     ["zh-Hant-TW,zh;q=0.9,en;q=0.8", "zh"],
     [undefined, "en"],
   ];
-  const paths: Array<[string, string, string]> = [
-    ["/zh/legal/terms", "/legal/terms/", "/th"],
-    ["/zh/legal/privacy", "/legal/privacy/", "/th"],
-    ["/zh/support", "/support/", "/en"],
+  const paths: Array<[string, string]> = [
+    ["/zh/legal/terms", "/legal/terms/"],
+    ["/zh/legal/privacy", "/legal/privacy/"],
+    ["/zh/support", "/support/"],
   ];
-  for (const [path, page, thai] of paths) {
+  for (const [path, page] of paths) {
     for (const [language, lang] of languages) {
-      const prefix = lang === "zh" ? "" : lang === "th" ? thai : "/en";
+      const prefix = lang === "zh" ? "" : `/${lang}`;
       const res = await request.get(path, {
         maxRedirects: 0,
         headers: language ? { "accept-language": language } : {},
