@@ -1,25 +1,20 @@
-/**
- * Apple's universal-links file for www.rsrvlabs.com (R694, 2026-10-08): on an iPhone with Limere
- * installed, an activity invite QR (`https://www.rsrvlabs.com/limere/invite#CODE`, what the app
- * still mints until most installs read limere.app, R692/R190) opens in the app with the code
- * filled in, instead of in the browser (which next.config.ts sends on to limere.app's /invite/). The app side is the
- * `applinks:www.rsrvlabs.com` Associated Domains entitlement in sw-app.
- *
- * Apple fetches this from exactly this path and does not follow redirects, so it must answer
- * 200 JSON here; src/proxy.ts does not match it. Bare `rsrvlabs.com` 308s to www, so the app
- * lists only www. Only the invite paths open the app; every other page stays in the browser.
+/** R2359: old printed participant invites continue to the Web fallback after Apple's cache refresh.
+ * Host-page intents keep their existing native route. Explicit 0 restores native-first activity links.
+ * Match the Limere site's NEXT_PUBLIC_INVITE_IOS_WEB_FALLBACK build setting on rollback.
  */
+const webValue = process.env.NEXT_PUBLIC_INVITE_IOS_WEB_FALLBACK;
+const webEnabled = webValue === undefined || webValue === "1";
 const APPLE_APP_SITE_ASSOCIATION = {
   applinks: {
-    details: [
-      {
-        appIDs: ["VAW9648J9J.com.rsrvlabs.limere"],
-        components: [
-          { "/": "/limere/invite", comment: "Limere activity invite; the code rides in the #fragment." },
-          { "/": "/limere/invite/*", comment: "Limere activity invite with a trailing path." },
-        ],
-      },
-    ],
+    details: [{
+      appIDs: ["VAW9648J9J.com.rsrvlabs.limere"],
+      components: ["/limere/invite", "/limere/invite/*"].flatMap(path => webEnabled ? [
+        { "/": path, "?": { host: "1" }, comment: "Host-page intent retains native handoff." },
+        { "/": path, exclude: true, comment: "Participant activity invite continues in the browser." },
+      ] : [
+        { "/": path, comment: "Explicit rollback: native activity handoff." },
+      ]),
+    }],
   },
 };
 
