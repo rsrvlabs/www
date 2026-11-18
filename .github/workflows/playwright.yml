@@ -14,7 +14,8 @@ concurrency:
 jobs:
   test:
     name: Playwright E2E
-    runs-on: ubuntu-latest
+    # Playwright 1.59.1 supports Noble; ubuntu-latest moved to unsupported 26.04.
+    runs-on: ubuntu-24.04
     # The suite itself runs in well under a minute warm; this caps the whole
     # job (install + browsers + build + test) comfortably inside ~10 minutes
     # and turns a hang into a fast failure instead of a slow one.

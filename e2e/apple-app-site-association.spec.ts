@@ -9,12 +9,18 @@ test("/.well-known/apple-app-site-association answers 200 JSON for the Limere in
   const res = await request.get("/.well-known/apple-app-site-association", { maxRedirects: 0 });
   expect(res.status()).toBe(200);
   expect(res.headers()["content-type"]).toMatch(/^application\/json\b/);
+  const web = process.env.NEXT_PUBLIC_INVITE_IOS_WEB_FALLBACK !== "0";
   expect(await res.json()).toEqual({
     applinks: {
       details: [
         {
           appIDs: ["VAW9648J9J.com.rsrvlabs.limere"],
-          components: [
+          components: web ? [
+            { "/": "/limere/invite", "?": { host: "1" }, comment: expect.any(String) },
+            { "/": "/limere/invite", exclude: true, comment: expect.any(String) },
+            { "/": "/limere/invite/*", "?": { host: "1" }, comment: expect.any(String) },
+            { "/": "/limere/invite/*", exclude: true, comment: expect.any(String) },
+          ] : [
             { "/": "/limere/invite", comment: expect.any(String) },
             { "/": "/limere/invite/*", comment: expect.any(String) },
           ],
