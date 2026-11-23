@@ -35,7 +35,7 @@ small{font-size:.82em}
 /* HUD */
 .hud{position:fixed;inset:0 0 auto 0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);padding-top:env(safe-area-inset-top)}
 .hud-bar{height:2px;background:transparent}
-.hud-bar span{display:block;height:100%;background:var(--accent);transform-origin:left center;transform:scaleX(.0556);transition:transform .5s var(--ease)}
+.hud-bar span{display:block;height:100%;background:var(--accent);transform-origin:left center;transform:scaleX(.0417);transition:transform .5s var(--ease)}
 .hud-row{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:1200px;margin:0 auto;padding:8px 20px 9px;font-size:.8rem;color:var(--muted)}
 .hud-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .hud-count{font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);letter-spacing:.02em;white-space:nowrap}
@@ -308,13 +308,54 @@ figure.viz + .twofig{margin-top:30px}
   .js .slide:not(.seen) .bar-fill,.js .slide:not(.seen) .stackbar,.js .slide:not(.seen) .plan-bar,.js .slide:not(.seen) .rng,.js .slide:not(.seen) .div-seg{transform:none}
 }
 @media print{.hud{display:none}.slide{min-height:auto;page-break-after:always}}
+
+/* Stories */
+.asis{font-size:.78rem;color:var(--muted);margin-top:.55em;max-width:44em;line-height:1.6}
+.tales{grid-area:tales;display:grid;gap:40px;min-width:0}
+.cols.tales{grid-template-areas:"ask" "tales" "tony"}
+.tale{display:grid;gap:18px;grid-template-columns:minmax(0,1fr);border-top:2px solid var(--ink);padding-top:14px;min-width:0}
+.tale-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.tale-head h3{font-family:var(--serif);font-size:clamp(1.18rem,1.02rem + .7vw,1.5rem);margin:0;line-height:1.35;font-weight:700}
+.tale-head .yr{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.prose p{font-size:1rem;line-height:1.9;color:var(--ink)}
+.prose p + p{margin-top:.8em}
+.lesson{margin-top:1.1em;padding:10px 14px 11px;border-left:3px solid var(--accent);background:var(--sheet);border-radius:0 10px 10px 0;font-size:.96rem;line-height:1.78}
+.lesson b{display:block;font-size:.76rem;letter-spacing:.05em;color:var(--accent-ink);margin-bottom:2px}
+.lesson.caution{border-left-color:var(--sand)}
+.lesson.caution b{color:var(--mid-ink)}
+.tale figure.viz{border-top:1px solid var(--rule)}
+.tl > li.bad::after{background:var(--clay);border-color:var(--clay)}
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fig{padding:10px 12px 11px;border-radius:10px;background:var(--sheet);border:1px solid var(--rule);min-width:0}
+.fig b{display:block;font-family:var(--serif);font-size:1.45rem;line-height:1.2;font-variant-numeric:tabular-nums;font-weight:700}
+.fig span{display:block;font-size:.82rem;color:var(--ink-2);line-height:1.55;margin-top:4px}
+.fig.wide{grid-column:1/-1}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pills span{font-size:.84rem;border-radius:999px;padding:1px 10px;background:var(--no-bg);color:var(--no-ink);line-height:1.8}
+.rng.fuzzy{background:repeating-linear-gradient(90deg,var(--slate) 0 6px,var(--slate-2) 6px 10px)}
+.rng.clay{background:var(--clay)}
+.en{display:block;font-size:.74rem;color:var(--muted);font-weight:400;letter-spacing:.01em;margin-top:2px}
+h2 .en{font-family:var(--sans);font-size:.8rem;margin-top:6px}
+.prose p,.lesson,.fig span{text-wrap:pretty}
+@media (min-width:960px){
+  .cols.tales{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:"ask" "tales" "tony"}
+  .cols.tales .ask,.cols.tales .tony{max-width:880px}
+  .tale{grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:52px;align-items:start}
+  .tale-head{grid-column:1/-1}
+}
+/* Cover order list */
+.toc{max-width:760px;margin-top:4px;padding:12px 14px;border-radius:12px;border:1px solid var(--rule);background:var(--sheet)}
+.toc b{display:block;font-size:.8rem;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+.toc ol{margin:0;padding-left:1.2em;display:grid;gap:3px;font-size:.9rem;line-height:1.6}
+.toc a{color:var(--accent-ink);text-decoration:underline;text-decoration-color:var(--accent-soft);text-underline-offset:3px}
+.bar-fill.fz{background:repeating-linear-gradient(90deg,var(--slate-2) 0 4px,transparent 4px 7px);border-radius:0 6px 6px 0;min-width:0}
 </style>
 </head>
 <body>
 
 <div class="hud">
   <div class="hud-bar"><span id="progress"></span></div>
-  <div class="hud-row"><span class="hud-title" id="hud-title">Limere 轉向・兩位創辦人對齊用</span><div class="hud-nav"><span class="hud-count" aria-live="polite"><span id="cnt-cur">01</span> / <span id="cnt-total">18</span></span><button type="button" id="prev" aria-label="上一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button><button type="button" id="next" aria-label="下一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div></div>
+  <div class="hud-row"><span class="hud-title" id="hud-title">Limere 轉向・兩位創辦人對齊用</span><div class="hud-nav"><span class="hud-count" aria-live="polite"><span id="cnt-cur">01</span> / <span id="cnt-total">24</span></span><button type="button" id="prev" aria-label="上一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button><button type="button" id="next" aria-label="下一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div></div>
 </div>
 
 <main id="deck">
@@ -322,147 +363,514 @@ figure.viz + .twofig{margin-top:30px}
 <!-- 1 -->
 <section class="slide title-slide" id="s1" data-title="封面" aria-label="封面">
   <div class="frame">
-    <h1><span class="kw">Limere 轉向：</span><span class="kw">從夜生活，</span><span class="kw">走進餐飲現場的營運</span></h1>
-    <p class="sub">Ryvn 和 AI 顧問的五輪對話，整理成一份我們兩個人可以一起看、一起決定的簡報。</p>
-    <p class="meta">對話時間：2026 年 11 月 22 日 17:45 至 11 月 23 日 07:04（台北時間）・整理：2026 年 11 月 23 日</p>
+    <h1><span class="kw">Limere 轉向：</span><span class="kw">從夜生活，</span><span class="kw">走進餐廳的現場</span></h1>
+    <p class="sub">Ryvn 跟 ChatGPT 聊了五輪，請它當商業顧問。這份是那五輪的整理，給我們兩個一起看、一起決定接下來怎麼走。</p>
+    <p class="meta">對話時間：2026 年 11 月 22 日 17:45 到 11 月 23 日 07:04（台北時間）。整理：2026 年 11 月 23 日</p>
     <div class="howto" role="list">
-      <div class="h1" role="listitem"><b>Ryvn 當時問的</b>這一頁在回答對話裡的哪個問題。</div>
-      <div class="h2" role="listitem"><b>圖表</b>對話的重點。有數字的圖，下方都標出對話說的來源。</div>
-      <div class="h3" role="listitem"><b>想問 Tony</b>每頁一題，想聽你的判斷。題目一頁一頁往後疊，最後收斂到這週要一起決定的事。</div>
+      <div class="h1" role="listitem"><b>Ryvn 當時問的</b>這一頁在回答他當時哪一個問題，原話照錄。</div>
+      <div class="h2" role="listitem"><b>故事和圖</b>先講別家公司真的發生過什麼，再講對我們的意思。有數字的圖，下面都寫了對話說的出處。</div>
+      <div class="h3" role="listitem"><b>想問 Tony</b>每頁一題，想聽你的判斷。前面的題目跟著故事走，後面慢慢收到這週要一起決定的事。</div>
     </div>
-    <p class="keys">手機：上下滑動閱讀，左右滑換頁。電腦：方向鍵、PageUp／PageDown。也可以按上方頁碼旁的按鈕。</p>
+    <nav class="toc" aria-label="這份簡報的順序"><b>順序</b>
+      <ol>
+        <li><a href="#s4">第 4 到 9 頁：十二個真實公司的故事，成功的、失敗的都有</a></li>
+        <li><a href="#s10">第 10 到 13 頁：台灣市場、一家店的帳、論文怎麼說、怎麼快速起步</a></li>
+        <li><a href="#s14">第 14 到 18 頁：Shire 和 Marble 的功能、台灣的機會、怎麼賺錢、給投資人看什麼</a></li>
+        <li><a href="#s19">第 19 到 23 頁：我們的缺口、三年後、這週做什麼、怎麼一起決定、還沒查證的</a></li>
+        <li><a href="#s24">第 24 頁：附錄，Ryvn 的五輪提問原文</a></li>
+      </ol>
+    </nav>
+    <p class="keys">手機：上下滑著讀，左右滑換頁。電腦：方向鍵、PageUp／PageDown。也可以按上方頁碼旁的按鈕。</p>
   </div>
 </section>
 
 <!-- 2 -->
-<section class="slide" id="s2" data-title="我們在哪裡，為什麼轉向" aria-label="我們在哪裡，為什麼轉向">
+<section class="slide" id="s2" data-title="我們在哪裡，為什麼要轉" aria-label="我們在哪裡，為什麼要轉">
   <div class="frame">
-    <h2>我們在哪裡，為什麼轉向</h2>
-    <p class="lede">Limere 要從夜生活社交，轉向餐廳、酒吧、咖啡廳的營運優化。這次想把 IoT、AI、Computer Vision 和心理學的累積，直接用在店家的營運上。</p>
-    <p class="disclaimer"><b>先說清楚：</b>這份簡報整理自 Ryvn 和 ChatGPT（請它扮演商業顧問）的對話。對話裡提到的事實、各家公司的說法和數字，我們都還沒有自己查證過。</p>
+    <h2><span class="kw">我們在哪裡，</span><span class="kw">為什麼要轉</span></h2>
+    <p class="lede">Limere 要從夜生活社交，轉去幫餐廳、酒吧、咖啡廳把每天的營運做得更順。我們想把自己累積的感測（IoT）、AI、影像辨識和心理學，直接用在店家身上。</p>
+    <p class="disclaimer"><b>先講清楚：</b>這份整理自 Ryvn 跟 ChatGPT 的對話，當時請它扮演商業顧問。對話裡提到的事實、各家公司的說法和數字，我們都還沒有自己查證。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
         <blockquote>「Limere 從目前的 night life tech，即將 pivot 到餐廳／酒吧／咖啡廳運營優化與管理……目前我想知道，如果要做這個方向，我們應該要先回答哪些問題？當然你也可以給我一些背景知識，以及你對這個題目的評估。」<cite>第一輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>回看過去，為了做實體社交層，我們花了很多力氣在周邊的事情上，離自己喜歡、相信的技術越來越遠。</li>
-        <li>現在已有餐廳、酒吧、咖啡廳願意當試驗場。對話的提醒是：先把它們當成<strong>研究入口</strong>，還不等於產品被驗證。</li>
-        <li>第一輪的一句話：不要再用「合作方願意讓我們做什麼」，來決定「我們應該成為什麼公司」。</li>
+        <li>回頭看，為了做實體社交，我們花了很多力氣在周邊的事上：辦活動、主持、行銷、在現場執行。離自己喜歡、相信的技術越來越遠。</li>
+        <li>現在已經有餐廳、酒吧、咖啡廳願意讓我們去試。對話提醒：先把它們當成去現場學東西的地方。店家願意讓我們試，還不代表產品被證明有用。</li>
+        <li>第一輪有一句話很重要：不要再用「合作的店願意讓我們做什麼」，來決定「我們要變成什麼公司」。</li>
       </ul></div>
       <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>從哪裡，到哪裡</h3>
+        <figure class="viz quant" data-nums="20,19" data-msg="8">
+          <h3>從哪裡，走到哪裡</h3>
           <div class="fromto">
             <div class="ft"><h4>過去：夜生活社交</h4><dl>
               <dt>服務誰</dt><dd>活動裡的消費者</dd>
-              <dt>實際在做</dt><dd>活動企劃、主持、招募、宣傳、現場執行</dd>
-              <dt>證明了什麼</dt><dd>有人願意在活動裡完成指定流程（TWS 第二場：20 人進 App，19 人完成抽卡、問卷與領券），但還不能證明主辦方因此增加營收或願意付費</dd></dl></div>
+              <dt>實際在做</dt><dd>活動企劃、主持、行銷、現場執行</dd>
+              <dt>證明了什麼</dt><dd>有人願意在活動裡照流程走完。TWS 第二場，20 個人進了 App，其中 19 個人抽卡、填問卷、領券都做完。可是這還不能證明主辦方因此多賺錢，或願意付錢。</dd></dl></div>
             <span class="ft-arrow" aria-hidden="true"></span>
-            <div class="ft to"><h4>接下來：餐飲營運</h4><dl>
-              <dt>服務誰</dt><dd>店家和總部，不需要顧客下載 App</dd>
-              <dt>要做的</dt><dd>讓一個高價值、反覆發生的營運決策變得更好</dd>
-              <dt>要證明什麼</dt><dd>損失可以量化、店家願意改作業方式，而且願意付費</dd></dl></div>
+            <div class="ft to"><h4>接下來：餐廳的營運</h4><dl>
+              <dt>服務誰</dt><dd>店家和總部，顧客不用下載 App</dd>
+              <dt>要做的</dt><dd>把一個值錢、天天都會碰到的營運決定，變得更好</dd>
+              <dt>要證明什麼</dt><dd>損失算得出來、店家願意改做法，而且願意付錢</dd></dl></div>
           </div>
-          <p class="subhead" style="margin-top:18px">第一輪的初步判斷（對話說明：這是策略判斷，不是投資評分）</p>
+          <p class="subhead" style="margin-top:18px">第一輪的初步判斷（對話說：這是策略判斷，不是投資評分）</p>
           <ul class="rate">
-            <li><span>市場需求的存在性</span><span class="chip hi">高</span></li>
-            <li><span>和兩位創辦人技術的契合度</span><span class="chip hi">高</span></li>
-            <li><span>市場競爭壓力</span><span class="chip warn">高</span></li>
-            <li><span>目前產品市場契合的確定性</span><span class="chip lo">很低</span></li>
-            <li><span>成為可規模化 SaaS 的難度</span><span class="chip warn">高</span></li>
+            <li><span>市場上真的有人需要</span><span class="chip hi">高</span></li>
+            <li><span>跟我們兩個的技術合不合</span><span class="chip hi">高</span></li>
+            <li><span>競爭有多激烈</span><span class="chip warn">高</span></li>
+            <li><span>現在能確定產品有人買單的程度</span><span class="chip lo">很低</span></li>
+            <li><span>要變成能一家一家複製的軟體訂閱，有多難</span><span class="chip warn">高</span></li>
           </ul>
-          <figcaption class="src">整理自對話第一輪。</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈第一輪回覆；TWS 兩場測試的數字〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>回看夜生活這一段，哪些技術或現場經驗你覺得真的累積下來了，值得帶進餐飲營運？</p>
+        <p>回頭看夜生活這一段，你覺得哪些技術或現場經驗真的留下來了，值得帶進餐廳？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 3 -->
-<section class="slide" id="s3" data-title="五輪提問，方向怎麼移動" aria-label="五輪提問，方向怎麼移動">
+<section class="slide" id="s3" data-title="問了五輪，方向怎麼移動" aria-label="問了五輪，方向怎麼一路移動">
   <div class="frame">
-    <h2>五輪提問，方向怎麼移動</h2>
-    <p class="lede">每一輪 Ryvn 都補一個方向，或修正一個前提。越後面的結論越算數，這份簡報都以最新的位置為準。</p>
+    <h2><span class="kw">問了五輪，</span><span class="kw">方向怎麼一路移動</span></h2>
+    <p class="lede">每一輪，Ryvn 都補一個方向，或修正一個前提。越後面的結論越算數，這份簡報都照最新的版本。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
         <blockquote>「請繼續。」<cite>第二輪</cite></blockquote>
         <blockquote>「你這次聚焦在食物浪費，而不是我們的終極目標，是因為你的研究跟案例有抽樣偏頗。」<cite>第四輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>前三輪在建框架：先找出值得付費的營運決策，再決定技術。</li>
-        <li>第四輪開始改看 2024–2026 年真的在做這件事的新創，方向因此大幅具體化。</li>
-        <li>第五輪把 YC 同題新創當成「需求存在」的訊號，收斂到本週就能動手的原型。</li>
+        <li>前三輪在搭架子：先找出店家願意付錢的那個營運決定，再來挑技術。</li>
+        <li>第四輪開始改看 2024 到 2026 年真的在做這件事的新創。方向一下子具體很多，下一頁起的故事，大多是這一輪挖出來的。</li>
+        <li>第五輪把 YC 裡做同樣題目的新創，看成「真的有人需要」的訊號，收到這週就能動手的原型。</li>
       </ul>
-        <p class="shift"><b>方向修正</b>前一輪的結論（首選備料與浪費），後來改為：以「系統紀錄和現場實況的比對」為主軸，浪費只是其中一種事件。</p>
-        <p class="shift"><b>方向修正</b>前一輪把同題新創看成競爭壓力，後來改為：看成市場需求的正面訊號。</p>
+        <p class="shift"><b>方向修正</b>上一輪的首選是「備料和浪費」。後來改成：主軸是比對「系統記下來的」跟「現場真的發生的」，浪費只是其中一種狀況。</p>
+        <p class="shift"><b>方向修正</b>上一輪把做同題目的新創看成競爭壓力。後來改成：看成市場真的有需求的好訊號。</p>
       </div>
       <div class="vizcol">
-        <figure class="viz diagram">
+        <figure class="viz quant" data-nums="28,90" data-msg="75,8">
           <h3>五輪的時間線（台北時間）</h3>
           <ol class="tl">
-            <li><span class="when"><b>第一輪</b>11/22 17:45</span>
+            <li><span class="when"><b>第一輪</b>11 月 22 日 17:45</span>
               <p class="q">問：要做這個方向，應該先回答哪些問題？</p>
-              <p class="a">先別急著定功能，先找出一個我們比現有軟體和資深店長做得更好、店家願意持續付費的營運決策。候選定位：Physical Operations Intelligence。</p></li>
-            <li><span class="when"><b>第二輪</b>11/22 18:19</span>
-              <p class="q">問：請繼續（不要用表格）。</p>
-              <p class="a">研究「限制產出的瓶頸」，而不是一般的效率。兩條假設並行：Service Flow 和 Production Flow；長期可能是 Ambient Intelligence 公司。</p></li>
-            <li><span class="when"><b>第三輪</b>11/22 22:44</span>
-              <p class="q">問：終極目標是 B；直接去找論文、YC 和 a16z 團隊、競品的證據；三年後的產品樣態；成本結構先自己回答。</p>
-              <p class="a">三年方向定為 Ambient Operations Intelligence；首選 Production Workflow Intelligence；提出兩人共同的產品決策機制。</p></li>
-            <li><span class="when"><b>第四輪</b>11/23 06:08</span>
-              <p class="q">問：前一輪有抽樣偏差；要更多案例，尤其是近年新創的失敗；AI 時代的冷啟動。</p>
-              <p class="a">Shire 和 Marble 已在做相近的事。切入點改為 Physical Operations State Reconciliation（實體營運狀態的比對）；第一輪驗證限定 28 天。</p></li>
-            <li class="now"><span class="when"><b>第五輪</b>11/23 07:00<span class="tag">目前位置</span></span>
-              <p class="q">問：看成機會而不是阻力；Shire 和 Marble 的功能；2B 與 2VC 的 BMC；本週行動。</p>
-              <p class="a">產品學 Shire、導入學 Marble、從台灣既有的餐飲軟體生態系切入；本週做出 Live Operations Board＋AI Manager 原型。</p></li>
+              <p class="a">先別急著定功能。先找出一個營運決定：我們做得比現有軟體和資深店長好，店家也願意一直付錢。當時暫定的定位是替餐飲業做「實體營運智慧」<small>（Physical Operations Intelligence）</small>。</p></li>
+            <li><span class="when"><b>第二輪</b>11 月 22 日 18:19</span>
+              <p class="q">問：請繼續，不要用表格。</p>
+              <p class="a">去研究「卡住整家店出餐量的那個瓶頸」，不是泛泛的效率。兩條假設一起走：外場的服務流程，和廚房的製作流程<small>（Service Flow、Production Flow）</small>。長期可能是一家能感知現場環境的 AI 公司<small>（Ambient Intelligence）</small>。</p></li>
+            <li><span class="when"><b>第三輪</b>11 月 22 日 22:44</span>
+              <p class="q">問：終極目標是賣給店家；請直接去找論文、YC 和 a16z 的團隊、競品的證據；三年後的產品長什麼樣；成本結構先自己回答。</p>
+              <p class="a">三年的方向定為「看得懂現場的營運 AI」<small>（Ambient Operations Intelligence）</small>；第一個想研究的是廚房的製作流程<small>（Production Workflow Intelligence）</small>；另外提了一套我們兩個一起做產品決定的方法。</p></li>
+            <li><span class="when"><b>第四輪</b>11 月 23 日 06:08</span>
+              <p class="q">問：上一輪的案例抽樣有偏差；要更多案例，尤其是近年新創的失敗；AI 時代怎麼冷啟動。</p>
+              <p class="a">Shire 和 Marble 已經在做很像的事。切入點改成：系統以為的，跟現場真的在發生的，哪裡對不上<small>（Physical Operations State Reconciliation）</small>。第一輪驗證限 28 天，比第一輪提的 90 天研究計畫短很多。</p></li>
+            <li class="now"><span class="when"><b>第五輪</b>11 月 23 日 07:00<span class="tag">目前位置</span></span>
+              <p class="q">問：看成機會，不是阻力；Shire 和 Marble 有哪些功能；賣給店家、給投資人看的兩張商業模式圖；這週做什麼。</p>
+              <p class="a">產品學 Shire，導入新店的方法學 Marble，從台灣現有的餐飲軟體圈切進去。這週做出「現場營運看板＋AI 店長助理」原型<small>（Live Operations Board＋AI Manager）</small>。</p></li>
           </ol>
-          <figcaption class="src">整理自對話；時間是 Ryvn 每輪提問的時間（台北時間）。</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈各輪回覆；時間是 Ryvn 每輪提問的台北時間〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>讀完這五輪的移動，你最想先拿我們自己的現場資料，去檢驗哪一個轉折？</p>
+        <p>看完這五輪怎麼移動，你最想先拿我們自己的現場資料，去驗哪一個轉折？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 4 -->
-<section class="slide" id="s4" data-title="台灣市場與既有業者" aria-label="台灣市場與既有業者">
+<section class="slide" id="s4" data-title="故事：SevenRooms、Winnow" aria-label="故事：SevenRooms 和 Winnow 早期怎麼打進餐廳">
   <div class="frame">
-    <h2>台灣市場：需求在，交易資料這一層已經很擠</h2>
-    <p class="lede">營業額不等於軟體市場。機會不在再做一套交易系統，而在交易軟體看不到的實體現場。</p>
+    <h2><span class="kw">成功的故事：</span><span class="kw">它們一開始怎麼打進餐廳</span></h2>
+    <p class="lede">兩家都成了。一家跟我們一樣從夜店起步；另一家想做 AI，卻先賣一台秤。</p>
+    <p class="asis">這頁到第 9 頁的故事，都照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「你說的沒錯，從作業研究、行銷等等方向，的確要我們去做很多預先的事情，但是事實上你也可以直接查詢，這些你提到的競品他在早期是怎麼打入市場的，不需要我去問或者思考。」<cite>第三輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>SevenRooms：一開始也是做夜店的</h3><span class="chip hi">成功</span><span class="yr">2011 年到 2025 年</span></div>
+          <div class="prose">
+            <p>SevenRooms 在 2011 年成立。一開始做的不是餐廳軟體，是夜店科技：想幫夜店認出客人，讓第一次來的人也能被當熟客招待。</p>
+            <p>三位創辦人花了大約兩年做出第一個產品，結果失敗了。共同創辦人 Joel Montaniel 在 2016 年的訪談裡說，他們犯了很多第一次創業的人會犯的錯。</p>
+            <p>後來他們發現，業者要的不是讓消費者覺得自己很特別的東西，而是能管顧客關係、留住顧客資料、讓接待更順的工具。CTO Kinesh Patel 在 2018 年的訪談說，早期他們真的站在餐廳接待櫃檯旁，看完整個午餐和晚餐的訂位與帶位。另一位共同創辦人 Allison Page 說，早期產品很簡單，像進階版的試算表。</p>
+            <p>2015 年，原本的客戶開口要更多，他們才正式做進餐廳。到了 2025 年，DoorDash 把它買下，收購對價約 11.52 億美元。</p>
+            <p class="lesson"><b>對我們的意思</b>它跟我們一樣從夜生活起步。它進餐廳靠的不是一開始功能就齊，是先找到一件店家願意為它改流程的事。</p>
+          </div>
+          <figure class="viz quant" data-nums="2011,2015,2016,2018,2025,11.52" data-msg="41,8">
+            <h3>SevenRooms 走過的路</h3>
+            <ol class="tl compact">
+              <li><span class="when"><b>2011 年</b>成立</span><p class="a">先做夜店：幫店家認出客人。</p></li>
+              <li class="bad"><span class="when"><b>大約兩年後</b>第一個產品</span><p class="a">失敗。發現業者要的是管顧客關係的工具。</p></li>
+              <li><span class="when"><b>2015 年</b>進餐廳</span><p class="a">既有客戶提出需求，正式擴展到餐廳。</p></li>
+              <li class="now"><span class="when"><b>2025 年</b>被 DoorDash 收購</span><p class="a">依 DoorDash 2026 年的 SEC 文件，收購對價約 11.52 億美元。</p></li>
+            </ol>
+            <figcaption class="src">資料：ChatGPT 對話引述〈Joel Montaniel 2016 年訪談、Kinesh Patel 2018 年訪談；DoorDash 2026 年 SEC 文件〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>Winnow：想做 AI，先賣一台秤</h3><span class="chip hi">成功</span><span class="yr">2013 年起</span></div>
+          <div class="prose">
+            <p>Winnow 在 2013 年成立，想減少商業廚房的食物浪費。創辦人 Marc Zornes 原本在 McKinsey 做資源效率的研究，他發現食物浪費不只是環保問題，也是一筆算得出來的成本。</p>
+            <p>他其實一開始就想用影像辨識，自動認出被丟掉的食物。可是 2013 年技術還不夠成熟。所以第一版很簡單：一台秤，加一台包著塑膠保護套的平板。員工丟食物時，系統記下種類、重量和成本，主管再照紀錄調整備料。</p>
+            <p>這個簡單的版本就有人買單。之後他們才跟 IKEA、Emaar Hospitality Group 合作，測試並推出影像辨識的 Winnow Vision。創辦人也說過，每到一個國家，都要訓練和支援當地的廚房員工。</p>
+            <p class="lesson"><b>對我們的意思</b>技術願景沒放棄，只是換了順序：先用簡單的感測賺到錢、拿到真實資料，再把 AI 做上去。它也照客戶的預算，同時賣「一次設定費＋每店月費」和不用攝影機的便宜版本。</p>
+          </div>
+          <figure class="viz quant" data-nums="2013,2015,100,100 萬,六年" data-msg="41">
+            <h3>Winnow 的順序：先秤，後影像</h3>
+            <ol class="tl compact">
+              <li><span class="when"><b>2013 年</b>成立</span><p class="a">想做影像辨識，但技術不夠成熟，先做「秤＋平板」。</p></li>
+              <li><span class="when"><b>2015 年</b>先賺到錢</span><p class="a">公司說已裝進英國超過 100 個據點，估計每年替客戶省下超過 100 萬英鎊的食材成本。這是公司自己公布的數字，不是獨立實驗。</p></li>
+              <li class="now"><span class="when"><b>之後</b>才做影像辨識</span><p class="a">和 IKEA、Emaar 測試並推出 Winnow Vision。對話附的創辦人訪談，標題寫的是「六年後才實現 AI 願景」。</p></li>
+            </ol>
+            <figcaption class="src">資料：ChatGPT 對話引述〈Winnow 2015 年公布的數字；創辦人訪談〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>Winnow 先用一台秤，後來才換成影像辨識。如果是你來做第一版，你會先記下哪些訊號，讓之後換成影像時，前面累積的資料還接得上？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" id="s5" data-title="故事：Picnic、Chef Robotics" aria-label="故事：Picnic 和 Chef Robotics，機器人進餐廳">
+  <div class="frame">
+    <h2><span class="kw">失敗的故事：</span><span class="kw">機器做得出來，</span><span class="kw">帳卻算不過來</span></h2>
+    <p class="lede">兩家都是做食物的機器人。一家倒了，留給客戶一台很貴的機器；另一家手上有餐廳的合約，還是自己走了。</p>
+    <p class="asis">故事照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「我想知道更多餐廳運營的案例或者論文，可以更貼近我們想做的方向，更為直接，創辦人故事、成功案例，但我更希望看到失敗案例，這可能來自最近新創團隊的啟示，就我所知做這方面的新創不少。」<cite>第四輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>Picnic：公司倒了，機器留在客戶店裡</h3><span class="chip lo">停止營運</span><span class="yr">2026 年 5 月</span></div>
+          <div class="prose">
+            <p>Picnic 是西雅圖的披薩機器人公司，想把做披薩自動化。它說這台機器能讓一位員工，每小時做最多約 100 份客製披薩。公司累計募資約 5,000 萬美元，也跟 Domino's 合作測試過。</p>
+            <p>從 2023 年起，它開始碰到籌錢困難，接著裁員、換管理層。2026 年 5 月停止營運，清算資產。</p>
+            <p>對話特別講了一位客戶：西雅圖 Moto Pizza 的老闆 Lee Kindell。他原本很看好這台機器人，導入後也一直支持 Picnic。Picnic 倒了以後，他手上留下大約 25 萬美元的設備，之後還有沒有人支援，變得說不準。</p>
+            <p>對話也提醒：公開資料說它受到融資環境變化影響，不能因為它倒了，就說每家店用這台機器都虧錢。</p>
+            <p class="lesson"><b>對我們的意思</b>客戶就算喜歡技術，也會怕把關鍵設備押在一家新創身上。設備要能換、資料要能帶走、介面要標準。要能回答：我們哪天停了，店家能不能回到原本的做法？</p>
+          </div>
+          <figure class="viz quant" data-nums="100,5000,2023,2026,5,25" data-msg="75">
+            <h3>Picnic 的幾個時間點</h3>
+            <ol class="tl compact">
+              <li><span class="when"><b>早期</b>機器和募資</span><p class="a">宣稱一位員工每小時最多做約 100 份；累計募資約 5,000 萬美元，和 Domino's 測試過。</p></li>
+              <li><span class="when"><b>2023 年起</b>開始出狀況</span><p class="a">募資困難、裁員、換管理層。</p></li>
+              <li class="bad"><span class="when"><b>2026 年 5 月</b>停止營運</span><p class="a">清算資產。</p></li>
+              <li class="bad"><span class="when"><b>客戶這邊</b>Moto Pizza</span><p class="a">手上留下約 25 萬美元的設備，之後的支援說不準。</p></li>
+            </ol>
+            <figcaption class="src">資料：ChatGPT 對話引述〈2026 年對 Picnic 停止營運的報導〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>Chef Robotics：手上有餐廳合約，還是走了</h3><span class="chip warn">離開餐廳</span><span class="yr">2026 年 9 月的訪談</span></div>
+          <div class="prose">
+            <p>Chef Robotics 做食物組裝機器人。2026 年 9 月，創辦人 Rajat Bhageria 上了 Association for Advancing Automation 的訪談，標題直接就是〈Chef Robotics 為什麼離開餐廳〉。</p>
+            <p>他說了一件很反直覺的事：公司原本有數百萬美元的速食餐廳合約收入機會，還是決定離開這個市場。不是餐廳不想買，是技術和經濟性不適合那時的客戶。</p>
+            <p>一間快餐店的製作工作，集中在每天幾個尖峰時段。機器人如果每天只能真正替掉三、四個小時的特定工作，又要適應很多不同的原料、配方和流程，省下的錢未必撐得起設備的成本。</p>
+            <p>他們後來轉去食品工廠，理由很簡單：工廠每天可能生產十幾個小時，同一條產線只處理少數幾種原料。做得久、變化少，機器人的帳就比較算得過來。</p>
+            <p class="lesson"><b>對我們的意思</b>要看的是作業穩不穩、事件多不多、同一個決定會不會一直重複，而不只是「是不是餐廳」。對話建議之後也把中央廚房、標準化的製作中心、連鎖品牌共用的後場列進候選，但不是現在就轉去做工廠。</p>
+          </div>
+          <figure class="viz quant" data-nums="三、四,十幾,2026,9" data-msg="75">
+            <h3>一天之中，機器真正有活幹的時間</h3>
+            <div class="bars">
+              <div class="bar-row"><span class="bar-lab">快餐店：只在尖峰時段，機器真正替掉的工作</span><span class="bar-val">三、四個小時</span><span class="bar-trk" style="display:flex"><span class="bar-fill" style="--v:3;--max:24;background:var(--clay);border-radius:6px 0 0 6px"></span><span class="bar-fill fz" style="--v:1;--max:24"></span></span></div>
+              <div class="bar-row"><span class="bar-lab">食品工廠：一條產線每天在生產</span><span class="bar-val">十幾個小時</span><span class="bar-trk" style="display:flex"><span class="bar-fill alt" style="--v:10;--max:24;border-radius:6px 0 0 6px"></span><span class="bar-fill fz" style="--v:9;--max:24"></span></span></div>
+            </div>
+            <div class="axis"><span style="left:0">0</span><span style="left:25%">6 小時</span><span style="left:50%">12 小時</span><span style="left:75%">18 小時</span><span style="left:100%">24 小時</span></div>
+            <p class="note">條紋的部分是說法本身的範圍：「三、四個小時」和「十幾個小時」，訪談沒有給精確數字。餐廳那邊還要應付很多種原料和配方；工廠一條線只處理少數幾種。</p>
+            <figcaption class="src">資料：ChatGPT 對話引述〈Rajat Bhageria，2026 年 9 月 Association for Advancing Automation 訪談〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>Chef Robotics 的帳，卡在一台機器一天只有三、四個小時真正在用。換成我們裝在店裡的感測設備，你會怎麼估它一天真正有用的時間？會先量哪幾個數字？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" id="s6" data-title="故事：Kernel、Zume" aria-label="故事：Kernel 和 Zume，懂餐飲、有資本也不夠">
+  <div class="frame">
+    <h2><span class="kw">失敗的故事：</span><span class="kw">懂餐飲、有資本，</span><span class="kw">現場還是不聽話</span></h2>
+    <p class="lede">一家的創辦人做過 Chipotle，一家拿到數億美元。兩家最後都沒有照原本的樣子走下去。</p>
+    <p class="asis">故事照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「找 YC and a16z 相關團隊、競品為什麼成功、為什麼失敗，在這個領域中，肯定有非常多國內外跟我們做一樣題目的人。」<cite>第三輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>Kernel：機器手臂被搬出了日常作業</h3><span class="chip warn">機器手臂退場</span><span class="yr">2024 年到 2025 年</span></div>
+          <div class="prose">
+            <p>Kernel 是 Chipotle 創辦人 Steve Ells 推出的自動化餐飲概念。2024 年在紐約推出，用機器手臂做一部分餐點，再用自動化的取餐設計減少人力。</p>
+            <p>到了 2025 年 3 月，一篇實地報導寫到，Kernel 2.0 已經把機器手臂移出日常作業。店裡的管理者講到的困難很具體：設備安裝、員工訓練、安全規則，還有建築物的地板結構，讓機器站不穩。後來 Kernel 原本的餐廳概念停了，Steve Ells 轉去做新的餐飲模式。</p>
+            <p>對話覺得這比一般的機器人失敗更值得看：Steve Ells 不是不懂餐飲的人，也不缺資本。就算這樣，技術跟真實場地之間，還是差了很大一段。</p>
+            <p class="lesson"><b>對我們的意思</b>第一個產品最好不要求店家重新設計整間店，或改掉核心的作業方式；先用店裡現有的設備和流程拿到價值。對話也說，這是從案例推出來的選擇，不代表大改造的自動化永遠做不成。</p>
+          </div>
+          <figure class="viz quant" data-nums="2024,2025,3,2.0" data-msg="75">
+            <h3>Kernel 在現場卡住的地方</h3>
+            <ol class="tl compact">
+              <li><span class="when"><b>2024 年</b>在紐約推出</span><p class="a">機器手臂做部分餐點，自動化取餐減少人力。</p></li>
+              <li class="bad"><span class="when"><b>2025 年 3 月</b>實地報導</span><p class="a">Kernel 2.0 已把機器手臂移出日常作業。</p></li>
+              <li class="bad"><span class="when"><b>之後</b>概念停止</span><p class="a">Steve Ells 轉往新的餐飲模式。</p></li>
+            </ol>
+            <p class="subhead">管理者講到的四個現場問題</p>
+            <div class="pills"><span>設備安裝</span><span>員工訓練</span><span>安全規則</span><span>地板結構讓機器不穩</span></div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈2025 年 3 月的實地報導〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>Zume：從機器人披薩，轉到包裝，最後收掉</h3><span class="chip lo">停止營運</span><span class="yr">2023 年</span></div>
+          <div class="prose">
+            <p>Zume 想用機器人和自動化，改造做披薩和送披薩的整個過程，拿到了數億美元的投資。後來它轉去做永續包裝，2023 年停止營運。</p>
+            <p>對話把它跟另一家公司放在一起講。Chowbotics 做一台自動做沙拉的機器 Sally，2021 年被 DoorDash 買下，2022 年就停掉了。報導說它的表現沒達到 DoorDash 內部的標準，但資料不夠，說不出是哪一項硬體成本或設計害的。</p>
+            <p>Zume 中間為什麼走到這一步，對話沒有細講。它把這兩家當成一個提醒：技術展示得出來、產品跑得動、公司拿到投資，跟最後能長期賺錢，是四件不同的事。對話也說，不能因此就說餐飲硬體創業一定會失敗。</p>
+            <p class="lesson"><b>對我們的意思</b>拿到錢、做出能動的機器，都還只是前面幾關。我們要一直分開算：哪一關過了，哪一關還沒。</p>
+          </div>
+          <figure class="viz quant" data-nums="數億,2023" data-msg="41">
+            <h3>對話說的「四件不同的事」</h3>
+            <div class="chain" role="img" aria-label="技術展示得出來，產品跑得動，公司拿到投資，長期賺錢">
+              <span class="node">技術展示得出來</span><span class="arr"></span>
+              <span class="node">產品跑得動</span><span class="arr"></span>
+              <span class="node">公司拿到投資<small>Zume：數億美元</small></span><span class="arr"></span>
+              <span class="node key">長期賺錢<small>Zume：2023 年停止營運</small></span>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈Zume 的公開報導〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>Kernel 的機器手臂，最後卡在安裝、地板結構和穩定性。從你看設備的經驗，裝進一間店之前，你會先在現場檢查或量哪些東西，才知道裝置能不能長期穩定地跑？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" id="s7" data-title="故事：Presto、McDonald's 與 Taco Bell" aria-label="故事：Presto、McDonald's 與 Taco Bell，語音 AI 點餐">
+  <div class="frame">
+    <h2><span class="kw">失敗的故事：</span><span class="kw">AI 上線了，</span><span class="kw">背後還是人在做</span></h2>
+    <p class="lede">三家都是用語音 AI 接得來速的點餐。一家被美國證券交易委員會處分，一家喊停試點，一家開始挑哪些店不要用。</p>
+    <p class="asis">故事照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「但我更希望看到失敗案例，這可能來自最近新創團隊的啟示，就我所知做這方面的新創不少。」<cite>第四輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>Presto：「AI 完成」裡面，藏著很多人工</h3><span class="chip lo">遭 SEC 處分</span><span class="yr">2025 年 1 月</span></div>
+          <div class="prose">
+            <p>Presto 推出 Presto Voice，用 AI 自動接得來速（開車點餐的窗口）的點餐。</p>
+            <p>2025 年 1 月 14 日，美國證券交易委員會（SEC）公布對 Presto 的處分。SEC 認定它在關鍵的產品能力上做了不實或誤導的揭露：沒有好好說明部分系統用的是第三方技術，也讓市場誤會了人工介入的程度。SEC 指出，在其中一個版本的部署裡，絕大多數訂單其實還是要人介入。</p>
+            <p>對話講得很直白：「AI 成功完成」跟「完全不用人就完成」是兩個不同的數字。系統看起來自動完成了一百筆訂單，背後可能有很多遠端員工在盯、在改、在接手。</p>
+            <p class="lesson"><b>對我們的意思</b>除了辨識準不準，還要量真正不靠人完成的比例、人工修正花多少、出錯後多久恢復。早期可以有人在旁邊把關，但不能把這些人藏起來，讓帳看起來比實際好看。</p>
+          </div>
+          <figure class="viz quant" data-nums="2025,1,14,一百" data-msg="75">
+            <h3>同一批訂單，兩種算法</h3>
+            <div class="fromto">
+              <div class="ft"><h4>表面上的數字</h4><dl>
+                <dt>AI 成功完成</dt><dd>看起來自動完成了一百筆訂單（對話舉的例子）</dd></dl></div>
+              <span class="ft-arrow" aria-hidden="true"></span>
+              <div class="ft to"><h4>要另外算的數字</h4><dl>
+                <dt>完全不用人就完成</dt><dd>SEC 說，其中一個版本的部署裡，絕大多數訂單還是要人介入（2025 年 1 月 14 日公布）</dd></dl></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈美國 SEC 2025 年 1 月 14 日公布的處分〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>McDonald's 和 Taco Bell：同一種 AI，換一家店就不一定行</h3><span class="chip warn">試點喊停、重新挑店</span><span class="yr">2024 年到 2026 年</span></div>
+          <div class="prose">
+            <p>2024 年 6 月，McDonald's 結束跟 IBM 合作的 AI 得來速點餐試點，說之後還會繼續找別的語音 AI 技術。官方沒有把停掉的原因講清楚，所以對話說，不能直接說成「辨識不夠準」。</p>
+            <p>Taco Bell 則在 2024 到 2025 年一直擴大語音 AI 點餐。可是 2025 年出了一連串點餐異常，還有顧客故意惡搞。它的科技主管後來公開說，正在重新想哪些店適合用語音 AI：有些很忙、排隊很長的店，反而可能比較適合讓人來點。</p>
+            <p>2026 年 Intouch Insight 的研究說，跟 2025 年比，用 AI 點餐的店在多項指標上變好了，但聽懂顧客說的話，還有進步空間。</p>
+            <p class="lesson"><b>對我們的意思</b>沒有一套 AI 自動化，適合所有店、所有忙碌程度。產品要知道什麼時候交給 AI、什麼時候交給人，別讓自動化在最忙的時候，變成卡住的那一關。</p>
+          </div>
+          <figure class="viz quant" data-nums="2024,6,2025,2026,13,2145,120" data-msg="75">
+            <h3>三年裡發生的事</h3>
+            <ol class="tl compact">
+              <li class="bad"><span class="when"><b>2024 年 6 月</b>McDonald's</span><p class="a">結束與 IBM 的 AI 得來速點餐試點，說會繼續找別的語音 AI。</p></li>
+              <li><span class="when"><b>2024 到 2025 年</b>Taco Bell</span><p class="a">持續擴大語音 AI 點餐。</p></li>
+              <li class="bad"><span class="when"><b>2025 年</b>Taco Bell</span><p class="a">一連串點餐異常、顧客惡搞；之後重新評估哪些店適合用。</p></li>
+              <li class="now"><span class="when"><b>2026 年</b>Intouch Insight 研究</span><p class="a">跟 2025 年比，多項指標變好；聽懂顧客還要再進步。</p></li>
+            </ol>
+            <div class="figs">
+              <div class="fig"><b>13 個</b><span>研究涵蓋的餐飲品牌數</span></div>
+              <div class="fig"><b>2,145 次</b><span>神秘客實地走訪，另外再加 120 次 AI 點餐測試</span></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈McDonald's、Taco Bell 的公開說法；Intouch Insight 2026 年研究〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>Taco Bell 說，最忙、排隊最長的店，反而可能適合讓人來點餐。從訊號處理的角度看，店裡最忙的時候，聲音和影像的品質會先在哪裡變差？如果要提早發現，你會盯哪個指標？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" id="s8" data-title="故事：Sweetgreen × Spyce、iCHEF → 91APP" aria-label="故事：Sweetgreen 賣掉 Spyce，91APP 買下 iCHEF">
+  <div class="frame">
+    <h2><span class="kw">技術有用，</span><span class="kw">最後換了主人</span></h2>
+    <p class="lede">一個在美國，一個在台灣。一家餐廳把自己的自動化廚房賣掉了；一家台灣 POS 被更大的公司買走。</p>
+    <p class="asis">故事照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「我想知道更多餐廳運營的案例或者論文，可以更貼近我們想做的方向，更為直接，創辦人故事、成功案例。」<cite>第四輪</cite></blockquote>
+        <blockquote>「既然 YC 在這兩階段的新創都有這個題目，台灣市場就是一個合理的著力點，就算是複製他的模式也不是不可，但你可以分析台灣市場可能的啟示，事實上你也是部分理解台灣市場的。」<cite>第五輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>Sweetgreen × Spyce：有用，但沒證明能賺錢</h3><span class="chip warn">有效，但沒證明獲利</span><span class="yr">2025 年 12 月</span></div>
+          <div class="prose">
+            <p>Sweetgreen 是美國的快速休閒連鎖餐廳。它有一套自動化廚房叫 Infinite Kitchen，背後的自動化業務叫 Spyce。依 Sweetgreen 向 SEC 提交的資料，Infinite Kitchen 已經裝在超過 20 個據點。</p>
+            <p>2025 年 12 月，Sweetgreen 把 Spyce 賣給 Wonder，換到 1 億美元現金，加上當時估值約 8,640 萬美元的 Wonder 股權。賣掉之後，Sweetgreen 還是靠一份長期協議，繼續用這套技術。</p>
+            <p>所以對話特別說，這不能算自動化失敗。技術有用，只是開餐廳的品牌，不一定是最適合長期養這套技術、繼續研發的公司；交給專門的供應商來做，再賣給很多品牌，可能更合適。至於這套自動化本身賺不賺錢，對話沒有找到直接的證據。</p>
+            <p class="lesson"><b>對我們的意思</b>如果我們的技術最後要服務很多餐飲品牌，比較適合當一層獨立的技術和營運軟體，不必自己開餐廳來證明。</p>
+          </div>
+          <figure class="viz quant" data-nums="20,2025,12,1 億,8640" data-msg="75">
+            <h3>賣掉之前，賣掉之後</h3>
+            <div class="fromto">
+              <div class="ft"><h4>之前</h4><dl>
+                <dt>誰擁有 Spyce</dt><dd>Sweetgreen 自己</dd>
+                <dt>用在哪</dt><dd>Infinite Kitchen，超過 20 個據點</dd></dl></div>
+              <span class="ft-arrow" aria-hidden="true"></span>
+              <div class="ft to"><h4>2025 年 12 月之後</h4><dl>
+                <dt>誰擁有 Spyce</dt><dd>Wonder；Sweetgreen 拿到 1 億美元現金，加上當時估值約 8,640 萬美元的股權</dd>
+                <dt>Sweetgreen 呢</dt><dd>用長期協議繼續用這套技術</dd></dl></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈Sweetgreen 向 SEC 提交的資料〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>iCHEF → 91APP：台灣的餐廳 POS，被當成策略資產買下</h3><span class="chip hi">成功，被收購</span><span class="yr">2025 年 11 月</span></div>
+          <div class="prose">
+            <p>iCHEF 是台灣的餐廳 POS，官方說服務超過 15,000 間台灣餐廳，入門 POS 月費公開是 NT$1,950 起。2026 年它的 AI 功能包括個人化點餐推薦、多語系菜單、AI 營運報表、開店商圈分析。官方說，用了 AI 點餐推薦的餐廳，客單價平均增加 13.4%；這是供應商自己發布的成效，不是隨機實驗。</p>
+            <p>2025 年 11 月，91APP 宣布用 3,200 萬美元，大約新台幣 10 億元，買下 iCHEF 全部股權，同年完成交割。《天下雜誌》2026 年專訪 91APP 時提到，收購的主要用意之一，是拿到餐飲業的客戶、資料和營運能力，把原本做零售的行銷、支付、會員系統接到餐廳。董事長何英圻也說，台灣餐飲的訂位、POS、排班之間還有很多整合問題；就算買了 iCHEF，還是會跟其他 POS 和系統整合商合作，因為一家滿足不了所有客戶。</p>
+            <p class="lesson"><b>對我們的意思</b>在台灣，不一定要變成下一個 iCHEF 才有收購價值。能把現場的服務狀態，變成各家 POS 都用得上的事件，本身就可能是大公司想補的能力。iCHEF 也已經讓很多老闆知道「AI 會影響營收」，我們不用從頭解釋 AI。但 iCHEF 當時已經有很多客戶和多年歷史，這個金額套不到早期的我們身上。</p>
+          </div>
+          <figure class="viz quant" data-nums="15000,1950,13.4,2026,6,1,3200,10,2025,11" data-msg="83,8">
+            <h3>iCHEF 的幾個數字</h3>
+            <div class="figs">
+              <div class="fig"><b>15,000 間以上</b><span>官方說服務的台灣餐廳數</span></div>
+              <div class="fig"><b>NT$1,950 起</b><span>公開的入門 POS 月費</span></div>
+              <div class="fig"><b>平均 +13.4%</b><span>用 AI 點餐推薦的餐廳，客單價的增幅；統計到 2026 年 6 月 1 日，供應商自己發布</span></div>
+              <div class="fig"><b>3,200 萬美元</b><span>2025 年 11 月 91APP 買下全部股權的價格，大約新台幣 10 億元</span></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈iCHEF 官方；91APP 宣布的收購；《天下雜誌》2026 年專訪〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>如果我們的感測要裝在別家的 POS、攝影機或設備旁邊一起用，從感測器、現場運算到事件資料這幾層，你覺得哪一層最適合我們自己掌握，哪一層交給合作夥伴比較穩？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" id="s9" data-title="故事：Shire、Marble" aria-label="故事：Shire 和 Marble，2026 年 YC 裡做同題目的兩家">
+  <div class="frame">
+    <h2><span class="kw">正在發生的故事：</span><span class="kw">2026 年 YC 裡，</span><span class="kw">做同樣題目的兩家</span></h2>
+    <p class="lede">一家用攝影機看外場，一家讓 AI 管後場，也讓 AI 幫新店做導入。兩家都還很新，成績多半是自己說的。</p>
+    <p class="asis">故事照 ChatGPT 對話的講法整理；人名、年份和數字，我們還沒查證。</p>
+    <div class="cols tales">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「不錯，但我們要思考的是，我看到的是機會，而不是阻力。」<cite>第五輪</cite></blockquote>
+      </aside>
+      <div class="tales">
+        <article class="tale">
+          <div class="tale-head"><h3>Shire Intelligence：讓 AI 看著外場</h3><span class="chip hi">早期，有成果（公司自述）</span><span class="yr">2026 年，YC 秋季梯次</span></div>
+          <div class="prose">
+            <p>Shire 是 2026 年成立的新創，進了 YC 2026 年秋季梯次。它想做的事跟我們很像：用餐廳本來就裝好的攝影機，一直看著現場，認出哪張桌子要清、哪桌客人準備點餐、哪個服務員已經忙不過來。然後不只是出報告，而是直接提醒員工、幫忙分配工作，再接到 POS、排班、庫存和採購。YC 寫的長期目標是：除了真正的人與人款待，餐廳管理的工作盡量自動化。</p>
+            <p>三位創辦人 Cameron Kuperman、Harshith Guduru、Alex Tabaku，有數學、電機、資工、機器學習和強化學習的背景。跟我們最不一樣的是：其中兩人長期在餐廳工作過，Alex 還管過兩間大型餐廳。</p>
+            <p>拿得出來的成果：2026 年 YC 的上線介紹說，已經在 13 間餐廳實際運作，桌位週轉時間平均縮短約 12%。這是公司自己發布的早期結果，對話還沒看到獨立驗證、試驗設計，或客人持續付費的數字。</p>
+            <p class="lesson"><b>對我們的意思</b>「用現有攝影機看餐桌和服務員」已經有人在做，光靠這件事撐不起我們的定位。對話後來把它看成「真的有人要」的訊號：可以借它驗證過的流程，再照台灣的店去改。</p>
+          </div>
+          <figure class="viz quant" data-nums="2026,13,12,三位,兩人" data-msg="75">
+            <h3>Shire 目前說得出口的</h3>
+            <div class="figs">
+              <div class="fig"><b>13 間</b><span>公司說已經實際在運作的餐廳；這不等於付費店數</span></div>
+              <div class="fig"><b>約少 12%</b><span>桌位週轉時間平均縮短的幅度，也就是一張桌子從客人坐下到能再接下一組的時間；公司自述，沒看到試驗設計</span></div>
+              <div class="fig wide"><b>三位創辦人</b><span>技術背景之外，其中兩人長期在餐廳工作過，一位管過兩間大型餐廳</span></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈YC 官方公司介紹與 2026 年 Launch Post〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+        <article class="tale">
+          <div class="tale-head"><h3>Marble：讓 AI 管後場，也讓 AI 幫新店導入</h3><span class="chip hi">成長很快，但數字多是自述</span><span class="yr">2026 年，YC 夏季梯次</span></div>
+          <div class="prose">
+            <p>Marble 也是 2026 年成立，前身叫 Truffle，進了 YC 2026 年夏季梯次。它想做 AI 版的餐廳後場系統：員工用語音、手機拍照記庫存和收貨，系統接上 POS、會計、排班和供應商，再由 AI 幫忙叫貨、排備料、對發票、排人力。</p>
+            <p>共同創辦人 Aakar Khanna 在經營多家餐廳的家庭長大，在 Goldman Sachs 研究過餐飲業，也當過新創的營運主管；另一位共同創辦人 Arjun Chaliha，在 Bloomberg 帶過 AI 和機器學習的工程，也做過語音和音訊技術。</p>
+            <p>它最特別的是冷啟動：讓 AI 幫店家做導入。AI 先把菜單、配方、原料、供應商、發票和 POS 品項之間的關係整理好，再交給人確認。A&amp;W 加盟店的案例說，第一間店 6 天導入完成，後面的新店幾小時就能啟用。2026 年 11 月 17 日，它宣布拿到 550 萬美元種子輪；領投方 Contrary 說，它不到四個月就簽下超過 150 間餐廳。</p>
+            <p class="lesson caution"><b>它也是一個警告</b>這些漂亮的數字，多半來自公司和投資方。150 間是簽約數，有沒有全部導入、付費、續約，對話找不到資料；長期毛利、全部的導入成本和客戶流失率，也都看不到。</p>
+            <p class="lesson"><b>對我們的意思</b>把「導入一家新店」本身做成產品，不要靠工程師一家一家手動設定。</p>
+          </div>
+          <figure class="viz quant" data-nums="2026,四個月,150,11,17,550,6" data-msg="75">
+            <h3>Marble 的速度</h3>
+            <ol class="tl compact">
+              <li><span class="when"><b>2026 年</b>成立</span><p class="a">前身叫 Truffle，進 YC 2026 年夏季梯次。</p></li>
+              <li><span class="when"><b>不到四個月</b>簽約</span><p class="a">簽下超過 150 間餐廳；這是領投方說的簽約數，不是付費數。</p></li>
+              <li class="now"><span class="when"><b>2026 年 11 月 17 日</b>種子輪</span><p class="a">宣布拿到 550 萬美元。</p></li>
+            </ol>
+            <p class="subhead">A&amp;W 加盟店的導入時間（客戶案例，不代表每家店都做得到）</p>
+            <div class="figs">
+              <div class="fig"><b>6 天</b><span>第一間店完成導入</span></div>
+              <div class="fig"><b>幾小時</b><span>後面的新店就能啟用</span></div>
+            </div>
+            <figcaption class="src">資料：ChatGPT 對話引述〈YC 公司介紹；領投方 Contrary 的投資分析；Marble 官方導入案例〉，我們尚未查證</figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>Shire 說它讓桌位週轉時間短了約 12%。如果要你在我們的試驗場自己量這種數字，你會怎麼抓「客人起身」和「桌子可以再帶位」這兩個時間點，又會拿什麼當對照？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<!-- 10 -->
+<section class="slide" id="s10" data-title="台灣市場與現有的公司" aria-label="台灣市場與現有的公司">
+  <div class="frame">
+    <h2><span class="kw">台灣市場：</span><span class="kw">需要的人很多，</span><span class="kw">但「交易資料」這一層已經很擠</span></h2>
+    <p class="lede">餐廳的營業額，不等於店家願意花在軟體上的錢。機會不在再做一套收銀或訂位，而在這些軟體看不到的現場。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
         <blockquote>「我們不只是想做 SevenRooms 票券定位管理，台灣已經有相當成熟的 inline 等等……我們已經了解到台灣已經有一些科技公司或是餐飲集團開始嘗試這個方向，國外更是豐富，但是不可否認的，這個市場依舊非常龐大在台灣。」<cite>第一輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>對話引述經濟部統計處：2026 年 1–9 月台灣餐飲業營業額約新台幣 8,266 億元，年增約 4.1%。真正的市場是「願意付費的門店數 × 每店預算」。</li>
-        <li>訂候位、POS、會員 CRM 都有成熟業者；iCHEF 已有 AI 銷售分析、需求預測、菜單推薦與庫存管理。我們的優勢不會只是「有 Computer Vision」。</li>
-        <li>值得找的是訂單資料沒記錄的事：客人排隊等了多久、客人離席後空桌多久沒人處理、餐點完成了卻還沒被取走、某個工作站的實際產能。先問「客戶因為什麼在損失金錢」，再問「我們可以偵測什麼」。</li>
+        <li>對話引述經濟部統計處：2026 年 1 到 9 月，台灣餐飲業營業額約新台幣 8,266 億元，比前一年同期多約 4.1%。可是我們真正的市場，是「願意付錢的店有幾家，乘上每家店願意花多少」。</li>
+        <li>訂位、收銀（POS）、會員行銷，都已經有成熟的公司在做。iCHEF 已經有 AI 銷售分析、需求預測、菜單推薦和庫存管理。所以我們的優勢，不能只是「我們有影像辨識」。</li>
+        <li>值得找的，是訂單沒記到的事。客人在門口排了多久、有沒有人等到放棄離開？客人走了，那張桌子空了多久才有人收？餐點做好了，在出餐台放了多久沒人端？某個工作站一小時實際做得出幾份？</li>
+        <li>順序是：先問「店家在哪裡虧錢」，再問「我們能偵測什麼」。</li>
       </ul></div>
       <div class="vizcol">
         <figure class="viz quant" data-nums="69.8,66.2,62.3" data-msg="8">
-          <h3>餐飲業最主要的經營困境（多選）</h3>
+          <h3>餐飲業者說最頭痛的事（受訪業者裡選這一項的比例，可複選）</h3>
           <div class="bars">
-            <div class="bar-row"><span class="bar-lab">食材成本波動大</span><span class="bar-val">69.8%</span><span class="bar-trk"><span class="bar-fill" style="--v:69.8"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">人力短缺</span><span class="bar-val">66.2%</span><span class="bar-trk"><span class="bar-fill" style="--v:66.2"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">人員成本過高</span><span class="bar-val">62.3%</span><span class="bar-trk"><span class="bar-fill" style="--v:62.3"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">食材成本漲跌大</span><span class="bar-val">69.8%</span><span class="bar-trk"><span class="bar-fill" style="--v:69.8"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">找不到人</span><span class="bar-val">66.2%</span><span class="bar-trk"><span class="bar-fill" style="--v:66.2"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">人事成本太高</span><span class="bar-val">62.3%</span><span class="bar-trk"><span class="bar-fill" style="--v:62.3"></span></span></div>
           </div>
           <div class="axis"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></div>
+          <p class="note">大約每 10 家受訪業者，就有 7 家選了食材成本。三個比例不能加起來。</p>
           <figcaption class="src">資料：ChatGPT 對話引述〈經濟部 2026 年公布的 5 月調查；多選題，各比例不可加總〉，我們尚未查證</figcaption>
         </figure>
         <figure class="viz diagram">
-          <h3>台灣既有業者大致在哪裡</h3>
+          <h3>台灣現有的公司，大概站在哪裡</h3>
           <div class="map-wrap">
-            <div class="map-y"><span>看得到實體現場</span><span>交易與資料</span></div>
-            <div class="map" role="img" aria-label="示意定位圖：橫軸從取代核心系統到疊加在既有系統上，縱軸從交易資料到實體現場。iCHEF、EZTABLE、inline 在左下；Ocard 在中下；思圖在右下；Berry AI 在右上；Limere 想去的位置在右上。">
-              <span class="qlab tl">核心系統＋看得到現場</span>
-              <span class="qlab tr">疊加＋看得到現場</span>
-              <span class="qlab bl">核心系統＋交易資料</span>
-              <span class="qlab br">疊加＋交易資料</span>
+            <div class="map-y"><span>看得到現場</span><span>只看交易資料</span></div>
+            <div class="map" role="img" aria-label="示意定位圖：橫軸從自己當核心系統到疊在現有系統上，縱軸從只看交易資料到看得到現場。iCHEF、EZTABLE、inline 在左下；Ocard 在中下；思圖在右下；Berry AI 在右上；Limere 想去的位置在右上。">
+              <span class="qlab tl">當核心系統，也看得到現場</span>
+              <span class="qlab tr">疊上去，也看得到現場</span>
+              <span class="qlab bl">當核心系統，只看交易</span>
+              <span class="qlab br">疊上去，只看交易</span>
               <span class="pt" style="--x:12;--y:16"><i></i>iCHEF</span>
               <span class="pt" style="--x:10;--y:31"><i></i>EZTABLE</span>
               <span class="pt" style="--x:24;--y:41"><i></i>inline</span>
@@ -471,196 +879,186 @@ figure.viz + .twofig{margin-top:30px}
               <span class="pt l" style="--x:84;--y:68"><i></i>Berry AI</span>
               <span class="pt me l" style="--x:88;--y:86"><i></i>Limere 想去的位置</span>
             </div>
-            <div class="map-x"><span>取代或掌握核心系統</span><span>疊加在既有系統上</span></div>
+            <div class="map-x"><span>自己當核心系統</span><span>疊在現有系統上</span></div>
           </div>
-          <figcaption class="src">示意，非量測。位置依對話對各家產品的描述擺放。</figcaption>
+          <figcaption class="src">示意，不是量測。位置照對話對各家產品的描述擺。</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>這張地圖上，有哪些現場狀態是只看交易資料永遠看不到、只有感測才拿得到的？</p>
+        <p>這張圖上，有哪些現場狀態，是只看交易資料永遠看不到、一定要感測才拿得到的？</p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- 5 -->
-<section class="slide" id="s5" data-title="單店經濟" aria-label="單店經濟：錢會花在哪裡">
+<!-- 11 -->
+<section class="slide" id="s11" data-title="一家店的帳" aria-label="一家店的帳：錢會花在哪裡">
   <div class="frame">
-    <h2>單店經濟：錢會花在哪裡</h2>
-    <p class="lede">能不能把感測和 AI 包成低部署、低維護的產品，決定 Limere 是一家高毛利的軟體公司，還是一家靠人力的系統整合商。</p>
+    <h2><span class="kw">一家店的帳：</span><span class="kw">錢會花在哪裡</span></h2>
+    <p class="lede">感測和 AI 能不能做成「好裝、少修」的產品，決定了我們是一家賺軟體錢的公司，還是一家到處派人裝機、修機的工程公司。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
         <blockquote>「你提到成本結構的問題、bottleneck，事實上你早就知道解方跟問題點，你要試圖自己先回答。」<cite>第三輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>對話自己先算了一遍（全是假設數字）：裝一套攝影機與感測，一家店一次就要 NT$19,200；每月收 NT$5,000，扣掉雲端、客服、設備攤提，剩約 NT$2,283，還沒算業務和研發。</li>
-        <li>浪費改善的價值看店的規模：同樣少 25% 浪費，月營收 120 萬的店每月省 NT$4,200，撐不起 NT$8,000 的月費；月營收 1,000 萬的店省 NT$35,000，就划算。</li>
-        <li>所以 ICP 不只看店數或連鎖規模，還要看<strong>每店可改善的絕對損失金額</strong>。</li>
-        <li>硬體要是每隔幾個月就得派人到店處理，經濟性會再變差；要嘛降低部署成本，要嘛換更高營收的客戶，要嘛把安裝維運交給合作夥伴。</li>
+        <li>對話先自己算了一遍，數字全是假設的。一家店裝一套攝影機和感測，第一次就要 NT$19,200。之後每月收 NT$5,000，扣掉雲端、客服和設備攤提，剩大約 NT$2,283，業務和研發都還沒算進去。</li>
+        <li>省下的浪費夠不夠付月費，要看店多大。同樣讓可避免的浪費少掉 25%：月營收 120 萬的咖啡廳，每月省 NT$4,200，付不起 NT$8,000 的月費；月營收 1,000 萬的店，每月省 NT$35,000，就划得來。</li>
+        <li>所以挑第一批客戶（ICP，理想客戶的樣子）時，不能只看店數或連鎖規模，還要看「每家店能省下的損失，絕對金額有多大」。有些單店的營業額，比小連鎖的分店還高。</li>
+        <li>設備要是每幾個月就得派人去修一次，帳會更難看。這時只能把部署成本壓下來、換營收更高的客戶，或把安裝和維修交給合作夥伴。</li>
       </ul></div>
       <div class="vizcol">
-        <figure class="viz quant" data-nums="5000,800,1500,417,2283,45.7,10000,6000,3200,19200" data-msg="41">
-          <h3>一家店的錢怎麼分（假設情境）</h3>
-          <p class="subhead">每月訂閱 NT$5,000 的去向</p>
-          <div class="stackbar" role="img" aria-label="5,000 元中：雲端推論監控 800、客戶支援 1,500、設備攤提 417、剩餘 2,283">
+        <figure class="viz quant" data-nums="5000,800,1500,417,2283,45.7,10000,6000,3200,19200,24" data-msg="41">
+          <h3>一家店的錢怎麼分（假設的情境）</h3>
+          <p class="subhead">每月收 NT$5,000，錢去了哪</p>
+          <div class="stackbar" role="img" aria-label="5,000 元中：雲端、推論與監控 800、客戶支援 1,500、設備攤提 417、剩下 2,283">
             <span class="c1" style="--v:800"></span><span class="c2" style="--v:1500"></span><span class="c3" style="--v:417"></span><span class="c4" style="--v:2283"></span>
           </div>
           <ul class="legend">
-            <li><i class="c1"></i><span>雲端、推論與監控</span><span class="v">NT$800</span></li>
-            <li><i class="c2"></i><span>客戶支援</span><span class="v">NT$1,500</span></li>
-            <li><i class="c3"></i><span>設備按 24 個月攤提</span><span class="v">約 NT$417</span></li>
-            <li><i class="c4"></i><span>剩下（約為訂閱收入的 45.7%，還不是淨利）</span><span class="v">約 NT$2,283</span></li>
+            <li><i class="c1"></i><span>雲端、AI 推論和監控</span><span class="v">NT$800</span></li>
+            <li><i class="c2"></i><span>客服</span><span class="v">NT$1,500</span></li>
+            <li><i class="c3"></i><span>設備分 24 個月攤</span><span class="v">約 NT$417</span></li>
+            <li><i class="c4"></i><span>剩下的（約占月費的 45.7%，還不是淨利）</span><span class="v">約 NT$2,283</span></li>
           </ul>
-          <p class="subhead">首店一次性的部署成本</p>
-          <div class="stackbar" role="img" aria-label="一次性 19,200 元：設備與配件 10,000、現場安裝與調整 6,000、資料接入校正與培訓 3,200">
+          <p class="subhead">第一家店，一次要花的部署成本</p>
+          <div class="stackbar" role="img" aria-label="一次性 19,200 元：設備與配件 10,000、現場安裝與調整 6,000、資料接入、校正與培訓 3,200">
             <span class="c3" style="--v:10000"></span><span class="c5" style="--v:6000"></span><span class="c1" style="--v:3200"></span>
           </div>
           <ul class="legend">
-            <li><i class="c3"></i><span>設備與相關配件</span><span class="v">NT$10,000</span></li>
-            <li><i class="c5"></i><span>現場安裝與調整</span><span class="v">NT$6,000</span></li>
-            <li><i class="c1"></i><span>資料接入、校正與人員培訓</span><span class="v">NT$3,200</span></li>
-            <li class="total"><i></i><span>合計（未含銷售、交通與意外支援）</span><span class="v">NT$19,200</span></li>
+            <li><i class="c3"></i><span>設備和配件</span><span class="v">NT$10,000</span></li>
+            <li><i class="c5"></i><span>到現場安裝、調整</span><span class="v">NT$6,000</span></li>
+            <li><i class="c1"></i><span>接資料、校正、教店員</span><span class="v">NT$3,200</span></li>
+            <li class="total"><i></i><span>合計（還沒算業務、交通和臨時支援）</span><span class="v">NT$19,200</span></li>
           </ul>
-          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 自設的假設情境，非台灣實測平均〉，我們尚未查證</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 自己設的假設情境，不是台灣實測的平均〉，我們尚未查證</figcaption>
         </figure>
-        <figure class="viz quant" data-nums="4200,35000,8000,1200000,10000000" data-msg="41">
-          <h3>每月省下的浪費成本，夠不夠付月費（假設情境）</h3>
+        <figure class="viz quant" data-nums="4200,35000,8000,1200000,10000000,25,35,4" data-msg="41">
+          <h3>每月省下的浪費，夠不夠付月費（假設的情境）</h3>
           <div class="bars" style="position:relative">
-            <div class="bar-row"><span class="bar-lab">月營收 NT$120 萬的咖啡廳，浪費減少 25%</span><span class="bar-val">NT$4,200</span><span class="bar-trk"><span class="bar-fill warm" style="--v:4200;--max:40000"></span><span class="refline" style="--v:8000;--max:40000"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">月營收 NT$1,000 萬的業者，同樣比例</span><span class="bar-val">NT$35,000</span><span class="bar-trk"><span class="bar-fill" style="--v:35000;--max:40000"></span><span class="refline" style="--v:8000;--max:40000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">月營收 NT$120 萬的咖啡廳，浪費少 25%</span><span class="bar-val">省 NT$4,200</span><span class="bar-trk"><span class="bar-fill warm" style="--v:4200;--max:40000"></span><span class="refline" style="--v:8000;--max:40000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">月營收 NT$1,000 萬的業者，同樣比例</span><span class="bar-val">省 NT$35,000</span><span class="bar-trk"><span class="bar-fill" style="--v:35000;--max:40000"></span><span class="refline" style="--v:8000;--max:40000"></span></span></div>
           </div>
           <div class="axis"><span style="left:0">0</span><span style="left:20%">8,000</span><span style="left:50%">20,000</span><span style="left:100%">40,000</span></div>
-          <p class="reflab">虛線：假設月費 NT$8,000</p>
-          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 自設的假設情境：食材成本占營收 35%、可避免浪費占食材成本 4%〉，我們尚未查證</figcaption>
+          <p class="reflab">虛線：假設的月費 NT$8,000。小店省下的錢，大約只有月費的一半。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 自己設的假設情境：食材成本占營收 35%、可避免的浪費占食材成本 4%〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>這份成本拆解裡，你認為哪一項最有機會用工程設計大幅壓低，需要什麼條件才做得到？</p>
+        <p>這份成本拆解裡，你覺得哪一項最有機會靠工程設計大幅壓低？要什麼條件才做得到？</p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- 6 -->
-<section class="slide" id="s6" data-title="哪些有效，哪些失敗" aria-label="2024 到 2026：哪些有效，哪些失敗">
+<!-- 12 -->
+<section class="slide" id="s12" data-title="論文怎麼說" aria-label="論文怎麼說：感測多看見的，是沒人記下來的事">
   <div class="frame">
-    <h2>2024–2026：哪些有效，哪些失敗</h2>
-    <p class="lede">感測加 AI 的價值，主要來自讓原本沒被記錄的事件變得看得見。失敗的一側則提醒：技術能展示、客戶願意簽約，和整體經濟算得過來，是不同的事。</p>
+    <h2><span class="kw">論文怎麼說：</span><span class="kw">感測多看見的，</span><span class="kw">是沒人記下來的事</span></h2>
+    <p class="lede">研究裡最有用的一點：員工手寫的紀錄本身就會漏。感測加 AI 的價值，有一大塊是把漏掉的事補回來。可是機器裝上去，店不會自己變好。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「我想知道更多餐廳運營的案例或者論文，可以更貼近我們想做的方向，更為直接，創辦人故事、成功案例，但我更希望看到失敗案例，這可能來自最近新創團隊的啟示，就我所知做這方面的新創不少。」<cite>第四輪</cite></blockquote>
+        <blockquote>「其次，你說的很多問題，事實上你可以直接去找證據、找論文。」<cite>第三輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>研究顯示人工紀錄本身就會漏：一項 2025 年研究發現，員工紀錄的浪費量平均低估約 30%。這是感測有實證支持的優勢之一。</li>
-        <li>但裝了感測不會自動改善：另一項研究裡，有一間瑞士飯店的浪費反而變多。結果還是受使用者行為和管理方式影響，這正是心理學能參與的地方。</li>
-        <li>從失敗案例推出的原則：第一個產品最好不要求店家重新設計整間店；設備和資料要可替換、可攜出；「AI 完成」要和「不需要人工完成」分開算。</li>
+        <li>2025 年有一篇研究，檢查飯店和醫療機構廚房的浪費紀錄。員工記下來的浪費量，平均比實際少了約 30%。紀錄看起來很精確，不代表沒有偏差。想像一間店每天用 Excel 記報廢：大家忙起來就漏記，問題就不在分析，而在資料根本沒拿到。</li>
+        <li>另一篇研究看了超過一千間商業廚房。先裝要員工手動分類的智慧秤，前三個月浪費少了約 29%，營業額沒有跟著掉。再升級成 AI 自動分類，十二個月裡，又比繼續人工分類的店多少了約 30%。AI 多出來的價值，主要是補上人工漏記的浪費。</li>
+        <li>但第三篇研究的五個場地裡，有一間瑞士飯店，浪費反而多了約 13%。結果還是看人怎麼用、怎麼管。這正是心理學幫得上忙的地方。</li>
       </ul>
-        <p class="shift"><b>方向修正</b>前一輪據這些研究，把備料與浪費列為首選方向；後來改為：浪費只是「系統紀錄和現場實況不一致」的其中一種事件。</p>
+        <p class="shift"><b>方向修正</b>上一輪因為這些研究，把備料和浪費列為首選。後來改成：浪費只是「系統紀錄跟現場對不上」的其中一種狀況。</p>
       </div>
       <div class="vizcol">
-        <figure class="viz quant" data-nums="-29,-30,-23,-51,13" data-msg="41">
-          <h3>導入後，食物浪費量的變化</h3>
+        <figure class="viz quant" data-nums="29,30,23,51,13" data-msg="41">
+          <h3>裝了之後，食物浪費量的變化（跟裝之前，或跟沒升級的店比）</h3>
           <div class="bars">
-            <div class="bar-row"><span class="bar-lab">智慧秤＋員工手動分類，導入後前三個月</span><span class="bar-val">約 −29%</span><span class="div-trk"><span class="div-seg" style="--a:-29;--b:0"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">再升級 AI 自動分類，十二個月內額外減少</span><span class="bar-val">約 −30%</span><span class="div-trk"><span class="div-seg" style="--a:-30;--b:0"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">五個場域中的四個（AI 浪費追蹤設備）</span><span class="bar-val">−23% 至 −51%</span><span class="div-trk"><span class="div-seg" style="--a:-51;--b:-23"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">同一研究裡的一間瑞士飯店</span><span class="bar-val">約 +13%</span><span class="div-trk"><span class="div-seg pos" style="--a:0;--b:13"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">智慧秤＋員工手動分類，裝好後前三個月</span><span class="bar-val">約少 29%</span><span class="div-trk"><span class="div-seg" style="--a:-29;--b:0"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">再升級 AI 自動分類，十二個月內比人工分類的店再少</span><span class="bar-val">約少 30%</span><span class="div-trk"><span class="div-seg" style="--a:-30;--b:0"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">AI 浪費追蹤設備，五個場地裡的四個</span><span class="bar-val">少 23% 到 51%</span><span class="div-trk"><span class="div-seg" style="--a:-51;--b:-23"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">同一篇研究裡的一間瑞士飯店</span><span class="bar-val">約多 13%</span><span class="div-trk"><span class="div-seg pos" style="--a:0;--b:13"></span></span></div>
           </div>
-          <div class="axis"><span style="left:0"></span><span style="left:7.14%">−50%</span><span style="left:42.86%">−25%</span><span style="left:78.57%">0</span><span style="left:100%">+15%</span></div>
-          <figcaption class="src">資料：ChatGPT 對話引述〈Yu Nu、Elena Belavina、Karan Girotra，2026 年 SSRN 工作論文（未經期刊同儕審查，超過一千間商業廚房的準實驗）；Sigala 等，2025 年《Waste Management》〉，我們尚未查證</figcaption>
-        </figure>
-        <figure class="viz diagram">
-          <h3>近年的失敗與轉向，各留下一個教訓</h3>
-          <ol class="tl compact">
-            <li><span class="when"><b>2024-06</b>McDonald's</span><p class="a">結束與 IBM 的 AI 得來速點餐試點；官方沒公布單一原因，不能直接說是準確率不夠。</p></li>
-            <li><span class="when"><b>2025-01</b>Presto Automation</span><p class="a">美國 SEC 認定它誤導市場對人工介入程度的理解。「AI 完成」不等於「不需要人工完成」。</p></li>
-            <li><span class="when"><b>2025-03</b>Kernel</span><p class="a">把機器手臂移出日常作業：安裝、訓練、安全規則、地板結構都是現場問題。</p></li>
-            <li><span class="when"><b>2025</b>Taco Bell</span><p class="a">重新考慮哪些店適合 Voice AI；最忙、排隊最長的店，可能反而適合由人處理。</p></li>
-            <li><span class="when"><b>2025-12</b>Sweetgreen × Spyce</span><p class="a">不是失敗：自動化技術有用，但餐飲品牌不一定適合自己持有，賣給 Wonder 後仍繼續使用。</p></li>
-            <li><span class="when"><b>2026-05</b>Picnic</span><p class="a">停止營運，客戶手上留下約 25 萬美元的設備。店家會怕依賴新創的關鍵設備。</p></li>
-            <li class="now"><span class="when"><b>2026-09</b>Chef Robotics</span><p class="a">握有數百萬美元的餐廳合約機會，仍離開餐廳轉向食品工廠：餐廳每天只有幾小時尖峰，工廠可以生產十幾個小時。</p></li>
-          </ol>
-          <figcaption class="src">整理自對話第四輪；各案例為公開報導與訪談的轉述。</figcaption>
+          <div class="axis"><span style="left:0"></span><span style="left:7.14%">少 50%</span><span style="left:42.86%">少 25%</span><span style="left:78.57%">0</span><span style="left:100%">多 15%</span></div>
+          <figcaption class="src">資料：ChatGPT 對話引述〈Yu Nu、Elena Belavina、Karan Girotra，2026 年 SSRN 工作論文（還沒經過期刊同儕審查，超過一千間商業廚房的準實驗）；Sigala 等，2025 年《Waste Management》；Leverenz 等，2025 年《Resources, Conservation and Recycling》〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>如果要提早知道我們會不會撞上這些案例遇到的現場問題，你會先設計什麼樣的小實驗？</p>
+        <p>智慧秤靠重量，AI 分類靠影像。如果要你判斷一種感測訊號，能不能補上員工漏記的事件，你會先看它的哪些特性？</p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- 7 -->
-<section class="slide" id="s7" data-title="AI 時代的冷啟動" aria-label="AI 時代的冷啟動">
+<!-- 13 -->
+<section class="slide" id="s13" data-title="怎麼快速起步" aria-label="AI 時代的冷啟動：要快，但快的是拿到證據">
   <div class="frame">
-    <h2>AI 時代的冷啟動：快，但要快在證據</h2>
-    <p class="lede">用公開研究回答已知的問題，用現有資料快速建立基準，用 AI 降低資料整理、標註和原型的成本，然後盡快測一個具體的營運干預。</p>
+    <h2><span class="kw">AI 時代怎麼起步：</span><span class="kw">要快，</span><span class="kw">但快的是拿到證據</span></h2>
+    <p class="lede">已經有人回答過的，就用公開研究；用店裡現成的資料，很快建一條比較的基準；用 AI 省下整理資料、標註和做原型的時間；然後盡快在店裡試一個具體的改變。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「你舉的案例，他們都已經是十幾年前的做法了。現在 AI 科技時代的冷啟動問題，應該會有更多做法，更穩健、更有效率。我們當然可以去現場觀察 3–6 個月，但觀察完，競品到公司早就超過了。」<cite>第四輪</cite></blockquote>
+        <blockquote>「你舉的案例，他們都已經是十幾年前的做法了。現在 AI 科技時代的冷啟動問題，應該會有更多做法，更穩健、更效率。我們當然可以去現場觀察 3-6 個月，但觀察完，競品到公司早就超過了。」<cite>第四輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>28 天四步：第一週用既有資料做原型，找出「系統沒記錄、但可能影響決策」的事件；第二週回放歷史尖峰（Decision Replay）；第三週 Shadow Mode，只提醒不干預；第四週一種行動的小範圍閉環實驗，保留人工否決。</li>
-        <li>看的是能提早多久發現、誤報多少、提醒能不能行動，而不是任意設一個 95% 準確率。一天 50 個提醒只有 1 個有用，不如 2 個都有用。</li>
-        <li>回放只能證明「能不能提早看見」，不能單獨證明營收提升。</li>
+        <li><strong>第一週，用現成的資料做原型。</strong>挑一家資料最容易合法拿到、狀況最多的店，用最近的 POS 訂單、工作站狀態、訂位紀錄，或經過授權的一小段影像。要回答的只有一句：這個時段，哪幾件現場的事跟系統記的不一樣？</li>
+        <li><strong>第二週，把過去的尖峰倒帶重看。</strong>例如某個星期五：19:02 某個工作站開始積單，19:06 出餐開始延遲，19:10 店長調人過去，19:16 積單慢慢消掉。要問的是：如果系統在 19:04 就提醒，店長能不能早一點知道？<small class="en">倒帶重看：Retrospective Decision Replay</small></li>
+        <li><strong>第三週，營業時跟著跑，只提醒不插手。</strong>記下店長是不是早就發現了、覺得提醒有沒有用、能不能真的做點什麼。<small class="en">只看不動手的試跑：Shadow Mode</small></li>
+        <li><strong>第四週，只挑一種動作小範圍試。</strong>例如某個工作站卡住時，提醒主管重新分配工作。從提醒、到有人去處理、到確認處理完，全程讓人可以說不。</li>
+        <li>看的不是隨便訂一個 95% 準確率，是能提早多久發現、誤報多少、提醒能不能拿來行動。一天 50 個提醒只有 1 個有用，不如一天 2 個、2 個都有用。倒帶重看只能證明「能不能早點看見」，不能單獨證明營收變多。</li>
       </ul>
-        <p class="shift"><b>方向修正</b>第一輪建議先做 18–24 次深度訪談和 90 天研究計畫；後來改為 28 天時間盒，最後一輪再收斂為本週先做出原型、兩到四週內拿到第一輪真實營運證據。</p>
-        <p class="shift"><b>方向修正</b>前一輪引用的 SevenRooms、Winnow 早期做法，後來改為參考 2024–2026 年的新創。</p>
+        <p class="shift"><b>方向修正</b>第一輪建議先做 18 到 24 次深度訪談，加上 90 天的研究計畫。後來改成 28 天一輪；最後一輪再縮成：這週先做出原型，兩到四週內拿到第一批真實的營運證據。</p>
+        <p class="shift"><b>方向修正</b>前一輪引用 SevenRooms、Winnow 的早期做法；後來改成參考 2024 到 2026 年的新創。</p>
       </div>
       <div class="vizcol">
-        <figure class="viz quant" data-nums="90,14,16,30,30,28,7" data-msg="8,75,83">
+        <figure class="viz quant" data-nums="90,14,16,30,30,28,7,18,24" data-msg="8,75,83">
           <h3>三個版本的第一階段，一版比一版短</h3>
           <div class="plan">
             <div class="plan-row"><div class="plan-lab"><b>第一輪：研究計畫</b><span class="num">90 天</span></div>
               <div class="plan-bar" style="--d:90"><span style="--v:14"></span><span style="--v:16"></span><span style="--v:30"></span><span style="--v:30"></span></div>
-              <p class="plan-leg">Day 1–14 市場探索・Day 15–30 選定問題・Day 31–60 最小可行干預・Day 61–90 商業驗證</p></div>
-            <div class="plan-row"><div class="plan-lab"><b>第四輪：時間盒</b><span class="num">28 天</span></div>
+              <p class="plan-leg">第 1 到 14 天看市場・第 15 到 30 天選問題・第 31 到 60 天做最小的改變・第 61 到 90 天驗證生意</p></div>
+            <div class="plan-row"><div class="plan-lab"><b>第四輪：四週一輪</b><span class="num">28 天</span></div>
               <div class="plan-bar" style="--d:28"><span style="--v:7"></span><span style="--v:7"></span><span style="--v:7"></span><span style="--v:7"></span></div>
-              <p class="plan-leg">第一週原型・第二週回放・第三週 Shadow Mode・第四週小範圍閉環</p></div>
-            <div class="plan-row"><div class="plan-lab"><b>第五輪：本週衝刺（目前）</b><span class="num">一週</span></div>
+              <p class="plan-leg">第一週做原型・第二週倒帶重看・第三週只提醒不插手・第四週小範圍試一種動作</p></div>
+            <div class="plan-row"><div class="plan-lab"><b>第五輪：這週衝刺（目前）</b><span class="num">一週</span></div>
               <div class="plan-bar cur" style="--d:7"><span style="--v:7"></span></div>
-              <p class="plan-leg">11/23–11/29 做出可運作原型；兩到四週內取得第一輪真實營運證據</p></div>
+              <p class="plan-leg">11 月 23 日到 29 日做出能動的原型；兩到四週內拿到第一批真實的營運證據</p></div>
           </div>
           <div class="axis"><span style="left:0">0</span><span style="left:33.33%">30 天</span><span style="left:66.67%">60 天</span><span style="left:100%">90 天</span></div>
           <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 第一、四、五輪提出的計畫〉，我們尚未查證</figcaption>
         </figure>
-        <figure class="viz quant" data-nums="73,33,5,55,168,94000" data-msg="75">
-          <h3>大家都在投資 AI，看到可衡量成果的很少</h3>
+        <figure class="viz quant" data-nums="73,33,5,55,168,94000,2026,3" data-msg="75">
+          <h3>大家都在投資 AI，看得到成果的很少（受訪餐飲品牌的比例）</h3>
           <div class="bars">
-            <div class="bar-row"><span class="bar-lab">正在投資 AI，或計畫 2026 年開始投資</span><span class="bar-val">73%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:73"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">認為成效正在浮現</span><span class="bar-val">33%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:33"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">表示 AI 已帶來可衡量的營運或顧客成果</span><span class="bar-val">5%</span><span class="bar-trk"><span class="bar-fill" style="--v:5"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">把 Operational Execution 視為改善顧客體驗的主要障礙</span><span class="bar-val">55%</span><span class="bar-trk"><span class="bar-fill warm" style="--v:55"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">正在投資 AI，或打算 2026 年開始</span><span class="bar-val">73%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:73"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">覺得成效正在出現</span><span class="bar-val">33%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:33"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">說 AI 已經帶來量得到的營運或顧客成果</span><span class="bar-val">5%</span><span class="bar-trk"><span class="bar-fill" style="--v:5"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">覺得現場執行不到位，是改善顧客體驗的主要障礙</span><span class="bar-val">55%</span><span class="bar-trk"><span class="bar-fill warm" style="--v:55"></span></span></div>
           </div>
           <div class="axis"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></div>
+          <p class="note">每 100 個受訪品牌裡，73 個在投資或準備投資 AI，只有 5 個說得出量得到的成果。</p>
           <figcaption class="src">資料：ChatGPT 對話引述〈Qu 第七次 Restaurant Technology Benchmark Report，2026 年 3 月；168 個餐飲品牌、約 94,000 個據點，美國市場的供應商研究〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>用店家既有的資料回放尖峰時段時，你認為哪一種訊號最能提早看見問題，它的雜訊和盲點會在哪裡？</p>
+        <p>用店家現成的資料倒帶重看尖峰時段時，你覺得哪一種訊號最能提早看出問題？它的雜訊和盲點會在哪？</p>
       </aside>
     </div>
   </div>
 </section>
 
-<!-- 8 -->
-<section class="slide" id="s8" data-title="Shire Intelligence" aria-label="Shire Intelligence">
+<!-- 14 -->
+<section class="slide" id="s14" data-title="Shire 的功能" aria-label="Shire 的功能：哪些我們現在做，哪些不做">
   <div class="frame">
-    <h2>Shire Intelligence：讓 AI 看見前場</h2>
-    <p class="lede">YC Fall 2026。用餐廳既有的攝影機理解現場，提醒員工、分配工作，再往 POS、排班、庫存、採購延伸。</p>
+    <h2><span class="kw">Shire 的功能：</span><span class="kw">哪些我們現在做，</span><span class="kw">哪些不做</span></h2>
+    <p class="lede">Shire 的故事在第 9 頁，這頁只看產品。它分三層賣：先賣不用換收銀系統的影像分析，再賣完整的收銀系統，最後賣給多店集團；三種都要詢價。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「Shire 和 Marble 具體有哪些功能？那這些值得我們直接開始？你必須詳細分析。」<cite>第五輪</cite></blockquote>
+        <blockquote>「Shire and Marble 具體有哪些功能？那這些值得我們直接開始？你必須詳細分析。」<cite>第五輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>三位創辦人有數學、電機、CS、ML 與強化學習背景；其中兩位長期在餐廳工作，一位管理過兩間大型餐廳。</li>
-        <li>公司在 YC Launch Post 自述：已在 13 間餐廳運作，桌位週轉時間平均縮短約 12%。這是早期自述結果。</li>
-        <li>產品分三層：先賣不換 POS 的 Shire Intelligence，再擴到 Shire POS、Shire Enterprise，都是洽詢報價。官網有 Reseller 入口，YC Launch Post 也在招募 POS Distributors。</li>
-        <li>台灣要在地化：很多店先結帳、自助結帳或用 QR Code 點餐，「客人在等帳單」這類提醒可能沒有價值。</li>
+        <li>它的進門方式：先不動店裡原本的 POS，等店家開始依賴它給的現場資訊，再賣更完整的東西。官網有經銷商入口，YC 的上線介紹也在招 POS 經銷商。<small class="en">三層產品：Shire Intelligence、Shire POS、Shire Enterprise</small></li>
+        <li>官網的場景很具體：客人坐下四分鐘，沒有服務員過來，就通知負責那一區的服務員。客人吃完了、付了錢，官網特別寫「已付款不等於桌子可用」：人走了沒、桌子清了沒，都要另外看。</li>
+        <li>客人把菜單合起來，可能是準備點餐，也可能只是暫時放下。所以每一個判斷都要帶一個「有多確定」的分數，不要每次都通知。</li>
+        <li>台灣要改：很多店是先結帳、自助結帳，或掃 QR Code 點餐。「客人在等帳單」這種提醒，在這些店可能完全沒用。</li>
       </ul></div>
       <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>它把一桌客人的用餐過程變成狀態</h3>
+        <figure class="viz quant" data-nums="四分鐘" data-msg="83">
+          <h3>它把一桌客人的用餐過程，拆成一個一個狀態</h3>
           <div class="chain" role="img" aria-label="入座、需要招呼、點餐、用餐、結帳、離席、整理、可帶位">
             <span class="node">入座<small>Seated</small></span><span class="arr"></span>
             <span class="node key">需要招呼<small>Needs Attention</small></span><span class="arr"></span>
@@ -671,463 +1069,465 @@ figure.viz + .twofig{margin-top:30px}
             <span class="node key">整理<small>Resetting</small></span><span class="arr"></span>
             <span class="node">可帶位<small>Ready</small></span>
           </div>
-          <p class="note">官網場景：客人坐下四分鐘沒人招呼就通知負責的服務員；「已付款不等於桌子可用」。工作派送分三段：建議 → 指派 → 完成。</p>
-          <figcaption class="src">對話依 Shire 官網公開功能整理的事件模型，不是 Shire 的資料庫結構。</figcaption>
+          <p class="note">「需要招呼」：坐下四分鐘沒人來。「整理」：付了錢，但桌子還不能用。工作派送分三步：系統建議、指派給人、確認完成。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈Shire 官網公開的功能場景；狀態順序是對話自己整理的，不是 Shire 的資料庫結構〉，我們尚未查證</figcaption>
         </figure>
         <figure class="viz diagram">
-          <h3>哪些現在開始，哪些不做</h3>
+          <h3>哪些現在做，哪些不做</h3>
           <div class="mx">
             <div class="mx-row head"><span class="mx-h">模組</span><span class="mx-h">對話建議</span><span class="mx-h">說明</span></div>
-            <div class="mx-row"><span class="mx-name">Vision<small>從攝影機看桌位與服務狀態</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">最值得直接複製的模組；做成簡化版的 Live Operations Board（第一優先）。</span></div>
-            <div class="mx-row"><span class="mx-name">Host<small>桌位狀態＋服務員負載</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">比單純辨識空桌更有價值，重點是讓工作分配更好；要和台灣既有的帶位規則相容。</span></div>
-            <div class="mx-row"><span class="mx-name">Live Team Coordination<small>建議 → 指派 → 完成</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">核心問題：分清楚「任務被確認」「任務已完成」「現場狀態真的改變」。</span></div>
-            <div class="mx-row"><span class="mx-name">現場異常偵測</span><span class="v v-yes">✓ 第二優先</span><span class="mx-note">只選一種高頻、可靠、會造成損失的異常，例如離席後桌位遲遲沒恢復。</span></div>
-            <div class="mx-row"><span class="mx-name">Agent<small>代班、售完同步、等太久、設備異常</small></span><span class="v v-yes">✓ 第三優先</span><span class="mx-note">先做中文的 Manager Agent，提出需要主管確認的行動建議。</span></div>
-            <div class="mx-row"><span class="mx-name">授權、權限、稽核紀錄</span><span class="v v-yes">✓ 第一版</span><span class="mx-note">涉及金錢、薪資、對外溝通的操作先經授權；可能比自己訓練大模型更有價值。</span></div>
-            <div class="mx-row"><span class="mx-name">KDS</span><span class="v v-no">✗ 不自己做</span><span class="mx-note">讀現有 KDS 的時間戳記與狀態，再用感測補上沒記錄的事件。</span></div>
-            <div class="mx-row"><span class="mx-name">完整 POS、金流、訂位、會員 CRM、排班、行銷</span><span class="v v-no">✗ 本週不做</span><span class="mx-note">台灣已有成熟供應商；我們的機會在感測＋營運＋AI 行動。</span></div>
+            <div class="mx-row"><span class="mx-name">影像<small>從攝影機看桌位和服務狀態（Vision）</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">最值得直接照做的一塊。做成簡化版的「現場營運看板」，列第一優先。<small class="en">Live Operations Board</small></span></div>
+            <div class="mx-row"><span class="mx-name">帶位<small>桌位狀態＋服務員忙不忙（Host）</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">兩區都有空桌，但一區的服務員手上一堆單、另一區比較閒，就帶去閒的那區。比只認空桌有用；要配合台灣店原本的帶位規則。</span></div>
+            <div class="mx-row"><span class="mx-name">即時派工<small>建議 → 指派 → 完成</small></span><span class="v v-yes">✓ 現在</span><span class="mx-note">要分清三件事：員工按了確認、員工說做完了、現場真的變了。員工按了「完成」，攝影機卻看到桌子還沒收好，就是我們要抓的那種對不上。</span></div>
+            <div class="mx-row"><span class="mx-name">現場異常偵測</span><span class="v v-yes">✓ 第二優先</span><span class="mx-note">只挑一種常發生、判斷得準、會造成損失的異常。例如客人走了，桌子遲遲沒恢復可用。</span></div>
+            <div class="mx-row"><span class="mx-name">AI 店長助理<small>代班、售完同步、等太久、設備異常（Agent）</small></span><span class="v v-yes">✓ 第三優先</span><span class="mx-note">先做中文的。例如某桌坐下十二分鐘還沒點餐，它問主管要不要提醒服務員；要主管點頭才動。</span></div>
+            <div class="mx-row"><span class="mx-name">批准、權限、操作紀錄</span><span class="v v-yes">✓ 第一版就做</span><span class="mx-note">碰到錢、薪水、對外聯絡的事，一律先要人批准。這可能比自己訓練大模型更有價值。</span></div>
+            <div class="mx-row"><span class="mx-name">廚房出單螢幕<small>KDS</small></span><span class="v v-no">✗ 不自己做</span><span class="mx-note">讀店裡現有出單螢幕的時間和狀態，再用感測補上沒記到的事。</span></div>
+            <div class="mx-row"><span class="mx-name">完整 POS、金流、訂位、會員、排班、行銷</span><span class="v v-no">✗ 這週不做</span><span class="mx-note">台灣已經有成熟的公司在做。我們的機會在「感測＋營運＋AI 動手做事」。</span></div>
           </div>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈第五輪對 Shire 功能的拆解與排序〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>Shire 靠既有攝影機判斷桌位與服務狀態；換成你熟悉的其他感測方式，哪些狀態能判斷得更可靠或更便宜，哪些反而做不到？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 9 -->
-<section class="slide" id="s9" data-title="Marble" aria-label="Marble">
-  <div class="frame">
-    <h2>Marble：讓 AI 代做後場，也代做導入</h2>
-    <p class="lede">YC Summer 2026，前身叫 Truffle。想做 AI-native 的餐廳後場作業系統：用語音和影像收庫存、收貨資料，接 POS、會計、排班、供應商，再由 Agent 協助採購、備料、核對發票、安排人力。</p>
-    <div class="cols">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「Shire 和 Marble 具體有哪些功能？那這些值得我們直接開始？你必須詳細分析。」<cite>第五輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>2026 年 11 月 17 日宣布 550 萬美元種子輪。領投方 Contrary 說它不到四個月簽下超過 150 間餐廳；這是簽約數，不等於全部已導入、付費、續約。</li>
-        <li>最該學的是導入：Onboarding Agent 先整理菜單、配方、原料、供應商、發票和 POS 品項之間的關係，再交給人確認。A&amp;W 加盟案例自述第一間店 6 天完成，後續新店幾小時內啟用。</li>
-        <li>產品體驗的重點：員工不必先學一套複雜介面，才能把營運資訊交給 AI。</li>
-        <li>它也是一個提醒：公開指標多來自公司和投資方，付費留存、毛利、導入成本都還看不到。</li>
-      </ul></div>
-      <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>Marble 的模組，對我們的意義</h3>
-          <div class="mx">
-            <div class="mx-row head"><span class="mx-h">模組</span><span class="mx-h">對話建議</span><span class="mx-h">我們怎麼用</span></div>
-            <div class="mx-row"><span class="mx-name">AI-native Onboarding</span><span class="v v-yes">✓ 立即學</span><span class="mx-note">做 Physical Operations Onboarding Agent：讀平面配置、攝影機視角、工作區域、POS 事件，產生候選的區域設定與偵測規則，再由人確認。先改善自己的部署成本。</span></div>
-            <div class="mx-row"><span class="mx-name">語音＋影像盤點<small>官方說盤點時間少約 90%</small></span><span class="v v-mid">借概念</span><span class="mx-note">CV 判斷不了時，讓員工用一句話或一張照片補充確認。語音、影像、IoT 是不同成本與可靠度的輸入。</span></div>
-            <div class="mx-row"><span class="mx-name">備料計畫<small>直接產出備料單</small></span><span class="v v-mid">借設計</span><span class="mx-note">從分析走到完成工作：系統直接輸出任務、通知和完成狀態，而不只是指出異常。</span></div>
-            <div class="mx-row"><span class="mx-name">排班與人力</span><span class="v v-mid">轉個方向</span><span class="mx-note">不做完整排班；改成在已排好的班次裡，依現場狀況建議任務的先後。</span></div>
-            <div class="mx-row"><span class="mx-name">Remy<small>對話式的 AI 經理</small></span><span class="v v-mid">借體驗</span><span class="mx-note">中文、手機優先、低學習成本；LINE 值得研究，但授權、計費與訊息限制要另外評估。</span></div>
-            <div class="mx-row"><span class="mx-name">需求預測</span><span class="v v-no">✗ 不單獨做</span><span class="mx-note">iCHEF 的「春嬌」已提供客流預測與備料建議；我們改提供現場資料，補足只用交易資料的預測。</span></div>
-            <div class="mx-row"><span class="mx-name">採購 Agent</span><span class="v v-no">✗ 先不做</span><span class="mx-note">台灣店家多有長期供應商；核對發票、找價格異常可能有價值，但那是 Document AI 的路線。</span></div>
-            <div class="mx-row"><span class="mx-name">財務、發票、成本分析</span><span class="v v-no">✗ 第二階段後</span><span class="mx-note">台灣店家的會計、進銷存和 POS 多已存在，不必為此重做會計系統。</span></div>
-          </div>
-          <figcaption class="src">整理自對話第四、五輪；Marble 的數字是公司、客戶案例與投資方的說法。</figcaption>
-        </figure>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>要讓一家新店的感測部署，從工程師逐項調整變成幾小時內完成，你覺得校正和設定裡哪幾步最難自動化？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 10 -->
-<section class="slide" id="s10" data-title="台灣的啟示" aria-label="台灣的啟示">
-  <div class="frame">
-    <h2>台灣的啟示：同題新創是訊號，不是阻力</h2>
-    <p class="lede">台灣餐廳已完成初步數位化，可以直接切入下一層：用既有資料加上新的現場感測，讓店家開始做 AI 輔助營運。</p>
-    <div class="cols">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「不錯，但我們要思考的是，我看到的是機會，而不是阻力。既然 YC 在這兩階段的新創都有這個題目，台灣市場就是一個合理的著力點，就算是複製他的模式也不是不可，但你可以分析台灣市場可能的啟示，事實上你也是部分理解台灣市場的。」<cite>第五輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>iCHEF 官方說服務超過 15,000 間台灣餐廳，AI 點餐推薦讓客單價平均增加 13.4%（供應商自述）。它已經教育市場「AI 能影響營收」，後進者不必從頭解釋 AI。</li>
-        <li>91APP 在 2025 年 11 月以 3,200 萬美元收購 iCHEF；董事長也說之後仍會和其他 POS、系統整合商合作。思圖推出不換 POS 也能導入的候位系統和 KDS。模組化、疊加式的切入，在台灣已經有人走。</li>
-        <li>未來流通研究所：2026 上半年約 18.1 萬個餐飲門市，成長降到近十年低點，一般餐廳家數十年來首次下降、營業額仍增加。價值可以來自既有門店變得更有效率。</li>
-        <li>第一批 ICP：3–30 店、至少部分直營、有固定服務或生產流程的成長型品牌。先找三種試驗場裡至少兩種都會出現的事件。</li>
-      </ul>
-        <p class="shift"><b>方向修正</b>前一輪的結論是：不要把「用既有 CCTV 看餐桌和服務員」當成主要差異化；後來改為：可以借鏡、甚至複製 Shire 已驗證的工作流程，再依台灣市場做在地化。</p>
-      </div>
-      <div class="vizcol">
-        <figure class="viz quant" data-nums="77.7,41.2,39.9" data-msg="83">
-          <h3>台灣餐飲業採用了哪些數位服務</h3>
-          <div class="bars">
-            <div class="bar-row"><span class="bar-lab">使用 POS 系統</span><span class="bar-val">77.7%</span><span class="bar-trk"><span class="bar-fill" style="--v:77.7"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">提供網路點餐</span><span class="bar-val">41.2%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:41.2"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">使用網路訂位</span><span class="bar-val">39.9%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:39.9"></span></span></div>
-          </div>
-          <div class="axis"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></div>
-          <figcaption class="src">資料：ChatGPT 對話引述〈經濟部統計處，2024 年 5 月餐飲業數位化調查；各項不互斥〉，我們尚未查證</figcaption>
-        </figure>
-        <figure class="viz quant" data-nums="26.5,30.2" data-msg="83">
-          <h3>連鎖餐飲的直營店占比</h3>
-          <div class="bars">
-            <div class="bar-row"><span class="bar-lab">2022 年</span><span class="bar-val">26.5%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:26.5;--max:40"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">2024 年</span><span class="bar-val">30.2%</span><span class="bar-trk"><span class="bar-fill" style="--v:30.2;--max:40"></span></span></div>
-          </div>
-          <div class="axis"><span style="left:0">0%</span><span style="left:25%">10%</span><span style="left:50%">20%</span><span style="left:75%">30%</span><span style="left:100%">40%</span></div>
-          <p class="note">對話的讀法：部分業者從快速加盟轉向重視直營與營運控管；直營總部比較能統一設備、流程和資料。但總部的採購審核也可能更嚴。</p>
-          <figcaption class="src">資料：ChatGPT 對話引述〈經濟部資料〉，我們尚未查證</figcaption>
-        </figure>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>台灣店家常見的先結帳、QR Code 點餐和 LINE 溝通，會讓哪些現場訊號變得更好取得，或更難取得？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 11 -->
-<section class="slide" id="s11" data-title="2B 商業模式" aria-label="2B 商業模式">
-  <div class="frame">
-    <h2>2B：Limere 怎麼賺錢</h2>
-    <p class="lede">價值主張：在不取代既有餐飲系統的情況下，讓經營者即時掌握現場異常，並用 AI 協助完成日常營運工作。</p>
-    <div class="cols stack">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「的確我們的終極目標是走向 B。」<cite>第三輪</cite></blockquote>
-        <blockquote>「2B and 2VC 的 BMC 將會是什麼？你可以大概說明一下。」<cite>第五輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>對話定義：2B 是客戶為什麼買、怎麼交付價值、公司怎麼獲利；2VC 是公司能不能長大、守得住、有投資報酬。VC 不是另一種付費客戶。</li>
-        <li>最關鍵的成本問題：新增一間店時，軟體與部署成本能不能預測，而不必再做一次完整的客製工程。</li>
-      </ul>
-        <p class="shift"><b>方向修正</b>第一輪的價格測試分三級（每店每月 NT$2,000 到 15,000 以上）；最後一輪改為單一區間：每店每月 NT$3,000–8,000，設備另收，試點收固定費用。</p>
-      </div>
-      <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>2B 商業模式圖（第五輪版本）</h3>
-          <div class="bmc">
-            <div class="cell kp"><h4>關鍵夥伴<small>Key Partners</small></h4><p>資料與系統夥伴：POS、KDS、訂位系統。部署與維運夥伴：CCTV、弱電、IoT 整合商。餐飲知識夥伴：連鎖顧問、營運主管。角色分開，不把責任全放在一方。</p></div>
-            <div class="cell ka"><h4>關鍵活動<small>Key Activities</small></h4><p>維護感測與營運資料平台、營運決策模型、Agent 的可靠性、標準化部署。早期創辦人直接接觸客戶，但每次接觸都要產生產品資料和商業證據。</p></div>
-            <div class="cell kr"><h4>關鍵資源<small>Key Resources</small></h4><p>標準化的 Restaurant Event Schema；部署軟體、模型、資料整合、Agent 流程；真實的餐飲 Domain Knowledge（可由長期合作的顧問補足）。</p></div>
-            <div class="cell vp hl"><h4>價值主張<small>Value Propositions</small></h4><p>不換系統，即時看見現場異常，AI 協助完成工作。交付的不是模型準確率，而是更少未處理的異常、更短的延遲、更少的店長巡查負擔。多店總部不駐店也能掌握各店。</p></div>
-            <div class="cell cr"><h4>顧客關係<small>Customer Relationships</small></h4><p>初期創辦人協助導入 → 中期 AI Onboarding、標準化安裝、自動監控 → 長期融入店長每天的工作流程，續約不靠業務維繫。</p></div>
-            <div class="cell ch"><h4>通路<small>Channels</small></h4><p>先從既有的餐廳、咖啡廳、酒吧合作對象做真實示範，帶出下一批同業。中期研究 POS 業者、CCTV 設備商、連鎖顧問、系統整合商；參考 Shire 的 Reseller 路線。</p></div>
-            <div class="cell cs"><h4>目標客群<small>Customer Segments</small></h4><p>有一定營業量的單店與中小型連鎖，尤其是經營者同時管多間店的。付錢的是創辦人、營運總監或區域主管；每天用的是店長、外場與廚房主管。不向消費者收費，也不要求顧客下載 App。</p></div>
-            <div class="cell co"><h4>成本結構<small>Cost Structure</small></h4><p>不只是 LLM Token 和雲端：還有業務開發、資料整合、攝影機或感測器配置、模型校正、現場支援、客服，以及誤報造成的人工處理。</p></div>
-            <div class="cell rs hl"><h4>收益來源<small>Revenue Streams</small></h4><p>每店訂閱（不抽營收），假設每店每月 NT$3,000–8,000，依功能與觀測範圍分級；需要設備時另收部署費或硬體費；多店品牌採總部合約＋每店訂閱；早期付費試點收固定費用，不無限期免費。</p></div>
-          </div>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
-        </figure>
-        <figure class="viz quant" data-nums="1950,2000,4000,5000,10000,8000,15000,3000,8000" data-msg="8,83">
-          <h3>每店每月的價格假設（新台幣）</h3>
-          <div class="bars">
-            <div class="bar-row"><span class="bar-lab">參考：iCHEF 公開的入門 POS 月費</span><span class="bar-val">1,950 起</span><span class="rng-trk"><span class="rng-dot" style="--a:1950;--max:16000"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">第一輪・Basic Operations Insights</span><span class="bar-val">2,000–4,000</span><span class="rng-trk"><span class="rng" style="--a:2000;--b:4000;--max:16000"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">第一輪・Operational Intelligence</span><span class="bar-val">5,000–10,000</span><span class="rng-trk"><span class="rng" style="--a:5000;--b:10000;--max:16000"></span></span></div>
-            <div class="bar-row"><span class="bar-lab">第一輪・Sensor-enabled Operations</span><span class="bar-val">8,000–15,000+</span><span class="rng-trk"><span class="rng open" style="--a:8000;--b:15000;--max:16000"></span><span class="rng-open" style="--b:15000;--max:16000"></span></span></div>
-            <div class="bar-row"><span class="bar-lab"><b>第五輪（目前）・單一測試區間</b></span><span class="bar-val">3,000–8,000</span><span class="rng-trk"><span class="rng cur" style="--a:3000;--b:8000;--max:16000"></span></span></div>
-          </div>
-          <div class="axis"><span style="left:0">0</span><span style="left:25%">4,000</span><span style="left:50%">8,000</span><span style="left:75%">12,000</span><span style="left:100%">16,000</span></div>
-          <p class="note">對話強調：這些是用來測支付意願的假設區間，不是查證過的台灣市場行情。</p>
-          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 提出的價格測試假設；iCHEF 公開入門月費〉，我們尚未查證</figcaption>
-        </figure>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>這張圖上最核心的資產是一套標準化的營運事件結構；從你的角度，事件要怎麼定義，才能跨店、跨感測方式都站得住？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 12 -->
-<section class="slide" id="s12" data-title="2VC" aria-label="2VC：值不值得用創投的方式長大">
-  <div class="frame">
-    <h2>2VC：值不值得用創投的方式長大</h2>
-    <p class="lede">對話的結論：這個方向有發展成 venture-backed 公司的條件，但現在不適合用 YC 競品募資成功，推論我們應該立刻募資。</p>
-    <div class="cols stack">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「2B and 2VC 的 BMC 將會是什麼？你可以大概說明一下。」<cite>第五輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>先做到三件事：一個可以獨立付費的產品、一套可複製的部署方式、幾個能證明實際營運改善的案例。之後再判斷走自籌（Bootstrapped SaaS）、策略投資，還是 VC 支持的成長。</li>
-        <li>長期敘事：擁有大量餐飲客戶的系統供應商，若想補上 Physical Operations Intelligence，可以自己做，也可以收購一個已有產品、部署能力和客戶的團隊。Limere 要成為值得被整合的營運技術資產。</li>
-      </ul></div>
-      <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>投資人會問的六件事（Venture Scalability Thesis）</h3>
-          <div class="vc">
-            <div class="cell"><h4>市場規模<small>Market Size</small></h4><p>台灣約 18.1 萬個門市據點，不是全部符合 ICP。細分市場飽和後，靠提高每店合約、加模組、新業態，或其他亞洲市場；海外是長期選項，第一年不同時做三套。</p></div>
-            <div class="cell"><h4>擴張收入<small>Expansion Revenue</small></h4><p>Land-and-expand：先幾間店 → 開新分店跟著擴 → 總部用跨店分析 → 更多 Agent 模組。前提是第一個模組本身就值得付費。</p></div>
-            <div class="cell"><h4>毛利<small>Gross Margin</small></h4><p>每新增一店都要大量安裝、維修、校正、客製，毛利就上不去。AI 輔助部署不只是工程效率，也可能是估值的驅動因素。</p></div>
-            <div class="cell"><h4>護城河<small>Defensibility</small></h4><p>不是通用 CV 或 LLM，而是資料取得、工作流程整合、可靠性、部署效率和客戶信任的組合；跨客戶使用資料要有授權。</p></div>
-            <div class="cell"><h4>通路優勢<small>Distribution</small></h4><p>從 founder-led sales，走向 POS、KDS、IoT／CCTV 整合商和餐飲服務商合作；被當成加值模組賣，獲客成本可能大降，但要分潤、受合作方牽制。</p></div>
-            <div class="cell"><h4>出場可能<small>Exit Potential</small></h4><p>有合理機會：台灣有 91APP 收購 iCHEF，國際上 Toast、DoorDash 等持續擴產品線。但這只證明有策略收購活動，不代表有人會收購 Limere。</p></div>
-          </div>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
-        </figure>
-        <div class="twofig">
-          <figure class="viz quant" data-nums="181000,2000,8000,192000000" data-msg="83,84">
-            <h3>一個收入情境：2,000 個付費據點</h3>
-            <div class="bars">
-              <div class="bar-row"><span class="bar-lab">台灣餐飲門市據點（2026 上半年）</span><span class="bar-val">約 18.1 萬</span><span class="bar-trk"><span class="bar-fill alt" style="--v:181000;--max:181000"></span></span></div>
-              <div class="bar-row"><span class="bar-lab">情境：累積付費據點</span><span class="bar-val">2,000</span><span class="bar-trk"><span class="bar-fill" style="--v:2000;--max:181000"></span></span></div>
-            </div>
-            <p class="note" style="margin-top:12px">2,000 個據點 × 每店每月 NT$8,000 → 年度經常性收入約 <b class="num">NT$1.92 億</b>。這是收入情境，不是市場預測，也還沒扣流失、折扣與部署成本。</p>
-            <figcaption class="src">資料：ChatGPT 對話引述〈未來流通研究所 2026 年 10 月公布的門市數；收入情境為 ChatGPT 自設的假設〉，我們尚未查證</figcaption>
-          </figure>
-          <figure class="viz quant" data-nums="1152,100,86.4,32" data-msg="8,75,83">
-            <h3>這個領域近年的收購金額（百萬美元）</h3>
-            <div class="bars">
-              <div class="bar-row"><span class="bar-lab">SevenRooms，DoorDash 收購（2025）</span><span class="bar-val">約 11.52 億美元</span><span class="bar-trk"><span class="bar-fill alt" style="--v:1152;--max:1152"></span></span></div>
-              <div class="bar-row"><span class="bar-lab">Spyce，Sweetgreen 賣給 Wonder（2025-12）</span><span class="bar-val">1 億現金＋約 8,640 萬股權</span><span class="bar-trk" style="display:flex;gap:2px"><span class="bar-fill alt" style="--v:100;--max:1152"></span><span class="bar-fill warm" style="--v:86.4;--max:1152"></span></span></div>
-              <div class="bar-row"><span class="bar-lab">iCHEF，91APP 收購（2025-11）</span><span class="bar-val">3,200 萬美元</span><span class="bar-trk"><span class="bar-fill" style="--v:32;--max:1152"></span></span></div>
-            </div>
-            <p class="note">對話提醒：iCHEF 當時已有龐大客戶基礎與多年營運歷史，這些金額不能套用到早期的 Limere。</p>
-            <figcaption class="src">資料：ChatGPT 對話引述〈DoorDash 2026 年 SEC 文件；Sweetgreen 向 SEC 提交的資料；91APP 宣布的收購〉，我們尚未查證</figcaption>
-          </figure>
-        </div>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>不同的資金路線會帶來不同的節奏和要求；對你來說，哪一種技術工作的空間，是無論走哪條路都想保住的？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 13 -->
-<section class="slide" id="s13" data-title="我們的缺口" aria-label="我們的缺口，以及怎麼補">
-  <div class="frame">
-    <h2>我們的缺口，以及怎麼補</h2>
-    <p class="lede">對話的判斷：我們不缺 AI 開發能力，缺的是把技術快速轉成可銷售產品的幾個環節。</p>
-    <div class="cols">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「我們有哪些可以補齊的劣勢？」<cite>第五輪</cite></blockquote>
-        <blockquote>「因為我們兩個都是 RD 背景，即使有業務開發經驗（過去的創業經驗），我們對於 ICP／通路／營銷／定位／功能／訪談／痛點／BMC／business model／pricing 等商業分析、workaround、競品不是非常熟悉。」<cite>第一輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>Shire 有長期在餐廳工作過的創辦人，Marble 的創辦人有家族餐飲營運經驗；這是我們兩個目前都沒有的。</li>
-        <li>顧問的工作不是幫我們想更多功能，而是判斷：哪些事件真的要處理、哪些是正常作業、店長什麼時候會採取行動、系統會不會增加員工負擔。</li>
-      </ul></div>
-      <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>四個缺口，對話建議的補法</h3>
-          <div class="mx four">
-            <div class="mx-row head"><span class="mx-h">缺口</span><span class="mx-h">怎麼補</span><span class="mx-h">時間點</span></div>
-            <div class="mx-row"><span class="mx-name">餐飲現場知識<small>Restaurant Domain Expertise</small></span><span class="mx-note">找一位有多店營運或大型單店管理經驗的餐飲主管，建立付費顧問或深度合作；不必是全職，也不必給共同創辦人身分。</span><span class="v v-yes">本週找到人</span></div>
-            <div class="mx-row"><span class="mx-name">商業成果誰負責<small>Commercial Ownership</small></span><span class="mx-note">對話的分工草案：Ryvn 擔任這個階段的 Product／Commercial Lead（市場、產品優先順序、客戶價值、定價）；Tony 擔任 Sensing／Systems Lead（感測、訊號處理、部署成本、系統可靠性）。重大方向共同決定，不必每個功能都重新辯一次。</span><span class="v v-yes">本週共同批准一個實驗</span></div>
-            <div class="mx-row"><span class="mx-name">資料取得與整合<small>Data Access and Integration</small></span><span class="mx-note">盡快確認 POS、KDS、訂候位和既有設備能拿到什麼。先用授權的 CSV、測試資料或簡單的事件回報做原型，不必第一週就談正式 API 合作。</span><span class="v v-yes">本週列出資料清單</span></div>
-            <div class="mx-row"><span class="mx-name">部署工程<small>Deployment Engineering</small></span><span class="mx-note">CV 在展示場景很準，換一家店就受角度、照明、遮擋、網路影響。要盡早做可重複的部署工具：Sensor Fusion、訊號品質評估、自動校正、Edge 部署；再加上 AI Onboarding、CV 評估與事件推論。</span><span class="v v-mid">盡早開始</span></div>
-          </div>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
-        </figure>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>如果我們找一位餐飲營運顧問，你最希望他幫你回答哪一類現場問題，好讓感測設計少走彎路？</p>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<!-- 14 -->
-<section class="slide" id="s14" data-title="三年後的產品樣態" aria-label="三年後的產品樣態">
-  <div class="frame">
-    <h2>三年後的產品樣態</h2>
-    <p class="lede">從 AI Floor Intelligence 開始，逐步走向 Ambient Operations Agent，最後成為能和既有系統合作的 Physical Hospitality Operating Layer。</p>
-    <div class="cols">
-      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「在未來三年，隨著 AI 發展越來越成熟，技術不再是壁壘，且可探索的空間更大，這個產品可能樣態會有哪些方向？你必須考慮未來性。」<cite>第三輪</cite></blockquote>
-      </aside>
-      <div class="pts"><ul>
-        <li>最容易被商品化的：通用 Computer Vision（人數、物件、區域占用）、通用 BI（問上週五營收為什麼掉）、通用 AI Agent。對話引述 a16z 2026 年 9 月的分析：既有系統業者也正從「保存資料」走向「能採取行動」。</li>
-        <li>比較能保值的：Physical Ground Truth，也就是現場的實際狀態；以及產品在執行工作、處理例外時自己產生的資料。</li>
-        <li>隨著 AI 讓軟體更容易開發，實體世界裡還沒被可靠數位化的營運狀態，可能成為 AI Agent 做實際工作的重要限制。這是第四輪補上的另一個看好理由。</li>
-      </ul>
-        <p class="shift"><b>方向修正</b>第三輪的排序是 2027 事件感知 → 2028 決策系統 → 2029 受控的營運編排與跨店學習；最後一輪把起點具體化為前場的 AI Floor Intelligence。</p>
-      </div>
-      <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>產品架構三層（對話暫稱 Limere Operations）</h3>
-          <div class="stackdiag">
-            <div class="layer l3"><span class="from">取 Marble 的營運 Agent</span><b>Act・行動</b><span>Agent 產生行動建議，透過現有工作流程交給對的人；需要時請主管批准，再觀察現場是否真的完成。</span></div>
-            <div class="layer"><b>Understand・理解</b><span>判斷事件是否異常、要不要處理、和其他事件的關係。例如還沒點餐，可能是漏掉，也可能是客人還在看菜單：保留不確定性。</span></div>
-            <div class="layer"><span class="from">取 Shire 的持續現場感知</span><b>Observe・觀察</b><span>POS、KDS、訂位、既有攝影機、手機語音或簡單 IoT，轉成結構化事件，而不是存一堆沒有用途的影像。</span></div>
-          </div>
-          <p class="note">不是新的 POS，也不是新的訂位平台，而是讓原本只記錄交易的系統，逐步能感知現場、執行營運工作的擴充層。</p>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
-        </figure>
-        <figure class="viz diagram">
-          <h3>三年路徑</h3>
-          <div class="chain" role="img" aria-label="AI Floor Intelligence，到 Ambient Operations Agent，到 Physical Hospitality Operating Layer">
-            <span class="node key">AI Floor Intelligence<small>先看見前場</small></span><span class="arr"></span>
-            <span class="node">Ambient Operations Agent<small>看見後能行動</small></span><span class="arr"></span>
-            <span class="node">Physical Hospitality Operating Layer<small>和既有系統合作的營運層</small></span>
-          </div>
-          <p class="note">第三輪列過的四種未來樣態：Invisible Restaurant Sensing、AI Shift Supervisor、Adaptive Production Orchestrator、Cross-store Operations Learning Network。跨店學習要有資料授權與隔離，不當成第一年的承諾。</p>
-          <figcaption class="src">整理自對話第三、五輪。</figcaption>
-        </figure>
-      </div>
-      <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>三年後通用視覺模型變得更便宜，你認為哪一種感測或訊號處理能力仍然難以被複製，值得我們現在就開始累積？</p>
+        <p>Shire 靠店裡現有的攝影機判斷桌位和服務狀態。換成你熟悉的其他感測方式，哪些狀態能判斷得更準或更便宜，哪些反而做不到？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 15 -->
-<section class="slide" id="s15" data-title="本週行動" aria-label="本週行動 11/23 到 11/29">
+<section class="slide" id="s15" data-title="Marble 的功能" aria-label="Marble 的功能：我們借哪些">
   <div class="frame">
-    <h2>本週：11/23–11/29</h2>
-    <p class="lede">唯一目標：讓一個真實營運事件，經過我們的感測和 AI，變成店長看得懂、能確認、會採取的行動。</p>
-    <div class="cols stack">
+    <h2><span class="kw">Marble 的功能：</span><span class="kw">我們借哪些</span></h2>
+    <p class="lede">Marble 的故事也在第 9 頁，這頁看它的模組。它跟 Shire 的差別：Shire 一直看現場影像；Marble 多半用現成的資料、手機、語音和文件，讓 AI 拼出店裡真實的狀況。</p>
+    <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「或者是我們現在要 take actions，本週應該做什麼？」<cite>第五輪</cite></blockquote>
+        <blockquote>「Shire and Marble 具體有哪些功能？那這些值得我們直接開始？你必須詳細分析。」<cite>第五輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>這是一份有時限的衝刺。現場資料、設備權限或人力沒到位時，先交付標示清楚的模擬事件端到端原型，註明還沒經過現場驗證。</li>
-        <li>本週不做：自己的 POS、完整庫存管理、跨店總部平台、蒐集幾十家餐廳的資料、一次接上全部攝影機、要求客人下載 Limere App。</li>
+        <li>最該學的是導入。對話舉的例子：咖啡廳的 POS 裡有「拿鐵」，供應商的發票上有牛奶和咖啡豆，配方寫一杯拿鐵要用多少。以前這些關係要人一筆一筆建，Marble 讓 AI 先整理好，再給人確認。<small class="en">導入：onboarding</small></li>
+        <li>紐約一家餐廳 Sophie's Cuban，以前大多靠紙筆管。現在員工用西班牙語對著手機盤點，老闆用簡訊跟 Marble 的 AI 店長 Remy 講話，請它準備叫貨、在分店之間調庫存。這是領投方 Contrary 的描述。</li>
+        <li>重點不是 AI 會聊天，是員工不用先學一套複雜的軟體，就能把店裡的事交給 AI。</li>
       </ul></div>
       <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>一週的節奏</h3>
-          <div class="week">
-            <div class="day"><span class="d">一・11/23</span><h4>決定產品與分工</h4><p>原型選 Live Operations Board＋AI Manager；只測一種事件，例如桌位恢復延遲、出餐交付延遲或工作站積壓，優先選試驗場拿得到真實資料的。</p><div class="who"><span>Ryvn：產品定義、客戶價值</span><span>Tony：技術可行性、感測方案</span></div><p class="out">交付：一頁規格，寫清楚 Event、Action、Buyer、Success Metric</p></div>
-            <div class="day"><span class="d">二・11/24</span><h4>確認試驗場能給什麼資料</h4><p>聯絡餐廳、酒吧、咖啡廳：POS 類型、有沒有 KDS、攝影機條件、資料權限、可測試的時段。不必三間都部署，選最快能合法取得資料的一間；同時找一位有營運管理經驗的人檢查假設。</p><p class="out">交付：主要試點場地、可取得資料清單、一次確定的現場測試</p></div>
-            <div class="day"><span class="d">三・11/25</span><h4>可重複使用的 Event Engine</h4><p>接收 POS 事件、簡單人工回報或感測結果；所有事件用共同結構：時間、來源、區域、事件類型、可信度、處理狀態。不必先完成 CV 模型。</p><p class="out">交付：能新增、更新、追蹤事件的後端與簡單 Web UI</p></div>
-            <div class="day"><span class="d">四・11/26</span><h4>第一個感測能力＋Manager Agent</h4><p>選最容易可靠取得的物理事件，例如區域占用變化或工作站活動；讓 Agent 解釋事件、提出建議、請店長確認。只做一條完整流程。</p><div class="who"><span>Tony：挑選物理事件</span><span>Ryvn：Agent 的解釋與建議</span></div><p class="out">交付：Observation → Task Suggestion → 人工確認的端到端 Demo</p></div>
-            <div class="day"><span class="d">五・11/27</span><h4>第一次展示與商業對話</h4><p>不是請對方評介面好不好看，而是請他指出哪些建議真的會影響日常工作；同時提出一個有時間、範圍和價格的付費試點概念。</p><p class="out">交付：真實回饋紀錄、最值得處理的事件、下一階段的商業承諾</p></div>
-            <div class="day"><span class="d">六日・11/28–29</span><h4>尖峰時段 Shadow Test</h4><p>有合適時段與合法授權時，讓系統在尖峰觀察，不自動修改核心營運系統。記錄偵測到多少事件、哪些有用、誤報多少、管理者願不願意採取建議。</p><p class="out">交付：真實事件案例、初步錯誤分析、下一輪測試規格</p></div>
+        <figure class="viz quant" data-nums="90" data-msg="83">
+          <h3>Marble 的模組，對我們有什麼用</h3>
+          <div class="mx">
+            <div class="mx-row head"><span class="mx-h">模組</span><span class="mx-h">對話建議</span><span class="mx-h">我們怎麼用</span></div>
+            <div class="mx-row"><span class="mx-name">AI 幫忙導入<small>AI-native Onboarding</small></span><span class="v v-yes">✓ 馬上學</span><span class="mx-note">做我們自己的「現場導入助理」：讀店裡的平面圖、攝影機角度、工作區、POS 事件，先自動提出區域怎麼劃、事件怎麼定義、偵測規則怎麼訂，再讓 Tony 或店長確認。先用來壓低我們自己的部署成本。<small class="en">事件的共用格式：Event Schema</small></span></div>
+            <div class="mx-row"><span class="mx-name">語音＋影像盤點<small>官方說盤點時間少了約 90%</small></span><span class="v v-mid">借概念</span><span class="mx-note">影像判斷不了時，讓員工講一句話或拍一張照補上。例如店長說「今天二號工作站十點到十一點人手不夠」，系統就記成一筆事件。語音、影像、IoT 是成本和可靠度不同的三種輸入，不用互相搶。</span></div>
+            <div class="mx-row"><span class="mx-name">備料計畫<small>直接給一張備料單</small></span><span class="v v-mid">借設計</span><span class="mx-note">從分析一路走到把事做完：系統直接給任務、通知和完成狀態，不只是指出哪裡怪。</span></div>
+            <div class="mx-row"><span class="mx-name">排班與人力</span><span class="v v-mid">換個方向</span><span class="mx-note">不做完整排班。改成在已經排好的班裡，照現場狀況建議誰先做什麼。</span></div>
+            <div class="mx-row"><span class="mx-name">Remy<small>用聊天的方式跟 AI 店長講話</small></span><span class="v v-mid">借體驗</span><span class="mx-note">中文、手機優先、好上手。LINE 值得研究，但授權、費用和訊息限制要另外評估。</span></div>
+            <div class="mx-row"><span class="mx-name">需求預測</span><span class="v v-no">✗ 不單獨做</span><span class="mx-note">iCHEF 的「春嬌」已經有客流預測和備料建議。我們改給現場的即時資料，補足只看交易資料的預測。</span></div>
+            <div class="mx-row"><span class="mx-name">叫貨助理</span><span class="v v-no">✗ 先不做</span><span class="mx-note">台灣很多店有固定的長期供應商。對發票、抓價格異常可能有用，但那是讀文件的 AI，不是我們的路。</span></div>
+            <div class="mx-row"><span class="mx-name">財務、發票、成本</span><span class="v v-no">✗ 第二階段以後</span><span class="mx-note">台灣店家的會計、進銷存和 POS 多半已經有了，不必為了這個重做一套會計系統。</span></div>
           </div>
-          <p class="subhead" style="margin-top:18px">本週的四個成功標準</p>
-          <ol class="checks">
-            <li>是否完成一條 Observation → Decision → Action 的真實可操作流程？</li>
-            <li>是否至少有一家場地願意提供合適的測試條件與資料授權？</li>
-            <li>是否有一位真正的營運決策者認為這個事件值得持續管理？</li>
-            <li>是否完成一份具體的下一階段付費試點提案，而不只是口頭合作意向？</li>
-          </ol>
-          <p class="note">不需要四項都成功才算方向值得繼續；失敗時記錄原因，把缺資料、模型不準、沒有營運價值、沒有購買意願分開。</p>
-          <figcaption class="src">整理自對話第五輪。</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈Marble 官方產品案例、領投方 Contrary 的投資分析；第五輪的建議〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>本週如果只能挑一種現場事件走完整條流程，你會用什麼標準去挑？</p>
+        <p>要讓一家新店的感測部署，從工程師一項一項調，變成幾小時內裝好，你覺得校正和設定裡，哪幾步最難自動化？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 16 -->
-<section class="slide" id="s16" data-title="我們兩個怎麼一起做決定" aria-label="我們兩個怎麼一起做決定">
+<section class="slide" id="s16" data-title="台灣能學到什麼" aria-label="台灣能學到什麼">
   <div class="frame">
-    <h2>我們兩個怎麼一起做決定</h2>
-    <p class="lede">對話的建議不是再多一份商業分析，而是一套兩人都同意的產品決策機制：讓技術構想和商業假設放在同一個系統裡比。</p>
+    <h2><span class="kw">台灣能學到什麼：</span><span class="kw">做同題目的新創，</span><span class="kw">是好訊號，</span><span class="kw">不是擋路的</span></h2>
+    <p class="lede">台灣的餐廳大多已經走完數位化的第一步。所以我們可以直接往下一層走：用店裡現成的資料，加上新的現場感測，讓店家開始用 AI 幫忙管店。</p>
     <div class="cols">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「Tony 一直很想做的，是把他的感測器與訊號理論，和我的心理學、Computer Vision、AI 能力結合起來發想方案。我自己則很需要先有商業思維來想整個方向。我想知道怎麼讓這兩種動力都用得上。」<cite>第三輪</cite></blockquote>
+        <blockquote>「不錯，但我們要思考的是，我看到的是機會，而不是阻力，既然 YC 在這兩階段的新創都有這個題目，台灣市場就是一個合理的著力點，就算是複製他的模式也不是不可，但你可以分析台灣市場可能的啟示，事實上你也是部分理解台灣市場的。」<cite>第五輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>保留固定比例的自主技術探索：對話舉例每週約一天，或雙方同意的固定研發預算，範圍內自由決定研究什麼。比例不是重點，重點是兩人都認同探索和交付的邊界。</li>
-        <li>可以試的節奏：每週一次 45 分鐘的產品決策會議，各自帶新的證據（技術原型、實驗數據；客戶資料、競品、經濟模型），只決定下一個有限範圍的實驗，以及什麼結果會繼續或停止。</li>
-        <li>一個可以一起回答的問題：能不能像 Winnow 先用秤和平板、後來才做影像辨識那樣，先找到一個能產生收入、累積真實資料的感測應用，讓之後更複雜的 AI 自動化有機會實現？</li>
-      </ul></div>
+        <li>台灣本地的思圖（Citrus Solutions），2026 年推出兩個不用換掉原本 POS 就能裝的產品：處理候位、叫號、桌位的 Q-System，和能接不同家 POS、有標準 API 的廚房出單螢幕。「一塊一塊疊上去」的做法，台灣已經有人在走。這也代表，光做「幫不同 POS 串接」不夠，要給出現有系統拿不到的現場資訊。</li>
+        <li>未來流通研究所說，2026 年上半年台灣約有 18.1 萬個餐飲門市，開店速度慢到近十年最低。一般餐廳的店數，更是十年來第一次變少，但營業額還在增加。意思是：價值可以來自讓現有的店做得更好，不必靠一直開新店。</li>
+        <li>第一批要找的客戶：3 到 30 家店、至少有一部分是直營、服務或製作流程固定、店長或總部每天都要處理重複發生的現場狀況的成長型品牌。這個店數是先篩的範圍，不是統計算出來的最佳值。先接觸中價位正餐、連鎖咖啡輕食、標準化快餐，和一部分人潮多的餐酒館。</li>
+        <li>我們三種試驗場（餐廳、酒吧、咖啡廳）先不要各做一套。先找至少兩種場地都會發生的狀況，例如服務延遲、餐點交付卡住、現場積單。</li>
+      </ul>
+        <p class="shift"><b>方向修正</b>上一輪的結論是：不要把「用現有監視器看餐桌和服務員」當成主要的差異。後來改成：可以借，甚至照做 Shire 已經驗證過的流程，再照台灣的店去改。</p>
+      </div>
       <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>一個構想怎麼走到正式開發</h3>
-          <div class="flow">
-            <div class="fbox"><b>技術探索清單</b>：任何構想都可以自由放進來，不必先證明市場存在。</div>
-            <span class="fdown" aria-hidden="true"></span>
-            <div class="fbox gate"><b>進正式開發前，一起回答三個問題</b>
-              <ol>
-                <li>它能改善哪個具體的營運決策？店長會因此做出什麼不同的決定？</li>
-                <li>相對現有的替代方法（POS、人工巡查、既有設備），有什麼可以量測的增量價值？</li>
-                <li>價值的上限，有沒有機會高於導入和持續營運的成本？先做數量級估算就好。</li>
-              </ol></div>
-            <span class="fdown" aria-hidden="true"></span>
-            <div class="fsplit">
-              <div class="fbox yes"><b>正式產品開發</b><br>集中公司的主要資源。</div>
-              <div class="fbox"><b>保留為研究專案</b><br>有研究價值，只是現在還沒有開發優先權。</div>
-            </div>
+        <figure class="viz quant" data-nums="77.7,41.2,39.9,2024,5" data-msg="83">
+          <h3>台灣餐飲業用了哪些數位服務（業者裡有用的比例）</h3>
+          <div class="bars">
+            <div class="bar-row"><span class="bar-lab">用 POS 收銀系統</span><span class="bar-val">77.7%</span><span class="bar-trk"><span class="bar-fill" style="--v:77.7"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">提供網路點餐</span><span class="bar-val">41.2%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:41.2"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">用網路訂位</span><span class="bar-val">39.9%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:39.9"></span></span></div>
           </div>
-          <figcaption class="src">整理自對話第三輪。</figcaption>
+          <div class="axis"><span style="left:0">0%</span><span style="left:50%">50%</span><span style="left:100%">100%</span></div>
+          <p class="note">大約每 4 家店，就有 3 家已經有 POS。交易資料這一層，多數店都有了。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈經濟部統計處，2024 年 5 月餐飲業數位化調查；各項不互斥〉，我們尚未查證</figcaption>
         </figure>
-        <figure class="viz diagram">
-          <h3>決策權怎麼分</h3>
-          <div class="lanes">
-            <div class="lane"><h4>商業這一側主責</h4>市場選擇、客戶價值、定價、商業優先順序。</div>
-            <div class="lane"><h4>技術這一側主責</h4>感測、硬體、訊號處理，以及技術方案。</div>
-            <div class="lane both"><h4>兩人共同批准</h4>重大預算、公司定位、產品方向。</div>
+        <figure class="viz quant" data-nums="26.5,30.2,2022,2024" data-msg="83">
+          <h3>連鎖餐飲裡，直營店的比例</h3>
+          <div class="bars">
+            <div class="bar-row"><span class="bar-lab">2022 年</span><span class="bar-val">26.5%</span><span class="bar-trk"><span class="bar-fill alt" style="--v:26.5;--max:40"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">2024 年</span><span class="bar-val">30.2%</span><span class="bar-trk"><span class="bar-fill" style="--v:30.2;--max:40"></span></span></div>
           </div>
-          <p class="note">事先約好談不攏時怎麼辦：延後投入、做一個有上限的小實驗、找第三方評估，或依事先同意的權限處理。</p>
-          <figcaption class="src">整理自對話第三、五輪。</figcaption>
+          <div class="axis"><span style="left:0">0%</span><span style="left:25%">10%</span><span style="left:50%">20%</span><span style="left:75%">30%</span><span style="left:100%">40%</span></div>
+          <p class="note">對話的讀法：有一部分業者從快速開加盟，轉成更重視直營和營運控管。直營總部比較能統一設備、流程和資料；一個有十間直營店的品牌，可能比十家各自獨立的咖啡廳更好複製。但總部的採購審核也可能更嚴。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈經濟部資料〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>如果我們一起訂一套決定「先做什麼」的規則，你希望裡面一定要保留什麼、絕對不要有什麼？</p>
+        <p>台灣店家常見的先結帳、掃 QR Code 點餐、用 LINE 溝通，會讓哪些現場訊號變得更好拿，或更難拿？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 17 -->
-<section class="slide" id="s17" data-title="還沒查證與還沒回答的" aria-label="還沒查證的，和還沒回答的">
+<section class="slide" id="s17" data-title="賣給店家：怎麼賺錢" aria-label="賣給店家：Limere 怎麼賺錢">
   <div class="frame">
-    <h2>還沒查證的，和還沒回答的</h2>
-    <p class="lede">對話認為有些結論已經可以先用；但有三件事，公開資料替我們回答不了。</p>
-    <div class="cols">
+    <h2><span class="kw">賣給店家：</span><span class="kw">Limere 怎麼賺錢</span><span class="en">2B 商業模式</span></h2>
+    <p class="lede">我們要賣的，一句話：不用換掉店裡現有的系統，老闆就能即時知道現場哪裡出狀況，AI 再幫忙把日常的事做完。</p>
+    <div class="cols stack">
       <aside class="ask"><span class="blk">Ryvn 當時問的</span>
-        <blockquote>「你說的很多問題，事實上你可以直接去找證據、找論文、找 YC and a16z 相關團隊、競品為什麼成功、為什麼失敗……他們的資料是什麼？有沒有什麼可以預先回答的結論，而不是讓我從 0 摸索？」<cite>第三輪</cite></blockquote>
+        <blockquote>「的確我們的終極目標是走向 B。」<cite>第三輪</cite></blockquote>
+        <blockquote>「2B and 2VC 的 BMC 將會是什麼？你可以大概說明一下。」<cite>第五輪</cite></blockquote>
       </aside>
       <div class="pts"><ul>
-        <li>對話認為可以先用的：餐飲業存在有經濟價值的營運資訊缺口；感測與自動蒐集在部分場景有增量價值；簡單低成本的產品可以通往複雜的 AI；通用分析不是長期護城河；部署和客戶成功本身就是產品成本。</li>
-        <li>要我們自己驗證的三件事：台灣哪一種營運型態，還有夠大、沒被滿足的需求？我們能不能用負擔得起的成本，做出明顯的增量價值？誰會真的付錢，為什麼是現在？</li>
-        <li>還要一起想的：我們最終要做「協助餐廳做決策的軟體公司」，還是「能感知實體環境、進而優化營運的 Ambient Intelligence 公司」？</li>
-      </ul></div>
+        <li>對話把兩件事分開講。「賣給店家」是：店家為什麼買、我們怎麼把價值送到、公司怎麼賺錢。「給投資人看」是：公司能不能長大、守不守得住、投資人能不能賺回來。投資人不是另一種付錢的客戶。</li>
+        <li>最關鍵的成本問題：每多一家店，軟體和部署要花多少，能不能事先算得出來，不必每家都重做一次客製工程。</li>
+      </ul>
+        <p class="shift"><b>方向修正</b>第一輪的價格分三級，每店每月從 NT$2,000 到 15,000 以上。最後一輪改成一個區間：每店每月 NT$3,000 到 8,000，設備另外收，試點收固定的費用。</p>
+      </div>
       <div class="vizcol">
-        <figure class="viz diagram">
-          <h3>撐起這份簡報的關鍵說法，都還沒查證</h3>
-          <div class="mx">
-            <div class="mx-row head"><span class="mx-h">說法</span><span class="mx-h">狀態</span><span class="mx-h">對話中的來源與它自己標的限制</span></div>
-            <div class="mx-row"><span class="mx-name">Shire：13 間餐廳、桌位週轉時間約 −12%</span><span class="v v-mid">未查證</span><span class="mx-note">YC Launch Post；公司自述的早期結果，未見獨立驗證或付費留存資料。</span></div>
-            <div class="mx-row"><span class="mx-name">Marble：四個月內 150 間以上、550 萬美元種子輪</span><span class="v v-mid">未查證</span><span class="mx-note">領投方 Contrary；是簽約數，未揭露導入、付費與續約。</span></div>
-            <div class="mx-row"><span class="mx-name">Qu：73% 投資 AI、5% 有可衡量成果</span><span class="v v-mid">未查證</span><span class="mx-note">Qu 2026 年報告；美國市場、供應商研究，偏多店品牌。</span></div>
-            <div class="mx-row"><span class="mx-name">智慧秤 −29%、AI 分類再 −30%</span><span class="v v-mid">未查證</span><span class="mx-note">SSRN 工作論文；準實驗，未經正式期刊同儕審查。</span></div>
-            <div class="mx-row"><span class="mx-name">經濟部：POS 77.7%、直營占比 30.2%、經營困境 69.8%</span><span class="v v-mid">未查證</span><span class="mx-note">三個數字來自經濟部不同年份的調查與資料，要逐一對原始表。</span></div>
-            <div class="mx-row"><span class="mx-name">約 18.1 萬個門市據點</span><span class="v v-mid">未查證</span><span class="mx-note">未來流通研究所；第一輪另引 2025 年營利事業家數約 17.89 萬家，兩者口徑不同。</span></div>
-            <div class="mx-row"><span class="mx-name">iCHEF：15,000 間以上、AI 推薦客單價 +13.4%</span><span class="v v-mid">未查證</span><span class="mx-note">iCHEF 官方；供應商發布的使用成效，不是隨機實驗。</span></div>
-            <div class="mx-row"><span class="mx-name">91APP 以 3,200 萬美元收購 iCHEF</span><span class="v v-mid">未查證</span><span class="mx-note">91APP 宣布、《天下雜誌》專訪。</span></div>
+        <figure class="viz quant" data-nums="3000,8000" data-msg="83">
+          <h3>賣給店家的商業模式圖（第五輪的版本）<span class="en">Business Model Canvas</span></h3>
+          <div class="bmc">
+            <div class="cell kp"><h4>和誰合作<small>Key Partners</small></h4><p>三種夥伴分開：資料和系統的夥伴，像 POS、廚房出單螢幕、訂位系統；裝機和維修的夥伴，像監視器、弱電、IoT 的整合商；懂餐飲的夥伴，像連鎖顧問、營運主管。不要把責任全壓在一家身上。</p></div>
+            <div class="cell ka"><h4>每天主要在做什麼<small>Key Activities</small></h4><p>維護感測和營運資料的平台、營運決策的模型、AI 助理的可靠度、標準化的裝機流程。早期還是創辦人自己去見客戶，但每次見面，都要帶回產品資料和生意上的證據。</p></div>
+            <div class="cell kr"><h4>最重要的資產<small>Key Resources</small></h4><p>一套各店共用的營運事件格式；裝機軟體、模型、資料串接、AI 助理的流程；真實的餐飲現場知識，可以找長期合作的顧問補上。</p></div>
+            <div class="cell vp hl"><h4>賣什麼價值<small>Value Propositions</small></h4><p>不換系統，就能即時看到現場異常，AI 再幫忙把事做完。交出去的不是模型準確率，是更少沒人處理的異常、更短的延遲、店長少跑幾趟巡店。多店的總部不用駐店，也知道每家店的狀況。</p></div>
+            <div class="cell cr"><h4>怎麼讓客戶留下<small>Customer Relationships</small></h4><p>一開始創辦人陪著導入；中期靠 AI 導入、標準化安裝、自動監控；長期變成店長每天都會用的流程，續約不用靠業務一直拜訪。</p></div>
+            <div class="cell ch"><h4>怎麼找到客戶<small>Channels</small></h4><p>先在已經合作的餐廳、咖啡廳、酒吧做出真的示範，帶出下一批同業。中期再找 POS 公司、監視器設備商、連鎖顧問、系統整合商；可以參考 Shire 招經銷商的做法。</p></div>
+            <div class="cell cs"><h4>誰付錢、誰在用<small>Customer Segments</small></h4><p>有一定營業量的單店，和中小型連鎖，尤其是老闆同時管好幾家店的。付錢的是創辦人、營運總監或區域主管；每天在用的是店長、外場和廚房的主管。不向顧客收錢，也不要求顧客下載 App。</p></div>
+            <div class="cell co"><h4>錢花在哪<small>Cost Structure</small></h4><p>不只是 AI 模型的用量費和雲端。還有跑業務、串資料、配攝影機或感測器、校正模型、到現場支援、客服，還有誤報讓人白跑一趟的成本。</p></div>
+            <div class="cell rs hl"><h4>怎麼收錢<small>Revenue Streams</small></h4><p>每家店按月訂閱，不抽營收。先假設每店每月 NT$3,000 到 8,000，照功能和看的範圍分級；要裝設備的，另收部署費或硬體費；多店品牌用總部合約，加上每家店的訂閱；早期的付費試點收固定費用，不無限期免費。</p></div>
           </div>
-          <figcaption class="src">整理自對話各輪。</figcaption>
+          <figcaption class="src">資料：ChatGPT 對話引述〈第五輪的商業模式圖；價格是對話提的測試假設〉，我們尚未查證</figcaption>
+        </figure>
+        <figure class="viz quant" data-nums="1950,2000,4000,5000,10000,8000,15000,3000,8000" data-msg="8,83">
+          <h3>每店每月的價格假設（新台幣）</h3>
+          <div class="bars">
+            <div class="bar-row"><span class="bar-lab">對照：iCHEF 公開的入門 POS 月費</span><span class="bar-val">1,950 起</span><span class="rng-trk"><span class="rng-dot" style="--a:1950;--max:16000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">第一輪：基本營運洞察<small class="en">Basic Operations Insights</small></span><span class="bar-val">2,000 至 4,000</span><span class="rng-trk"><span class="rng" style="--a:2000;--b:4000;--max:16000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">第一輪：營運智慧<small class="en">Operational Intelligence</small></span><span class="bar-val">5,000 至 10,000</span><span class="rng-trk"><span class="rng" style="--a:5000;--b:10000;--max:16000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab">第一輪：加上感測的營運<small class="en">Sensor-enabled Operations</small></span><span class="bar-val">8,000 至 15,000 以上</span><span class="rng-trk"><span class="rng open" style="--a:8000;--b:15000;--max:16000"></span><span class="rng-open" style="--b:15000;--max:16000"></span></span></div>
+            <div class="bar-row"><span class="bar-lab"><b>第五輪（目前）：一個區間</b></span><span class="bar-val">3,000 至 8,000</span><span class="rng-trk"><span class="rng cur" style="--a:3000;--b:8000;--max:16000"></span></span></div>
+          </div>
+          <div class="axis"><span style="left:0">0</span><span style="left:25%">4,000</span><span style="left:50%">8,000</span><span style="left:75%">12,000</span><span style="left:100%">16,000</span></div>
+          <p class="note">目前的區間，大約是 iCHEF 入門月費的 1.5 到 4 倍。對話強調：這些是用來測店家願不願意付的假設，不是查證過的台灣行情。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈ChatGPT 提出的價格測試假設；iCHEF 公開的入門月費〉，我們尚未查證</figcaption>
         </figure>
       </div>
       <aside class="tony"><span class="blk">想問 Tony</span>
-        <p>這些還沒查證的說法裡，哪一個如果被證明是錯的，會最大幅改變你對這個方向的判斷？</p>
+        <p>這張圖最核心的資產，是一套各店共用的營運事件格式。從你的角度，事件要怎麼定義，才能跨店、跨不同感測方式都站得住？</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- 18 -->
-<section class="slide" id="s18" data-title="附錄：五輪提問" aria-label="附錄：Ryvn 的五輪提問">
+<section class="slide" id="s18" data-title="給投資人看" aria-label="給投資人看：值不值得用創投的方式長大">
   <div class="frame">
-    <h2>附錄：Ryvn 的五輪提問</h2>
-    <p class="lede">「不要用表格」「不要給我圖表」是當時對 ChatGPT 回覆格式的要求。</p>
+    <h2><span class="kw">給投資人看：</span><span class="kw">值不值得用創投的方式長大</span><span class="en">2VC</span></h2>
+    <p class="lede">對話的結論：這個方向有條件長成創投支持的公司。但不能因為 YC 的同題新創募到了錢，就推論我們現在該去募資。</p>
+    <div class="cols stack">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「2B and 2VC 的 BMC 將會是什麼？你可以大概說明一下。」<cite>第五輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>先做到三件事：一個店家願意單獨付錢的產品、一套能複製的裝機方式、幾個證明營運真的變好的案例。之後再看要走自己養活自己的軟體公司、找策略投資，還是讓創投支持快速長大。</li>
+        <li>長期的說法：手上有很多餐飲客戶的系統公司，如果想補上「看得懂現場」這塊，可以自己做，也可以買一個已經有產品、會裝機、有客戶的團隊。Limere 要變成值得被整合進去的營運技術，而不只是一個新奇的 AI 功能。</li>
+      </ul></div>
+      <div class="vizcol">
+        <figure class="viz quant" data-nums="18.1" data-msg="83">
+          <h3>投資人會問的六件事<span class="en">Venture Scalability Thesis</span></h3>
+          <div class="vc">
+            <div class="cell"><h4>市場夠不夠大<small>Market Size</small></h4><p>台灣約 18.1 萬個餐飲門市，不是每家都是我們要的客戶。某一塊做滿之後，靠提高每家店的合約、多加模組、新的店型，或其他亞洲市場。海外是長期的選項，第一年不同時做三套。</p></div>
+            <div class="cell"><h4>同一個客戶能不能越買越多<small>Expansion Revenue</small></h4><p>先從幾家店開始，品牌開新分店就跟著加，總部開始用跨店分析，再加更多 AI 助理模組。前提是第一個模組本身就值得付錢。</p></div>
+            <div class="cell"><h4>毛利<small>Gross Margin</small></h4><p>每多一家店，都要花很多時間安裝、維修、校正、客製，毛利就上不去。用 AI 幫忙裝機，不只是工程效率，也可能直接影響公司值多少錢。</p></div>
+            <div class="cell"><h4>別人為什麼搶不走<small>Defensibility</small></h4><p>不是通用的影像辨識或大型語言模型，而是資料拿不拿得到、流程接不接得上、可不可靠、裝機快不快、客戶信不信任，加在一起。要跨客戶用資料，得先有授權。</p></div>
+            <div class="cell"><h4>怎麼更便宜地找到下一批客戶<small>Distribution</small></h4><p>從創辦人自己去賣，走到跟 POS、出單螢幕、IoT／監視器整合商和餐飲服務商合作。被當成加購模組來賣，找客戶的成本可能大降，但要分潤，也會受合作方牽制。</p></div>
+            <div class="cell"><h4>以後有沒有人想買<small>Exit Potential</small></h4><p>有合理的機會：台灣有 91APP 買下 iCHEF，國外有 Toast、DoorDash 一直在擴產品線。但這只證明有人在做策略收購，不代表有人會買 Limere。</p></div>
+          </div>
+          <figcaption class="src">資料：ChatGPT 對話引述〈第五輪的 2VC 分析〉，我們尚未查證</figcaption>
+        </figure>
+        <div class="twofig">
+          <figure class="viz quant" data-nums="181000,2000,8000,192000000" data-msg="83,84">
+            <h3>一個收入的情境：2,000 家付費店</h3>
+            <div class="bars">
+              <div class="bar-row"><span class="bar-lab">台灣餐飲門市（2026 年上半年）</span><span class="bar-val">約 18.1 萬</span><span class="bar-trk"><span class="bar-fill alt" style="--v:181000;--max:181000"></span></span></div>
+              <div class="bar-row"><span class="bar-lab">情境：累積付費的店</span><span class="bar-val">2,000</span><span class="bar-trk"><span class="bar-fill" style="--v:2000;--max:181000"></span></span></div>
+            </div>
+            <p class="note" style="margin-top:12px">2,000 家店，大約是全台門市的百分之一。每家每月 NT$8,000，一年下來的經常性收入約 <b class="num">NT$1.92 億</b><small>（ARR，年度經常性收入）</small>。這是收入情境，不是市場預測，也還沒扣掉流失、折扣和裝機成本。</p>
+            <figcaption class="src">資料：ChatGPT 對話引述〈未來流通研究所 2026 年 10 月公布的門市數；收入情境是 ChatGPT 自己設的假設〉，我們尚未查證</figcaption>
+          </figure>
+          <figure class="viz quant" data-nums="1152,100,86.4,32" data-msg="8,75,83">
+            <h3>前面故事裡的三筆收購，放在一起比（金額都是美元）</h3>
+            <div class="bars">
+              <div class="bar-row"><span class="bar-lab">SevenRooms，被 DoorDash 收購（2025 年）</span><span class="bar-val">約 11.52 億美元</span><span class="bar-trk"><span class="bar-fill alt" style="--v:1152;--max:1152"></span></span></div>
+              <div class="bar-row"><span class="bar-lab">Spyce，Sweetgreen 賣給 Wonder（2025 年 12 月）</span><span class="bar-val">1 億現金＋約 8,640 萬股權</span><span class="bar-trk" style="display:flex;gap:2px"><span class="bar-fill alt" style="--v:100;--max:1152"></span><span class="bar-fill warm" style="--v:86.4;--max:1152"></span></span></div>
+              <div class="bar-row"><span class="bar-lab">iCHEF，被 91APP 收購（2025 年 11 月）</span><span class="bar-val">3,200 萬美元</span><span class="bar-trk"><span class="bar-fill" style="--v:32;--max:1152"></span></span></div>
+            </div>
+            <p class="note">iCHEF 的價格，大約是 SevenRooms 的三十六分之一。對話提醒：iCHEF 當時已經有很多客戶和多年的歷史，這些金額不能套到早期的 Limere 身上。</p>
+            <figcaption class="src">資料：ChatGPT 對話引述〈DoorDash 2026 年 SEC 文件；Sweetgreen 向 SEC 提交的資料；91APP 宣布的收購〉，我們尚未查證</figcaption>
+          </figure>
+        </div>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>不同的資金路線，會帶來不同的節奏和要求。對你來說，哪一種技術工作的空間，是不管走哪條路都想保住的？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<!-- 19 -->
+<section class="slide" id="s19" data-title="我們缺什麼" aria-label="我們缺什麼，怎麼補">
+  <div class="frame">
+    <h2><span class="kw">我們缺什麼，</span><span class="kw">怎麼補</span></h2>
+    <p class="lede">對話的判斷：我們寫 AI 沒問題。缺的是中間那幾步：把技術很快變成店家願意買的產品。</p>
+    <div class="cols">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「我們有哪些可以補齊的劣勢？」<cite>第五輪</cite></blockquote>
+        <blockquote>「因為我們兩個都是 RD 背景，即使有業務開發經驗（過去的創業經驗），我們對於 ICP／通路／營銷／定位／功能／訪談／痛點／BMC／business model／pricing 等商業分析、workaround、競品不是非常熟悉。」<cite>第一輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>Shire 有一位在餐廳待過很久的創辦人，Marble 的創辦人家裡就在做餐飲。這是我們兩個現在都沒有的。</li>
+        <li>找顧問，不是要他幫我們多想功能。是要他幫忙判斷：哪些狀況真的要處理、哪些只是平常的作業、店長什麼時候會動手、系統會不會反而讓員工多做事。</li>
+      </ul></div>
+      <div class="vizcol">
+        <figure class="viz diagram">
+          <h3>四個缺口，對話建議怎麼補</h3>
+          <div class="mx four">
+            <div class="mx-row head"><span class="mx-h">缺口</span><span class="mx-h">怎麼補</span><span class="mx-h">什麼時候</span></div>
+            <div class="mx-row"><span class="mx-name">懂餐廳現場的人<small>Restaurant Domain Expertise</small></span><span class="mx-note">找一位管過好幾家店，或管過大型單店的餐飲主管，請他當付費顧問或深度合作。不用全職，也不用給共同創辦人的身分。</span><span class="v v-yes">這週找到人</span></div>
+            <div class="mx-row"><span class="mx-name">誰對生意的結果負責<small>Commercial Ownership</small></span><span class="mx-note">對話提的分工草案：這個階段，Ryvn 負責產品和生意（選市場、排先後、客戶價值、定價）；Tony 負責感測和系統（感測器、訊號處理、部署成本、系統穩不穩）。大方向一起決定，不用每個功能都重新辯一次。<small class="en">Product／Commercial Lead；Sensing／Systems Lead</small></span><span class="v v-yes">這週一起批准一個實驗</span></div>
+            <div class="mx-row"><span class="mx-name">拿得到資料、接得上系統<small>Data Access and Integration</small></span><span class="mx-note">盡快確認 POS、廚房出單螢幕、訂位候位系統和現有設備，各拿得到什麼。先用授權的 CSV、測試資料，或簡單的事件回報做原型。第一週不用去談正式的 API 合作。</span><span class="v v-yes">這週列出資料清單</span></div>
+            <div class="mx-row"><span class="mx-name">裝機的工程<small>Deployment Engineering</small></span><span class="mx-note">影像辨識在展示時很準，換一家店，就會被角度、光線、東西擋住、網路影響。要早點做出能重複用的裝機工具：幾種感測一起判斷、評估訊號好不好、自動校正、在店裡的設備上直接運算；再加上 AI 幫忙導入、影像辨識的評估和事件推論。<small class="en">Sensor Fusion、Edge 部署、AI Onboarding</small></span><span class="v v-mid">越早開始越好</span></div>
+          </div>
+          <figcaption class="src">整理自對話第五輪。</figcaption>
+        </figure>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>如果我們找一位餐飲營運顧問，你最想請他幫你回答哪一類現場問題，好讓感測設計少走冤枉路？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 20 -->
+<section class="slide" id="s20" data-title="三年後的產品" aria-label="三年後，產品可能長什麼樣子">
+  <div class="frame">
+    <h2><span class="kw">三年後，</span><span class="kw">產品可能長什麼樣子</span></h2>
+    <p class="lede">先看清楚外場，接著做到看見之後能動手，最後變成一層能跟店裡現有系統一起工作的營運系統。</p>
+    <div class="cols">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「在未來三年，隨著 AI 發展越來越成熟，技術不再是壁壘，且可探索的空間更大，這個產品可能樣態會有哪些方向？你必須考慮未來性。」<cite>第三輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>最容易變成人人都有的：通用的影像辨識（算人數、認東西、看哪一區有人）、通用的報表分析（問「上週五營收為什麼掉」）、通用的 AI 助理。對話引述 a16z 2026 年 9 月的分析：現有的系統公司，也正從「幫你存資料」走向「幫你做事」。</li>
+        <li>比較能保值的：現場真實的狀態，還有產品在做事、處理例外狀況時，自己累積下來的資料。<small class="en">Physical Ground Truth</small></li>
+        <li>AI 讓寫軟體越來越容易。實體世界裡那些還沒被可靠記下來的營運狀態，反而可能卡住 AI 助理去做真正的工作。這是第四輪補上的另一個看好的理由。</li>
+      </ul>
+        <p class="shift"><b>方向修正</b>第三輪排的順序是：2027 年先抓到有價值的現場事件，2028 年用這些事件做決策系統，2029 年在已經驗證過的場景，有人把關地調度營運，並研究跨店學習。最後一輪把起點說得更具體：先看清楚外場。</p>
+      </div>
+      <div class="vizcol">
+        <figure class="viz diagram">
+          <h3>產品分三層（對話暫時叫它 Limere Operations）</h3>
+          <div class="stackdiag">
+            <div class="layer l3"><span class="from">借 Marble 的營運助理</span><b>動手<small class="en">Act</small></b><span>AI 給出建議，走店裡原本的流程交給對的人；需要時先請主管批准，再看現場是不是真的做完了。</span></div>
+            <div class="layer"><b>看懂<small class="en">Understand</small></b><span>判斷這件事算不算異常、要不要處理、跟其他事有沒有關係。例如還沒點餐，可能是漏了，也可能客人還在看菜單：兩種可能都先留著。</span></div>
+            <div class="layer"><span class="from">借 Shire 一直看著現場</span><b>看見<small class="en">Observe</small></b><span>把 POS、出單螢幕、訂位、現有攝影機、手機語音或簡單的 IoT，變成一筆一筆有格式的事件，不是存一堆用不到的影像。</span></div>
+          </div>
+          <p class="note">它不是新的 POS，也不是新的訂位平台。是加在原本只記交易的系統上，讓它慢慢看得懂現場、做得了營運工作的一層。</p>
+          <figcaption class="src">整理自對話第五輪。</figcaption>
+        </figure>
+        <figure class="viz diagram">
+          <h3>三年的路</h3>
+          <div class="chain" role="img" aria-label="先看清楚外場，到看見之後能動手，到跟現有系統一起工作的營運層">
+            <span class="node key">先看清楚外場<small>AI Floor Intelligence</small></span><span class="arr"></span>
+            <span class="node">看見之後能動手<small>Ambient Operations Agent</small></span><span class="arr"></span>
+            <span class="node">跟現有系統一起工作的營運層<small>Physical Hospitality Operating Layer</small></span>
+          </div>
+          <p class="note">第三輪還列過四種未來的樣子：店裡看不見的感測、AI 值班主管、會自己調整的出餐調度、跨店一起學習的網路。跨店學習要先有資料授權、各店資料要分開，不當成第一年的承諾。<small class="en">Invisible Restaurant Sensing、AI Shift Supervisor、Adaptive Production Orchestrator、Cross-store Operations Learning Network</small></p>
+          <figcaption class="src">整理自對話第三、五輪。</figcaption>
+        </figure>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>三年後通用的視覺模型更便宜了，你覺得哪一種感測或訊號處理的能力，還是很難被複製，值得我們現在就開始累積？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 21 -->
+<section class="slide" id="s21" data-title="這一週" aria-label="這一週：11 月 23 日到 29 日">
+  <div class="frame">
+    <h2><span class="kw">這一週：</span><span class="kw">11 月 23 日到 29 日</span></h2>
+    <p class="lede">這週只有一個目標：讓一件真實的現場狀況，經過我們的感測和 AI，變成店長看得懂、能確認、會去做的一個動作。</p>
+    <div class="cols stack">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「或者是我們現在要 take actions，本週應該做什麼？」<cite>第五輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>這是有期限的衝刺。現場資料、設備權限或人手還沒到位，就先交出一個用模擬事件跑完整條流程的原型，清楚寫上「還沒在現場驗證」。</li>
+        <li>這週不做：自己的 POS、完整的庫存管理、跨店的總部平台、蒐集幾十家餐廳的資料、一次接上全部攝影機、要客人下載 Limere App。</li>
+      </ul></div>
+      <div class="vizcol">
+        <figure class="viz quant" data-nums="23,24,25,26,27,28,29" data-msg="83">
+          <h3>一週的安排</h3>
+          <div class="week">
+            <div class="day"><span class="d">一・11 月 23 日</span><h4>決定做什麼、誰做</h4><p>原型選「現場營運看板」加「AI 店長助理」。只測一種狀況，例如桌子遲遲沒恢復可用、餐點做好了沒人端、某個工作站積單；先挑試驗場拿得到真實資料的那種。<small class="en">Live Operations Board＋AI Manager</small></p><div class="who"><span>Ryvn：產品要做什麼、對客人有什麼用</span><span>Tony：技術做不做得到、用什麼感測</span></div><p class="out">交出：一頁規格，寫清楚四件事：哪個狀況、要做什麼動作、誰付錢、怎樣算成功<small class="en">Event、Action、Buyer、Success Metric</small></p></div>
+            <div class="day"><span class="d">二・11 月 24 日</span><h4>問清楚試驗場能給什麼資料</h4><p>聯絡餐廳、酒吧、咖啡廳：用哪一家 POS、有沒有廚房出單螢幕、攝影機的狀況、資料權限、哪些時段可以測。三間不用都裝，挑最快能合法拿到資料的一間。同時找一位管過店的人，幫我們檢查假設。</p><p class="out">交出：主要的試點場地、拿得到的資料清單、一次排定的現場測試</p></div>
+            <div class="day"><span class="d">三・11 月 25 日</span><h4>做一個能重複用的事件引擎</h4><p>接收 POS 事件、簡單的人工回報或感測結果。每件事都用同一種格式記：時間、從哪來、哪一區、什麼事、有多確定、處理到哪。不用先把影像模型做完。<small class="en">Event Engine</small></p><p class="out">交出：能新增、更新、追蹤事件的後端，加上一個簡單的網頁畫面</p></div>
+            <div class="day"><span class="d">四・11 月 26 日</span><h4>第一個感測能力，加上店長助理</h4><p>挑最容易穩定拿到的實體事件，例如某一區的人數變化，或某個工作站有沒有在動。讓 AI 助理說明發生了什麼、提出建議、請店長確認。只做一條完整的流程。</p><div class="who"><span>Tony：挑要偵測的實體事件</span><span>Ryvn：AI 助理怎麼說明、怎麼建議</span></div><p class="out">交出：從「看到」到「建議一件事」再到「有人確認」的完整示範<small class="en">Observation → Task Suggestion → 人工確認</small></p></div>
+            <div class="day"><span class="d">五・11 月 27 日</span><h4>第一次展示，也談生意</h4><p>不是請對方評畫面好不好看，是請他指出哪些建議真的會影響每天的工作；同時提出一個有時間、範圍和價格的付費試點。</p><p class="out">交出：真實的回饋紀錄、最值得處理的那種狀況、下一階段的生意承諾</p></div>
+            <div class="day"><span class="d">六日・11 月 28 到 29 日</span><h4>尖峰時段只看不動手</h4><p>時段合適、也有合法授權的話，讓系統在尖峰時段跟著看，不自動改店裡的核心系統。記下抓到幾件事、哪些有用、誤報多少、店長願不願意照建議做。<small class="en">Shadow Test</small></p><p class="out">交出：真實的事件案例、初步的錯誤分析、下一輪測試的規格</p></div>
+          </div>
+          <p class="subhead" style="margin-top:18px">這週怎樣算成功：四個標準</p>
+          <ol class="checks">
+            <li>有沒有跑通一條「看到 → 決定 → 動手」的真實流程？<small class="en">Observation → Decision → Action</small></li>
+            <li>有沒有至少一家店，願意給合適的測試條件和資料授權？</li>
+            <li>有沒有一位真正做營運決定的人，覺得這件事值得一直管下去？</li>
+            <li>有沒有寫出一份具體的下一階段付費試點提案，而不只是口頭說要合作？</li>
+          </ol>
+          <p class="note">不用四項都成功，才算這個方向值得繼續。失敗的話寫下原因，把「缺資料」「模型不準」「沒有營運價值」「沒人想買」分開記。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈第五輪的本週計畫〉，我們尚未查證</figcaption>
+        </figure>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>這週如果只能挑一種現場狀況走完整條流程，你會用什麼標準去挑？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide" id="s22" data-title="我們兩個怎麼一起做決定" aria-label="我們兩個怎麼一起做決定">
+  <div class="frame">
+    <h2>我們兩個怎麼一起做決定</h2>
+    <p class="lede">對話建議的不是再多一份商業分析，而是一套我們兩個都同意的做法，來決定先做什麼：把技術的構想和生意的假設，放在同一個地方比。</p>
+    <div class="cols">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「Tony 一直很想做的，是把他的感測器與訊號理論，和我的心理學、Computer Vision、AI 能力結合起來發想方案。我自己則很需要先有商業思維來想整個方向。我想知道怎麼讓這兩種動力都用得上。」<cite>第三輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>留一塊固定的時間或預算，給自由的技術探索。對話舉的例子是每週大約一天，或兩個人同意的一筆固定研發預算；在這個範圍裡，研究什麼自己決定。比例不是重點，重點是兩個人都認同：哪些是探索，哪些是要交出去的東西。</li>
+        <li>可以試試這個節奏：每週開一次 45 分鐘的產品決策會議。每個人都帶新的證據來，例如技術原型、實驗數據，或客戶資料、競品、成本試算。每次只決定下一個範圍有限的實驗，還有看到什麼結果就繼續、看到什麼就停。</li>
+        <li>一個可以一起回答的問題：能不能像 Winnow 那樣（第 4 頁），先用秤和平板，好幾年後才做影像辨識？也就是先找到一個能賺錢、又能累積真實資料的感測應用，讓之後更複雜的 AI 自動化有機會做出來。</li>
+      </ul></div>
+      <div class="vizcol">
+        <figure class="viz diagram">
+          <h3>一個構想，怎麼走到正式開發</h3>
+          <div class="flow">
+            <div class="fbox"><b>技術探索清單</b>：什麼構想都可以放進來，不用先證明有市場。</div>
+            <span class="fdown" aria-hidden="true"></span>
+            <div class="fbox gate"><b>進正式開發前，一起回答三個問題</b>
+              <ol>
+                <li>它能改善哪一個具體的營運決定？店長會因此做出什麼不一樣的決定？</li>
+                <li>跟現在的替代做法比（POS、人工巡店、現有設備），多出來的價值量得出來嗎？</li>
+                <li>它最多能帶來的價值，有沒有機會比導入和每天維持的成本高？先估個大概的數量級就好。</li>
+              </ol></div>
+            <span class="fdown" aria-hidden="true"></span>
+            <div class="fsplit">
+              <div class="fbox yes"><b>正式產品開發</b><br>公司主要的資源放在這裡。</div>
+              <div class="fbox"><b>留著當研究專案</b><br>有研究價值，只是現在還不排進開發。</div>
+            </div>
+          </div>
+          <figcaption class="src">整理自對話第三輪。</figcaption>
+        </figure>
+        <figure class="viz diagram">
+          <h3>決定權怎麼分</h3>
+          <div class="lanes">
+            <div class="lane"><h4>生意這一邊主要負責</h4>市場怎麼選、客戶價值、定價、生意上先做什麼。</div>
+            <div class="lane"><h4>技術這一邊主要負責</h4>感測、硬體、訊號處理，還有技術方案。</div>
+            <div class="lane both"><h4>兩個人一起批准</h4>大筆的預算、公司定位、產品方向。</div>
+          </div>
+          <p class="note">事先約好談不攏時怎麼辦：先延後投入、做一個有上限的小實驗、找第三方評估，或照事先同意的權限處理。</p>
+          <figcaption class="src">整理自對話第三、五輪。</figcaption>
+        </figure>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>如果我們一起訂一套決定「先做什麼」的規則，你希望裡面一定要有什麼、絕對不要有什麼？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 23 -->
+<section class="slide" id="s23" data-title="還沒查證與還沒回答的" aria-label="還沒查證的，和還沒回答的">
+  <div class="frame">
+    <h2><span class="kw">還沒查證的，</span><span class="kw">和還沒回答的</span></h2>
+    <p class="lede">對話認為，有些結論已經可以先拿來用。但有三件事，公開資料沒辦法替我們回答。</p>
+    <div class="cols">
+      <aside class="ask"><span class="blk">Ryvn 當時問的</span>
+        <blockquote>「他們的資料是什麼？有沒有什麼可以預先回答的結論，而不是讓我從 0 摸索？」<cite>第三輪</cite></blockquote>
+      </aside>
+      <div class="pts"><ul>
+        <li>對話認為可以先用的：餐廳裡確實有些「沒人記下來、卻值錢」的營運資訊；在某些場景，感測和自動蒐集真的能多看見一些事；從簡單、便宜的產品開始，可以一路走到複雜的 AI；通用的分析守不住；裝機和陪客戶用起來，本身就是產品的成本。</li>
+        <li>要我們自己去驗證的三件事：台灣哪一種店，還有夠大、沒被滿足的需求？我們能不能用負擔得起的成本，做出明顯多出來的價值？誰會真的付錢，為什麼是現在？</li>
+        <li>還要一起想的：Limere 最後要當「幫餐廳做更好決定的軟體公司」，還是「能感知實體現場、再去調整營運流程的公司」？對話說，兩種一開始用的技術可能很像，但長期的產品、資料、裝機能力、對手和要準備的資金，完全不一樣。<small class="en">Software Company／Ambient Intelligence Company</small></li>
+      </ul></div>
+      <div class="vizcol">
+        <figure class="viz quant" data-nums="13,12,四個月,150,550,73,5,29,30,77.7,30.2,69.8,18.1,17.89,15000,13.4,3200,11.52,1 億,8640" data-msg="75,83,41,8">
+          <h3>這份簡報靠的幾個關鍵說法，都還沒查證</h3>
+          <div class="mx">
+            <div class="mx-row head"><span class="mx-h">說法</span><span class="mx-h">狀態</span><span class="mx-h">對話裡的出處，和它自己說的限制</span></div>
+            <div class="mx-row"><span class="mx-name">Shire：13 間餐廳；客人離開到桌子能再帶位的時間，少了約 12%</span><span class="v v-mid">未查證</span><span class="mx-note">YC 上線介紹。公司自己說的早期結果，沒看到第三方驗證，也沒有付費和續用的資料。</span></div>
+            <div class="mx-row"><span class="mx-name">Marble：四個月簽下 150 間以上；種子輪 550 萬美元</span><span class="v v-mid">未查證</span><span class="mx-note">領投方 Contrary。這是簽約數，沒公開多少家真的裝好、付錢、續約。</span></div>
+            <div class="mx-row"><span class="mx-name">Qu：73% 在投資 AI，只有 5% 有量得到的成果</span><span class="v v-mid">未查證</span><span class="mx-note">Qu 2026 年的報告。美國市場、供應商自己做的研究，受訪的偏多店品牌。</span></div>
+            <div class="mx-row"><span class="mx-name">智慧秤讓浪費少 29%；AI 分類再少 30%</span><span class="v v-mid">未查證</span><span class="mx-note">SSRN 工作論文。準實驗，還沒經過期刊同儕審查。</span></div>
+            <div class="mx-row"><span class="mx-name">經濟部：77.7% 用 POS；直營占 30.2%；69.8% 說食材成本最頭痛</span><span class="v v-mid">未查證</span><span class="mx-note">三個數字來自經濟部不同年份的調查和資料，要一個一個對回原始表格。</span></div>
+            <div class="mx-row"><span class="mx-name">台灣約 18.1 萬個餐飲門市</span><span class="v v-mid">未查證</span><span class="mx-note">未來流通研究所。第一輪另外引了 2025 年餐飲業營利事業約 17.89 萬家，兩個數字的算法不同。</span></div>
+            <div class="mx-row"><span class="mx-name">iCHEF：服務 15,000 間以上；用 AI 推薦的店，客單價平均多 13.4%</span><span class="v v-mid">未查證</span><span class="mx-note">iCHEF 官方。供應商自己公布的成效，不是隨機實驗。</span></div>
+            <div class="mx-row"><span class="mx-name">91APP 用 3,200 萬美元買下 iCHEF</span><span class="v v-mid">未查證</span><span class="mx-note">91APP 的宣布、《天下雜誌》的專訪。</span></div>
+            <div class="mx-row"><span class="mx-name">DoorDash 用約 11.52 億美元買下 SevenRooms</span><span class="v v-mid">未查證</span><span class="mx-note">對話引 DoorDash 2026 年的 SEC 文件。</span></div>
+            <div class="mx-row"><span class="mx-name">Sweetgreen 把 Spyce 賣給 Wonder：1 億美元現金，加上約 8,640 萬美元的股權</span><span class="v v-mid">未查證</span><span class="mx-note">對話引 Sweetgreen 向 SEC 提交的資料。</span></div>
+          </div>
+          <p class="note">第 4 到 9 頁故事裡的人名、年份和其他數字，也都還沒查證。</p>
+          <figcaption class="src">資料：ChatGPT 對話引述〈各輪回覆裡的來源說明〉，我們尚未查證</figcaption>
+        </figure>
+      </div>
+      <aside class="tony"><span class="blk">想問 Tony</span>
+        <p>這些說法裡，有哪幾個是我們自己在試驗場裝一套感測、量一次，就能先驗證的？你會怎麼量？</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 24 -->
+<section class="slide" id="s24" data-title="附錄：五輪提問" aria-label="附錄：Ryvn 的五輪提問">
+  <div class="frame">
+    <h2><span class="kw">附錄：</span><span class="kw">Ryvn 的五輪提問</span></h2>
+    <p class="lede">五輪提問，照時間排。裡面的「不要用表格」「不要給我圖表」，是要 ChatGPT 回答時別用表格和圖表。</p>
     <ol class="prompts">
-      <li><span class="when"><b>第一輪</b>2026-11-22 17:45</span>
+      <li><span class="when"><b>第一輪</b>2026 年 11 月 22 日 17:45</span>
         <p class="txt">Limere 從目前的 night life tech 即將 pivot 到 餐廳 / 酒吧 / 咖啡廳 運營優化與管理。
 創辦人的背景是 AI 與感測器兩個工程師，可以回看過去的歷史紀錄，發現我們為了 去做實體社交層採取了很不適合我們的策略：一直在做很多周邊的事情無法做到自己喜歡和相信的事情。
 過去我們已經有看過 SevenRooms 國外的成功案例，我們想複製在台灣的經驗，但是我們不只是想做 SevenRooms 票券定位管理 台灣已經有相當成熟的 inline 等等。 我們想做的方向是想要利用我們IoT and AI and Computer vision and psychology 的非常深厚的過去技術來輔助餐聽運營。
 我們已經了解到台灣已經有一些科技公司或是餐飲集團開始嘗試這個方向，國外更是豐富，但是不可否認的這個市場依舊非常龐大在台灣。
 但是因為我們兩個都是RD背景，即使有業務開發經驗（過去的創業經驗）我們對於ICP/ 通路/營銷/ 定位/ 功能/ 訪談/ 痛點/ BMC / business model/ pricing / 等商業分析 / workaround /競品 不是非常熟悉。 即時我們知道基礎的部分因為我們創業過。 目前已經有餐廳/酒吧/咖啡廳願意當我們的試驗場。
 目前我想知道如果要做這個方向我們應該要先回答哪些問題，當然你也可以給我一些背景知識以及你對這個題目的評估。越深度越好，你是商管顧問，不能給我泛泛之談</p></li>
-      <li><span class="when"><b>第二輪</b>2026-11-22 18:19</span>
+      <li><span class="when"><b>第二輪</b>2026 年 11 月 22 日 18:19</span>
         <p class="txt">請繼續 然後不要用表格呈現</p></li>
-      <li><span class="when"><b>第三輪</b>2026-11-22 22:44</span>
+      <li><span class="when"><b>第三輪</b>2026 年 11 月 22 日 22:44</span>
         <p class="txt">1. 的確我們的終極目標是走向B
 2. Tony 一直很想做的，是把他的感測器與訊號理論，和我的心理學、Computer Vision、AI 能力結合起來發想方案。我自己則很需要先有商業思維來想整個方向。我想知道怎麼讓這兩種動力都用得上
 3. 你說的沒錯從作業研究 行銷等等方向的確要我們去做很多預先的事情 但是事實上你也可以直接查詢 這些你提到的競品他在早期是怎麼打入市場的 不需要我去問或者思考 其次 你說的很多問題事實上你可以直接去找證據 找論文 找YC and a16z 相關團隊 競品 為什麼成功 為什麼失敗 在這個領域中 肯定有非常多國內外跟我們做一樣題目的人 他們的資料是什麼 有沒有什麼可以預先回答的結論 而不是讓我從0摸索
 4. 在未來三年隨著AI發展越來越成熟 技術不再是壁壘 且可探索的空間更大 這個產品可能樣態會有哪些方向 你必須考慮未來性
 5. 你提到成本結構的問題 bottleneck 事實上你早就知道解方跟問題點 你要試圖自己先回答
 一樣不要給我圖表</p></li>
-      <li><span class="when"><b>第四輪</b>2026-11-23 06:08</span>
+      <li><span class="when"><b>第四輪</b>2026 年 11 月 23 日 06:08</span>
         <p class="txt">你這次聚焦在食物浪費 而不是我們的終極目標是因為你的研究跟案例有抽樣偏頗
 1. 我想知道更多餐廳運營的案例 或者論文 可以更貼近我們想做的方向 更為直接 創辦人故事 成功案例 但我更希望看到失敗案例 這可能來自最近新創團隊的啟示 就我所知做這方面的新創不少
 2. 你舉的案例他們都已經是十幾年前的做法了，現在AI科技時代的冷啟動問題，應該會有更多做法 更穩健更效率 我們當然可以去現場觀察3-6個月但觀察完競品到公司早就超過了</p></li>
-      <li><span class="when"><b>第五輪</b>2026-11-23 07:00</span>
+      <li><span class="when"><b>第五輪</b>2026 年 11 月 23 日 07:00</span>
         <p class="txt">1. 不錯，但我們要思考的是，我看到的是機會，而不是阻力，既然yc 在這兩階段的新創都有這個題目，台灣市場就是一個合理的著力點，就算是複製他的模式也不是不可，但你可以分析台灣市場可能的啟示，事實上你也是部分理解台灣市場的
 2. Shire and Marble 具體有哪些功能那這些值得我們直接開始 你必須詳細分析
 3. 2B and 2VC 的BMC 將會是什麼 你可以大概說明一下
